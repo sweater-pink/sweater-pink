@@ -1,0 +1,12 @@
+<!-- muat hasil enkripsi -->
+<script src="ciphers.js"></script>
+
+<script>
+  // pakai data dari ciphers.js
+  const CIPHERS = (window.CIPHERS || []);
+
+  // ... fungsi togglePassword, checkPassword, renderQuote, dll ...
+  // (Jika tombol pakai onclick di HTML) ekspor fungsi ke global:
+  window.checkPassword  = checkPassword;
+  window.togglePassword = togglePassword;
+</script>
