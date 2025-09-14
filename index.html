@@ -37,21 +37,15 @@
 <script src="ciphers.js?v=11"></script>
 
 <script>
-/* ===========================================================
-   Ambil blob terenkripsi dari ciphers.js
-   (ciphers.js mendefinisikan window.CIPHERS = [ {salt_b64, iv_b64, iters, data_b64} ])
-   =========================================================== */
 const CIPHERS = (window.CIPHERS || []);
 
-/* ===========================================================
-   Util Base64
-   =========================================================== */
-function b64toBytes(b64){const bin=atob(b64);const arr=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);return arr;}
+function b64toBytes(b64){
+  const bin=atob(b64);
+  const arr=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);
+  return arr;
+}
 
-/* ===========================================================
-   KDF & Decrypt (PBKDF2 → AES-GCM 256)
-   data_b64 = ciphertext||authTag (dari encrypt.js)
-   =========================================================== */
 async function deriveKey(password, salt, iters){
   const enc = new TextEncoder();
   const keyMaterial = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]);
@@ -65,27 +59,20 @@ async function deriveKey(password, salt, iters){
 }
 
 async function tryDecryptWith(password){
-  // Coba setiap item dalam CIPHERS (biasanya satu)
   for(const item of CIPHERS){
     try{
       const salt = b64toBytes(item.salt_b64);
       const iv   = b64toBytes(item.iv_b64);
       const key  = await deriveKey(password, salt, item.iters);
       const ct   = b64toBytes(item.data_b64);
-      // WebCrypto menerima ciphertext||tag
       const plainBuf = await crypto.subtle.decrypt({name:"AES-GCM", iv}, key, ct);
       const json = JSON.parse(new TextDecoder().decode(new Uint8Array(plainBuf)));
-      return json; // {quotes, perhatianText, perhatianLink, downloadLink, groupLink}
-    }catch(e){
-      // lanjut ke item berikutnya
-    }
+      return json;
+    }catch(e){}
   }
   throw new Error("wrong_password_or_blob");
 }
 
-/* ===========================================================
-   UI handlers
-   =========================================================== */
 function togglePassword(){
   const input = document.getElementById("password-input");
   input.type = input.type === "password" ? "text" : "password";
@@ -109,7 +96,11 @@ async function checkPassword(){
     document.getElementById("password-box").style.display = "none";
     renderQuote(data);
   }catch(e){
-    errorMsg.textContent = "Password salah atau data belum diisi.";
+    const url = "https://youtube.com/@sweater-pink-dowload-config";
+    errorMsg.innerHTML =
+      'Password salah!!! cek vidio terbaru di sini ' +
+      '<a href="' + url + '" target="_blank" rel="noopener noreferrer" ' +
+      'style="text-decoration:underline; color:#0b5ed7;">link</a>.';
     errorMsg.style.display = "block";
   }
 }
@@ -119,7 +110,6 @@ function renderQuote({quotes, perhatianText, perhatianLink, downloadLink, groupL
   const day = now.getDate();
   const monthNames = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
   const dateStr = day + " " + monthNames[now.getMonth()] + " " + now.getFullYear();
-
   const rawQuote = (quotes && quotes.length) ? quotes[Math.min(day,31)-1] : "";
   const cleanQuote = String(rawQuote||"").replace(/^\d{1,2}:\s*/, "");
 
@@ -149,12 +139,8 @@ function copyQuote(){
   }).catch(()=>alert("Gagal menyalin. Silakan salin manual."));
 }
 
-/* ===========================================================
-   Ekspor fungsi ke global (agar onclick di HTML bisa memanggil)
-   =========================================================== */
 window.checkPassword  = checkPassword;
 window.togglePassword = togglePassword;
 </script>
 </body>
 </html>
-
