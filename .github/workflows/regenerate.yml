@@ -35,6 +35,11 @@ jobs:
           git add ciphers.js
           git commit -m "chore: regenerate ciphers (pw=${{ github.event.inputs.pw }})" || echo "No changes"
           git push
+- name: Bump cache buster in index.html
+  run: |
+    vb=${{ github.run_number }}
+    sed -i 's#ciphers.js?v=[0-9]*#ciphers.js?v='"$vb"'#' index.html || \
+    sed -i 's#ciphers.js"#ciphers.js?v='"$vb"'"#' index.html
 
 
 
