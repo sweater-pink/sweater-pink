@@ -12,7 +12,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Checkout repo publik
       - uses: actions/checkout@v4
+
+      # Checkout repo PRIVATE "data" ke folder ./data
+      - name: Checkout private data repo
+        uses: actions/checkout@v4
+        with:
+          repository: sshserver0106-hub/data
+          token: ${{ secrets.DATA_TOKEN }}
+          path: data
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -26,18 +35,12 @@ jobs:
           if ! [[ "${PW}" =~ ^[0-9]{3}$ ]]; then
             echo "Password harus 3 digit"; exit 1;
           fi
-          node tools/encrypt.js
-
-      - name: Bump cache buster in index.html
-        run: |
-          vb=${{ github.run_number }}
-          sed -i 's#ciphers.js?v=[0-9]*#ciphers.js?v='"$vb"'#' index.html || \
-          sed -i 's#ciphers.js"#ciphers.js?v='"$vb"'"#' index.html
+          node data/tools/encrypt.js
 
       - name: Commit & push
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add ciphers.js index.html
-          git commit -m "chore: regenerate ciphers (pw=${{ github.event.inputs.pw }})" || echo "No changes"
+          git add ciphers.js
+          git commit -m "regenerate ciphers (pw=${{ github.event.inputs.pw }})" || echo "No changes"
           git push
