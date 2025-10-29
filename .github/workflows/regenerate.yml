@@ -1,1 +1,62 @@
+name: Regenerate ciphers (manual)
 
+on:
+  workflow_dispatch:
+    inputs:
+      pw:
+        description: "Password 3 digit (mis. 123)"
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 1) Checkout repo publik (GitHub Pages)
+      - uses: actions/checkout@v4
+
+      # 2) Checkout repo privat (berisi content.json & tools/encrypt.js)
+      - name: Checkout private data repo
+        uses: actions/checkout@v4
+        with:
+          repository: sshserver0106-hub/data     # ganti kalau beda
+          token: ${{ secrets.DATA_TOKEN }}       # secret token di repo publik
+          path: data
+
+      # 3) Node.js
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # 4) Sembunyikan pw di log
+      - name: Mask pw in logs
+        run: echo "::add-mask::${{ github.event.inputs.pw }}"
+
+      # 5) Generate ciphers.js DI ROOT repo publik
+      - name: Generate ciphers.js
+        env:
+          PW: ${{ github.event.inputs.pw }}
+        run: |
+          if ! [[ "${PW}" =~ ^[0-9]{3}$ ]]; then
+            echo "Password harus 3 digit"; exit 1;
+          fi
+          node data/tools/encrypt.js
+          test -f ciphers.js || (echo "ciphers.js tidak dibuat di root" && exit 1)
+          head -n 2 ciphers.js
+
+      # 6) Bump cache-buster (supaya selalu ambil versi baru)
+      - name: Bump cache buster in index.html
+        run: |
+          vb=${{ github.run_number }}
+          sed -i 's#ciphers.js?v=[0-9]\+#ciphers.js?v='"$vb"'#' index.html || \
+          sed -i 's#ciphers.js"#ciphers.js?v='"$vb"'"#' index.html
+
+      # 7) Commit & push
+      - name: Commit & push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ciphers.js index.html
+          git commit -m "regenerate ciphers" || echo "No changes"
+          git push
