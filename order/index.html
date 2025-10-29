@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sweater Pink Order | Gasss Premium</title>
+  <style>
+    body { font-family: 'Poppins', sans-serif; background-color: #faf5f7; padding: 20px; }
+    .product-card {
+      background: linear-gradient(135deg, #ffd8e5, #ffbfd4);
+      max-width: 380px; margin: 0 auto; border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; padding: 25px 15px;
+    }
+    .product-title { color: #c2185b; font-size: 22px; font-weight: 700; margin-bottom: 5px; text-transform: uppercase; }
+    .product-subtitle { font-size: 14px; color: #555; margin-top: 5px; }
+    form { background: white; max-width: 380px; margin: 15px auto; padding: 15px 18px 20px 18px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .form-group { margin-bottom: 10px; }
+    label { font-weight: 600; color: #333; display: block; margin-bottom: 3px; font-size: 13px; }
+    input, select { width: 100%; padding: 8px; border: 1.3px solid #e0b9c9; border-radius: 6px; box-sizing: border-box; font-size: 13px; transition: all 0.2s ease; }
+    input:focus, select:focus { border-color: #c2185b; outline: none; box-shadow: 0 0 3px rgba(194,24,91,0.25); }
+    .price-box { background: #f8edf2; border-radius: 6px; padding: 10px; text-align: center; font-weight: 600; color: #c2185b; margin-top: 5px; font-size: 14px; }
+    button { width: 100%; background: linear-gradient(135deg,#e91e63,#c2185b); color: white; border: none; padding: 10px; border-radius: 6px; margin-top: 10px; cursor: pointer; font-weight: 600; font-size: 14px; }
+    button:hover { background: linear-gradient(135deg,#c2185b,#a5114a); }
+    footer { text-align: center; margin-top: 20px; font-size: 12px; color: #777; }
+    #previewBox {
+      display: none; background: #fff4f7; border: 1px solid #f3c2d0; border-radius: 10px;
+      padding: 12px 15px; margin-top: 15px; font-size: 13px; line-height: 1.6;
+      color: #333; box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+    #previewBox strong { color: #c2185b; }
+    #previewTitle {
+      text-align: center; font-weight: 700; color: #c2185b;
+      font-size: 15px; margin-bottom: 6px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+</head>
+<body>
+
+  <div class="product-card">
+    <div class="product-title">Sweater Pink</div>
+    <div class="product-subtitle">Order Premium - Pilih Jenis & Server Kamu</div>
+  </div>
+
+  <form id="waForm">
+    <div class="form-group">
+      <label for="nama">Nama</label>
+      <input type="text" id="nama" placeholder="Masukkan nama anda" required />
+    </div>
+
+    <div class="form-group">
+      <label for="jenis">Jenis Order</label>
+      <select id="jenis" required>
+        <option value="">-- Pilih Jenis Order --</option>
+        <option value="Config Premium">Config Premium</option>
+        <option value="Tembak Paket">Tembak Paket</option>
+        <option value="SSH">SSH</option>
+        <option value="VMESS">VMESS</option>
+        <option value="VLESS">VLESS</option>
+        <option value="TROJAN">TROJAN</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="server">Pilih Server</label>
+      <select id="server" required>
+        <option value="">-- Pilih Server --</option>
+        <!-- INDONESIA -->
+        <option>[ID] Indonesia 1 HP | Rp. 10.000 | 30 Hari</option>
+        <option>[ID] Indonesia 2 HP | Rp. 12.000 | 30 Hari</option>
+        <option>[ID] Indonesia 1 HP | Rp. 20.000 | 60 Hari</option>
+        <option>[ID] Indonesia 2 HP | Rp. 24.000 | 60 Hari</option>
+        <!-- SINGAPORE -->
+        <option>[SG] Singapore 1 HP | Rp. 8.000 | 30 Hari</option>
+        <option>[SG] Singapore 2 HP | Rp. 10.000 | 30 Hari</option>
+        <option>[SG] Singapore 1 HP | Rp. 18.000 | 60 Hari</option>
+        <option>[SG] Singapore 2 HP | Rp. 22.000 | 60 Hari</option>
+      </select>
+    </div>
+
+    <div id="harga" class="price-box">Harga: -</div>
+
+    <div class="form-group">
+      <label for="provinsi">Provinsi</label>
+      <select id="provinsi" required>
+        <option value="">-- Pilih Provinsi --</option>
+        <option>Aceh</option><option>Sumatera Utara</option><option>Sumatera Barat</option><option>Riau</option>
+        <option>Kepulauan Riau</option><option>Jambi</option><option>Bengkulu</option><option>Sumatera Selatan</option>
+        <option>Kepulauan Bangka Belitung</option><option>Lampung</option><option>Banten</option><option>DKI Jakarta</option>
+        <option>Jawa Barat</option><option>Jawa Tengah</option><option>DI Yogyakarta</option><option>Jawa Timur</option>
+        <option>Bali</option><option>Nusa Tenggara Barat</option><option>Nusa Tenggara Timur</option><option>Kalimantan Barat</option>
+        <option>Kalimantan Tengah</option><option>Kalimantan Selatan</option><option>Kalimantan Timur</option><option>Kalimantan Utara</option>
+        <option>Sulawesi Utara</option><option>Sulawesi Tengah</option><option>Sulawesi Selatan</option><option>Sulawesi Tenggara</option>
+        <option>Gorontalo</option><option>Sulawesi Barat</option><option>Maluku</option><option>Maluku Utara</option>
+        <option>Papua</option><option>Papua Barat</option><option>Papua Tengah</option><option>Papua Pegunungan</option>
+        <option>Papua Selatan</option><option>Papua Barat Daya</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="kartu">Pilih Kartu</label>
+      <select id="kartu" required>
+        <option value="">-- Pilih Operator --</option>
+        <option>XL</option><option>Axis</option><option>Telkomsel</option><option>Indosat</option>
+      </select>
+    </div>
+
+    <div id="previewBox">
+      <div id="previewTitle">🔥🔥 Gasss Order 🔥🔥</div>
+      <div id="previewContent">Isi semua data untuk lihat order kamu di sini!</div>
+    </div>
+
+    <button type="submit">Kirim ke WhatsApp</button>
+    <p style="text-align:center;font-size:12px;color:#888;margin-top:8px;">
+      Pastikan data Anda benar sebelum mengirim.
+    </p>
+  </form>
+
+  <footer>© 2025 Sweater Pink Order | Premium</footer>
+
+<script>
+  // stok global
+  const stokGlobal = { ID: 999, SG: 85 };
+
+  const provSelect = new Choices(document.getElementById('provinsi'), {
+    searchEnabled: true,
+    itemSelectText: '',
+    noResultsText: 'Provinsi tidak ditemukan',
+    shouldSort: false
+  });
+
+  const serverSelect = document.getElementById('server');
+  const hargaBox = document.getElementById('harga');
+  const previewBox = document.getElementById('previewBox');
+  const previewContent = document.getElementById('previewContent');
+
+  function extractData(serverText) {
+    const parts = serverText.split('|').map(p => p.trim());
+    return {
+      namaServer: parts[0] || '',
+      harga: parts[1] || '',
+      masaAktif: parts[2] || ''
+    };
+  }
+
+  function updatePreview() {
+    const nama = document.getElementById('nama').value;
+    const jenis = document.getElementById('jenis').value;
+    const provinsi = document.getElementById('provinsi').value;
+    const kartu = document.getElementById('kartu').value;
+    const selected = serverSelect.options[serverSelect.selectedIndex];
+    const serverVal = serverSelect.value;
+
+    if (nama || jenis || provinsi || kartu || serverVal) {
+      previewBox.style.display = 'block';
+      let serverHTML = '';
+
+      if (serverVal) {
+        const data = extractData(selected.text);
+        let stok = '-';
+        if (selected.text.includes('[ID]')) stok = stokGlobal.ID;
+        else if (selected.text.includes('[SG]')) stok = stokGlobal.SG;
+
+        serverHTML = `
+          <strong>Server:</strong> ${data.namaServer}<br>
+          <strong>Harga:</strong> ${data.harga}<br>
+          <strong>Masa Aktif:</strong> ${data.masaAktif}<br>
+          <strong>Stok:</strong> <span style="color:${stok == 0 ? 'red' : '#333'}">${stok}</span><br>
+        `;
+      }
+
+      previewContent.innerHTML = `
+        <strong>Nama:</strong> ${nama || '-'}<br>
+        <strong>Jenis Order:</strong> ${jenis || '-'}<br>
+        ${serverHTML}
+        <strong>Provinsi:</strong> ${provinsi || '-'}<br>
+        <strong>Kartu:</strong> ${kartu || '-'}
+      `;
+    }
+  }
+
+  document.querySelectorAll('#waForm input, #waForm select').forEach(el => {
+    el.addEventListener('change', updatePreview);
+  });
+
+  serverSelect.addEventListener('change', () => {
+    const selected = serverSelect.options[serverSelect.selectedIndex];
+    const text = selected.text;
+    if (!text) {
+      hargaBox.innerText = 'Harga: -';
+      return;
+    }
+
+    const data = extractData(text);
+    let stok = '-';
+    if (text.includes('[ID]')) stok = stokGlobal.ID;
+    else if (text.includes('[SG]')) stok = stokGlobal.SG;
+
+    hargaBox.innerHTML = `
+      Harga: ${data.harga}<br>
+      <span style="color:${stok == 0 ? 'red' : '#333'}">Stok: ${stok}</span>
+    `;
+    updatePreview();
+  });
+
+  // Kirim ke WhatsApp (tetap aktif)
+  document.getElementById('waForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nama = document.getElementById('nama').value;
+    const jenis = document.getElementById('jenis').value;
+    const selected = serverSelect.options[serverSelect.selectedIndex];
+    const data = extractData(selected.text);
+    const provinsi = document.getElementById('provinsi').value;
+    const kartu = document.getElementById('kartu').value;
+    const nomor = '6283870282897';
+    const heart = String.fromCharCode(0x2764, 0xFE0F);
+
+    const teks = 
+`*SWEATER PINK ORDER*
+
+*Nama:* ${nama}
+*Jenis Order:* ${jenis}
+*Server:* ${data.namaServer}
+*Harga:* ${data.harga}
+*Masa Aktif:* ${data.masaAktif}
+*Provinsi:* ${provinsi}
+*Kartu:* ${kartu}
+
+──────────────
+Terima kasih telah order di *Sweater Pink Store* ${heart}
+Pesanan kamu sedang diproses, mohon tunggu konfirmasi dari admin.`;
+
+    window.open(`https://wa.me/${nomor}?text=${encodeURIComponent(teks)}`,'_blank');
+  });
+</script>
+</body>
+</html>
