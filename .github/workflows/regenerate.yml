@@ -8,6 +8,9 @@ on:
         required: true
         type: string
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,17 +26,17 @@ jobs:
           token: ${{ secrets.DATA_TOKEN }}       # secret token di repo publik
           path: data
 
-      # 3) Node.js
+      # 3) Setup Node.js
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      # 4) Sembunyikan pw di log
+      # 4) Mask password di log agar tidak terlihat
       - name: Mask pw in logs
         run: echo "::add-mask::${{ github.event.inputs.pw }}"
 
-      # 5) Generate ciphers.js DI ROOT repo publik
+      # 5) Jalankan enkripsi & hasilkan ciphers.js ke dalam folder pass-web
       - name: Generate ciphers.js
         env:
           PW: ${{ github.event.inputs.pw }}
@@ -42,21 +45,24 @@ jobs:
             echo "Password harus 3 digit"; exit 1;
           fi
           node data/tools/encrypt.js
-          test -f ciphers.js || (echo "ciphers.js tidak dibuat di root" && exit 1)
-          head -n 2 ciphers.js
+          # Pastikan file output ada
+          test -f ciphers.js || (echo "❌ ciphers.js tidak dibuat di root" && exit 1)
+          # Pindahkan hasil ke folder pass-web
+          mv ciphers.js pass-web/ciphers.js
+          head -n 2 pass-web/ciphers.js
 
-      # 6) Bump cache-buster (supaya selalu ambil versi baru)
+      # 6) Update versi cache-buster di pass-web/index.html
       - name: Bump cache buster in index.html
         run: |
           vb=${{ github.run_number }}
-          sed -i 's#ciphers.js?v=[0-9]\+#ciphers.js?v='"$vb"'#' index.html || \
-          sed -i 's#ciphers.js"#ciphers.js?v='"$vb"'"#' index.html
+          sed -i 's#ciphers.js?v=[0-9]\+#ciphers.js?v='"$vb"'#' pass-web/index.html || \
+          sed -i 's#ciphers.js"#ciphers.js?v='"$vb"'"#' pass-web/index.html
 
-      # 7) Commit & push
+      # 7) Commit & push hasil terbaru
       - name: Commit & push
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add ciphers.js index.html
-          git commit -m "regenerate ciphers" || echo "No changes"
+          git add pass-web/ciphers.js pass-web/index.html
+          git commit -m "regenerate ciphers" || echo "No changes to commit"
           git push
