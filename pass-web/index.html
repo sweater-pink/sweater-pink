@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sweater Pink Premium (Encrypted)</title>
+<style>
+  :root { --pink:#ffc0cb; --accent:#ff4d94; --green:#28a745; }
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#fff0f5;margin:0;padding:20px}
+  #password-box{background:var(--pink);padding:20px;border-radius:12px;text-align:center;width:90%;max-width:420px;margin:20px auto;box-shadow:0 6px 14px rgba(0,0,0,0.12)}
+  #quote-box{display:none;background:var(--pink);color:#333;font-size:18px;margin:20px auto;text-align:center;padding:20px;border-radius:12px;width:90%;max-width:560px;box-shadow:0 6px 14px rgba(0,0,0,0.12);opacity:0;transition:opacity .8s ease-in;overflow-wrap:anywhere}
+  .btn{background:var(--accent);color:#fff;border:none;padding:10px 18px;border-radius:8px;cursor:pointer;font-weight:600}
+  .btn-green{background:var(--green)}
+  .input-wrap{position:relative;width:82%;margin:0 auto 12px}
+  input[type=password],input[type=text]{padding:10px 38px 10px 12px;background:#fff;border:none;border-radius:8px;width:100%;box-sizing:border-box;color:#000;outline:none}
+  .eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:16px;color:#555;background:transparent;border:none}
+  #error-msg{color:#b00020;font-weight:bold;display:none;margin-top:12px}
+</style>
+</head>
+<body>
+
+<!-- ========== LOGIN UI ========== -->
+<div id="password-box">
+  <p style="color:#000;margin:0 0 12px;font-size:18px;"><b>Masukkan Password di vidio terbaru<br>(salam: sweater pink)</b></p>
+  <div class="input-wrap">
+    <input type="password" id="password-input" placeholder="Password..." onkeydown="if(event.key==='Enter'){checkPassword();}">
+    <button type="button" class="eye" onclick="togglePassword()" aria-label="Lihat Password">👁️</button>
+  </div>
+  <button class="btn" onclick="checkPassword()">Submit</button>
+  <p id="error-msg"></p>
+</div>
+
+<!-- ========== KONTEN SETELAH DEKRIPSI ========== -->
+<div id="quote-box"></div>
+
+<!-- Muat hasil enkripsi (dibuat oleh Actions / tools/encrypt.js) -->
+<script src="ciphers.js?v=60"></script> <!-- workflow nanti otomatis ganti angka v -->
+
+<script>
+const CIPHERS = (window.CIPHERS || []);
+
+function b64toBytes(b64){
+  const bin=atob(b64);
+  const arr=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);
+  return arr;
+}
+
+async function deriveKey(password, salt, iters){
+  const enc = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey(
+    { name:"PBKDF2", salt, iterations: iters || 100000, hash:"SHA-256" },
+    keyMaterial,
+    { name:"AES-GCM", length:256 },
+    false,
+    ["decrypt"]
+  );
+}
+
+async function tryDecryptWith(password){
+  for(const item of CIPHERS){
+    try{
+      const salt = b64toBytes(item.salt_b64);
+      const iv   = b64toBytes(item.iv_b64);
+      const key  = await deriveKey(password, salt, item.iters);
+      const ct   = b64toBytes(item.data_b64);
+      const plainBuf = await crypto.subtle.decrypt({name:"AES-GCM", iv}, key, ct);
+      const json = JSON.parse(new TextDecoder().decode(new Uint8Array(plainBuf)));
+      return json;
+    }catch(e){}
+  }
+  throw new Error("wrong_password_or_blob");
+}
+
+function togglePassword(){
+  const input = document.getElementById("password-input");
+  input.type = input.type === "password" ? "text" : "password";
+}
+
+async function checkPassword(){
+  const inputVal = document.getElementById("password-input").value.trim();
+  const errorMsg = document.getElementById("error-msg");
+  if(!inputVal){
+    errorMsg.textContent = "Password tidak boleh kosong.";
+    errorMsg.style.display = "block";
+    return;
+  }
+  if(!CIPHERS.length){
+    errorMsg.textContent = "Data terenkripsi (ciphers.js) belum ada.";
+    errorMsg.style.display = "block";
+    return;
+  }
+  try{
+    const data = await tryDecryptWith(inputVal);
+    document.getElementById("password-box").style.display = "none";
+    renderQuote(data);
+  }catch(e){
+    const url = "https://youtube.com/@sweater-pink-dowload-config";
+    errorMsg.innerHTML =
+      'Password salah!!! cek video terbaru di sini ' +
+      '<a href="' + url + '" target="_blank" rel="noopener noreferrer" ' +
+      'style="text-decoration:underline; color:#0b5ed7;">link</a>.';
+    errorMsg.style.display = "block";
+  }
+}
+
+function renderQuote({quotes, perhatianText, perhatianLink, downloadLink, groupLink}){
+  const now = new Date();
+  const day = now.getDate();
+  const monthNames = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+  const dateStr = day + " " + monthNames[now.getMonth()] + " " + now.getFullYear();
+  const rawQuote = (quotes && quotes.length) ? quotes[Math.min(day,31)-1] : "";
+  const cleanQuote = String(rawQuote||"").replace(/^\d{1,2}:\s*/, "");
+
+  const box = document.getElementById("quote-box");
+  box.innerHTML =
+    "<b style='font-size:22px'>" + dateStr + "</b>" +
+    "<div style='background:#fff3cd;color:#856404;border:1px solid #ffeeba;padding:12px;border-radius:10px;margin:16px auto 12px;text-align:left;max-width:490px;'>" +
+      "<b style='display:block;margin-bottom:6px;'>⚠️Perhatian!!!</b>" +
+      "<span style='display:block;line-height:1.5;margin-bottom:6px;'>" + (perhatianText||"") + "</span>" +
+      "<a href='" + (perhatianLink||"#") + "' target='_blank' style='color:#d63384;font-weight:bold;text-decoration:underline;'>🔗 Panduan username:password</a>" +
+    "</div>" +
+    "<span id='today-quote' style='display:block;margin-top:8px;font-style:italic;'>" + cleanQuote + "</span>" +
+    "<div style='margin-top:18px;display:flex;flex-direction:column;align-items:center;gap:12px;'>" +
+      "<button class='btn' onclick='copyQuote()'>Salin</button>" +
+      "<p id='copy-msg' style='color:green;font-weight:bold;display:none;margin:0;'>✔ username:password berhasil disalin! silakan tempel di http customer</p>" +
+      "<a href='" + (downloadLink||"#") + "' target='_blank' class='btn'>⬇ Download Config</a>" +
+      "<a href='" + (groupLink||"#") + "' target='_blank' class='btn btn-green'>👥 Join Grup Komunitas</a>" +
+    "</div>";
+  box.style.display = "block";
+  requestAnimationFrame(()=>{ box.style.opacity = 1; });
+}
+
+function copyQuote(){
+  const text = document.getElementById("today-quote").innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    document.getElementById("copy-msg").style.display = "block";
+  }).catch(()=>alert("Gagal menyalin. Silakan salin manual."));
+}
+
+window.checkPassword  = checkPassword;
+window.togglePassword = togglePassword;
+</script>
+</body>
+</html>
+
+<div style="height:auto;width:auto;padding:3px;padding-top:5px;border-radius:200px;box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);background-image:linear-gradient(#FF1499,#FF1499)"><font color=#e" size="2"> 
+<marquee>✅ Ready Config Premium ✅ Aktif 30-120 Hari ✅ Telah Dipercaya Dari 1.890 Pelanggan Dan 4.500 Teransaksi ✅ Harga Termurah ✅ CS Respon 24 JAM Nonstop ✅</marquee></font></div><!-- END --> 
+</center>
+</div>
