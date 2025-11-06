@@ -269,20 +269,26 @@ header .btn-detail button:hover {
   font-weight: 700;
 }
 
-/* Grid server agar sejajar tengah di HP & PC */
+/* ====== Server Grid 4 Kolom Sejajar ====== */
 .server-grid {
-  display: grid;
-  justify-content: center; /* Tengah horizontal */
-  align-items: center; /* Tengah vertikal */
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* responsif otomatis */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* biar tetap rapi di berbagai layar */
   gap: 15px;
   text-align: center;
   width: 100%;
   max-width: 700px;
-  margin: 0 auto; /* tengah di halaman */
+  margin: 0 auto;
 }
 
+.server-grid a {
+  flex: 1 1 calc(25% - 15px); /* ✅ 4 kolom sejajar */
+  max-width: 160px;
+  text-decoration: none;
+}
 
+/* Kartu server */
 .server-card {
   background: linear-gradient(135deg, #fff, #ffe3f2);
   border-radius: var(--radius);
@@ -308,6 +314,31 @@ header .btn-detail button:hover {
   font-size: 12px;
   color: #222;
   font-weight: 600;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 600px) {
+  .server-grid {
+    gap: 8px;
+  }
+
+  .server-grid a {
+    flex: 1 1 calc(25% - 8px); /* tetap 4 sejajar tapi lebih kecil */
+    max-width: 90px;
+  }
+
+  .server-card {
+    padding: 8px;
+  }
+
+  .server-card img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .server-card p {
+    font-size: 10px;
+  }
 }
 
 /* Footer */
