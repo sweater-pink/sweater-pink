@@ -123,43 +123,54 @@ header .btn-detail button:hover {
   transform: translateY(-2px);
 }
 
-/* 🌸 MENU PREMIUM FIXED & RESPONSIVE */
+/* 🌸 MENU SELALU DI TENGAH & TULISAN TIDAK KETUTUP */
 .swiper-menu {
-  margin: -60px auto 0;
-  padding: 25px 20px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px) saturate(180%);
+  margin: -50px auto 0;
+  padding: 20px 15px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
   border-radius: 25px;
-  box-shadow: 0 8px 30px rgba(255, 20, 153, 0.2);
+  box-shadow: 0 10px 25px rgba(255, 20, 153, 0.15);
   position: relative;
   z-index: 10;
-  max-width: 900px; /* biar di tengah dan simetris di layar besar */
-}
-
-/* ✅ Grid lebih stabil dan sejajar di semua layar */
-.swiper-slide-menu {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  text-align: center;
-  width: 100%;
-  margin: 0 auto;
 }
 
-/* Kartu menu */
+.swiper-slide-menu {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  width: fit-content;
+  margin: 0 auto;
+  flex-wrap: nowrap; /* selalu 1 baris */
+}
+
+.swiper-slide-menu a {
+  flex: 0 0 auto;
+  text-decoration: none;
+}
+
 .swiper-slide-menu a div {
-  background: linear-gradient(145deg, #ffffff, #fff2fa);
+  background: linear-gradient(145deg, #ffffff, #fff3fb);
   border-radius: 20px;
-  padding: 15px 10px;
+  text-align: center;
+  padding: 15px 10px 10px;
   transition: all 0.3s ease;
   box-shadow: 0 5px 15px rgba(255, 20, 153, 0.12);
   position: relative;
   overflow: hidden;
+  width: 130px;
+  height: 135px; /* ✅ lebih tinggi supaya teks tidak ketutup */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-/* Efek border glowing */
+/* Efek kilau pinggir */
 .swiper-slide-menu a div::before {
   content: "";
   position: absolute;
@@ -167,8 +178,8 @@ header .btn-detail button:hover {
   border-radius: 20px;
   padding: 2px;
   background: linear-gradient(135deg, #ff4fcf, #ff8bd9, #ff2fb3);
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -177,7 +188,7 @@ header .btn-detail button:hover {
 
 .swiper-slide-menu a div:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(255, 20, 153, 0.25);
+  box-shadow: 0 10px 25px rgba(255, 20, 153, 0.3);
   background: linear-gradient(135deg, #fff5fb, #ffe6f5);
 }
 
@@ -199,14 +210,40 @@ header .btn-detail button:hover {
 
 /* Teks */
 .swiper-slide-menu a div p {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: #ff0fa5;
   text-shadow: 0 0 3px rgba(255, 20, 153, 0.15);
   letter-spacing: 0.3px;
-  line-height: 1.2;
+  line-height: 1.3;
+  margin-top: auto;
+  margin-bottom: 5px;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
+/* 🔧 Responsif - tetap sejajar di tengah dan teks aman */
+@media (max-width: 600px) {
+  .swiper-slide-menu {
+    gap: 10px;
+    transform: scale(0.85);
+  }
+
+  .swiper-slide-menu a div {
+    width: 100px;
+    height: 115px; /* ✅ tinggi cukup untuk teks di HP */
+    padding: 10px 6px;
+  }
+
+  .swiper-slide-menu a div img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .swiper-slide-menu a div p {
+    font-size: 10.5px;
+  }
+}
 /* ====== Perbaikan posisi agar sejajar di tengah ====== */
 .server-section {
   margin: 20px auto;
