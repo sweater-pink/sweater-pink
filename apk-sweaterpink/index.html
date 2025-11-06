@@ -1,119 +1,213 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UDP SETTING NO DISCONNECT</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sweater Pink Top Up 💖</title>
+<meta content="#FF1499" name="theme-color" />
+<style>
+:root {
+  --pink: #ff1499;
+  --purple: #a259ff;
+  --blue: #6ecbff;
+  --dark: #0e0e12;
+  --glass: rgba(255, 255, 255, 0.08);
+  --blur: blur(12px);
+}
 
-    body {
-      background-color: #0f172a;
-      color: #e2e8f0;
-      font-family: 'Poppins', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      padding: 20px;
-    }
+/* Background animasi */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+  background-size: 300% 300%;
+  animation: gradientShift 8s ease infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  text-align: center;
+}
 
-    h1 {
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-      text-align: center;
-      color: #38bdf8;
-      letter-spacing: 1px;
-    }
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    .video-container {
-      position: relative;
-      width: 90%;
-      max-width: 400px;
-      aspect-ratio: 9 / 16;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
-      border: 2px solid rgba(56, 189, 248, 0.4);
-      background: #000;
-      transition: all 0.3s ease;
-    }
+/* Container utama */
+.container {
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(255,20,153,0.25);
+  padding: 40px 20px;
+  width: 90%;
+  max-width: 420px;
+  animation: fadeUp 1s ease forwards;
+  opacity: 0;
+}
 
-    .video-container:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 40px rgba(56, 189, 248, 0.5);
-    }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
+/* Header */
+.container h1 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #fff, #ffd6f5, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200%;
+  animation: shineText 6s linear infinite;
+}
 
-    footer {
-      margin-top: 20px;
-      font-size: 0.9rem;
-      text-align: center;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
+@keyframes shineText {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
+}
 
-    /* ✨ Efek Sweater Pink Premium */
-    .footer-text {
-      background: linear-gradient(90deg, #fff, #fc25d7, #ff8ad9, #fff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-size: 200%;
-      animation: shineText 5s linear infinite;
-      font-weight: 600;
-    }
+.container p {
+  font-size: 0.95em;
+  opacity: 0.9;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
 
-    @keyframes shineText {
-      0% { background-position: 0%; }
-      100% { background-position: 200%; }
-    }
+/* Logo */
+.container img {
+  width: 180px;
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.25);
+  margin-bottom: 15px;
+}
 
-    /* 💎 Centang biru glowing */
-    .checkmark {
-      background-color: #1da1f2;
-      color: white;
-      font-size: 0.8rem;
-      font-weight: bold;
-      border-radius: 50%;
-      padding: 3px 6px;
-      line-height: 1;
-      box-shadow: 0 0 6px rgba(29,161,242,0.9);
-    }
+/* Tombol download */
+.download-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff1499, #ff6ec7, #a259ff);
+  background-size: 200% 200%;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 12px 35px;
+  border-radius: 30px;
+  margin-top: 10px;
+  box-shadow: 0 0 20px rgba(255, 20, 153, 0.35);
+  transition: all 0.3s ease;
+  animation: gradientShift 4s linear infinite;
+}
 
-  </style>
+.download-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 28px rgba(255, 20, 153, 0.6);
+}
+
+/* Deskripsi */
+.desc {
+  max-width: 550px;
+  margin: 35px auto;
+  font-size: 0.95em;
+  color: #f5f5f5;
+  line-height: 1.6;
+}
+
+/* Judul bagian server */
+.section-title {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: var(--blur);
+  padding: 8px 18px;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 30px;
+  box-shadow: 0 0 12px rgba(255, 20, 153, 0.3);
+}
+
+/* Kartu gambar */
+.img-card {
+  margin: 20px auto 40px;
+}
+
+.img-card img {
+  width: 260px;
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-card img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 20, 153, 0.6);
+}
+
+/* Footer */
+footer {
+  margin-top: 35px;
+  font-size: 0.85em;
+  color: rgba(255,255,255,0.8);
+}
+
+footer span {
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(255,20,153,0.5);
+}
+
+/* Responsif HP */
+@media (max-width: 600px) {
+  .container img { width: 150px; }
+  .img-card img { width: 200px; }
+  .container h1 { font-size: 1.5em; }
+  .download-btn { padding: 10px 25px; font-size: 0.9em; }
+  .section-title { font-size: 0.9em; padding: 6px 14px; }
+}
+</style>
 </head>
 <body>
 
-  <h1>UDP SETTING NO DISCONNECT</h1>
+<div class="container">
+  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjOexmOGUayCtltbbD0SR_GLTutZgaPmIihK25i18B9LG_gZhWD2AOSSxRW5QBt8WraMG-xDX6SSq3aqtJzExnbbElBfqyBs9O59Om2Rx94UVAhNnzgbLK5HJOfj-PsmsCp35Uf1uQ_e4NeluOvxGPk_s8AQ6YRiapf1HaKU06x4RU41YKqo0TlPehiDuBW/s3264/1000009854.png" alt="Sweater Pink Logo">
 
-  <div class="video-container">
-    <iframe 
-      src="https://dingtezuni.com/embed/wivwe8ccuxxn" 
-      frameborder="0" 
-      marginwidth="0" 
-      marginheight="0" 
-      scrolling="no" 
-      allowfullscreen>
-    </iframe>
+  <h1>Sweater Pink Top Up</h1>
+  <p>Aplikasi murah dan terpercaya<br>untuk paket data reguler & inject</p>
+
+  <a href="https://www.mediafire.com/file/358u1ul74dsgmzt/sweaterpink.apk/file" class="download-btn">⬇ DOWNLOAD</a>
+
+  <div class="desc">
+    Aplikasi ini menyediakan paket data reguler dan inject yang pastinya
+    <strong>lebih murah dari aplikasi mana pun!</strong>
+  </div>
+
+  <div class="section-title">AXIS</div>
+  <div class="img-card">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfW33LPU7U1IHCbuYIp8MwpHNf68OxrSNyP-uDnrALGgmjfYN2-HPTBVrQPmu0EWerZFQNhWtPgLp6WA8GYIWc185Tm9i0CsVzXvgjFcLEjDhhnSK3fQ9Q-POs_yIFEXfoQLT83bZCKBEViJrd3QcabE4ftg_rV615iWP_rkEleBPWGYXEnt18Om6Apcip/s2400/1000140875.jpg" alt="Axis Paket">
+  </div>
+
+  <div class="section-title">TELKOMSEL</div>
+  <div class="img-card">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg8qQt8_r_EoHsVPbgQXW4lZIbPL677FJKxn2qURWYKQR_YKd9yIiJMiLhSyBKEMyzkSfRtlBVt2iPatIibkQ3zf413VvGQh0nuxdhH0b0FpZjzJCk3LTZXnKGZqq83Q9F-3Fwjsykb2geASRDzZpl-rSqXY6MlwgR1MeRgnLFLTPXIeMSuoNLLTGKEBWUI/s2400/1000141312.jpg" alt="Telkomsel Paket">
+  </div>
+
+  <div class="section-title">INDOSAT</div>
+  <div class="img-card">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiSZ1iS-ly6sg_2LF9OQoNCZlpPUg_lp-UcK35Vu94eafGhah4WGF7NH9rhtR_0kKiHV30UdRxjS46PKziFYKIMAMmOItNbDKkyhCE4WtFgHQj8G_niFvZv-cqOtXyavfdsiGDs4cDwPsLiOo-FzZbN8qPmd842MwkQihjEo-t7P3fKE400NjFYSmlHQZTw/s2400/1000140866.jpg" alt="Indosat Paket">
   </div>
 
   <footer>
-    © 2025 by <span class="footer-text">Sweater Pink</span>
-    <span class="checkmark">✔</span>
+    © 2025 by <span>Sweater Pink</span> 💖<br>
+    Terima kasih sudah mendukung kami!
   </footer>
+</div>
 
 </body>
 </html>
