@@ -1,344 +1,395 @@
-<div style="height:auto;width:auto;padding:3px;padding-top:5px;border-radius:200px;box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);background-image:linear-gradient(#FF1499,#FF1499)"><font color=#e" size="2"> 
-<marquee>✅ Ready Config Premium ✅ Aktif 30-120 Hari ✅ Telah Dipercaya Dari 1.890 Pelanggan Dan 4.500 Teransaksi ✅ Harga Termurah ✅ CS Respon 24 JAM Nonstop ✅</marquee></font></div><!-- END --> 
-</center>
-</div>
-
 <!DOCTYPE html>
 <html lang="in">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content='#FF1499' name='theme-color'/>
-    <meta content='#FF1499' name='msapplication-navbutton-color'/>
-    <title>Home | Sweater Pink</title>
- 
-    <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweater Pink | Premium Config</title>
+<meta content="#FF1499" name="theme-color"/>
+<meta content="#FF1499" name="msapplication-navbutton-color"/>
+
+<!-- Font & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
 :root {
-    --color-main: #FF1499;
-    --animate-duration: 300ms;
+  --color-main: #FF1499;
+  --color-bg: #fff0f7;
+  --radius: 18px;
+  --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  --gradient: linear-gradient(135deg, #ff3fa5, #ff1499);
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    text-decoration: none
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background: #FF1499;
+  background: var(--color-bg);
+  overflow-x: hidden;
 }
 
+/* Marquee */
+.marquee-box {
+  background: var(--gradient);
+  color: white;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 20px;
+  margin: 10px;
+  box-shadow: var(--shadow);
+}
+
+/* Header */
 header {
-    padding: 10px 20px 90px;
-    background: var(--color-main);
-    border-bottom-left-radius: 100% 20%;
-    border-bottom-right-radius: 100% 20%;
+  background: var(--gradient);
+  color: white;
+  padding: 20px 20px 100px;
+  border-bottom-left-radius: 100% 20%;
+  border-bottom-right-radius: 100% 20%;
+  box-shadow: var(--shadow);
+  position: relative;
 }
 
+/* Header Info */
 header .info-user {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-header .info-user .details {
-    color: white;
+header .details h3 {
+  font-size: 16px;
+  font-weight: 600;
 }
 
-header .info-user .details h3 {
-    font-size: 15px;
+header .details p {
+  font-size: 12px;
+  opacity: 0.9;
 }
 
-header .info-user .details p {
-    font-size: 11px;
-}
-
-header .info-user .details span {
-    fill: white;
-    display: flex;
-    margin-top: 15px;
-    padding: 5px 9px;
-    column-gap: 10px;
-    align-items: center;
-    border-radius: 7px;
-    border: 1px solid white;
-}
-
-header .info-user .main-refreh {
-    fill: white;
-    color: white;
-    font-size: 11px;
-    font-weight: 400;
-    text-align: center;
-}
-
-header .info-user .main-refreh p {
-    margin-top: 5px;
-}
-
+/* Balance Section */
 header .detail-user {
-    color: white;
-    margin-top: 30px;
+  margin-top: 25px;
 }
 
 header .detail-user .main-saldo {
-    display: flex;
-    column-gap: 5px;
-    align-items: baseline;
-}
-
-header .detail-user .main-saldo p {
-    font-size: 13px;
-    font-weight: 600;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
 }
 
 header .detail-user .main-saldo h3 {
-    font-size: 18px;
-    font-weight: 800;
+  font-size: 22px;
+  font-weight: 700;
 }
 
-header .detail-user .btn-detail {
-    display: flex;
-    margin-top: 10px;
-    column-gap: 10px;
-    align-items: center;
+header .btn-detail {
+  display: flex;
+  margin-top: 10px;
+  gap: 10px;
 }
 
-header .detail-user .btn-detail button {
-    border: none;
-    display: flex;
-    column-gap: 5px;
-    font-weight: 500;
-    padding: 8px 15px;
-    background: white;
-    align-items: center;
-    border-radius: 30px;
-    color: var(--color-main);
-    fill: var(--color-main);
+header .btn-detail button {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 30px;
+  background: white;
+  color: var(--color-main);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: var(--shadow);
 }
 
-.card-swipe {
-    display: flex;
-    padding: 10px;
-    overflow-x: auto;
-    column-gap: 15px;
-    align-items: center;
+header .btn-detail button:hover {
+  background: var(--gradient);
+  color: white;
+  transform: translateY(-2px);
 }
 
-.card-swipe div {
-    flex: 0 0 200px; 
-    background: white;
-    border-radius: 18px;
-}
-
-.card-swipe div div {
-    border: none;
-    padding: 9px;
-    border-radius: 10px;
-    border: 1px dashed var(--color-main);;
-    border-left: 6px solid var(--color-main);
-}
-
-.card-swipe div h6 {
-    font-size: 13px;
-}
-
-.card-swipe div p {
-    color: #FF1499;
-    font-size: 10px;
-    line-height: 1;
-    font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: 0.2px;
-}
-
-/* slide swiper */
-.swiper-wrapper,
-.swiper-container {
-    display: flex;
-    padding-bottom: 15px;
-    background: transparent;    
-}
-
-.swiper-slider-center {
-    position: relative;
-    overflow: hidden;
-}
-
+/* Menu Section */
 .swiper-menu {
-    margin-top: 5px;
-    padding: 15px 15px;
-    border-radius: 9px;
-    background: white;
-    border-radius: 18px;
-    margin: -65px 10px 0;
+  margin: -70px 10px 0;
+  padding: 20px;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  position: relative;
+  z-index: 10;
 }
 
 .swiper-slide-menu {
-    display: grid;
-    column-gap: 17px;
-    grid-row-gap: 20px;
-    grid-template-columns: repeat(4, 1fr);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
 .swiper-slide-menu div {
-    width: 100%;
-    text-align: center;
-    font-size: 13px;
-    border-radius: 17px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.swiper-slide-menu div:hover {
+  transform: translateY(-6px) scale(1.05);
 }
 
 .swiper-slide-menu div img {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 5px;
-    border-radius: 100px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  margin-bottom: 6px;
+  border: 2px solid #ff1499;
+  padding: 3px;
+  box-shadow: 0 4px 10px rgba(255, 20, 153, 0.3);
 }
 
-.swiper-banner {
-    margin-top: 5px;
-    padding: 15px 15px;
-    border-radius: 9px;
+.swiper-slide-menu div p {
+  font-size: 13px;
+  color: #333;
+  font-weight: 500;
 }
 
-.swiper-slide-banner img {
-    width: 100%;
-    height: 110px;
-    border-radius: 8px;
+/* ====== Perbaikan posisi agar sejajar di tengah ====== */
+.server-section {
+  margin: 20px auto;
+  background: white;
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  max-width: 900px; /* Batasi lebar supaya simetris di layar besar */
 }
 
-.swiper-slide-banner div {
-    display: flex;
-    color: #FF1499;
-    font-size: 13px;
-    font-weight: 500;
-    align-items: center;
+.server-section h2 {
+  color: var(--color-main);
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 700;
 }
 
-.swiper-slide-banner div img {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+/* Grid server agar sejajar tengah di HP & PC */
+.server-grid {
+  display: grid;
+  justify-content: center; /* Tengah horizontal */
+  align-items: center; /* Tengah vertikal */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* responsif otomatis */
+  gap: 15px;
+  text-align: center;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto; /* tengah di halaman */
 }
 
-.swiper-slider-center .swiper-pagination-bullet {
-    transition: 300ms ease-in-out;
-    background-color: #575757;
+
+.server-card {
+  background: linear-gradient(135deg, #fff, #ffe3f2);
+  border-radius: var(--radius);
+  text-align: center;
+  padding: 12px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
 }
 
-.swiper-slider-center .swiper-pagination-bullet-active {
-    border-radius: 8px;
-    background-color: var(--color-main);
+.server-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(255, 20, 153, 0.25);
 }
-    </style>
+
+.server-card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 6px;
+}
+
+.server-card p {
+  font-size: 12px;
+  color: #222;
+  font-weight: 600;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: #555;
+  margin-top: 30px;
+}
+footer span {
+  color: var(--color-main);
+  font-weight: 600;
+}
+
+/* ✨ Efek Sweater Pink Premium */
+footer span {
+  background: linear-gradient(90deg, #fff, #fc25d7, #ff8ad9, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200%;
+  animation: shineText 5s linear infinite;
+  font-weight: 600;
+}
+
+@keyframes shineText {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
+}
+
+/* 💎 Centang biru glowing */
+.checkmark {
+  background-color: #1da1f2;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 3px 6px;
+  line-height: 1;
+  box-shadow: 0 0 6px rgba(29,161,242,0.9);
+  margin-left: 4px;
+}
+
+</style>
 </head>
+
 <body>
-    <header>
-                <!-- slide 1 -->
-                <div class="swiper-slide swipers swiper-slide-menu">   
-                <a href="https://sweaterpink.web.id/pass-web/" style="color: #000;">
-         <div>
-                <img src="https://i.postimg.cc/4NvNWNvY/unnamed-1.png" alt="">
-                <p>Download Update</p>
-            </div>          
-                  
-            <a href="https://s.id/komunitas_grup" style="color: #000;">
-            <div>
-                <img src="https://i.postimg.cc/1tbBgBWR/20250121-031000.png" alt="">
-                <p>Komunitas Grup</p>
-                </div>
-                <a href="https://sweeterpiink.blogspot.com/2025/01/aplikasi-sweater-pink-top-up.html" style="color: #000;">
-            <div>
-                <img src="https://i.postimg.cc/L5vVmMK2/20240512-101651.png" alt="">
-                <p>Aplikasi SP Top Up</p>
-                </div>  
-             <a href="http://wa.me/6283870282897" style="color: #000;">
-            <div>
-                <img src="https://i.postimg.cc/D0YbCf3J/20240629-035058.jpg" alt="">
-                <p>Order Premium</p>
-                </div>                
-               
-      <!-- sg1 -->
-                      <a href="https://wa.me/6283870282897/?text=*SERVER SINGAPURA 30hr 1 Hp Harga: Rp.8.000*" style="color: #000;">
-         <div>
-                <img src="https://i.postimg.cc/sxfp60B8/20250112-192428.png" alt="">
-                <p>SERVER SG 30Hr 1 Hp Rp.8.000</p>
-            </div>          
-                  
-            <a href="https://wa.me/6283870282897/?text=*SERVER SINGAPURA 60hr 1 Hp Harga: Rp.16.000*" style="color: #000;">
-            <div>
-                <img src="https://i.postimg.cc/sxfp60B8/20250112-192428.png" alt="">
-                <p>SERVER SG 60Hr 1 Hp Rp.16.000</p>
-            </div>
-                <a href="https://wa.me/6283870282897/?text=*SERVER SINGAPURA 30hr 2 Hp Harga: Rp.10.000*" style="color: #000;">
-            <div>
-                <img src="https://i.postimg.cc/sxfp60B8/20250112-192428.png" alt="">
-                <p>SERVER SG 30Hr 2 Hp Rp.10.000</p>
-                </div>  
-             <a href="https://wa.me/6283870282897/?text=*SERVER SINGAPURA 60hr 2 Hp Harga: Rp.20.000*" style="color: #000;">
-            <div>
-                <img src="https://i.postimg.cc/sxfp60B8/20250112-192428.png" alt="">
-                <p>SERVER SG 60Hr 2 Hp Rp.20.000</p>
-                </div>  
-                
-                 <!-- id1 -->
-                <a href="https://wa.me/6283870282897/?text=*SERVER INDONESIA 30hr 1 Hp Harga: Rp.10.000*" style="color: #000;">
-         <div>
-                <img src="https://i.postimg.cc/B605DvJJ/images-1-1.jpg" alt="">
-                <p>INDONESIA 30Hr 1 Hp Rp.10.000</p>
-            </div>          
-                  
-            <a href="https://wa.me/6283870282897/?text=*SERVER INDONESIA 60hr 1 Hp Harga: Rp.20.000*" style="color: #000;">
-            <div>
-                <img src="https://i.postimg.cc/B605DvJJ/images-1-1.jpg" alt="">
-                <p>INDONESIA 60Hr 1 Hp Rp.20.000</p>
-            </div>
-                <a href="https://wa.me/6283870282897/?text=*SERVER INDONESIA 30hr 2 Hp Harga: Rp.12.000*" style="color: #000;">
-            <div>
-                <img src="https://i.postimg.cc/B605DvJJ/images-1-1.jpg" alt="">
-                <p>INDONESIA 30Hr 2 Hp Rp.12.000</p>
-                </div>  
-             <a href="https://wa.me/6283870282897/?text=*SERVER INDONESIA 60hr 2 Hp Harga: Rp.24.000*" style="color: #000;">
-            <div>
-                <img src="https://i.postimg.cc/B605DvJJ/images-1-1.jpg" alt="">
-                <p>INDONESIA 60Hr 2 Hp Rp.24.000</p>
-                </div>  
-                
-                
-                <!-- game sever -->
-                    
-                <a href="https://wa.me/6283870282897/?text=*SERVER GAME+ 30hr 1 Hp Harga: Rp.15.000*" style="color: #000;">
-         <div>
-                <img src="https://i.postimg.cc/N0VSwm8p/img-1-1737298380424.jpg" alt="">
-                <p>SERVER GAME+ 30hr 1 Hp Rp.15.000</p>
-            </div>          
-                  
-            <a href="https://wa.me/6283870282897/?text=*SERVER GAME+ 60hr 1 Hp Harga: Rp.30.000*" style="color: #000;">
-            <div>
-                <img src="https://i.postimg.cc/N0VSwm8p/img-1-1737298380424.jpg" alt="">
-                <p>SERVER GAME+ 60hr 1 Hp Rp.30.000</p>
-            </div>
-                <a href="https://wa.me/6283870282897/?text=*SERVER GAME+ 30hr 2 Hp Harga: Rp.20.000*" style="color: #000;">
-            <div>
-                <img src="https://i.postimg.cc/N0VSwm8p/img-1-1737298380424.jpg" alt="">
-                <p>SERVER GAME+ 2 Hp 30Hr Rp.20.000</p>
-                </div>  
-             <a href="https://wa.me/6283870282897/?text=*SERVER GAME+ 60hr 2 Hp Harga: Rp.40.000*" style="color: #000;">
-            <div>
-                <img src="https://i.postimg.cc/N0VSwm8p/img-1-1737298380424.jpg" alt="">
-                <p>SERVER GAME+ 2 Hp 60Hr Rp.40.000</p>
-                </div>  
-                 
-            </a>
-            <a href="" style="color: #000;">
-            <div>
-            </a>
-                </div>
 
+<!-- Marquee -->
+<div class="marquee-box">
+  <marquee>✅ Ready Config Premium • Aktif 30–120 Hari • Dipercaya 1.890 Pelanggan • 4.500+ Transaksi • Harga Termurah • CS 24 JAM ✅</marquee>
+</div>
 
+<!-- Header -->
+<header>
+  <div class="swiper-slide swipers swiper-slide-menu">
+    <a href="https://sweaterpink.web.id/pass-web/" style="color:#000;">
+      <div>
+        <img src="https://i.postimg.cc/4NvNWNvY/unnamed-1.png" alt="">
+        <p>Download Update</p>
+      </div>
+    </a>
+    <a href="https://s.id/komunitas_grup" style="color:#000;">
+      <div>
+        <img src="https://i.postimg.cc/1tbBgBWR/20250121-031000.png" alt="">
+        <p>Komunitas Grup</p>
+      </div>
+    </a>
+    <a href="https://sweeterpiink.blogspot.com/2025/01/aplikasi-sweater-pink-top-up.html" style="color:#000;">
+      <div>
+        <img src="https://i.postimg.cc/L5vVmMK2/20240512-101651.png" alt="">
+        <p>Aplikasi SP Top Up</p>
+      </div>
+    </a>
+    <a href="http://wa.me/6283870282897" style="color:#000;">
+      <div>
+        <img src="https://i.postimg.cc/D0YbCf3J/20240629-035058.jpg" alt="">
+        <p>Order Premium</p>
+      </div>
+    </a>
+  </div>
+</header>
 
+<!-- Server Section -->
+<div class="server-section">
+  <h2>Server Singapore 🇸🇬</h2>
+  <div class="server-grid">
+    <a href="https://wa.me/6283870282897/?text=*SERVER SINGAPURA 30hr 1 Hp Harga: Rp.8.000*" style="color:#000;">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/sxfp60B8/20250112-192428.png">
+        <p>30Hr 1Hp Rp.8.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER SINGAPURA 60hr 1 Hp Harga: Rp.16.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/sxfp60B8/20250112-192428.png">
+        <p>60Hr 1Hp Rp.18.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER SINGAPURA 30hr 2 Hp Harga: Rp.10.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/sxfp60B8/20250112-192428.png">
+        <p>30Hr 2Hp Rp.10.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER SINGAPURA 60hr 2 Hp Harga: Rp.20.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/sxfp60B8/20250112-192428.png">
+        <p>60Hr 2Hp Rp.20.000</p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="server-section">
+  <h2>Server Indonesia 🇮🇩</h2>
+  <div class="server-grid">
+    <a href="https://wa.me/6283870282897/?text=*SERVER INDONESIA 30hr 1 Hp Harga: Rp.10.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/B605DvJJ/images-1-1.jpg">
+        <p>30Hr 1Hp Rp.10.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER INDONESIA 60hr 1 Hp Harga: Rp.20.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/B605DvJJ/images-1-1.jpg">
+        <p>60Hr 1Hp Rp.20.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER INDONESIA 30hr 2 Hp Harga: Rp.12.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/B605DvJJ/images-1-1.jpg">
+        <p>30Hr 2Hp Rp.12.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER INDONESIA 60hr 2 Hp Harga: Rp.24.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/B605DvJJ/images-1-1.jpg">
+        <p>60Hr 2Hp Rp.24.000</p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="server-section">
+  <h2>Server Game+ 🎮</h2>
+  <div class="server-grid">
+    <a href="https://wa.me/6283870282897/?text=*SERVER GAME+ 30hr 1 Hp Harga: Rp.15.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/N0VSwm8p/img-1-1737298380424.jpg">
+        <p>30Hr 1Hp Rp.15.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER GAME+ 60hr 1 Hp Harga: Rp.30.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/N0VSwm8p/img-1-1737298380424.jpg">
+        <p>60Hr 1Hp Rp.30.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER GAME+ 30hr 2 Hp Harga: Rp.20.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/N0VSwm8p/img-1-1737298380424.jpg">
+        <p>30Hr 2Hp Rp.20.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER GAME+ 60hr 2 Hp Harga: Rp.40.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/N0VSwm8p/img-1-1737298380424.jpg">
+        <p>60Hr 2Hp Rp.40.000</p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  © 2025 by <span>Sweater Pink</span> <span class="checkmark">✔</span><br>
+  Config Premium Store 💖
+</footer>
+
+</body>
+</html>
