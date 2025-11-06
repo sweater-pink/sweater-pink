@@ -432,7 +432,6 @@ header .btn-detail button:hover {
   }
 }
 
-/* Footer */
 footer {
   text-align: center;
   padding: 20px;
@@ -440,12 +439,16 @@ footer {
   color: #555;
   margin-top: 30px;
 }
-footer span {
+
+/* ✨ Teks Trimakasih — tanpa blur, warna solid */
+footer .thank-text {
+  font-size: 14px;
+  font-weight: 700;
   color: var(--color-main);
-  font-weight: 600;
+  margin-bottom: 14px; /* jarak ke bawah agar tidak dempet */
 }
 
-/* ✨ Efek Sweater Pink Premium */
+/* ✨ Efek Sweater Pink tetap */
 footer span {
   background: linear-gradient(90deg, #fff, #fc25d7, #ff8ad9, #fff);
   -webkit-background-clip: text;
@@ -472,6 +475,8 @@ footer span {
   box-shadow: 0 0 6px rgba(29,161,242,0.9);
   margin-left: 4px;
 }
+
+
 
 </style>
 </head>
@@ -605,9 +610,11 @@ footer span {
 </div>
 
 <footer>
-  © 2025 by <span>Sweater Pink</span> <span class="checkmark">✔</span><br>
-  Config Premium Store 💖
+  <p class="thank-text">Trimakasih Sudah Order 💖</p>
+  <p>© 2025 by <span>Sweater Pink</span> <span class="checkmark">✔</span></p>
 </footer>
+
+
 
 </body>
 </html>
