@@ -145,8 +145,42 @@ window.togglePassword = togglePassword;
 </body>
 </html>
 
-<div style="height:auto;width:auto;padding:3px;padding-top:5px;border-radius:200px;box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);background-image:linear-gradient(#FF1499,#FF1499)"><font color=#e" size="2"> 
-<marquee>✅ Ready Config Premium ✅ Aktif 30-120 Hari ✅ Telah Dipercaya Dari 1.890 Pelanggan Dan 4.500 Teransaksi ✅ Harga Termurah ✅ CS Respon 24 JAM Nonstop ✅</marquee></font></div><!-- END --> 
-</center>
-</div>
+<!-- 🌸 Marquee Section -->
+<style>
+  .marquee-box {
+    background: linear-gradient(135deg, #ff4ac9, #ff74d9, #a259ff, #6ecbff);
+    color: white;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 25px;
+    margin: 15px auto 25px;
+    box-shadow: 0 6px 20px rgba(255, 74, 201, 0.25);
+    max-width: 95%;
+    text-align: center;
+    letter-spacing: 0.3px;
+    animation: glow 3s ease-in-out infinite alternate;
+  }
 
+  @keyframes glow {
+    from { box-shadow: 0 0 10px rgba(255, 74, 201, 0.3); }
+    to { box-shadow: 0 0 25px rgba(255, 74, 201, 0.6); }
+  }
+
+  .marquee-box marquee {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    text-transform: none; /* huruf normal */
+    white-space: nowrap;
+    animation: textFade 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes textFade {
+    from { opacity: 0.9; }
+    to { opacity: 1; }
+  }
+</style>
+
+<div class="marquee-box">
+  <marquee>✅ Ready config premium • aktif 30–120 hari • dipercaya 1.890 pelanggan • 4.500+ transaksi • harga termurah • cs respon 24 jam nonstop ✅</marquee>
+</div>
