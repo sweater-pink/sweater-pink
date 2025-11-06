@@ -123,28 +123,35 @@ header .btn-detail button:hover {
   transform: translateY(-2px);
 }
 
-/* Menu Section */
+/* 🌸 MENU PREMIUM FIXED & RESPONSIVE */
 .swiper-menu {
-  margin: -55px 15px 0;
+  margin: -60px auto 0;
   padding: 25px 20px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px) saturate(180%);
   border-radius: 25px;
-  box-shadow: 0 8px 25px rgba(255, 15, 165, 0.15);
+  box-shadow: 0 8px 30px rgba(255, 20, 153, 0.2);
   position: relative;
   z-index: 10;
+  max-width: 900px; /* biar di tengah dan simetris di layar besar */
 }
 
+/* ✅ Grid lebih stabil dan sejajar di semua layar */
 .swiper-slide-menu {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
 }
 
+/* Kartu menu */
 .swiper-slide-menu a div {
-  background: linear-gradient(145deg, #ffffff, #fff3fb);
-  border: 2px solid transparent;
+  background: linear-gradient(145deg, #ffffff, #fff2fa);
   border-radius: 20px;
-  text-align: center;
   padding: 15px 10px;
   transition: all 0.3s ease;
   box-shadow: 0 5px 15px rgba(255, 20, 153, 0.12);
@@ -152,7 +159,7 @@ header .btn-detail button:hover {
   overflow: hidden;
 }
 
-/* Efek kilau tepi */
+/* Efek border glowing */
 .swiper-slide-menu a div::before {
   content: "";
   position: absolute;
@@ -169,11 +176,12 @@ header .btn-detail button:hover {
 }
 
 .swiper-slide-menu a div:hover {
-  transform: translateY(-5px) scale(1.05);
+  transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(255, 20, 153, 0.25);
   background: linear-gradient(135deg, #fff5fb, #ffe6f5);
 }
 
+/* Ikon */
 .swiper-slide-menu a div img {
   width: 60px;
   height: 60px;
@@ -189,12 +197,14 @@ header .btn-detail button:hover {
   box-shadow: 0 6px 15px rgba(255, 20, 153, 0.4);
 }
 
+/* Teks */
 .swiper-slide-menu a div p {
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 600;
   color: #ff0fa5;
   text-shadow: 0 0 3px rgba(255, 20, 153, 0.15);
   letter-spacing: 0.3px;
+  line-height: 1.2;
 }
 
 /* ====== Perbaikan posisi agar sejajar di tengah ====== */
