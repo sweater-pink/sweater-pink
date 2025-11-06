@@ -12,12 +12,49 @@
 
 <style>
 :root {
-  --color-main: #ff0fa5; /* Pink utama lebih kuat */
-  --color-bg: #ffe8f3; /* Sedikit lebih cerah dari putih */
+  --color-main: #ff4ac9; /* Pink modern neon */
+  --color-bg: #fff0f8; /* Latar belakang lebih lembut */
   --radius: 18px;
-  --shadow: 0 6px 20px rgba(255, 15, 165, 0.25);
-  --gradient: linear-gradient(135deg, #ff0080, #ff2fb3, #ff66d9);
+  --shadow: 0 6px 20px rgba(255, 74, 201, 0.25);
+  /* 🌈 Gradasi baru dengan efek glossy biru muda dan ungu */
+  --gradient: linear-gradient(135deg, #ff4ac9, #ff74d9, #a259ff, #6ecbff);
 }
+/* Efek glossy halus pada header */
+header {
+  background: linear-gradient(135deg, #ff4ac9, #ff74d9, #a259ff);
+  background-size: 200% 200%;
+  animation: moveGradient 6s ease infinite;
+}
+
+@keyframes moveGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Efek kilau di menu utama */
+.swiper-slide-menu a div {
+  background: linear-gradient(145deg, #ffffff, #ffe6fa);
+  position: relative;
+  overflow: hidden;
+}
+
+.swiper-slide-menu a div::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -75px;
+  width: 50px;
+  height: 100%;
+  background: rgba(255,255,255,0.4);
+  transform: skewX(-25deg);
+  animation: shine 4s infinite;
+}
+
+@keyframes shine {
+  0% { left: -75px; }
+  100% { left: 125%; }
+}
+
 
 * {
   margin: 0;
