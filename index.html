@@ -123,7 +123,7 @@ header .btn-detail button:hover {
   transform: translateY(-2px);
 }
 
-/* 🌸 MENU SELALU DI TENGAH & TULISAN TIDAK KETUTUP */
+/* 🌸 MENU SELALU DI TENGAH & TIDAK TERPOTONG */
 .swiper-menu {
   margin: -50px auto 0;
   padding: 20px 15px;
@@ -143,27 +143,14 @@ header .btn-detail button:hover {
   justify-content: center;
   align-items: center;
   gap: 15px;
-  flex-wrap: nowrap; /* ✅ tetap satu baris */
   width: 100%;
-  overflow-x: auto; /* ✅ biar tetap muat di HP */
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 5px;
-}
-
-.swiper-slide-menu::-webkit-scrollbar {
-  height: 6px;
-}
-.swiper-slide-menu::-webkit-scrollbar-thumb {
-  background: #ff91d2;
-  border-radius: 10px;
-}
-.swiper-slide-menu::-webkit-scrollbar-track {
-  background: transparent;
+  flex-wrap: nowrap; /* 4 sejajar */
+  margin: 0 auto;
 }
 
 .swiper-slide-menu a {
-  flex: 0 0 auto; /* ✅ ukuran tetap */
+  flex: 1 1 22%; /* ✅ otomatis menyesuaikan agar 4 muat di 1 baris */
+  max-width: 140px;
   text-decoration: none;
 }
 
@@ -176,7 +163,7 @@ header .btn-detail button:hover {
   box-shadow: 0 5px 15px rgba(255, 20, 153, 0.12);
   position: relative;
   overflow: hidden;
-  width: 120px;
+  width: 100%;
   height: 130px;
   display: flex;
   flex-direction: column;
@@ -236,28 +223,31 @@ header .btn-detail button:hover {
   word-wrap: break-word;
 }
 
-/* 🔧 Responsif - tetap sejajar 4 di tengah */
+/* 🔧 Responsif - tetap 4 sejajar dan tidak terpotong */
 @media (max-width: 600px) {
   .swiper-slide-menu {
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
-    overflow-x: auto; /* ✅ scroll horizontal kalau kepanjangan */
-    transform: scale(0.9); /* sedikit kecil biar muat */
+    flex-wrap: nowrap; /* tetap sejajar */
+  }
+
+  .swiper-slide-menu a {
+    flex: 1 1 22%; /* pastikan 4 pas di 1 baris */
   }
 
   .swiper-slide-menu a div {
-    width: 95px;
-    height: 110px;
-    padding: 10px 6px;
+    width: 100%;
+    height: 105px;
+    padding: 10px 5px;
   }
 
   .swiper-slide-menu a div img {
-    width: 45px;
-    height: 45px;
+    width: 42px;
+    height: 42px;
   }
 
   .swiper-slide-menu a div p {
-    font-size: 10.5px;
+    font-size: 10px;
   }
 }
 
