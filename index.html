@@ -141,15 +141,29 @@ header .btn-detail button:hover {
 .swiper-slide-menu {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-  width: fit-content;
-  margin: 0 auto;
-  flex-wrap: nowrap; /* selalu 1 baris */
+  align-items: center;
+  gap: 15px;
+  flex-wrap: nowrap; /* ✅ tetap satu baris */
+  width: 100%;
+  overflow-x: auto; /* ✅ biar tetap muat di HP */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 5px;
+}
+
+.swiper-slide-menu::-webkit-scrollbar {
+  height: 6px;
+}
+.swiper-slide-menu::-webkit-scrollbar-thumb {
+  background: #ff91d2;
+  border-radius: 10px;
+}
+.swiper-slide-menu::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .swiper-slide-menu a {
-  flex: 0 0 auto;
+  flex: 0 0 auto; /* ✅ ukuran tetap */
   text-decoration: none;
 }
 
@@ -162,8 +176,8 @@ header .btn-detail button:hover {
   box-shadow: 0 5px 15px rgba(255, 20, 153, 0.12);
   position: relative;
   overflow: hidden;
-  width: 130px;
-  height: 135px; /* ✅ lebih tinggi supaya teks tidak ketutup */
+  width: 120px;
+  height: 130px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -222,16 +236,18 @@ header .btn-detail button:hover {
   word-wrap: break-word;
 }
 
-/* 🔧 Responsif - tetap sejajar di tengah dan teks aman */
+/* 🔧 Responsif - tetap sejajar 4 di tengah */
 @media (max-width: 600px) {
   .swiper-slide-menu {
     gap: 10px;
-    transform: scale(0.85);
+    justify-content: center;
+    overflow-x: auto; /* ✅ scroll horizontal kalau kepanjangan */
+    transform: scale(0.9); /* sedikit kecil biar muat */
   }
 
   .swiper-slide-menu a div {
-    width: 100px;
-    height: 115px; /* ✅ tinggi cukup untuk teks di HP */
+    width: 95px;
+    height: 110px;
     padding: 10px 6px;
   }
 
@@ -244,6 +260,7 @@ header .btn-detail button:hover {
     font-size: 10.5px;
   }
 }
+
 /* ====== Perbaikan posisi agar sejajar di tengah ====== */
 .server-section {
   margin: 20px auto;
