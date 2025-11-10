@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Video Gallery — Klik untuk Play</title>
+  <style>
+    :root {
+      --bg:#0e0f12; --card:#17181c; --text:#e8edf2;
+      --btn:#2a2e36; --btn-hover:#3a404a; --accent:#7aa2ff;
+      --radius:14px; --gap:20px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin:0; padding:24px; background:var(--bg); color:var(--text);
+      font:16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+    }
+    h1,h2 {
+      text-align:center; margin:0 0 16px; color:var(--text);
+    }
+    h1 { font-size:clamp(20px,3vw,28px); }
+    h2 { font-size:20px; }
+
+    .gallery {
+      max-width:700px;
+      margin:0 auto 32px;
+      display:flex; flex-direction:column;
+      gap:var(--gap);
+    }
+    .card {
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:0 8px 24px rgba(0,0,0,.35);
+      overflow:hidden;
+      padding:14px;
+      display:flex; flex-direction:column;
+      gap:12px;
+      transition:transform .15s ease;
+    }
+    .card:hover { transform: translateY(-2px); }
+    .title { font-weight:600; font-size:15px; }
+
+    .preview {
+      width:100%; aspect-ratio:16/9;
+      border-radius:10px; position:relative; overflow:hidden;
+      background:#111; display:grid; place-items:center;
+      cursor:pointer;
+    }
+    .preview::after {
+      content:"▶"; position:absolute; color:white; font-size:48px;
+      opacity:.7; transition:transform .2s ease, opacity .2s ease;
+    }
+    .preview:hover::after {
+      transform:scale(1.2); opacity:1;
+    }
+
+    .buttons {
+      display:flex; gap:10px;
+    }
+    .btn {
+      appearance:none; border:1px solid transparent;
+      background:var(--btn); color:var(--text);
+      padding:9px 14px; border-radius:10px;
+      font-size:14px; font-weight:600;
+      cursor:pointer; text-decoration:none;
+      transition:background .15s ease, border-color .15s ease;
+    }
+    .btn:hover { background:var(--btn-hover); border-color:#434a57; }
+    .btn.secondary { background:transparent; border-color:#39404a; color:var(--accent); }
+
+    iframe {
+      width:100%; height:100%;
+      border:0; display:block; border-radius:10px;
+    }
+
+    @media (max-width:500px) {
+      body { padding:16px; font-size:15px; }
+      .gallery { gap:16px; }
+      .btn { font-size:13px; padding:8px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Section Efin -->
+  <section>
+    <h2>Efin Urdiana</h2>
+    <div id="gallery-efin" class="gallery"></div>
+  </section>
+
+  <!-- Section Manaka -->
+  <section>
+    <h1>Manaka Hoshina</h1>
+    <div id="gallery-manakah" class="gallery"></div>
+  </section>
+
+  <!-- Section All Video -->
+  <section>
+    <h2>All Video</h2>
+    <div id="gallery-all" class="gallery"></div>
+  </section>
+
+  <script>
+    const EMBED_BASE = "https://bingezove.com/embed/";
+
+    const videosEfin = [
+      { id: "ssq6s876vxoy", title: "Vidio 1" },
+      { id: "l0sbcj4m7xnn", title: "Video 2" },
+      { id: "9hqvkjgeg0wd", title: "Video 3" },
+      { id: "ezinptznvf5a", title: "Video 4" },
+      { id: "1gks4ejx0j1y", title: "Video 5" },
+      { id: "62p3v96ec1id", title: "Video 6" },
+      { id: "fyuwnssc1ry2", title: "Video 7" },
+      { id: "v21n2u5c2g45", title: "Video 8" },
+      { id: "hkqv0q08nue1", title: "Vidio 9" },
+      { id: "h66nlunts4sd", title: "Video 10" },
+      { id: "l9buct6yqolb", title: "Video 11" },
+      { id: "1chymkqtmcix", title: "Video 12" },
+      { id: "jmcgnan5xeg6", title: "Video 13" },
+      { id: "0t6jzazjq4u2", title: "Video 14" }
+    ];
+
+    const videosManaka = [
+      { id: "7su7qm54c4pp", title: "Video 1" },
+      { id: "vj3em6jtim6p", title: "Video 2" },
+      { id: "8rdz33ik3zia", title: "Video 3" },
+      { id: "1g7y8gclwx0v", title: "Video 4" },
+      { id: "mxfg8vy84bas", title: "Video 5" },
+      { id: "13w08et86t5w", title: "Video 6" },
+      { id: "pzubpglv45so", title: "Video 7" },
+      { id: "c6he5ogb5w0o", title: "Video 8" }
+    ];
+
+    const videosAll = [
+      { id: "gav5jmghb7vh", title: "All Video 1" },
+      { id: "ds1v2rn74jn8", title: "Ai Uehara 1" }
+    ];
+
+    const $galleryEfin = document.getElementById("gallery-efin");
+    const $galleryManakah = document.getElementById("gallery-manakah");
+    const $galleryAll = document.getElementById("gallery-all");
+
+    function createCard({ id, title }) {
+      const src = EMBED_BASE + id;
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="title">${title}</div>
+        <div class="preview" data-src="${src}"></div>
+        <div class="buttons">
+          <a class="btn secondary" href="${src}" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+      `;
+      const preview = card.querySelector(".preview");
+
+      preview.addEventListener("click", () => {
+        // Hapus video aktif lain (biar satu saja)
+        document.querySelectorAll(".preview[data-loaded='1']").forEach(p => {
+          p.innerHTML = "";
+          p.removeAttribute("data-loaded");
+        });
+
+        const iframe = document.createElement("iframe");
+        iframe.src = src;
+        iframe.allowFullscreen = true;
+        preview.innerHTML = "";
+        preview.appendChild(iframe);
+        preview.dataset.loaded = "1";
+      });
+
+      return card;
+    }
+
+    videosEfin.forEach(v => $galleryEfin.appendChild(createCard(v)));
+    videosManaka.forEach(v => $galleryManakah.appendChild(createCard(v)));
+    videosAll.forEach(v => $galleryAll.appendChild(createCard(v)));
+  </script>
+</body>
+</html>
