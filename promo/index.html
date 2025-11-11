@@ -1,0 +1,367 @@
+<!-- === SWEATER PINK ORDER (PROMO TANPA BLUR + 38 PROVINSI) === -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sweater Pink Order | Gasss Premium</title>
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff6f8;
+  padding: 20px;
+}
+.product-card {
+  background: linear-gradient(135deg, #ffd9e4, #ffb7cf);
+  max-width: 380px;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 25px 15px;
+  position: relative;
+}
+
+/* 💙 Badge promo tengah atas - TANPA BLUR/GLOW */
+.promo-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg,#1e88e5,#1565c0);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 30px;
+  letter-spacing: 0.5px;
+  overflow: hidden;
+  animation: promoBlink 1.8s ease-in-out infinite;
+  /* Hapus shadow agar tidak “blur” */
+  box-shadow: none;
+}
+
+/* ✨ Shine tipis berjalan (tanpa blur) */
+.promo-badge::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: rgba(255,255,255,0.35);
+  transform: skewX(-25deg);
+  animation: promoShine 2s infinite;
+}
+
+/* Blink sinkron untuk badge & tombol bawah — TANPA shadow */
+@keyframes promoBlink {
+  0%,100% { opacity: 1; transform: translateX(-50%) scale(1); }
+  50%     { opacity: 0.6; transform: translateX(-50%) scale(1.08); }
+}
+@keyframes promoShine {
+  0% { left: -60%; opacity: 0; }
+  50% { left: 130%; opacity: 1; }
+  100%{ left: 130%; opacity: 0; }
+}
+
+.product-title {
+  color: #c2185b;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+.product-subtitle {
+  font-size: 14px;
+  color: #555;
+  margin-top: 5px;
+}
+
+form {
+  background: white;
+  max-width: 380px;
+  margin: 15px auto;
+  padding: 15px 18px 20px 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.form-group { margin-bottom: 10px; }
+label {
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 3px;
+  font-size: 13px;
+}
+input, select {
+  width: 100%;
+  padding: 8px;
+  border: 1.3px solid #f2a8bf;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+input:focus, select:focus {
+  border-color: #c2185b;
+  outline: none;
+  box-shadow: 0 0 3px rgba(194,24,91,0.25);
+}
+.price-box {
+  background: #ffe6ef;
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+  font-weight: 600;
+  color: #c2185b;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+/* Tombol dan PROMO bawah blink sama dengan badge — TANPA BLUR */
+button {
+  width: 100%;
+  background: linear-gradient(135deg,#e91e63,#c2185b);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+button span {
+  font-size: 12px;
+  font-weight: 600;
+  background: linear-gradient(135deg,#2196f3,#1565c0);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  color: #fff;
+  animation: promoBlinkBtn 1.8s ease-in-out infinite;
+  /* tanpa shadow supaya tidak “blur” */
+  box-shadow: none;
+}
+@keyframes promoBlinkBtn {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%     { opacity: 0.6; transform: scale(1.08); }
+}
+
+button:hover { background: linear-gradient(135deg,#c2185b,#a5114a); }
+
+footer { text-align: center; margin-top: 20px; font-size: 12px; color: #777; }
+#previewBox {
+  display: none;
+  background: #fff0f4;
+  border: 1px solid #f8b7cb;
+  border-radius: 10px;
+  padding: 12px 15px;
+  margin-top: 15px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+#previewBox strong { color: #c2185b; }
+#previewTitle {
+  text-align: center;
+  font-weight: 700;
+  color: #c2185b;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+</head>
+<body>
+
+<div class="product-card">
+  <div class="promo-badge">💗 PROMO 💗</div>
+  <div class="product-title">Sweater Pink</div>
+  <div class="product-subtitle">Order Premium - Pilih Jenis & Server Kamu</div>
+</div>
+
+<form id="waForm">
+  <div class="form-group">
+    <label for="nama">Nama</label>
+    <input type="text" id="nama" placeholder="Masukkan nama anda" required />
+  </div>
+
+  <div class="form-group">
+    <label for="jenis">Jenis Order</label>
+    <select id="jenis" required>
+      <option value="">-- Pilih Jenis Order --</option>
+      <option value="Config Premium">Config Premium</option>
+      <option value="Tembak Paket">Tembak Paket</option>
+      <option value="SSH">SSH</option>
+      <option value="VMESS">VMESS</option>
+      <option value="VLESS">VLESS</option>
+      <option value="TROJAN">TROJAN</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="server">Pilih Server</label>
+    <select id="server" required>
+      <option value="">-- Pilih Server --</option>
+      <option>[ID] Indonesia 1 HP | Rp. 5.000 | 30 Hari (Promo)</option>
+      <option>[ID] Indonesia 2 HP | Rp. 7.000 | 30 Hari (Promo)</option>
+      <option>[SG] Singapore 1 HP | Rp. 5.000 | 30 Hari (Promo)</option>
+      <option>[SG] Singapore 2 HP | Rp. 7.000 | 30 Hari (Promo)</option>
+    </select>
+  </div>
+
+  <div id="harga" class="price-box">Harga: -</div>
+
+  <div class="form-group">
+    <label for="provinsi">Provinsi</label>
+    <select id="provinsi" required>
+      <option value="">-- Pilih Provinsi --</option>
+      <option>Aceh</option>
+      <option>Sumatera Utara</option>
+      <option>Sumatera Barat</option>
+      <option>Riau</option>
+      <option>Kepulauan Riau</option>
+      <option>Jambi</option>
+      <option>Bengkulu</option>
+      <option>Sumatera Selatan</option>
+      <option>Kepulauan Bangka Belitung</option>
+      <option>Lampung</option>
+      <option>Banten</option>
+      <option>DKI Jakarta</option>
+      <option>Jawa Barat</option>
+      <option>Jawa Tengah</option>
+      <option>DI Yogyakarta</option>
+      <option>Jawa Timur</option>
+      <option>Bali</option>
+      <option>Nusa Tenggara Barat</option>
+      <option>Nusa Tenggara Timur</option>
+      <option>Kalimantan Barat</option>
+      <option>Kalimantan Tengah</option>
+      <option>Kalimantan Selatan</option>
+      <option>Kalimantan Timur</option>
+      <option>Kalimantan Utara</option>
+      <option>Sulawesi Utara</option>
+      <option>Sulawesi Tengah</option>
+      <option>Sulawesi Selatan</option>
+      <option>Sulawesi Tenggara</option>
+      <option>Gorontalo</option>
+      <option>Sulawesi Barat</option>
+      <option>Maluku</option>
+      <option>Maluku Utara</option>
+      <option>Papua</option>
+      <option>Papua Barat</option>
+      <option>Papua Tengah</option>
+      <option>Papua Pegunungan</option>
+      <option>Papua Selatan</option>
+      <option>Papua Barat Daya</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="kartu">Pilih Kartu</label>
+    <select id="kartu" required>
+      <option value="">-- Pilih Operator --</option>
+      <option>XL</option><option>Axis</option><option>Telkomsel</option><option>Indosat</option>
+    </select>
+  </div>
+
+  <div id="previewBox">
+    <div id="previewTitle">💗💗 Gasss Order 💗💗</div>
+    <div id="previewContent">Isi semua data untuk lihat order kamu di sini!</div>
+  </div>
+
+  <button type="submit">Kirim ke WhatsApp <span>PROMO</span></button>
+  <p style="text-align:center;font-size:12px;color:#888;margin-top:8px;">Pastikan data Anda benar sebelum mengirim.</p>
+</form>
+
+<footer>© 2025 Sweater Pink Order | Premium Promo</footer>
+
+<script>
+const stokGlobal={ID:999,SG:88};
+
+const provSelect=new Choices(document.getElementById('provinsi'),{
+  searchEnabled:true,
+  itemSelectText:'',
+  noResultsText:'Provinsi tidak ditemukan',
+  shouldSort:false
+});
+
+const serverSelect=document.getElementById('server');
+const hargaBox=document.getElementById('harga');
+const previewBox=document.getElementById('previewBox');
+const previewContent=document.getElementById('previewContent');
+
+function extractData(s){
+  const p=s.split('|').map(a=>a.trim());
+  return{namaServer:p[0]||'',harga:p[1]||'',masaAktif:p[2]||''};
+}
+
+function updatePreview(){
+ const n=document.getElementById('nama').value;
+ const j=document.getElementById('jenis').value;
+ const prov=document.getElementById('provinsi').value;
+ const k=document.getElementById('kartu').value;
+ const sel=serverSelect.options[serverSelect.selectedIndex];
+ const val=serverSelect.value;
+ if(n||j||prov||k||val){
+   previewBox.style.display='block';
+   let sHTML='';
+   if(val){
+     const d=extractData(sel.text);
+     let stok='-';
+     if(sel.text.includes('[ID]')) stok=stokGlobal.ID;
+     else if(sel.text.includes('[SG]')) stok=stokGlobal.SG;
+     sHTML=`<strong>Server:</strong> ${d.namaServer}<br><strong>Harga:</strong> ${d.harga}<br><strong>Masa Aktif:</strong> ${d.masaAktif}<br><strong>Stok:</strong> <span>${stok}</span><br>`;
+   }
+   previewContent.innerHTML=`<strong>Nama:</strong> ${n||'-'}<br><strong>Jenis Order:</strong> ${j||'-'}<br>${sHTML}<strong>Provinsi:</strong> ${prov||'-'}<br><strong>Kartu:</strong> ${k||'-'}`;
+ }
+}
+
+document.querySelectorAll('#waForm input,#waForm select').forEach(e=>e.addEventListener('change',updatePreview));
+
+serverSelect.addEventListener('change',()=>{
+ const s=serverSelect.options[serverSelect.selectedIndex];
+ const t=s.text;
+ if(!t){hargaBox.innerText='Harga: -';return;}
+ const d=extractData(t);
+ let stok='-';
+ if(t.includes('[ID]')) stok=stokGlobal.ID;
+ else if(t.includes('[SG]')) stok=stokGlobal.SG;
+ hargaBox.innerHTML=`Harga: ${d.harga}<br><span>Stok: ${stok}</span>`;
+ updatePreview();
+});
+
+document.getElementById('waForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const n=document.getElementById('nama').value;
+ const j=document.getElementById('jenis').value;
+ const sel=serverSelect.options[serverSelect.selectedIndex];
+ const d=extractData(sel.text);
+ const prov=document.getElementById('provinsi').value;
+ const k=document.getElementById('kartu').value;
+ const nomor='6283870282897';
+ const heart=String.fromCharCode(0x2764,0xFE0F);
+ const teks=`*SWEATER PINK ORDER (PROMO)*
+
+*Nama:* ${n}
+*Jenis Order:* ${j}
+*Server:* ${d.namaServer}
+*Harga:* ${d.harga}
+*Masa Aktif:* ${d.masaAktif}
+*Provinsi:* ${prov}
+*Kartu:* ${k}
+
+──────────────
+Terima kasih telah order di *Sweater Pink Store* ${heart}
+Pesanan kamu sedang diproses, mohon tunggu konfirmasi dari admin.`;
+ window.open(`https://wa.me/${nomor}?text=${encodeURIComponent(teks)}`,'_blank');
+});
+</script>
+</body>
+</html>
