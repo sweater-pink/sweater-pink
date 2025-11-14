@@ -15,7 +15,6 @@
   --blur: blur(12px);
 }
 
-/* Background animasi */
 body {
   margin: 0;
   padding: 0;
@@ -39,7 +38,6 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Container utama */
 .container {
   background: var(--glass);
   backdrop-filter: var(--blur);
@@ -58,7 +56,6 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Header */
 .container h1 {
   font-size: 1.8em;
   margin-bottom: 10px;
@@ -81,7 +78,6 @@ body {
   line-height: 1.4;
 }
 
-/* Logo */
 .container img {
   width: 180px;
   border-radius: 18px;
@@ -89,7 +85,6 @@ body {
   margin-bottom: 15px;
 }
 
-/* Tombol download */
 .download-btn {
   display: inline-block;
   background: linear-gradient(135deg, #ff1499, #ff6ec7, #a259ff);
@@ -110,7 +105,6 @@ body {
   box-shadow: 0 0 28px rgba(255, 20, 153, 0.6);
 }
 
-/* Deskripsi */
 .desc {
   max-width: 550px;
   margin: 35px auto;
@@ -119,7 +113,6 @@ body {
   line-height: 1.6;
 }
 
-/* Judul bagian server */
 .section-title {
   display: inline-block;
   background: rgba(255,255,255,0.15);
@@ -133,7 +126,6 @@ body {
   box-shadow: 0 0 12px rgba(255, 20, 153, 0.3);
 }
 
-/* Kartu gambar */
 .img-card {
   margin: 20px auto 40px;
 }
@@ -150,7 +142,6 @@ body {
   box-shadow: 0 0 25px rgba(255, 20, 153, 0.6);
 }
 
-/* Footer */
 footer {
   margin-top: 35px;
   font-size: 0.85em;
@@ -163,7 +154,6 @@ footer span {
   text-shadow: 0 0 8px rgba(255,20,153,0.5);
 }
 
-/* Responsif HP */
 @media (max-width: 600px) {
   .container img { width: 150px; }
   .img-card img { width: 200px; }
@@ -188,6 +178,11 @@ footer span {
     <strong>lebih murah dari aplikasi mana pun!</strong>
   </div>
 
+  <div class="section-title">XL</div>
+  <div class="img-card">
+    <img src="https://i.postimg.cc/5y9v0hGk/Screenshot-2025-11-14-21-54-21-888-com-sweaterpink.jpg" alt="XL Paket">
+  </div>
+
   <div class="section-title">AXIS</div>
   <div class="img-card">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfW33LPU7U1IHCbuYIp8MwpHNf68OxrSNyP-uDnrALGgmjfYN2-HPTBVrQPmu0EWerZFQNhWtPgLp6WA8GYIWc185Tm9i0CsVzXvgjFcLEjDhhnSK3fQ9Q-POs_yIFEXfoQLT83bZCKBEViJrd3QcabE4ftg_rV615iWP_rkEleBPWGYXEnt18Om6Apcip/s2400/1000140875.jpg" alt="Axis Paket">
@@ -208,8 +203,7 @@ footer span {
     Terima kasih sudah mendukung kami!
   </footer>
 </div>
-  
-<!-- 🔒 Anti Copy & Inspect Protection -->
+
 <script>
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.onkeydown = e => {
@@ -218,7 +212,6 @@ document.onkeydown = e => {
   if (e.ctrlKey && e.shiftKey && ['I','J'].includes(e.key)) e.preventDefault();
 };
 </script>
-  
+
 </body>
 </html>
-
