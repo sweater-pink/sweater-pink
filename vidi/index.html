@@ -190,5 +190,19 @@
       </article>
     </div>
   </div>
+
+  </script>
+
+  <!-- 🔒 Anti Copy & Inspect Protection -->
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.onkeydown = e => {
+  if (e.ctrlKey && ['s','u','c'].includes(e.key)) e.preventDefault();
+  if (e.key === 'F12') e.preventDefault();
+  if (e.ctrlKey && e.shiftKey && ['I','J'].includes(e.key)) e.preventDefault();
+};
+</script>
+  
 </body>
 </html>
+
