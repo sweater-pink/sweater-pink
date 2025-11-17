@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="in">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweater Pink | Premium Config</title>
+<meta content="#FF1499" name="theme-color"/>
+<meta content="#FF1499" name="msapplication-navbutton-color"/>
+
+<!-- Font & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --color-main: #ff4ac9; /* Pink modern neon */
+  --color-bg: #fff0f8; /* Latar belakang lebih lembut */
+  --radius: 18px;
+  --shadow: 0 6px 20px rgba(255, 74, 201, 0.25);
+  /* 🌈 Gradasi baru dengan efek glossy biru muda dan ungu */
+  --gradient: linear-gradient(135deg, #ff4ac9, #ff74d9, #a259ff, #6ecbff);
+}
+/* Efek glossy halus pada header */
+header {
+  background: linear-gradient(135deg, #ff4ac9, #ff74d9, #a259ff);
+  background-size: 200% 200%;
+  animation: moveGradient 6s ease infinite;
+}
+
+@keyframes moveGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Efek kilau di menu utama */
+.swiper-slide-menu a div {
+  background: linear-gradient(145deg, #ffffff, #ffe6fa);
+  position: relative;
+  overflow: hidden;
+}
+
+.swiper-slide-menu a div::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -75px;
+  width: 50px;
+  height: 100%;
+  background: rgba(255,255,255,0.4);
+  transform: skewX(-25deg);
+  animation: shine 4s infinite;
+}
+
+@keyframes shine {
+  0% { left: -75px; }
+  100% { left: 125%; }
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: var(--color-bg);
+  overflow-x: hidden;
+}
+
+/* Marquee */
+.marquee-box {
+  background: var(--gradient);
+  color: white;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 20px;
+  margin: 10px;
+  box-shadow: var(--shadow);
+}
+
+header {
+  background: var(--gradient);
+  color: white;
+  padding: 20px 20px 45px; /* 🔼 dikurangi lagi tinggi bawahnya */
+  border-bottom-left-radius: 100% 8%;  /* 🔼 radius diperkecil biar tidak turun */
+  border-bottom-right-radius: 100% 8%;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.25), transparent 70%);
+  pointer-events: none;
+}
+
+/* Header Info */
+header .info-user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .details h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+header .details p {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* Balance Section */
+header .detail-user {
+  margin-top: 25px;
+}
+
+header .detail-user .main-saldo {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+header .detail-user .main-saldo h3 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+header .btn-detail {
+  display: flex;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+header .btn-detail button {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 30px;
+  background: white;
+  color: var(--color-main);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+header .btn-detail button:hover {
+  background: var(--gradient);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* 🌸 MENU SELALU DI TENGAH & TIDAK TERPOTONG */
+.swiper-menu {
+  margin: -50px auto 0;
+  padding: 20px 15px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(255, 20, 153, 0.15);
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  flex-wrap: nowrap; /* 4 sejajar */
+  margin: 0 auto;
+}
+
+.swiper-slide-menu a {
+  flex: 1 1 22%; /* ✅ otomatis menyesuaikan agar 4 muat di 1 baris */
+  max-width: 140px;
+  text-decoration: none;
+}
+
+.swiper-slide-menu a div {
+  background: linear-gradient(145deg, #ffffff, #fff3fb);
+  border-radius: 20px;
+  text-align: center;
+  padding: 15px 10px 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 20, 153, 0.12);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Efek kilau pinggir */
+.swiper-slide-menu a div::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(135deg, #ff4fcf, #ff8bd9, #ff2fb3);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.swiper-slide-menu a div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 20, 153, 0.3);
+  background: linear-gradient(135deg, #fff5fb, #ffe6f5);
+}
+
+/* Ikon */
+.swiper-slide-menu a div img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  border: 2px solid #ff2fb3;
+  box-shadow: 0 3px 10px rgba(255, 20, 153, 0.3);
+  transition: all 0.3s ease;
+}
+
+.swiper-slide-menu a div:hover img {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(255, 20, 153, 0.4);
+}
+
+/* Teks */
+.swiper-slide-menu a div p {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ff0fa5;
+  text-shadow: 0 0 3px rgba(255, 20, 153, 0.15);
+  letter-spacing: 0.3px;
+  line-height: 1.3;
+  margin-top: auto;
+  margin-bottom: 5px;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+/* 🔧 Responsif - tetap 4 sejajar dan tidak terpotong */
+@media (max-width: 600px) {
+  .swiper-slide-menu {
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: nowrap; /* tetap sejajar */
+  }
+
+  .swiper-slide-menu a {
+    flex: 1 1 22%; /* pastikan 4 pas di 1 baris */
+  }
+
+  .swiper-slide-menu a div {
+    width: 100%;
+    height: 105px;
+    padding: 10px 5px;
+  }
+
+  .swiper-slide-menu a div img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .swiper-slide-menu a div p {
+    font-size: 10px;
+  }
+}
+
+/* ====== Perbaikan posisi agar sejajar di tengah ====== */
+.server-section {
+  margin: 20px auto;
+  background: white;
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  max-width: 900px; /* Batasi lebar supaya simetris di layar besar */
+}
+
+.server-section h2 {
+  color: var(--color-main);
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* ====== Server Grid 4 Kolom Sejajar ====== */
+.server-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* biar tetap rapi di berbagai layar */
+  gap: 15px;
+  text-align: center;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.server-grid a {
+  flex: 1 1 calc(25% - 15px); /* ✅ 4 kolom sejajar */
+  max-width: 160px;
+  text-decoration: none;
+}
+
+/* ✨ Kartu server berkilau */
+.server-card {
+  position: relative;
+  background: linear-gradient(135deg, #ffffff, #ffe6f8, #ffd9f3);
+  border-radius: var(--radius);
+  text-align: center;
+  padding: 12px;
+  box-shadow: 0 8px 25px rgba(255, 63, 174, 0.2);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  border: 1.5px solid rgba(255, 120, 210, 0.25);
+}
+
+/* 🌈 Efek kilau lebih terang seperti menu download */
+.server-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120px;
+  width: 90px;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.9) 45%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  animation: shineCard 3s infinite ease-in-out;
+  filter: blur(2px);
+  opacity: 0.8;
+}
+
+@keyframes shineCard {
+  0% { left: -120px; opacity: 0; }
+  30% { opacity: 1; }
+  50% { left: 120%; opacity: 1; }
+  100% { left: 120%; opacity: 0; }
+}
+
+/* ✨ Pinggiran gradasi */
+.server-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  padding: 2px;
+  background: linear-gradient(135deg, #ff85dd, #ffa6f2, #b46bff);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Hover glow */
+.server-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(255, 50, 160, 0.25);
+  background: linear-gradient(135deg, #fff, #ffe0f5, #ffd1f0);
+}
+
+/* Gambar dan teks */
+.server-card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 6px;
+  z-index: 2;
+  position: relative;
+}
+
+.server-card p {
+  position: relative;
+  font-size: 12px;
+  color: #222;
+  font-weight: 600;
+  z-index: 2;
+}
+
+/* 📱 Responsif untuk HP */
+@media (max-width: 600px) {
+  .server-grid {
+    gap: 8px;
+  }
+
+  .server-grid a {
+    flex: 1 1 calc(25% - 8px);
+    max-width: 90px;
+  }
+
+  .server-card {
+    padding: 8px;
+  }
+
+  .server-card img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .server-card p {
+    font-size: 10px;
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: #555;
+  margin-top: 30px;
+}
+
+/* ✨ Teks Trimakasih — tanpa blur, warna solid */
+footer .thank-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-main);
+  margin-bottom: 14px; /* jarak ke bawah agar tidak dempet */
+}
+
+/* ✨ Efek Sweater Pink tetap */
+footer span {
+  background: linear-gradient(90deg, #fff, #fc25d7, #ff8ad9, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200%;
+  animation: shineText 5s linear infinite;
+  font-weight: 600;
+}
+
+@keyframes shineText {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
+}
+
+/* 💎 Centang biru glowing */
+.checkmark {
+  background-color: #1da1f2;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 3px 6px;
+  line-height: 1;
+  box-shadow: 0 0 6px rgba(29,161,242,0.9);
+  margin-left: 4px;
+}
+
+
+
+</style>
+</head>
+
+<body>
+
+<!-- Marquee -->
+<div class="marquee-box">
+  <marquee>✅ Ready Config Premium • Aktif 30–60 Hari Bisa Request 1 Tahun  • Dipercaya 1.890 Pelanggan • 4.500+ Transaksi • Harga Termurah • Cs Respon 24 Jam Nonstop ✅</marquee>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="swiper-slide swipers swiper-slide-menu">
+    <a href="https://sweaterpink2.github.io/sweaterpink2/pass-web/" style="color:#000;">
+      <div>
+        <img src="https://i.postimg.cc/yYVMRwsH/images_(1)_(19).jpg" alt="">
+        <p>Download Update</p>
+      </div>
+    </a>
+    <a href="https://s.id/komunitas_grup" style="color:#000;">
+      <div>
+        <img src="https://i.postimg.cc/1tbBgBWR/20250121-031000.png" alt="">
+        <p>Komunitas Grup</p>
+      </div>
+    </a>
+    <a href="https://www.sweaterpink.web.id/apk-sweaterpink/" style="color:#000;">
+      <div>
+        <img src="https://i.postimg.cc/L5vVmMK2/20240512-101651.png" alt="">
+        <p>Aplikasi SP Top Up</p>
+      </div>
+    </a>
+    <a href="http://wa.me/6283870282897" style="color:#000;">
+      <div>
+        <img src="https://i.postimg.cc/D0YbCf3J/20240629-035058.jpg" alt="">
+        <p>Order Premium</p>
+      </div>
+    </a>
+  </div>
+</header>
+
+<!-- Server Section -->
+<div class="server-section">
+  <h2>Server Singapore 🇸🇬</h2>
+  <div class="server-grid">
+    <a href="https://wa.me/6283870282897/?text=*SERVER SINGAPURA 30hr 1 Hp Harga: Rp.8.000*" style="color:#000;">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/sxfp60B8/20250112-192428.png">
+        <p>30Hr 1Hp Rp.8.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER SINGAPURA 60hr 1 Hp Harga: Rp.18.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/sxfp60B8/20250112-192428.png">
+        <p>60Hr 1Hp Rp.18.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER SINGAPURA 30hr 2 Hp Harga: Rp.10.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/sxfp60B8/20250112-192428.png">
+        <p>30Hr 2Hp Rp.10.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER SINGAPURA 60hr 2 Hp Harga: Rp.20.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/sxfp60B8/20250112-192428.png">
+        <p>60Hr 2Hp Rp.20.000</p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="server-section">
+  <h2>Server Indonesia 🇮🇩</h2>
+  <div class="server-grid">
+    <a href="https://wa.me/6283870282897/?text=*SERVER INDONESIA 30hr 1 Hp Harga: Rp.10.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/B605DvJJ/images-1-1.jpg">
+        <p>30Hr 1Hp Rp.10.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER INDONESIA 60hr 1 Hp Harga: Rp.20.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/B605DvJJ/images-1-1.jpg">
+        <p>60Hr 1Hp Rp.20.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER INDONESIA 30hr 2 Hp Harga: Rp.12.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/B605DvJJ/images-1-1.jpg">
+        <p>30Hr 2Hp Rp.12.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER INDONESIA 60hr 2 Hp Harga: Rp.24.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/B605DvJJ/images-1-1.jpg">
+        <p>60Hr 2Hp Rp.24.000</p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="server-section">
+  <h2>Server Game+ 🎮</h2>
+  <div class="server-grid">
+    <a href="https://wa.me/6283870282897/?text=*SERVER GAME+ 30hr 1 Hp Harga: Rp.15.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/N0VSwm8p/img-1-1737298380424.jpg">
+        <p>30Hr 1Hp Rp.15.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER GAME+ 60hr 1 Hp Harga: Rp.30.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/N0VSwm8p/img-1-1737298380424.jpg">
+        <p>60Hr 1Hp Rp.30.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER GAME+ 30hr 2 Hp Harga: Rp.20.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/N0VSwm8p/img-1-1737298380424.jpg">
+        <p>30Hr 2Hp Rp.20.000</p>
+      </div>
+    </a>
+    <a href="https://wa.me/6283870282897/?text=*SERVER GAME+ 60hr 2 Hp Harga: Rp.40.000*">
+      <div class="server-card">
+        <img src="https://i.postimg.cc/N0VSwm8p/img-1-1737298380424.jpg">
+        <p>60Hr 2Hp Rp.40.000</p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p class="thank-text">💖 Trimakasih Sudah Order 💖</p>
+  <p>© 2025 by <span>Sweater Pink</span> <span class="checkmark">✔</span></p>
+</footer>
+
+<!-- 🔒 Anti Copy & Inspect Protection -->
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.onkeydown = e => {
+  if (e.ctrlKey && ['s','u','c'].includes(e.key)) e.preventDefault();
+  if (e.key === 'F12') e.preventDefault();
+  if (e.ctrlKey && e.shiftKey && ['I','J'].includes(e.key)) e.preventDefault();
+};
+</script>
+
+</body>
+</html>
+
+
