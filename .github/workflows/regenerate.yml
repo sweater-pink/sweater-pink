@@ -16,28 +16,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Checkout repo publik (sweater-pink)
-      - uses: actions/checkout@v4
+      # 1) Checkout repo publik (sweater-pink/sweater-pink)
+      - name: Checkout public repo
+        uses: actions/checkout@v4
 
-      # 2) Checkout repo privat (berisi content.json & tools/encrypt.js)
+      # 2) Checkout repo privat (sweater-pink/data)
       - name: Checkout private data repo
         uses: actions/checkout@v4
         with:
-  repository: sweater-pink/data
-  token: ${{ secrets.DATA_TOKEN }}
-  path: data
+          repository: sweater-pink/data
+          token: ${{ secrets.DATA_TOKEN }}
+          path: data
 
       # 3) Setup Node.js
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      # 4) Mask password agar tidak tampil di log
-      - name: Mask pw in logs
+      # 4) Mask password agar tidak bocor
+      - name: Mask password
         run: echo "::add-mask::${{ github.event.inputs.pw }}"
 
-      # 5) Generate ciphers.js (encrypt.js akan diarahkan ke repo publik)
+      # 5) Generate ciphers.js
       - name: Generate ciphers.js
         env:
           PW: ${{ github.event.inputs.pw }}
@@ -47,30 +48,27 @@ jobs:
             echo "❌ Password harus 3 digit"; exit 1;
           fi
 
-          echo "➡ Menjalankan encrypt.js"
+          echo "➡ Menjalankan encrypt.js..."
           node data/tools/encrypt.js
 
-          echo "➡ Memastikan output ciphers.js ada"
+          echo "➡ Mengecek output..."
           test -f pass-web/ciphers.js || (echo "❌ ciphers.js tidak ditemukan!" && exit 1)
 
-          echo "➡ Hasil ciphers.js:"
+          echo "➡ Hasil 2 baris pertama:"
           head -n 2 pass-web/ciphers.js
 
-      # 6) Bump cache buster di index.html
-      - name: Bump cache buster in index.html
+      # 6) Update versi cache buster
+      - name: Update cache buster
         run: |
           vb=${{ github.run_number }}
 
-          # Jika sudah ada ?v=NUMBER
           sed -i 's#ciphers.js?v=[0-9]\+#ciphers.js?v='"$vb"'#' pass-web/index.html || true
-
-          # Jika belum ada parameter v=
           sed -i 's#ciphers.js"#ciphers.js?v='"$vb"'"#' pass-web/index.html || true
 
-      # 7) Commit & push perubahan
-      - name: Commit & push
+      # 7) Commit & push
+      - name: Commit and push changes
         run: |
-          git config user.name  "github-actions[bot]"
+          git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add pass-web/ciphers.js pass-web/index.html
