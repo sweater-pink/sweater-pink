@@ -16,14 +16,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Checkout repo publik
+      # 1) Checkout repo publik (sweater-pink)
       - uses: actions/checkout@v4
 
       # 2) Checkout repo privat (berisi content.json & tools/encrypt.js)
       - name: Checkout private data repo
         uses: actions/checkout@v4
         with:
-          repository: sshserver0106-hub/data   # sesuaikan jika beda
+          repository: sshserver0106-hub/data       # ganti jika berbeda
           token: ${{ secrets.DATA_TOKEN }}
           path: data
 
@@ -37,22 +37,23 @@ jobs:
       - name: Mask pw in logs
         run: echo "::add-mask::${{ github.event.inputs.pw }}"
 
-      # 5) Generate ciphers.js langsung ke pass-web (sesuai encrypt.js versi FIX)
+      # 5) Generate ciphers.js (encrypt.js akan diarahkan ke repo publik)
       - name: Generate ciphers.js
         env:
           PW: ${{ github.event.inputs.pw }}
+          PUBLIC_DIR: ${{ github.workspace }}/pass-web
         run: |
           if ! [[ "${PW}" =~ ^[0-9]{3}$ ]]; then
             echo "❌ Password harus 3 digit"; exit 1;
           fi
 
-          # Jalankan encrypt.js di repo privat
+          echo "➡ Menjalankan encrypt.js"
           node data/tools/encrypt.js
 
-          # Pastikan file hasil benar-benar ada di pass-web/
-          test -f pass-web/ciphers.js || (echo "❌ ciphers.js tidak ditemukan di pass-web/" && exit 1)
+          echo "➡ Memastikan output ciphers.js ada"
+          test -f pass-web/ciphers.js || (echo "❌ ciphers.js tidak ditemukan!" && exit 1)
 
-          echo "Hasil 2 baris pertama:"
+          echo "➡ Hasil ciphers.js:"
           head -n 2 pass-web/ciphers.js
 
       # 6) Bump cache buster di index.html
@@ -60,16 +61,18 @@ jobs:
         run: |
           vb=${{ github.run_number }}
 
+          # Jika sudah ada ?v=NUMBER
           sed -i 's#ciphers.js?v=[0-9]\+#ciphers.js?v='"$vb"'#' pass-web/index.html || true
 
-          # Fallback jika belum ada parameter v=
+          # Jika belum ada parameter v=
           sed -i 's#ciphers.js"#ciphers.js?v='"$vb"'"#' pass-web/index.html || true
 
-      # 7) Commit & push
+      # 7) Commit & push perubahan
       - name: Commit & push
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
           git add pass-web/ciphers.js pass-web/index.html
           git commit -m "regenerate ciphers" || echo "No changes to commit"
           git push
