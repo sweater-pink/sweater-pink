@@ -23,9 +23,9 @@ jobs:
       - name: Checkout private data repo
         uses: actions/checkout@v4
         with:
-          repository: sshserver0106-hub/data       # ganti jika berbeda
-          token: ${{ secrets.DATA_TOKEN }}
-          path: data
+  repository: sweater-pink/data
+  token: ${{ secrets.DATA_TOKEN }}
+  path: data
 
       # 3) Setup Node.js
       - name: Setup Node
