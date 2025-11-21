@@ -14,16 +14,17 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      # 1) Checkout repo publik (GitHub Pages)
+      # 1) Checkout repo publik
       - uses: actions/checkout@v4
 
       # 2) Checkout repo privat (berisi content.json & tools/encrypt.js)
       - name: Checkout private data repo
         uses: actions/checkout@v4
         with:
-          repository: sshserver0106-hub/data     # ganti kalau beda
-          token: ${{ secrets.DATA_TOKEN }}       # secret token di repo publik
+          repository: sshserver0106-hub/data   # sesuaikan jika beda
+          token: ${{ secrets.DATA_TOKEN }}
           path: data
 
       # 3) Setup Node.js
@@ -32,33 +33,39 @@ jobs:
         with:
           node-version: "20"
 
-      # 4) Mask password di log agar tidak terlihat
+      # 4) Mask password agar tidak tampil di log
       - name: Mask pw in logs
         run: echo "::add-mask::${{ github.event.inputs.pw }}"
 
-      # 5) Jalankan enkripsi & hasilkan ciphers.js ke dalam folder pass-web
+      # 5) Generate ciphers.js langsung ke pass-web (sesuai encrypt.js versi FIX)
       - name: Generate ciphers.js
         env:
           PW: ${{ github.event.inputs.pw }}
         run: |
           if ! [[ "${PW}" =~ ^[0-9]{3}$ ]]; then
-            echo "Password harus 3 digit"; exit 1;
+            echo "❌ Password harus 3 digit"; exit 1;
           fi
+
+          # Jalankan encrypt.js di repo privat
           node data/tools/encrypt.js
-          # Pastikan file output ada
-          test -f ciphers.js || (echo "❌ ciphers.js tidak dibuat di root" && exit 1)
-          # Pindahkan hasil ke folder pass-web
-          mv ciphers.js pass-web/ciphers.js
+
+          # Pastikan file hasil benar-benar ada di pass-web/
+          test -f pass-web/ciphers.js || (echo "❌ ciphers.js tidak ditemukan di pass-web/" && exit 1)
+
+          echo "Hasil 2 baris pertama:"
           head -n 2 pass-web/ciphers.js
 
-      # 6) Update versi cache-buster di pass-web/index.html
+      # 6) Bump cache buster di index.html
       - name: Bump cache buster in index.html
         run: |
           vb=${{ github.run_number }}
-          sed -i 's#ciphers.js?v=[0-9]\+#ciphers.js?v='"$vb"'#' pass-web/index.html || \
-          sed -i 's#ciphers.js"#ciphers.js?v='"$vb"'"#' pass-web/index.html
 
-      # 7) Commit & push hasil terbaru
+          sed -i 's#ciphers.js?v=[0-9]\+#ciphers.js?v='"$vb"'#' pass-web/index.html || true
+
+          # Fallback jika belum ada parameter v=
+          sed -i 's#ciphers.js"#ciphers.js?v='"$vb"'"#' pass-web/index.html || true
+
+      # 7) Commit & push
       - name: Commit & push
         run: |
           git config user.name  "github-actions[bot]"
