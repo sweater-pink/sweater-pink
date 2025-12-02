@@ -37,7 +37,6 @@ body {
   letter-spacing: 0.5px;
   overflow: hidden;
   animation: promoBlink 1.8s ease-in-out infinite;
-  /* Hapus shadow agar tidak “blur” */
   box-shadow: none;
 }
 
@@ -54,7 +53,6 @@ body {
   animation: promoShine 2s infinite;
 }
 
-/* Blink sinkron untuk badge & tombol bawah — TANPA shadow */
 @keyframes promoBlink {
   0%,100% { opacity: 1; transform: translateX(-50%) scale(1); }
   50%     { opacity: 0.6; transform: translateX(-50%) scale(1.08); }
@@ -119,7 +117,7 @@ input:focus, select:focus {
   font-size: 14px;
 }
 
-/* Tombol dan PROMO bawah blink sama dengan badge — TANPA BLUR */
+/* Tombol dan PROMO bawah blink sama — tanpa blur */
 button {
   width: 100%;
   background: linear-gradient(135deg,#e91e63,#c2185b);
@@ -142,8 +140,6 @@ button span {
   margin-left: 6px;
   color: #fff;
   animation: promoBlinkBtn 1.8s ease-in-out infinite;
-  /* tanpa shadow supaya tidak “blur” */
-  box-shadow: none;
 }
 @keyframes promoBlinkBtn {
   0%,100% { opacity: 1; transform: scale(1); }
@@ -337,11 +333,30 @@ serverSelect.addEventListener('change',()=>{
  updatePreview();
 });
 
+
+// ==================================================
+//  PERBAIKAN: CEGAH KIRIM WA JIKA STOK = 0
+// ==================================================
 document.getElementById('waForm').addEventListener('submit',e=>{
  e.preventDefault();
+
+ const sel=serverSelect.options[serverSelect.selectedIndex];
+ const teksServer = sel.text;
+
+ // Cek stok sesuai server
+ let stok = 0;
+ if (teksServer.includes('[ID]')) stok = stokGlobal.ID;
+ else if (teksServer.includes('[SG]')) stok = stokGlobal.SG;
+
+ // Jika stok 0 → STOP
+ if (stok === 0) {
+     alert("Maaf, stok server ini sedang HABIS. Silakan pilih server lain.");
+     return;
+ }
+
+ // Jika stok ada → lanjut kirim WA
  const n=document.getElementById('nama').value;
  const j=document.getElementById('jenis').value;
- const sel=serverSelect.options[serverSelect.selectedIndex];
  const d=extractData(sel.text);
  const prov=document.getElementById('provinsi').value;
  const k=document.getElementById('kartu').value;
@@ -364,9 +379,7 @@ Pesanan kamu sedang diproses, mohon tunggu konfirmasi dari admin.`;
 });
 </script>
 
-  </script>
-
-  <!-- 🔒 Anti Copy & Inspect Protection -->
+<!-- 🔒 Anti Copy & Inspect Protection -->
 <script>
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.onkeydown = e => {
