@@ -2,8 +2,9 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta-name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UDP SETTING NO DISCONNECT</title>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
@@ -11,45 +12,62 @@
       background-color: #0f172a;
       color: #e2e8f0;
       font-family: 'Poppins', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+
+      /* CENTER PERFECT */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .center-box {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
-      padding: 20px;
+      width: 100%;
+      max-width: 450px;
     }
 
     h1 {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       font-size: 1.8rem;
-      text-align: center;
       color: #38bdf8;
       letter-spacing: 1px;
     }
 
+    .subnote {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-bottom: 20px;
+      max-width: 350px;
+      line-height: 1.4;
+    }
+
     .video-container {
       position: relative;
-      width: 90%;
+      width: 100%;
       max-width: 400px;
       aspect-ratio: 9 / 16;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
-      border: 2px solid rgba(56, 189, 248, 0.4);
       background: #000;
-      transition: all 0.3s ease;
+      border: 2px solid rgba(56, 189, 248, 0.4);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      transition: 0.3s ease;
     }
 
     .video-container:hover {
       transform: scale(1.05);
-      box-shadow: 0 10px 40px rgba(56, 189, 248, 0.5);
+      box-shadow: 0 10px 40px rgba(56,189,248,0.5);
     }
 
     .video-container iframe {
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       border: 0;
@@ -58,8 +76,6 @@
     footer {
       margin-top: 20px;
       font-size: 0.9rem;
-      text-align: center;
-      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -92,41 +108,45 @@
     }
   </style>
 </head>
+
 <body>
 
-  <h1>UDP SETTING NO DISCONNECT ( BISA DI COBA JUGA UNTUK AKUN SSH PAYLOAD ATAU V2RAY )</h1>
+  <div class="center-box">
 
-  <div class="video-container">
-    <!-- 🎥 Player video GitHub -->
-    <iframe 
-      src="data:text/html;charset=utf-8,
-      <html><body style='margin:0'>
-        <video controls autoplay style='width:100%;height:100%'>
-          <source src='https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/udp/VID-20250616-WA0051(2).mp4' type='video/mp4'>
-        </video>
-      </body></html>"
-      frameborder="0" 
-      scrolling="no" 
-      allowfullscreen>
-    </iframe>
+    <h1>UDP SETTING NO DISCONNECT</h1>
+
+    <div class="subnote">
+      BISA DI COBA JUGA UNTUK AKUN ATAU CONFIG SSH PAYLOAD DAN V2RAY
+    </div>
+
+    <div class="video-container">
+      <iframe 
+        src="data:text/html;charset=utf-8,
+        <html><body style='margin:0'>
+          <video controls autoplay style='width:100%;height:100%'>
+            <source src='https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/udp/VID-20250616-WA0051(2).mp4' type='video/mp4'>
+          </video>
+        </body></html>"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <footer>
+      © 2025 by <span class="footer-text">Sweater Pink</span>
+      <span class="checkmark">✔</span>
+    </footer>
+
   </div>
 
-  <footer>
-    © 2025 by <span class="footer-text">Sweater Pink</span>
-    <span class="checkmark">✔</span>
-  </footer>
+  <!-- Anti Copy -->
+  <script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.onkeydown = e => {
+      if (e.ctrlKey && ['s','u','c'].includes(e.key)) e.preventDefault();
+      if (e.key === 'F12') e.preventDefault();
+      if (e.ctrlKey && e.shiftKey && ['I','J'].includes(e.key)) e.preventDefault();
+    };
+  </script>
 
-<!-- 🔒 Anti Copy -->
-<script>
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.onkeydown = e => {
-  if (e.ctrlKey && ['s','u','c'].includes(e.key)) e.preventDefault();
-  if (e.key === 'F12') e.preventDefault();
-  if (e.ctrlKey && e.shiftKey && ['I','J'].includes(e.key)) e.preventDefault();
-};
-</script>
-  
 </body>
 </html>
-
-
