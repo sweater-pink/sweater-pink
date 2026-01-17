@@ -62,6 +62,28 @@
       </select>
     </div>
 
+    <!-- ✅ MENU TAMBAHAN (MUNCUL KHUSUS CONFIG PREMIUM) -->
+    <div class="form-group" id="configMenu" style="display:none;">
+      <label for="configPremium">Pilih Config Premium</label>
+      <select id="configPremium">
+        <option value="">-- Pilih Config --</option>
+        <option>Axis XL Edukasi</option>
+        <option>AXIS XL Conferance</option>
+        <option>Musik / Spotify</option>
+        <option>Smarfren Nonstop Apss</option>
+        <option>Telkomsel Kentang Gamemax</option>
+        <option>Telkomsel Ilmupedia</option>
+        <option>Axis Game</option>
+        <option>Iflix</option>
+        <option>Netflix</option>
+        <option>Booster Vidio</option>
+        <option>Indosat Apps Fun</option>
+        <option>Opok Udp Custom</option>
+        <option>Opok Zivpn Vip</option>
+        <option>Paket Lainnya (tanya mimin)</option>
+      </select>
+    </div>
+
     <div class="form-group">
       <label for="server">Pilih Server</label>
       <select id="server" required>
@@ -135,6 +157,11 @@
   const previewBox = document.getElementById('previewBox');
   const previewContent = document.getElementById('previewContent');
 
+  // ✅ tambahan untuk config premium
+  const jenisSelect = document.getElementById('jenis');
+  const configMenu = document.getElementById('configMenu');
+  const configPremium = document.getElementById('configPremium');
+
   function extractData(serverText) {
     const parts = serverText.split('|').map(p => p.trim());
     return {
@@ -149,10 +176,13 @@
     const jenis = document.getElementById('jenis').value;
     const provinsi = document.getElementById('provinsi').value;
     const kartu = document.getElementById('kartu').value;
+
+    const configVal = document.getElementById('configPremium')?.value || '';
+
     const selected = serverSelect.options[serverSelect.selectedIndex];
     const serverVal = serverSelect.value;
 
-    if (nama || jenis || provinsi || kartu || serverVal) {
+    if (nama || jenis || provinsi || kartu || serverVal || configVal) {
       previewBox.style.display = 'block';
       let serverHTML = '';
 
@@ -173,6 +203,7 @@
       previewContent.innerHTML = `
         <strong>Nama:</strong> ${nama || '-'}<br>
         <strong>Jenis Order:</strong> ${jenis || '-'}<br>
+        ${jenis === "Config Premium" ? `<strong>Config:</strong> ${configVal || '-'}<br>` : ''}
         ${serverHTML}
         <strong>Provinsi:</strong> ${provinsi || '-'}<br>
         <strong>Kartu:</strong> ${kartu || '-'}
@@ -180,10 +211,23 @@
     }
   }
 
+  // update preview saat input berubah
   document.querySelectorAll('#waForm input, #waForm select').forEach(el => {
     el.addEventListener('change', updatePreview);
   });
 
+  // tampilkan menu config premium kalau jenis = Config Premium
+  jenisSelect.addEventListener('change', () => {
+    if (jenisSelect.value === "Config Premium") {
+      configMenu.style.display = "block";
+    } else {
+      configMenu.style.display = "none";
+      configPremium.value = "";
+    }
+    updatePreview();
+  });
+
+  // server change => update harga + stok
   serverSelect.addEventListener('change', () => {
     const selected = serverSelect.options[serverSelect.selectedIndex];
     const text = selected.text;
@@ -204,24 +248,69 @@
     updatePreview();
   });
 
-  // Kirim ke WhatsApp (tetap aktif)
-  document.getElementById('waForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const nama = document.getElementById('nama').value;
+  // ✅ VALIDASI sebelum kirim WA
+  function validateForm() {
+    const nama = document.getElementById('nama').value.trim();
     const jenis = document.getElementById('jenis').value;
-    const selected = serverSelect.options[serverSelect.selectedIndex];
-    const data = extractData(selected.text);
+    const server = document.getElementById('server').value;
     const provinsi = document.getElementById('provinsi').value;
     const kartu = document.getElementById('kartu').value;
+    const configVal = document.getElementById('configPremium')?.value || '';
+
+    if (!nama) {
+      alert("❌ Nama wajib diisi!");
+      return false;
+    }
+    if (!jenis) {
+      alert("❌ Jenis Order wajib dipilih!");
+      return false;
+    }
+    if (jenis === "Config Premium" && !configVal) {
+      alert("❌ Pilih Config Premium !");
+      return false;
+    }
+    if (!server) {
+      alert("❌ Server wajib dipilih!");
+      return false;
+    }
+    if (!provinsi) {
+      alert("❌ Provinsi wajib dipilih!");
+      return false;
+    }
+    if (!kartu) {
+      alert("❌ Kartu wajib dipilih!");
+      return false;
+    }
+
+    return true;
+  }
+
+  // Kirim ke WhatsApp (tetap aktif + ada validasi)
+  document.getElementById('waForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // ❌ kalau belum lengkap, stop di sini
+    if (!validateForm()) return;
+
+    const nama = document.getElementById('nama').value.trim();
+    const jenis = document.getElementById('jenis').value;
+    const configVal = document.getElementById('configPremium')?.value || '-';
+
+    const selected = serverSelect.options[serverSelect.selectedIndex];
+    const data = extractData(selected.text);
+
+    const provinsi = document.getElementById('provinsi').value;
+    const kartu = document.getElementById('kartu').value;
+
     const nomor = '6283870282897';
     const heart = String.fromCharCode(0x2764, 0xFE0F);
 
-    const teks = 
+    const teks =
 `*SWEATER PINK ORDER*
 
 *Nama:* ${nama}
 *Jenis Order:* ${jenis}
-*Server:* ${data.namaServer}
+${jenis === "Config Premium" ? `*Config:* ${configVal}\n` : ''}*Server:* ${data.namaServer}
 *Harga:* ${data.harga}
 *Masa Aktif:* ${data.masaAktif}
 *Provinsi:* ${provinsi}
@@ -244,6 +333,6 @@ document.onkeydown = e => {
   if (e.ctrlKey && e.shiftKey && ['I','J'].includes(e.key)) e.preventDefault();
 };
 </script>
-  
+
 </body>
 </html>
