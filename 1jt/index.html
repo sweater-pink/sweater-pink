@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kirim Lokasi</title>
+
+<style>
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    font-family:Arial;
+    background:#f2f2f2;
+}
+button{
+    padding:20px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    background:#0088cc;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<button onclick="kirimLokasi()">Kirim Lokasi ke Telegram</button>
+
+<script>
+function kirimLokasi(){
+
+    if(!navigator.geolocation){
+        alert("Browser tidak mendukung lokasi");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(function(position){
+
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+
+        var token = "8290196740:AAGAMlvolfPinlOIQMkrgsB1kgOjtSBU0zc";
+        var chat_id = "1386780002";
+
+        // Kirim pesan dulu
+        fetch("https://api.telegram.org/bot" + token + "/sendMessage", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                chat_id: chat_id,
+                text: "Lokasi baru terdeteksi 📍"
+            })
+        });
+
+        // Kirim lokasi
+        fetch("https://api.telegram.org/bot" + token + "/sendLocation", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                chat_id: chat_id,
+                latitude: lat,
+                longitude: lon
+            })
+        })
+        .then(response => {
+            alert("Lokasi berhasil dikirim ke Telegram");
+        })
+        .catch(error => {
+            alert("Gagal mengirim lokasi");
+        });
+
+    }, function(){
+        alert("Izin lokasi ditolak");
+    });
+
+}
+</script>
+
+</body>
+</html>
