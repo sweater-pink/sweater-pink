@@ -421,49 +421,55 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-flex-direction:column;
 background:radial-gradient(circle,#ff7eb3,#ff758c,#3a0f2d);
-overflow:hidden;
 font-family:Arial;
 color:white;
+overflow:hidden;
 text-align:center;
-padding:30px;
 }
+
+/* pesan */
 
 .message{
 font-size:24px;
 max-width:600px;
 line-height:1.8;
-transition:1.5s;
+padding:20px;
+transition:1s;
 }
+
+/* container nama */
 
 .signature{
 position:absolute;
 top:50%;
 left:50%;
-transform:translate(-50%,-50%) scale(.5);
-display:flex;
-align-items:center;
-gap:25px;
+transform:translate(-50%,-50%) scale(.8);
 opacity:0;
 transition:2s;
+display:flex;
+align-items:center;
+gap:20px;
 }
 
+/* garis */
+
 .line{
-width:110px;
+width:80px;
 height:2px;
 background:white;
 box-shadow:0 0 10px #ff4d6d;
 }
 
+/* nama */
+
 .name{
-font-size:60px;
+font-size:64px;
 font-family:"Brush Script MT",cursive;
-text-shadow:
-0 0 10px #ff4d6d,
-0 0 30px #ff4d6d,
-0 0 60px #ff4d6d;
+text-shadow:0 0 10px #ff4d6d,0 0 30px #ff4d6d,0 0 60px #ff4d6d;
 }
+
+/* love jatuh */
 
 .heartFall{
 position:fixed;
@@ -471,11 +477,7 @@ top:-20px;
 font-size:24px;
 color:#ff0033;
 animation:fall linear infinite;
-text-shadow:
-0 0 5px #ff0033,
-0 0 10px #ff0033,
-0 0 20px #ff3366,
-0 0 30px #ff4d6d;
+text-shadow:0 0 5px #ff0033,0 0 10px #ff0033,0 0 20px #ff3366;
 }
 
 @keyframes fall{
@@ -483,6 +485,8 @@ text-shadow:
 10%{opacity:1}
 100%{transform:translateY(110vh);opacity:0}
 }
+
+/* ledakan */
 
 .particle{
 position:fixed;
@@ -492,14 +496,8 @@ animation:explode 2s ease-out forwards;
 }
 
 @keyframes explode{
-0%{
-opacity:1;
-transform:translate(-50%,-50%) scale(.6);
-}
-100%{
-opacity:0;
-transform:translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.3);
-}
+0%{opacity:1;transform:translate(-50%,-50%) scale(.6)}
+100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.3)}
 }
 
 </style>
@@ -541,7 +539,6 @@ let i=0;
 const text=document.getElementById("text");
 
 function type(){
-
 if(i < message.length){
 text.innerHTML += message.charAt(i);
 i++;
@@ -549,45 +546,27 @@ setTimeout(type,80);
 }else{
 removeText();
 }
-
 }
 
 type();
 
-
 function removeText(){
-
 text.style.opacity="0";
-
 setTimeout(showName,1500);
-
 }
-
 
 function showName(){
-
 const s=document.getElementById("sig");
-
 s.style.opacity="1";
 s.style.transform="translate(-50%,-50%) scale(1)";
-
 setTimeout(explodeHeart,1000);
-
 }
 
-
-/* ledakan hati */
+/* ledakan */
 
 function explodeHeart(){
 
-const colors=[
-"#ff4d6d",
-"#ff758f",
-"#ff8fa3",
-"#ffd6e0",
-"#ff6b81",
-"#ff99c8"
-];
+const colors=["#ff4d6d","#ff758f","#ff8fa3","#ffd6e0","#ff6b81","#ff99c8"];
 
 for(let i=0;i<120;i++){
 
@@ -618,8 +597,7 @@ setTimeout(()=>p.remove(),2000);
 
 }
 
-
-/* hati jatuh */
+/* love jatuh */
 
 setInterval(()=>{
 
@@ -640,7 +618,7 @@ setTimeout(()=>h.remove(),8000);
 }
 </script>
 
-    <!-- 🔒 Anti Copy & Inspect Protection -->
+  <!-- 🔒 Anti Copy & Inspect Protection -->
 <script>
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.onkeydown = e => {
@@ -649,6 +627,7 @@ document.onkeydown = e => {
   if (e.ctrlKey && e.shiftKey && ['I','J'].includes(e.key)) e.preventDefault();
 };
 </script>
-  
+
+
 </body>
 </html>
