@@ -41,6 +41,20 @@
     </canvas>
 </div>
     <button id="btn">CONFIG</button>
+    <div id="fps_counter" style="
+position:fixed;
+right:10px;
+top:10px;
+color:#00ff88;
+font-size:20px;
+font-family:monospace;
+background:rgba(0,0,0,0.6);
+padding:6px 10px;
+border-radius:6px;
+z-index:999;
+">
+FPS: 0
+</div>
     <div id="config">
         <textarea name="" id="kernel" cols="30" rows="10"></textarea>
         <br />
@@ -492,6 +506,31 @@ alert("trigonometric and inverse trigonometric functions test.\ncreated by YT: s
             document.getElementById("kernel").value = KERNEL;
         });
     }
+
+    // ===== FPS COUNTER (ADDED) =====
+let __fps_frames = 0;
+let __fps_last = performance.now();
+
+(function(){
+    const oldTimer = ontimer;
+
+    ontimer = function(){
+        __fps_frames++;
+
+        const now = performance.now();
+        if(now - __fps_last >= 1000){
+            const fps = __fps_frames;
+            const el = document.getElementById("fps_counter");
+            if(el){
+                el.innerText = "FPS: " + fps;
+            }
+            __fps_frames = 0;
+            __fps_last = now;
+        }
+
+        oldTimer();
+    };
+})();
     </script>
 </body>
 </html>
