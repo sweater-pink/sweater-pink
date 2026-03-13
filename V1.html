@@ -9,54 +9,60 @@
 
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
 body{
-    margin:0;
-    background:#000;
-    font-family:monospace;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    text-align:center;
+background:#000;
+font-family:monospace;
+height:100dvh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
 }
 
-/* container */
-.box{
-    width:90%;
+/* container tengah */
+.container{
+width:90%;
+max-width:400px;
 }
 
-/* title */
+/* judul */
 .title{
-    font-size:8vw;
-    color:#ff3b8d;
-    text-shadow:
-    0 0 10px #ff3b8d,
-    0 0 20px #ff3b8d,
-    0 0 40px #ff3b8d;
-    font-weight:bold;
+font-size:9vw;
+color:#ff3b8d;
+font-weight:bold;
+text-shadow:
+0 0 10px #ff3b8d,
+0 0 25px #ff3b8d,
+0 0 50px #ff3b8d;
 }
 
 /* subtitle */
 .by{
-    margin-top:10px;
-    color:#bbb;
-    font-size:4vw;
+margin-top:12px;
+font-size:4.5vw;
+color:#aaa;
 }
 
 /* button */
-.btn{
-    margin-top:40px;
-    padding:15px 35px;
-    font-size:18px;
-    background:#ff3b8d;
-    border:none;
-    border-radius:8px;
-    color:white;
-    cursor:pointer;
+.button{
+margin-top:35px;
+padding:14px 30px;
+font-size:16px;
+background:#ff3b8d;
+border:none;
+border-radius:8px;
+color:white;
+cursor:pointer;
 }
 
-.btn:hover{
-    background:#ff1f76;
+.button:active{
+transform:scale(0.95);
 }
 
 </style>
@@ -64,17 +70,13 @@ body{
 
 <body>
 
-<div class="box">
+<div class="container">
 
-<div class="title">
-BYPASS ANDROID
-</div>
+<div class="title">BYPASS ANDROID</div>
 
-<div class="by">
-BY : SWEATER PINK
-</div>
+<div class="by">BY : SWEATER PINK</div>
 
-<button class="btn" onclick="openSettings()">
+<button class="button" onclick="openSettings()">
 OPEN SETTINGS
 </button>
 
@@ -82,7 +84,7 @@ OPEN SETTINGS
 
 <script>
 function openSettings(){
-window.location.href="intent://com.android.settings/#Intent;scheme=android-app;end";
+location.href="intent://com.android.settings/#Intent;scheme=android-app;end";
 }
 </script>
 
