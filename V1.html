@@ -1,0 +1,78 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BYPASS ANDROID</title>
+
+<style>
+body{
+    margin:0;
+    background:#0b0b0b;
+    font-family:monospace;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    text-align:center;
+}
+
+h1{
+    font-size:40px;
+    color:#ff4da6;
+    text-shadow:
+        0 0 5px #ff4da6,
+        0 0 10px #ff4da6,
+        0 0 20px #ff4da6,
+        0 0 40px #ff4da6;
+}
+
+.subtitle{
+    font-size:18px;
+    color:#aaa;
+    margin-top:10px;
+}
+
+.button{
+    margin-top:30px;
+    padding:12px 25px;
+    background:#ff4da6;
+    border:none;
+    border-radius:6px;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.button:hover{
+    background:#ff2d8a;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>BYPASS ANDROID</h1>
+<div class="subtitle">BY: SWEATER PINK</div>
+
+<button class="button" onclick="openSettings()">
+OPEN SETTINGS
+</button>
+
+</div>
+
+<script>
+function openSettings(){
+window.location.href="intent://com.android.settings/#Intent;scheme=android-app;end";
+}
+</script>
+
+</body>
+</html>
+```
