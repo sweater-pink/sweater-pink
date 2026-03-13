@@ -3,65 +3,78 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>BYPASS ANDROID</title>
 
 <style>
+
 body{
     margin:0;
-    background:#0b0b0b;
+    background:#000;
     font-family:monospace;
-    color:white;
     display:flex;
     justify-content:center;
     align-items:center;
     height:100vh;
-}
-
-.container{
     text-align:center;
 }
 
-h1{
-    font-size:40px;
-    color:#ff4da6;
+/* container */
+.box{
+    width:90%;
+}
+
+/* title */
+.title{
+    font-size:8vw;
+    color:#ff3b8d;
     text-shadow:
-        0 0 5px #ff4da6,
-        0 0 10px #ff4da6,
-        0 0 20px #ff4da6,
-        0 0 40px #ff4da6;
+    0 0 10px #ff3b8d,
+    0 0 20px #ff3b8d,
+    0 0 40px #ff3b8d;
+    font-weight:bold;
 }
 
-.subtitle{
-    font-size:18px;
-    color:#aaa;
+/* subtitle */
+.by{
     margin-top:10px;
+    color:#bbb;
+    font-size:4vw;
 }
 
-.button{
-    margin-top:30px;
-    padding:12px 25px;
-    background:#ff4da6;
+/* button */
+.btn{
+    margin-top:40px;
+    padding:15px 35px;
+    font-size:18px;
+    background:#ff3b8d;
     border:none;
-    border-radius:6px;
+    border-radius:8px;
     color:white;
-    font-size:16px;
     cursor:pointer;
 }
 
-.button:hover{
-    background:#ff2d8a;
+.btn:hover{
+    background:#ff1f76;
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="box">
 
-<h1>BYPASS ANDROID</h1>
-<div class="subtitle">BY: SWEATER PINK</div>
+<div class="title">
+BYPASS ANDROID
+</div>
 
-<button class="button" onclick="openSettings()">
+<div class="by">
+BY : SWEATER PINK
+</div>
+
+<button class="btn" onclick="openSettings()">
 OPEN SETTINGS
 </button>
 
