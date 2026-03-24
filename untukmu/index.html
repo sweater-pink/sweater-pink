@@ -162,6 +162,17 @@ border-radius:50%;
 </div>
 
 <script>
+    
+    const params = new URLSearchParams(window.location.search);
+let nama = params.get("nama");
+
+// kalau tidak ada nama di URL
+if(!nama){
+  nama = "Lukman";
+}
+
+// biar rapi (huruf depan besar)
+nama = nama.charAt(0).toUpperCase() + nama.slice(1);
 
 /* INTRO TEXT */
 
@@ -506,7 +517,7 @@ animation:explode 2s ease-out forwards;
 
 <div class="signature" id="sig">
 <div class="line"></div>
-<div class="name">Lukman</div>
+<div class="name" id="namaTarget">Lukman</div>
 <div class="line"></div>
 </div>
 
@@ -557,6 +568,7 @@ setTimeout(showName,1500);
 
 function showName(){
 const s=document.getElementById("sig");
+document.getElementById("namaTarget").innerText = nama;
 s.style.opacity="1";
 s.style.transform="translate(-50%,-50%) scale(1)";
 setTimeout(explodeHeart,1000);
