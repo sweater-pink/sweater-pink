@@ -55,7 +55,7 @@ async function checkPassword(){
   }
 
   try{
-    const res = await fetch("https://script.google.com/macros/s/AKfycbwCazhxMXC8LH2yAw9ZuRAuQqMR3takVoZDv9bDaXXMVrv9K7naG7RkWiNuSyjj92pGxg/exec?password=" + encodeURIComponent(inputVal));
+    const res = await fetch("https://script.google.com/macros/s/AKfycbzsEb5LAtc07bWtKRzoMi3YgElrmOC2WwSFbgXC3BEjHJ_rM8i5B13Q4AJiHjUMPUqSdw/exec?password=" + encodeURIComponent(inputVal));
     const data = await res.json();
 
     if(data.status !== "ok") throw new Error();
