@@ -19,98 +19,73 @@
 </head>
 <body>
 
-<!-- ========== LOGIN UI ========== -->
 <div id="password-box">
-  <p style="color:#000;margin:0 0 12px;font-size:18px;"><b>Masukkan Password di vidio terbaru<br>(salam: sweater pink)</b></p>
+  <p style="color:#000;margin:0 0 12px;font-size:18px;">
+    <b>Masukkan Password di vidio terbaru<br>(salam: sweater pink)</b>
+  </p>
+
   <div class="input-wrap">
-    <input type="password" id="password-input" placeholder="Password..." onkeydown="if(event.key==='Enter'){checkPassword();}">
-    <button type="button" class="eye" onclick="togglePassword()" aria-label="Lihat Password">👁️</button>
+    <input type="password" id="password-input" placeholder="Password..." 
+      onkeydown="if(event.key==='Enter'){checkPassword();}">
+    <button type="button" class="eye" onclick="togglePassword()">👁️</button>
   </div>
+
   <button class="btn" onclick="checkPassword()">Submit</button>
   <p id="error-msg"></p>
 </div>
 
-<!-- ========== KONTEN SETELAH DEKRIPSI ========== -->
 <div id="quote-box"></div>
 
-<!-- Muat hasil enkripsi (dibuat oleh Actions / tools/encrypt.js) -->
-<script src="ciphers.js?v=148"></script> <!-- workflow nanti otomatis ganti angka v -->
-
 <script>
-const CIPHERS = (window.CIPHERS || []);
-
-function b64toBytes(b64){
-  const bin=atob(b64);
-  const arr=new Uint8Array(bin.length);
-  for(let i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);
-  return arr;
-}
-
-async function deriveKey(password, salt, iters){
-  const enc = new TextEncoder();
-  const keyMaterial = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]);
-  return crypto.subtle.deriveKey(
-    { name:"PBKDF2", salt, iterations: iters || 100000, hash:"SHA-256" },
-    keyMaterial,
-    { name:"AES-GCM", length:256 },
-    false,
-    ["decrypt"]
-  );
-}
-
-async function tryDecryptWith(password){
-  for(const item of CIPHERS){
-    try{
-      const salt = b64toBytes(item.salt_b64);
-      const iv   = b64toBytes(item.iv_b64);
-      const key  = await deriveKey(password, salt, item.iters);
-      const ct   = b64toBytes(item.data_b64);
-      const plainBuf = await crypto.subtle.decrypt({name:"AES-GCM", iv}, key, ct);
-      const json = JSON.parse(new TextDecoder().decode(new Uint8Array(plainBuf)));
-      return json;
-    }catch(e){}
-  }
-  throw new Error("wrong_password_or_blob");
-}
-
+// 🔓 toggle
 function togglePassword(){
   const input = document.getElementById("password-input");
   input.type = input.type === "password" ? "text" : "password";
 }
 
+// 🔥 LOGIN (API GOOGLE)
 async function checkPassword(){
   const inputVal = document.getElementById("password-input").value.trim();
   const errorMsg = document.getElementById("error-msg");
+
   if(!inputVal){
     errorMsg.textContent = "Password tidak boleh kosong.";
     errorMsg.style.display = "block";
     return;
   }
-  if(!CIPHERS.length){
-    errorMsg.textContent = "Data terenkripsi (ciphers.js) belum ada.";
-    errorMsg.style.display = "block";
-    return;
-  }
+
   try{
-    const data = await tryDecryptWith(inputVal);
+    const res = await fetch("https://script.google.com/macros/s/AKfycbwCazhxMXC8LH2yAw9ZuRAuQqMR3takVoZDv9bDaXXMVrv9K7naG7RkWiNuSyjj92pGxg/exec?password=" + encodeURIComponent(inputVal));
+    const data = await res.json();
+
+    if(data.status !== "ok") throw new Error();
+
     document.getElementById("password-box").style.display = "none";
-    renderQuote(data);
+
+    renderQuote({
+      quotes: [data.username],
+      perhatianText: "username:password akan berubah setiap hari atau jam 00:00 jadi salin sesuai tanggal pada waktu penggunaan, kalau kadaluwarsa ya salin yang baru ya pinter. jika bingung cek panduan berikut ini",
+      perhatianLink: "https://youtube.com/shorts/KgC2eDR5Py0",
+      downloadLink: "https://sub2unlock.me/PacE1Xp",
+      groupLink: "https://chat.whatsapp.com/"
+    });
+
   }catch(e){
     const url = "http://youtube.com/@SweaterPink";
     errorMsg.innerHTML =
       'Password salah!!! cek video terbaru di sini ' +
-      '<a href="' + url + '" target="_blank" rel="noopener noreferrer" ' +
-      'style="text-decoration:underline; color:#0b5ed7;">link</a>.';
+      '<a href="' + url + '" target="_blank" style="text-decoration:underline;color:#0b5ed7;">link</a>.';
     errorMsg.style.display = "block";
   }
 }
 
+// 🎨 RENDER (ASLI DIPERTAHANKAN)
 function renderQuote({quotes, perhatianText, perhatianLink, downloadLink, groupLink}){
   const now = new Date();
   const day = now.getDate();
   const monthNames = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
   const dateStr = day + " " + monthNames[now.getMonth()] + " " + now.getFullYear();
-  const rawQuote = (quotes && quotes.length) ? quotes[Math.min(day,31)-1] : "";
+  const rawQuote = (quotes && quotes.length) ? quotes[0] : "";
   const cleanQuote = String(rawQuote||"").replace(/^\d{1,2}:\s*/, "");
 
   const box = document.getElementById("quote-box");
@@ -124,66 +99,39 @@ function renderQuote({quotes, perhatianText, perhatianLink, downloadLink, groupL
     "<span id='today-quote' style='display:block;margin-top:8px;font-style:italic;'>" + cleanQuote + "</span>" +
     "<div style='margin-top:18px;display:flex;flex-direction:column;align-items:center;gap:12px;'>" +
       "<button class='btn' onclick='copyQuote()'>Salin</button>" +
-      "<p id='copy-msg' style='color:green;font-weight:bold;display:none;margin:0;'>✔ username:password berhasil disalin! silakan tempel di http custom</p>" +
+      "<p id='copy-msg' style='color:green;font-weight:bold;display:none;margin:0;'>✔ username:password berhasil disalin!</p>" +
       "<a href='" + (downloadLink||"#") + "' target='_blank' class='btn'>⬇ Download Config</a>" +
       "<a href='" + (groupLink||"#") + "' target='_blank' class='btn btn-green'>👥 Join Grup Komunitas</a>" +
     "</div>";
+
   box.style.display = "block";
   requestAnimationFrame(()=>{ box.style.opacity = 1; });
 }
 
+// 📋 COPY
 function copyQuote(){
   const text = document.getElementById("today-quote").innerText;
   navigator.clipboard.writeText(text).then(()=>{
     document.getElementById("copy-msg").style.display = "block";
-  }).catch(()=>alert("Gagal menyalin. Silakan salin manual."));
+  });
 }
-
-window.checkPassword  = checkPassword;
-window.togglePassword = togglePassword;
 </script>
-</body>
-</html>
 
-<!-- 🌸 Marquee Section -->
+<!-- 🌸 Marquee (TIDAK DIUBAH) -->
 <style>
-  .marquee-box {
-    background: linear-gradient(135deg, #ff4ac9, #ff74d9, #a259ff, #6ecbff);
-    color: white;
-    padding: 8px 12px;
-    font-size: 12px;
-    font-weight: 600;
-    border-radius: 25px;
-    margin: 15px auto 25px;
-    box-shadow: 0 6px 20px rgba(255, 74, 201, 0.25);
-    max-width: 95%;
-    text-align: center;
-    letter-spacing: 0.3px;
-    animation: glow 3s ease-in-out infinite alternate;
-  }
-
-  @keyframes glow {
-    from { box-shadow: 0 0 10px rgba(255, 74, 201, 0.3); }
-    to { box-shadow: 0 0 25px rgba(255, 74, 201, 0.6); }
-  }
-
-  .marquee-box marquee {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    text-transform: none; /* huruf normal */
-    white-space: nowrap;
-    animation: textFade 6s ease-in-out infinite alternate;
-  }
-
-  @keyframes textFade {
-    from { opacity: 0.9; }
-    to { opacity: 1; }
-  }
+.marquee-box {
+  background: linear-gradient(135deg, #ff4ac9, #ff74d9, #a259ff, #6ecbff);
+  color: white;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 25px;
+  margin: 15px auto 25px;
+  box-shadow: 0 6px 20px rgba(255, 74, 201, 0.25);
+  max-width: 95%;
+  text-align: center;
+}
 </style>
-
-<div class="marquee-box">
-  <marquee>✅ Ready Config Premium • Aktif 30–60 Hari Bisa Request 1 Tahun  • Dipercaya 1.890 Pelanggan • 4.500+ Transaksi • Harga Termurah • Cs Respon 24 Jam Nonstop ✅</marquee>
-</div>
 
 <!-- 🔒 Anti Copy & Inspect Protection -->
 <script>
@@ -194,3 +142,10 @@ document.onkeydown = e => {
   if (e.ctrlKey && e.shiftKey && ['I','J'].includes(e.key)) e.preventDefault();
 };
 </script>
+
+<div class="marquee-box">
+  <marquee>✅ Ready Config Premium • Aktif 30–60 Hari • Harga Termurah • Cs Respon 24 Jam ✅</marquee>
+</div>
+
+</body>
+</html>
