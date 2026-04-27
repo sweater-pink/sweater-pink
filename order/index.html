@@ -4,16 +4,94 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sweater Pink Order | Gasss Premium</title>
-  <style>
+  <style>|
+  @keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ✨ efek blink garis putih */
+.product-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120px;
+  width: 70px;
+  height: 100%;
+  background: rgba(255,255,255,0.6);
+  transform: skewX(-25deg);
+  animation: shineMove 3s infinite;
+}
+
+@keyframes shineMove {
+  0% { left: -120px; opacity: 0; }
+  30% { opacity: 1; }
+  50% { left: 120%; opacity: 1; }
+  100% { left: 120%; opacity: 0; }
+}
     body { font-family: 'Poppins', sans-serif; background-color: #faf5f7; padding: 20px; }
-    .product-card {
-      background: linear-gradient(135deg, #ffd8e5, #ffbfd4);
-      max-width: 380px; margin: 0 auto; border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; padding: 25px 15px;
-    }
+.product-card {
+  background: linear-gradient(135deg, #ffffff, #ffd6ea, #ff9fd0);
+  background-size: 150% 150%;
+  animation: bgMove 8s ease infinite;
+
+  max-width: 380px;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(255, 20, 147, 0.25);
+  text-align: center;
+  padding: 25px 15px;
+  position: relative;
+  overflow: hidden;
+}
+.product-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 2px;
+
+  background: linear-gradient(135deg, #ff2fb3, #ff4ac9, #ff80df);
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+}
+form::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  padding: 2px;
+
+ background: linear-gradient(135deg, #ff2fb3, #ff4ac9, #ff80df);
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+}
     .product-title { color: #c2185b; font-size: 22px; font-weight: 700; margin-bottom: 5px; text-transform: uppercase; }
     .product-subtitle { font-size: 14px; color: #555; margin-top: 5px; }
-    form { background: white; max-width: 380px; margin: 15px auto; padding: 15px 18px 20px 18px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+form {
+  background: white;
+  max-width: 380px;
+  margin: 15px auto;
+  padding: 15px 18px 20px 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+  position: relative;   /* 🔥 INI WAJIB */
+  overflow: hidden;     /* 🔥 BIAR RAPI */
+}
     .form-group { margin-bottom: 10px; }
     label { font-weight: 600; color: #333; display: block; margin-bottom: 3px; font-size: 13px; }
     input, select { width: 100%; padding: 8px; border: 1.3px solid #e0b9c9; border-radius: 6px; box-sizing: border-box; font-size: 13px; transition: all 0.2s ease; }
