@@ -52,13 +52,14 @@
     <div class="form-group">
       <label for="jenis">Jenis Order</label>
       <select id="jenis" required>
-        <option value="">-- Pilih Jenis Order --</option>
-        <option value="Config Premium">Config Premium</option>
-        <option value="Tembak Paket">Tembak Paket</option>
-        <option value="SSH">SSH</option>
-        <option value="VMESS">VMESS</option>
-        <option value="VLESS">VLESS</option>
-        <option value="TROJAN">TROJAN</option>
+      <option value="" disabled selected hidden>-- Pilih Jenis Order --</option>
+        <option value="Config Premium">CONFIG PREMIUM TINGGAL PAKE</option>
+      <!-- <option value="Tembak Paket">Tembak Paket</option> -->
+        <option value="SSH">AKUN SSH</option>
+        <option value="VMESS">AKUN VMESS</option>
+        <option value="VLESS">AKUN VLESS</option>
+        <option value="TROJAN">AKUN TROJAN</option>
+        <option value="ZIVPN">AKUN ZIVPN</option>
       </select>
     </div>
 
@@ -66,7 +67,7 @@
     <div class="form-group" id="configMenu" style="display:none;">
       <label for="configPremium">Pilih Config Premium</label>
       <select id="configPremium">
-        <option value="">-- Pilih Config --</option>
+      <option value="" disabled selected hidden>-- Pilih Config --</option>
         <option>Axis XL Edukasi</option>
         <option>AXIS XL Conferance</option>
         <option>Musik / Spotify</option>
@@ -87,7 +88,7 @@
     <div class="form-group">
       <label for="server">Pilih Server</label>
       <select id="server" required>
-        <option value="">-- Pilih Server --</option>
+      <option value="" disabled selected hidden>-- Pilih Server --</option>
         <!-- INDONESIA -->
         <option>[ID] Indonesia 1 HP | Rp. 10.000 | 30 Hari</option>
         <option>[ID] Indonesia 2 HP | Rp. 12.000 | 30 Hari</option>
@@ -98,8 +99,8 @@
         <option>[SG] Singapore 2 HP | Rp. 10.000 | 30 Hari</option>
         <option>[SG] Singapore 1 HP | Rp. 18.000 | 60 Hari</option>
         <option>[SG] Singapore 2 HP | Rp. 20.000 | 60 Hari</option>
-        <option>[ID] UDP ZIVPN 1 HP | Rp. 5.000 | 30 Hari</option>
-        <option>[ID] UDP ZIVPN 2 HP | Rp. 10.000 | 30 Hari</option>
+        <option data-type="zivpn">[ID] UDP ZIVPN 1 HP | Rp. 5.000 | 30 Hari</option>
+        <option data-type="zivpn">[ID] UDP ZIVPN 2 HP | Rp. 10.000 | 30 Hari</option>
       </select>
     </div>
 
@@ -220,14 +221,38 @@
 
   // tampilkan menu config premium kalau jenis = Config Premium
   jenisSelect.addEventListener('change', () => {
-    if (jenisSelect.value === "Config Premium") {
-      configMenu.style.display = "block";
+  const jenis = jenisSelect.value;
+  const options = serverSelect.querySelectorAll('option');
+
+  // 🔥 FILTER SERVER
+  options.forEach(opt => {
+  if (!opt.value) return;
+
+  if (jenis === "ZIVPN") {
+    if (opt.dataset.type === "zivpn") {
+      opt.hidden = false;
     } else {
-      configMenu.style.display = "none";
-      configPremium.value = "";
+      opt.hidden = true;
     }
-    updatePreview();
-  });
+  } else {
+    opt.hidden = false;
+  }
+});
+
+  // reset pilihan server
+  serverSelect.selectedIndex = 0;
+  hargaBox.innerText = "Harga: -";
+
+  // 🔽 LOGIC LAMA (JANGAN DIHAPUS)
+  if (jenis === "Config Premium") {
+    configMenu.style.display = "block";
+  } else {
+    configMenu.style.display = "none";
+    configPremium.value = "";
+  }
+
+  updatePreview();
+});
 
   // server change => update harga + stok
   serverSelect.addEventListener('change', () => {
