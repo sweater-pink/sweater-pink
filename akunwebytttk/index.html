@@ -37,13 +37,19 @@ body {
   padding: 12px;
   color: white;
   font-weight: 600;
-  box-shadow: 0 10px 30px rgba(255, 0, 150, 0.6);
+
+  /* 🔥 shadow lebih halus */
+  box-shadow: 0 8px 25px rgba(255, 0, 150, 0.5);
+
   border: 3px solid #ffffff;
   outline: 3px solid #ff4ac9;
   outline-offset: 3px;
+
+  overflow: hidden; /* FIX UTAMA */
+
   opacity: 0;
-  transform: translateY(25px) scale(0.9);
-  transition: all 0.5s ease;
+  transform: translateY(20px) scale(0.9);
+  transition: all 0.4s ease;
 }
 
 .card.active {
@@ -51,38 +57,39 @@ body {
   transform: translateY(0) scale(1);
 }
 
-/* SHINE */
+/* ✨ SHINE LEBIH HALUS */
 .card::after {
   content: "";
   position: absolute;
   top: 0;
-  left: -80px;
-  width: 60px;
+  left: -100px;
+  width: 40px;
   height: 100%;
-  background: rgba(255,255,255,0.35);
-  transform: skewX(-25deg);
-  animation: shine 3s infinite;
+  background: rgba(255,255,255,0.25);
+  transform: skewX(-20deg);
+  animation: shine 4s infinite;
+  filter: blur(1px); /* biar soft */
 }
 
 @keyframes shine {
-  0% { left: -80px; }
+  0% { left: -100px; }
   100% { left: 120%; }
 }
 
 /* ICON */
 .icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
   background: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
 .icon img {
-  width: 28px;
+  width: 24px;
 }
 
 /* TEXT */
@@ -90,25 +97,14 @@ body {
   text-align: center;
 }
 
-.text span {
-  font-size: 11px;
-  letter-spacing: 1px;
-  opacity: 0.9;
-}
-
-.text span::after {
-  content: ":";
-  margin-left: 4px;
-}
-
 /* TEXT STYLE */
 .brand {
-  font-size: 15px;
+  font-size: 14px;
   color: #ffffff;
   font-weight: 600;
   text-shadow: 
-    0 0 6px rgba(255,255,255,0.6),
-    0 0 12px rgba(255,74,201,0.5);
+    0 0 5px rgba(255,255,255,0.5),
+    0 0 8px rgba(255,74,201,0.4);
 }
 
 </style>
