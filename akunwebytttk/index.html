@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweater Pink Overlay</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: transparent;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 110px;
+}
+
+/* CARD */
+.card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff4ac9, #a259ff);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(255, 0, 150, 0.6);
+  border: 3px solid #ffffff;
+  outline: 3px solid #ff4ac9;
+  outline-offset: 3px;
+  opacity: 0;
+  transform: translateY(25px) scale(0.9);
+  transition: all 0.5s ease;
+}
+
+.card.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* SHINE */
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80px;
+  width: 60px;
+  height: 100%;
+  background: rgba(255,255,255,0.35);
+  transform: skewX(-25deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { left: -80px; }
+  100% { left: 120%; }
+}
+
+/* ICON */
+.icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.icon img {
+  width: 28px;
+}
+
+/* TEXT */
+.text {
+  text-align: center;
+}
+
+.text span {
+  font-size: 11px;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.text span::after {
+  content: ":";
+  margin-left: 4px;
+}
+
+/* TEXT STYLE */
+.brand {
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 
+    0 0 6px rgba(255,255,255,0.6),
+    0 0 12px rgba(255,74,201,0.5);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- WEBSITE -->
+  <div class="card active">
+    <div class="icon">
+      <img src="https://cdn-icons-png.flaticon.com/512/841/841364.png">
+    </div>
+    <div class="text">
+      <b class="brand">www.sweaterpink.web.id</b>
+    </div>
+  </div>
+
+  <!-- YOUTUBE -->
+  <div class="card">
+    <div class="icon">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+    </div>
+    <div class="text">
+      <b class="brand">Sweater Pink</b>
+    </div>
+  </div>
+
+  <!-- TIKTOK -->
+  <div class="card">
+    <div class="icon">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">
+    </div>
+    <div class="text">
+      <b class="brand">@sweater_pink</b>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const cards = document.querySelectorAll('.card');
+let index = 0;
+
+setInterval(() => {
+  cards.forEach(c => c.classList.remove('active'));
+  index = (index + 1) % cards.length;
+  cards[index].classList.add('active');
+}, 3000);
+</script>
+
+</body>
+</html>
