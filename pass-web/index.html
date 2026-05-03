@@ -120,25 +120,29 @@
     margin: 0;
   }
 
-  .pink-list li {
-    background: #ffe4ef;
-    border-left: 4px solid #ff4d94;
-    padding: 8px 10px;
-    margin-bottom: 6px;
-    border-radius: 6px;
-    font-size: 14px;
-  }
+.pink-list li {
+  background: #ffe4ef;
+  border-left: 4px solid #ff4d94;
+  padding: 8px 10px 8px 28px; /* kiri diperbesar */
+  margin-bottom: 6px;
+  border-radius: 6px;
+  font-size: 14px;
+  position: relative;
+}
 
-  .pink-list li::before {
-    content: "💖 ";
-  }
+.pink-list li::before {
+  content: "💖";
+  position: absolute;
+  left: 8px;
+  top: 8px;
+}
 </style>
 </head>
 <body>
 
 <div id="password-box">
   <p style="color:#000;margin:0 0 12px;font-size:18px;">
-    <b>Masukkan Password di vidio terbaru<br>(salam: sweater pink)</b>
+    <b>Masukkan Password 3 angka di vidio terbaru<br>(salam: sweater pink)</b>
   </p>
 
   <div class="input-wrap">
@@ -212,8 +216,8 @@ function renderQuote({quotes, perhatianLink, downloadLink, groupLink}) {
       "<ul class='pink-list'>" +
   "<li>Username & password berubah setiap hari pukul 00:00</li>" +
   "<li>Gunakan akun sesuai tanggal pemakaian</li>" +
-  "<li>Jika sudah kedaluwarsa, ambil yang terbaru di website</li>" +
-  "<li>Lihat panduan video jika masih bingung</li>" +
+  "<li>Jika sudah kedaluwarsa, ambil yang terbaru di website www.sweaterpink.web.id</li>" +
+  "<li>Lihat panduan link video di bawah ini jika masih bingung</li>" +
 "</ul>" +
       "<a href='" + (perhatianLink||"#") + "' target='_blank' style='color:#d63384;font-weight:bold;text-decoration:underline;'>🔗 Panduan username:password</a>" +
     "</div>" +
