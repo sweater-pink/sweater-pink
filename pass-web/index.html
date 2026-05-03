@@ -29,23 +29,7 @@
   box-shadow:0 6px 20px rgba(255,77,148,0.25);
   position:relative;
   overflow:hidden;
-}
-#password-box::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  padding: 2px;
-
-  background: linear-gradient(135deg, #ff2fb3, #ff4ac9, #ff80df);
-
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-
-  pointer-events: none;
+  border: 3px solid #ff4d94;
 }
   /* 🔥 QUOTE BOX PREMIUM */
   #quote-box{
@@ -70,26 +54,9 @@
 
     opacity:0;
     transition:opacity .8s ease-in;
+    border: 3px solid #ff4d94;
   }
 
-  /* 🔥 GARIS PINK PREMIUM */
-  #quote-box::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 12px;
-    padding: 2px;
-
-    background: linear-gradient(135deg, #ff2fb3, #ff4ac9, #ff80df);
-
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-
-    pointer-events: none;
-  }
 
   /* ✨ ANIMASI BACKGROUND */
   @keyframes bgMove {
