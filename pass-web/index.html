@@ -136,6 +136,30 @@
   left: 8px;
   top: 8px;
 }
+.account-box{
+  background:#fff;
+  border:2px dashed #ff4d94;
+  border-radius:10px;
+  padding:12px;
+  margin-top:10px;
+  text-align:center;
+}
+
+.account-label{
+  font-size:13px;
+  color:#c2185b;
+  margin-bottom:6px;
+  font-weight:600;
+}
+
+.account-value{
+  font-family:monospace;
+  font-size:16px;
+  font-weight:bold;
+  color:#333;
+  user-select:all; /* bisa di blok manual */
+  word-break:break-all;
+}
 </style>
 </head>
 <body>
@@ -221,7 +245,10 @@ function renderQuote({quotes, perhatianLink, downloadLink, groupLink}) {
 "</ul>" +
       "<a href='" + (perhatianLink||"#") + "' target='_blank' style='color:#d63384;font-weight:bold;text-decoration:underline;'>🔗 Panduan username:password</a>" +
     "</div>" +
-    "<span id='today-quote' style='display:block;margin-top:8px;font-style:italic;'>" + cleanQuote + "</span>" +
+"<div class='account-box'>" +
+  "<div class='account-label'>🔑 Username & Password</div>" +
+  "<div id='today-quote' class='account-value'>" + cleanQuote + "</div>" +
+"</div>" +
     "<div style='margin-top:18px;display:flex;flex-direction:column;align-items:center;gap:12px;'>" +
       "<button class='btn' onclick='copyQuote()'>Salin</button>" +
       "<p id='copy-msg' style='color:green;font-weight:bold;display:none;margin:0;'>✔ username:password berhasil disalin!</p>" +
