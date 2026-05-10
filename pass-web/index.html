@@ -200,7 +200,7 @@ async function checkPassword(){
   }
 
   try{
-    const res = await fetch("https://script.google.com/macros/s/AKfycbyN7fKlmdNUScWYvun-A8Ty0eNvCaTrUSZ5K17Fr1uJOZZ3iv205SV24Avuz1kfriJK/exec?password=" + encodeURIComponent(inputVal));
+    const res = await fetch("https://script.google.com/macros/s/AKfycbweauPGnGpK-6lvgeQRnDKgU1EZlz8k8wDGhJ7gMkvvKIEA5JxdBLJLhoamfOVQLfwUUw/exec?password=" + encodeURIComponent(inputVal));
     const data = await res.json();
 
     if(data.status !== "ok") throw new Error();
