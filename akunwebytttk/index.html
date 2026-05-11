@@ -5,11 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sweater Pink Overlay</title>
 
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
   overflow: hidden;
-  font-family: 'Poppins', sans-serif;
   background: transparent;
 }
 
@@ -29,23 +31,22 @@ body {
   height: 100%;
   background: linear-gradient(135deg, #ff4ac9, #a259ff);
   border-radius: 20px;
+
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
   gap: 6px;
   padding: 12px;
-  color: white;
-  font-weight: 600;
 
-  /* 🔥 shadow lebih halus */
   box-shadow: 0 8px 25px rgba(255, 0, 150, 0.5);
 
   border: 3px solid #ffffff;
   outline: 3px solid #ff4ac9;
   outline-offset: 3px;
 
-  overflow: hidden; /* FIX UTAMA */
+  overflow: hidden;
 
   opacity: 0;
   transform: translateY(20px) scale(0.9);
@@ -57,7 +58,7 @@ body {
   transform: translateY(0) scale(1);
 }
 
-/* ✨ SHINE LEBIH HALUS */
+/* SHINE */
 .card::after {
   content: "";
   position: absolute;
@@ -68,7 +69,7 @@ body {
   background: rgba(255,255,255,0.25);
   transform: skewX(-20deg);
   animation: shine 4s infinite;
-  filter: blur(1px); /* biar soft */
+  filter: blur(1px);
 }
 
 @keyframes shine {
@@ -82,9 +83,11 @@ body {
   height: 45px;
   border-radius: 10px;
   background: white;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
@@ -97,14 +100,17 @@ body {
   text-align: center;
 }
 
-/* TEXT STYLE */
+/* 🔥 FONT CLEAN */
 .brand {
-  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 23px;
+  font-weight: 900;
   color: #ffffff;
-  font-weight: 600;
-  text-shadow: 
-    0 0 5px rgba(255,255,255,0.5),
-    0 0 8px rgba(255,74,201,0.4);
+
+  letter-spacing: 0.5px;
+
+  text-shadow:
+    0 2px 6px rgba(0,0,0,0.5);
 }
 
 </style>
