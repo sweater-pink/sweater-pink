@@ -1,62 +1,169 @@
-<!-- TITLE -->
-<h2 class="dns-title">SETTING DNS PRIBADI</h2>
-
-<!-- OPEN SETTINGS BUTTON -->
-<div class="btn-wrapper">
-  <button class="btn" onclick="openSettings()">OPEN SETTINGS</button>
-</div>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aplikasi Asisten Digital</title>
 
 <style>
 
-/* title */
-.dns-title{
-  text-align:center;
-  font-size:28px;
-  font-weight:700;
-  margin-bottom:20px;
-  color:#ff3b8d;
-  text-shadow:0 0 10px #ff3b8d,0 0 30px #ff3b8d;
-  font-family:'Poppins',sans-serif;
-  letter-spacing:1px;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-/* center button */
-.btn-wrapper{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  width:100%;
+body{
+background:#000;
+font-family:monospace;
+color:white;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:flex-start;
+}
+
+/* container utama */
+.container{
+width:95%;
+max-width:700px;
+text-align:center;
+padding-top:120px;
+}
+
+/* title */
+.title{
+font-size:65px;
+color:#ff3b8d;
+font-weight:bold;
+text-shadow:
+0 0 10px #ff3b8d,
+0 0 30px #ff3b8d;
+margin-bottom:15px;
+line-height:1.2;
+}
+
+/* subtitle */
+.by{
+margin-bottom:45px;
+color:#aaa;
+font-size:26px;
 }
 
 /* button */
 .btn{
-  margin-bottom:20px;
-  padding:14px 35px;
-  font-size:16px;
-  font-weight:600;
-  background:#ff3b8d;
-  border:none;
-  border-radius:12px;
-  color:white;
-  cursor:pointer;
-  box-shadow:0 0 15px rgba(255,60,140,0.5);
-  transition:0.3s ease;
-  font-family:'Poppins',sans-serif;
+width:100%;
+padding:28px 40px;
+font-size:30px;
+font-weight:bold;
+background:#ff3b8d;
+border:none;
+border-radius:18px;
+color:white;
+cursor:pointer;
+box-shadow:0 0 20px rgba(255,60,140,0.6);
+transition:0.3s ease;
 }
 
+/* hover */
 .btn:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 25px rgba(255,60,140,0.9);
+transform:scale(1.02);
+box-shadow:0 0 30px rgba(255,60,140,0.9);
 }
 
+/* click */
 .btn:active{
-  transform:scale(0.97);
+transform:scale(0.97);
+}
+
+/* responsive hp */
+@media(max-width:480px){
+
+.container{
+padding-top:100px;
+}
+
+.title{
+font-size:48px;
+}
+
+.by{
+font-size:22px;
+margin-bottom:35px;
+}
+
+.btn{
+font-size:24px;
+padding:24px 20px;
+border-radius:16px;
+}
+
 }
 
 </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- TITLE -->
+  <h2 class="title">Aplikasi Asisten Digital</h2>
+
+  <!-- SUBTITLE -->
+  <div class="by">BY : SWEATER PINK</div>
+
+  <!-- BUTTON -->
+  <button class="btn" onclick="openSettings()">
+    OPEN SETTINGS
+  </button>
+
+</div>
 
 <script>
+
 function openSettings(){
-  window.location.href="intent:#Intent;action=android.settings.PRIVATE_DNS_SETTINGS;end";
+
+  // universal Android network settings
+  window.location.href =
+  "intent:#Intent;action=android.settings.WIRELESS_SETTINGS;end";
+
 }
+
 </script>
+
+<!-- 🔒 Anti Copy & Inspect -->
+<script>
+
+document.addEventListener('contextmenu', function(e){
+e.preventDefault();
+});
+
+document.addEventListener('keydown', function(e){
+
+// block F12
+if(e.key === 'F12'){
+e.preventDefault();
+}
+
+// block CTRL+SHIFT+I
+if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i'){
+e.preventDefault();
+}
+
+// block CTRL+SHIFT+J
+if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'j'){
+e.preventDefault();
+}
+
+// block CTRL+U
+if(e.ctrlKey && e.key.toLowerCase() === 'u'){
+e.preventDefault();
+}
+
+});
+
+</script>
+
+</body>
+</html>
