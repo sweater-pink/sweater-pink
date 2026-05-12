@@ -7,8 +7,25 @@
 
   <meta name="title" content="Ngabisin Kouta - waste your data">
   <meta name="description" content="The fastest and the most efficient way to waste your valuable mobile data">
+  <meta name="keywords" content="network usage, download speed, upload speed, network performance">
+  <meta name="author" content="SWEATER PINK">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sweater-pink.github.io/sweater-pink/V5/">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sweater-pink.github.io/sweater-pink/V5/">
+  <meta property="og:title" content="Ngabisin Kouta - waste your data">
+  <meta property="og:description" content="The fastest and the most efficient way to waste your valuable mobile data">
+  <meta property="og:image" content="https://sweater-pink.github.io/sweater-pink/V5/og-image.jpg">
+  <meta property="og:site_name" content="Ngabisin Kouta">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://sweater-pink.github.io/sweater-pink/V5/">
+  <meta property="twitter:title" content="Ngabisin Kouta - waste your data">
+  <meta property="twitter:description" content="The fastest and the most efficient way to waste your valuable mobile data">
+  <meta property="twitter:image" content="https://sweater-pink.github.io/sweater-pink/V5/og-image.jpg">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 
   <style>
 
@@ -18,11 +35,16 @@ body{
   font-family:'Poppins',sans-serif;
 }
 
+.container{
+  max-width:1100px;
+}
+
 .bg-body-tertiary{
-  background:#ffffff!important;
-  border-radius:30px!important;
+  background:#fff!important;
+  border-radius:32px!important;
   box-shadow:0 10px 40px rgba(255,60,140,0.12)!important;
   border:1px solid rgba(255,80,150,0.08);
+  overflow:hidden;
 }
 
 #title{
@@ -30,12 +52,25 @@ body{
   text-align:center;
   font-weight:800;
   font-size:4rem;
-  text-shadow:0 0 20px rgba(255,50,140,0.2);
+  text-shadow:0 0 20px rgba(255,50,140,0.15);
 }
 
 #desc{
   text-align:center;
-  color:#555;
+  color:#666;
+  margin-top:10px;
+}
+
+hr{
+  border-color:#ffd7e7;
+}
+
+.btn{
+  transition:.25s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
 }
 
 .btn-primary{
@@ -43,30 +78,21 @@ body{
   border:none!important;
   border-radius:18px!important;
   font-weight:700;
-  box-shadow:0 8px 20px rgba(255,50,140,0.3);
+  box-shadow:0 8px 20px rgba(255,50,140,0.25);
 }
 
-.btn-primary:hover{
-  transform:translateY(-1px);
-}
-
-.btn-outline-primary{
-  border:2px solid #ff3b8d!important;
-  color:#ff3b8d!important;
-  border-radius:16px!important;
-  font-weight:700;
-}
-
-.btn-outline-primary.active{
-  background:#ff3b8d!important;
-  color:#fff!important;
-}
-
+.btn-outline-primary,
 .btn-outline-success{
   border:2px solid #ff3b8d!important;
   color:#ff3b8d!important;
   border-radius:16px!important;
   font-weight:700;
+  background:#fff!important;
+}
+
+.btn-outline-primary.active{
+  background:#ff3b8d!important;
+  color:#fff!important;
 }
 
 .btn-outline-success:hover{
@@ -75,19 +101,21 @@ body{
 }
 
 .form-control{
-  border-radius:16px!important;
+  border-radius:18px!important;
   padding:16px!important;
-  border:2px solid #f1d6e2!important;
+  border:2px solid #ffd7e7!important;
+  background:#fff;
   text-align:right;
+  font-weight:600;
 }
 
-.progress{
-  background:#ffd5e7!important;
-  border-radius:999px!important;
+.form-control:focus{
+  border-color:#ff3b8d!important;
+  box-shadow:0 0 0 .2rem rgba(255,59,141,.15)!important;
 }
 
-.progress-bar{
-  background:linear-gradient(90deg,#ff4f9d,#ff1f82)!important;
+.form-range{
+  width:100%;
 }
 
 .form-range::-webkit-slider-thumb{
@@ -99,42 +127,50 @@ body{
   background:#ff2f86!important;
 }
 
+.form-range::-webkit-slider-runnable-track{
+  background:#ffd5e7;
+  border-radius:999px;
+}
+
+.progress{
+  background:#ffd5e7!important;
+  border-radius:999px!important;
+}
+
+.progress-bar{
+  background:linear-gradient(90deg,#ff4f9d,#ff1f82)!important;
+}
+
+#uploadProgress,
+#downloadProgress{
+  height:8px;
+  border-radius:999px;
+}
+
 .value-number{
   color:#ff2f86;
   font-weight:800!important;
-}
-
-.border-top{
-  border-color:#ffd6e7!important;
-}
-
-.text-body-secondary{
-  color:#777!important;
-}
-
-#downloadProgress,
-#uploadProgress{
-  height:8px;
-  border-radius:999px;
 }
 
 svg rect{
   fill:#ff3b8d!important;
 }
 
+.border-top{
+  border-color:#ffd7e7!important;
+}
+
+.text-body-secondary{
+  color:#777!important;
+}
+
+.text-warning{
+  color:#ff2f86!important;
+}
+
 .btn-lg{
   padding:18px!important;
   font-size:24px!important;
-}
-
-.form-range{
-  width:100%;
-  height:10px;
-}
-
-.form-range::-webkit-slider-runnable-track{
-  background:#ffd5e7;
-  border-radius:999px;
 }
 
 @media(max-width:768px){
@@ -151,9 +187,13 @@ svg rect{
   font-size:20px!important;
 }
 
+.bg-body-tertiary{
+  border-radius:24px!important;
 }
 
-@media (prefers-color-scheme: dark) {
+}
+
+@media (prefers-color-scheme: dark){
 
 body{
   background:#121212;
@@ -162,7 +202,7 @@ body{
 
 .bg-body-tertiary{
   background:#1f1f1f!important;
-  border:1px solid #2c2c2c;
+  border:1px solid #2f2f2f;
 }
 
 #desc{
@@ -180,279 +220,150 @@ body{
   color:#fff!important;
 }
 
-.border-top{
-  border-color:#333!important;
-}
-
 .text-muted{
   color:#aaa!important;
 }
 
+.border-top{
+  border-color:#333!important;
 }
 
-  </style>
+.btn-outline-primary,
+.btn-outline-success{
+  background:transparent!important;
+}
+
+}
+
+</style>
 
   <script src="./digitalWaste.js" defer></script>
   <script src="./app.js" defer></script>
 
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Ngabisin Kouta",
+      "url": "https://sweater-pink.github.io/sweater-pink/V5/",
+      "description": "The fastest and the most efficient way to waste your valuable mobile data",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "SWEATER PINK"
+      }
+    }
+  </script>
 </head>
-
 <body>
-
   <div class="container py-2 py-md-4">
-
     <div class="p-3 p-md-5 mb-4 bg-body-tertiary rounded-3">
-
       <div class="container-fluid py-2 py-md-3">
-
-        <h1 class="display-5 fw-bold" id="title">
-          Ngabisin Kouta
-        </h1>
-
-        <p class="col-md-12 fs-4" id="desc">
-          The fastest and most efficient way to waste your valuable mobile data.
-        </p>
-
+        <h1 class="display-5 fw-bold" id="title">Ngabisin Kouta</h1>
+        <p class="col-md-12 fs-4" id="desc">The fastest and most efficient way to waste your valuable mobile data.</p>
         <hr>
 
         <div class="row mb-3">
-
           <div class="col-md-6 mb-3 d-flex align-items-center">
-
             <div class="d-flex gap-2">
-
-              <button type="button"
-              class="btn btn-outline-primary active"
-              id="downloadOption"
-              data-active="true">
-
-                Download
-
+              <button type="button" class="btn btn-outline-primary active" id="downloadOption" data-active="true">
+                <span id="downloadLabel">Download</span>
               </button>
-
-              <button type="button"
-              class="btn btn-outline-success"
-              id="uploadOption"
-              data-active="false">
-
-                Upload
-
+              <button type="button" class="btn btn-outline-success" id="uploadOption" data-active="false">
+                <span id="uploadLabel">Upload</span>
               </button>
-
             </div>
-
-            <small class="text-muted ms-3">
-              Select at least one direction
-            </small>
-
+            <small class="text-muted ms-3" id="toggleHint">Select at least one direction</small>
           </div>
-
         </div>
 
         <div class="row mb-3">
-
           <div class="col-md-6 mb-2 mb-md-0">
-
-            <label for="dataSize" class="form-label">
-              Data size (MB, 0 for infinite):
-            </label>
-
-            <input type="number"
-            class="form-control"
-            id="dataSize"
-            value="10000"
-            min="0"
-            max="10000000">
-
+            <label for="dataSize" class="form-label" id="sizeLabel">Data size (MB, 0 for infinite):</label>
+            <input type="number" class="form-control" id="dataSize" value="10000" min="0" max="10000000">
           </div>
-
           <div class="col-md-6 mt-1 mt-md-0">
-
             <div class="d-flex align-items-center">
-
-              <label for="threadCount"
-              class="form-label me-2">
-
-                Concurrent connections:
-
-              </label>
-
-              <span id="threadValue"
-              class="fw-bold"
-              style="position: relative; top: -4px;">
-              </span>
-
+              <label for="threadCount" class="form-label me-2" id="threadLabel">Concurrent connections:</label>
+              <span id="threadValue" class="fw-bold" style="position: relative; top: -4px;"></span>
             </div>
-
-            <input type="range"
-            class="form-range"
-            id="threadCount"
-            min="1"
-            max="64"
-            value="16"
-            style="margin-top: 6px;">
-
+            <input type="range" class="form-range" id="threadCount" min="1" max="64" value="16" style="margin-top: 6px;">
           </div>
-
         </div>
 
         <div class="row">
-
           <div class="col-12 mb-3">
-
-            <button class="btn btn-primary btn-lg w-100"
-            type="button"
-            id="startButton">
-
-              Start
-
-            </button>
-
+            <button class="btn btn-primary btn-lg w-100" type="button" id="startButton">Start</button>
           </div>
-
         </div>
 
         <div class="row mb-2">
-
           <div class="col-12">
-
             <div class="progress-stacked" style="height: 8px;">
-
-              <div class="progress h-100"
-              style="width: 0%">
-
-                <div class="progress-bar h-100"
-                id="downloadProgress">
-                </div>
-
+              <div class="progress h-100" role="progressbar" aria-label="Download progress" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                <div class="progress-bar bg-primary h-100" id="downloadProgress"></div>
               </div>
-
-              <div class="progress h-100"
-              style="width: 0%">
-
-                <div class="progress-bar h-100"
-                id="uploadProgress">
-                </div>
-
+              <div class="progress h-100" role="progressbar" aria-label="Upload progress" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                <div class="progress-bar bg-success h-100" id="uploadProgress"></div>
               </div>
-
             </div>
-
           </div>
-
         </div>
 
         <div class="row mb-4">
-
           <div class="col-12 mb-2">
-
             <div class="d-flex justify-content-between align-items-center">
-
               <div>
-
-                <span class="value-number"
-                id="totalBytesProcessed">
-
-                  0
-
-                </span>
-
-                MB total
-
+                <span class="value-number" id="totalBytesProcessed">0</span>
+                <span id="totalProgressLabel">MB total</span>
               </div>
-
               <div class="text-end">
-
-                <span class="value-number"
-                id="totalTransferSpeed">
-
-                  0
-
-                </span>
-
-                MB/sec
-
+                <span class="value-number" id="totalTransferSpeed">0</span>
+                <span id="totalSpeedLabel">MB/sec</span>
               </div>
-
             </div>
-
           </div>
-
           <div class="col-md-6">
-
             <div class="d-flex align-items-center">
-
               <div class="me-2">
-
-                <svg width="12" height="12">
-                  <rect width="12"
-                  height="12"
-                  style="fill:#ff3b8d"/>
-                </svg>
-
+                <svg width="12" height="12"><rect width="12" height="12" style="fill:#0d6efd" /></svg>
               </div>
-
               <div>
-
-                <span class="value-number"
-                id="bytesDownloaded">
-
-                  0
-
-                </span>
-
-                MB downloaded
-
+                <span class="value-number" id="bytesDownloaded">0</span>
+                <span id="downloadProgressLabel">MB downloaded</span>
               </div>
-
             </div>
-
           </div>
-
           <div class="col-md-6 text-md-end">
-
             <div class="d-flex align-items-center justify-content-md-end">
-
               <div class="me-2">
-
-                <svg width="12" height="12">
-                  <rect width="12"
-                  height="12"
-                  style="fill:#ff3b8d"/>
-                </svg>
-
+                <svg width="12" height="12"><rect width="12" height="12" style="fill:#198754" /></svg>
               </div>
-
               <div>
-
-                <span class="value-number"
-                id="bytesUploaded">
-
-                  0
-
-                </span>
-
-                MB uploaded
-
+                <span class="value-number" id="bytesUploaded">0</span>
+                <span id="uploadProgressLabel">MB uploaded</span>
               </div>
-
             </div>
-
           </div>
+        </div>
 
+        <div class="row">
+          <div class="col-12">
+            <p id="statusMessage" class="text-warning"></p>
+          </div>
         </div>
 
         <footer class="pt-3 mt-4 text-body-secondary border-top">
-
-          Created & maintained by SWEATER PINK
-
+          Created &amp; maintained by SWEATER PINK
         </footer>
-
       </div>
-
     </div>
-
   </div>
-
 </body>
 </html>
