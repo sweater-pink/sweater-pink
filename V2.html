@@ -1,85 +1,84 @@
 <!-- TITLE -->
-<h2 class="dns-title">Aplikasi Asisten Digital</h2>
+<h2 class="title">Aplikasi Asisten Digital</h2>
 
-<!-- OPEN SETTINGS BUTTON -->
-<div class="btn-wrapper">
-  <button class="btn" onclick="openAssistantSettings()">
-    OPEN SETTING
-  </button>
-</div>
+<div class="by">BY : SWEATER PINK</div>
+
+<!-- BUTTON -->
+<button class="btn" onclick="openAssistantSettings()">
+  OPEN SETTINGS
+</button>
 
 <style>
 
-*{
-box-sizing:border-box;
+body{
 margin:0;
-padding:0;
+background:#000;
+font-family:monospace;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+
+/* container */
+.container{
+width:90%;
+max-width:500px;
+text-align:center;
 }
 
 /* title */
-.dns-title{
-  text-align:center;
-  font-size:42px;
-  font-weight:700;
-  margin-bottom:25px;
-  color:#ff3b8d;
-  text-shadow:0 0 10px #ff3b8d,0 0 30px #ff3b8d;
-  font-family:'Poppins',sans-serif;
-  letter-spacing:1px;
-  padding:0 10px;
-  line-height:1.2;
+.title{
+font-size:42px;
+color:#ff3b8d;
+font-weight:bold;
+text-shadow:0 0 10px #ff3b8d,0 0 30px #ff3b8d;
+margin-bottom:10px;
 }
 
-/* center button */
-.btn-wrapper{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  width:100%;
-  padding:0 15px;
+/* subtitle */
+.by{
+color:#aaa;
+font-size:18px;
+margin-bottom:30px;
 }
 
 /* button */
 .btn{
-  width:100%;
-  max-width:420px; /* tombol lebih besar */
-  margin-bottom:20px;
-  padding:22px 25px; /* tinggi tombol besar */
-  font-size:26px; /* tulisan besar */
-  font-weight:700;
-  background:#ff3b8d;
-  border:none;
-  border-radius:18px;
-  color:white;
-  cursor:pointer;
-  box-shadow:0 0 20px rgba(255,60,140,0.6);
-  transition:0.3s ease;
-  font-family:'Poppins',sans-serif;
-  letter-spacing:1px;
+width:100%;
+padding:15px 40px;
+font-size:18px;
+background:#ff3b8d;
+border:none;
+border-radius:10px;
+color:white;
+cursor:pointer;
+box-shadow:0 0 15px rgba(255,60,140,0.5);
+transition:0.3s;
 }
 
+/* hover */
 .btn:hover{
-  transform:scale(1.03);
-  box-shadow:0 0 30px rgba(255,60,140,0.9);
+transform:scale(1.02);
+box-shadow:0 0 25px rgba(255,60,140,0.8);
 }
 
+/* click */
 .btn:active{
-  transform:scale(0.97);
+transform:scale(0.97);
 }
 
-/* responsive hp */
+/* responsive */
 @media(max-width:480px){
 
-.dns-title{
-  font-size:32px;
-  margin-bottom:20px;
+.title{
+font-size:34px;
 }
 
 .btn{
-  max-width:100%;
-  font-size:22px; /* tulisan tetap besar di hp */
-  padding:20px;
-  border-radius:16px;
+font-size:17px;
+padding:14px 20px;
 }
 
 }
@@ -87,17 +86,21 @@ padding:0;
 </style>
 
 <script>
+
 function openAssistantSettings(){
 
   // buka voice input settings
   window.location.href =
   "intent:#Intent;action=android.settings.VOICE_INPUT_SETTINGS;end";
 
-  // fallback ke settings utama
+  // fallback settings utama
   setTimeout(() => {
+
     window.location.href =
     "intent://com.android.settings/#Intent;scheme=android-app;end";
+
   },1500);
 
 }
+
 </script>
