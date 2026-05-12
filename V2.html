@@ -19,7 +19,7 @@ padding:0;
 /* title */
 .dns-title{
   text-align:center;
-  font-size:clamp(24px,7vw,38px);
+  font-size:42px; /* ukuran besar */
   font-weight:700;
   margin-bottom:25px;
   color:#ff3b8d;
@@ -27,6 +27,7 @@ padding:0;
   font-family:'Poppins',sans-serif;
   letter-spacing:1px;
   padding:0 10px;
+  line-height:1.2;
 }
 
 /* center button */
@@ -44,7 +45,7 @@ padding:0;
   max-width:320px;
   margin-bottom:20px;
   padding:16px 20px;
-  font-size:clamp(14px,4vw,18px);
+  font-size:18px; /* ukuran besar */
   font-weight:600;
   background:#ff3b8d;
   border:none;
@@ -65,14 +66,16 @@ padding:0;
   transform:scale(0.97);
 }
 
-/* extra responsive */
+/* responsive hp */
 @media(max-width:480px){
 
 .dns-title{
+  font-size:32px;
   margin-bottom:20px;
 }
 
 .btn{
+  font-size:16px;
   padding:15px;
   border-radius:12px;
 }
