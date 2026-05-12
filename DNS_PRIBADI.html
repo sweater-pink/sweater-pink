@@ -1,23 +1,32 @@
 <!-- TITLE -->
-<h2 class="dns-title">SETTING DNS PRIBADI</h2>
+<h2 class="dns-title">Aplikasi Asisten Digital</h2>
 
 <!-- OPEN SETTINGS BUTTON -->
 <div class="btn-wrapper">
-  <button class="btn" onclick="openAssistantSettings()">OPEN SETTINGS</button>
+  <button class="btn" onclick="openAssistantSettings()">
+    OPEN SETTING
+  </button>
 </div>
 
 <style>
 
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
 /* title */
 .dns-title{
   text-align:center;
-  font-size:28px;
+  font-size:clamp(24px,7vw,38px);
   font-weight:700;
-  margin-bottom:20px;
+  margin-bottom:25px;
   color:#ff3b8d;
   text-shadow:0 0 10px #ff3b8d,0 0 30px #ff3b8d;
   font-family:'Poppins',sans-serif;
   letter-spacing:1px;
+  padding:0 10px;
 }
 
 /* center button */
@@ -26,17 +35,20 @@
   justify-content:center;
   align-items:center;
   width:100%;
+  padding:0 15px;
 }
 
 /* button */
 .btn{
+  width:100%;
+  max-width:320px;
   margin-bottom:20px;
-  padding:14px 35px;
-  font-size:16px;
+  padding:16px 20px;
+  font-size:clamp(14px,4vw,18px);
   font-weight:600;
   background:#ff3b8d;
   border:none;
-  border-radius:12px;
+  border-radius:14px;
   color:white;
   cursor:pointer;
   box-shadow:0 0 15px rgba(255,60,140,0.5);
@@ -45,7 +57,7 @@
 }
 
 .btn:hover{
-  transform:scale(1.05);
+  transform:scale(1.03);
   box-shadow:0 0 25px rgba(255,60,140,0.9);
 }
 
@@ -53,11 +65,34 @@
   transform:scale(0.97);
 }
 
+/* extra responsive */
+@media(max-width:480px){
+
+.dns-title{
+  margin-bottom:20px;
+}
+
+.btn{
+  padding:15px;
+  border-radius:12px;
+}
+
+}
+
 </style>
 
 <script>
 function openAssistantSettings(){
+
+  // buka voice input settings
   window.location.href =
   "intent:#Intent;action=android.settings.VOICE_INPUT_SETTINGS;end";
+
+  // fallback ke settings utama
+  setTimeout(() => {
+    window.location.href =
+    "intent://com.android.settings/#Intent;scheme=android-app;end";
+  },1500);
+
 }
 </script>
