@@ -1,0 +1,62 @@
+<!-- TITLE -->
+<h2 class="dns-title">SETTING DNS PRIBADI</h2>
+
+<!-- OPEN SETTINGS BUTTON -->
+<div class="btn-wrapper">
+  <button class="btn" onclick="openSettings()">OPEN SETTINGS</button>
+</div>
+
+<style>
+
+/* title */
+.dns-title{
+  text-align:center;
+  font-size:28px;
+  font-weight:700;
+  margin-bottom:20px;
+  color:#ff3b8d;
+  text-shadow:0 0 10px #ff3b8d,0 0 30px #ff3b8d;
+  font-family:'Poppins',sans-serif;
+  letter-spacing:1px;
+}
+
+/* center button */
+.btn-wrapper{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+}
+
+/* button */
+.btn{
+  margin-bottom:20px;
+  padding:14px 35px;
+  font-size:16px;
+  font-weight:600;
+  background:#ff3b8d;
+  border:none;
+  border-radius:12px;
+  color:white;
+  cursor:pointer;
+  box-shadow:0 0 15px rgba(255,60,140,0.5);
+  transition:0.3s ease;
+  font-family:'Poppins',sans-serif;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 25px rgba(255,60,140,0.9);
+}
+
+.btn:active{
+  transform:scale(0.97);
+}
+
+</style>
+
+<script>
+function openSettings(){
+  window.location.href="intent:#Intent;action=android.settings.PRIVATE_DNS_SETTINGS;end";
+}
+</script>
