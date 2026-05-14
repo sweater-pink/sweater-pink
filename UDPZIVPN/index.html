@@ -29,24 +29,81 @@
   <!-- SUBTITLE -->
   <div class="by">BY : SWEATER PINK</div>
 
-  <!-- DOWNLOAD BUTTONS -->
+  <!-- DOWNLOAD BUTTON -->
   <a class="btn"
      href="https://play.google.com/store/apps/details?id=com.zi.zivpn"
      target="_blank">
      DOWNLOAD ZIVPN
   </a>
 
+  <!-- VIDEO -->
+  <div class="video-box">
+
+    <video
+      controls
+      autoplay
+      muted
+      playsinline
+      preload="metadata">
+
+      <source
+        src="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/UDPZIVPN/zivpn.mp4"
+        type="video/mp4">
+
+      Browser tidak mendukung video.
+
+    </video>
+
+  </div>
+
+  <!-- DOWNLOAD BUTTON -->
   <a class="btn"
      href="https://www.mediafire.com/file/7hyd4bfo2snfbwp/base.apk/file"
      target="_blank">
      DOWNLOAD CLASH META
   </a>
 
+    <!-- VIDEO -->
+  <div class="video-box">
+
+    <video
+      controls
+      autoplay
+      muted
+      playsinline
+      preload="metadata">
+
+      <source
+        src="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/UDPZIVPN/cmfaa.mp4"
+        type="video/mp4">
+
+      Browser tidak mendukung video.
+
+    </video>
+
+  <!-- DOWNLOAD BUTTON -->
   <a class="btn"
      href="https://www.mediafire.com/file/wy3okltqc23pcqp/MINIZIVPN.apk/file"
      target="_blank">
      DOWNLOAD MINIZIVPN
   </a>
+    <!-- VIDEO -->
+  <div class="video-box">
+
+    <video
+      controls
+      autoplay
+      muted
+      playsinline
+      preload="metadata">
+
+      <source
+        src="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/UDPZIVPN/minizivpn.mp4"
+        type="video/mp4">
+
+      Browser tidak mendukung video.
+
+    </video>
 
 </div>
 
@@ -137,6 +194,26 @@ box-shadow:
 /* click */
 .btn:active{
 transform:scale(0.97);
+}
+
+/* video */
+.video-box{
+width:100%;
+margin-bottom:30px;
+
+border-radius:20px;
+overflow:hidden;
+
+background:#111;
+
+box-shadow:
+0 0 20px rgba(255,60,140,0.4);
+}
+
+.video-box video{
+width:100%;
+display:block;
+border:none;
 }
 
 /* responsive hp */
