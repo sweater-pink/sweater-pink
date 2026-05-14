@@ -1,0 +1,130 @@
+<div class="container">
+
+  <!-- TITLE -->
+  <h2 class="title">Aplikasi Asisten Digital</h2>
+
+  <!-- SUBTITLE -->
+  <div class="by">BY : SWEATER PINK</div>
+
+  <!-- BUTTON -->
+  <button class="btn" onclick="openAssistantSettings()">
+    OPEN SETTINGS
+  </button>
+
+</div>
+
+<style>
+
+body{
+margin:0;
+background:#000;
+font-family:monospace;
+color:white;
+}
+
+/* container utama */
+.container{
+width:95%;
+max-width:700px; /* lebih lebar */
+margin:auto;
+text-align:center;
+padding-top:140px;
+}
+
+/* title */
+.title{
+font-size:65px; /* lebih besar */
+color:#ff3b8d;
+font-weight:bold;
+text-shadow:0 0 10px #ff3b8d,0 0 30px #ff3b8d;
+margin-bottom:15px;
+line-height:1.2;
+}
+
+/* subtitle */
+.by{
+margin-bottom:45px;
+color:#aaa;
+font-size:26px; /* lebih besar */
+}
+
+/* button */
+.btn{
+width:100%;
+padding:28px 40px; /* tombol tinggi */
+font-size:30px; /* tulisan besar */
+font-weight:bold;
+background:#ff3b8d;
+border:none;
+border-radius:18px;
+color:white;
+cursor:pointer;
+box-shadow:0 0 20px rgba(255,60,140,0.6);
+transition:0.3s;
+}
+
+/* hover */
+.btn:hover{
+transform:scale(1.02);
+box-shadow:0 0 30px rgba(255,60,140,0.9);
+}
+
+/* click */
+.btn:active{
+transform:scale(0.97);
+}
+
+/* responsive hp */
+@media(max-width:480px){
+
+.container{
+padding-top:120px;
+}
+
+.title{
+font-size:48px;
+}
+
+.by{
+font-size:22px;
+margin-bottom:35px;
+}
+
+.btn{
+font-size:26px;
+padding:24px 20px;
+border-radius:16px;
+}
+
+}
+
+</style>
+
+<script>
+
+function openAssistantSettings(){
+
+  // buka voice input settings
+  window.location.href =
+  "intent:#Intent;action=android.settings.VOICE_INPUT_SETTINGS;end";
+
+  // fallback settings utama
+  setTimeout(() => {
+
+    window.location.href =
+    "intent://com.android.settings/#Intent;scheme=android-app;end";
+
+  },1500);
+
+}
+
+</script>
+  <!-- 🔒 Anti Copy & Inspect Protection -->
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.onkeydown = e => {
+  if (e.ctrlKey && ['s','u','c'].includes(e.key)) e.preventDefault();
+  if (e.key === 'F12') e.preventDefault();
+  if (e.ctrlKey && e.shiftKey && ['I','J'].includes(e.key)) e.preventDefault();
+};
+</script>
