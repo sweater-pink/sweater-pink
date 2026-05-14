@@ -250,10 +250,13 @@ form {
   const previewContent = document.getElementById('previewContent');
 
   // ✅ tambahan untuk config premium
-  const jenisSelect = document.getElementById('jenis');
-  const configMenu = document.getElementById('configMenu');
-  const configPremium = document.getElementById('configPremium');
+const jenisSelect = document.getElementById('jenis');
+const configMenu = document.getElementById('configMenu');
+const configPremium = document.getElementById('configPremium');
 
+configPremium.addEventListener('change', () => {
+  jenisSelect.dispatchEvent(new Event('change'));
+});
   function extractData(serverText) {
     const parts = serverText.split('|').map(p => p.trim());
     return {
@@ -314,17 +317,28 @@ form {
   const options = serverSelect.querySelectorAll('option');
 
   // 🔥 FILTER SERVER
-  options.forEach(opt => {
+options.forEach(opt => {
   if (!opt.value) return;
 
-  if (jenis === "ZIVPN") {
+  if (
+    jenis === "ZIVPN" ||
+    configPremium.value === "Opok Zivpn Vip"
+  ) {
+
     if (opt.dataset.type === "zivpn") {
       opt.hidden = false;
     } else {
       opt.hidden = true;
     }
+
   } else {
-    opt.hidden = false;
+
+    if (opt.dataset.type === "zivpn") {
+      opt.hidden = true;
+    } else {
+      opt.hidden = false;
+    }
+
   }
 });
 
