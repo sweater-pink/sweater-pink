@@ -29,20 +29,23 @@
   <!-- SUBTITLE -->
   <div class="by">BY : SWEATER PINK</div>
 
-  <!-- DOWNLOAD BUTTON -->
+  <!-- DOWNLOAD ZIVPN -->
   <a class="btn"
      href="https://play.google.com/store/apps/details?id=com.zi.zivpn"
      target="_blank">
      DOWNLOAD ZIVPN
   </a>
 
+  <!-- BUTTON VIDEO -->
+  <button class="video-btn" onclick="toggleVideo('video1')">
+    VIDEO TUTORIAL ZIVPN
+  </button>
+
   <!-- VIDEO -->
-  <div class="video-box">
+  <div class="video-box" id="video1">
 
     <video
       controls
-      autoplay
-      muted
       playsinline
       preload="metadata">
 
@@ -56,20 +59,23 @@
 
   </div>
 
-  <!-- DOWNLOAD BUTTON -->
+  <!-- DOWNLOAD CLASH META -->
   <a class="btn"
      href="https://www.mediafire.com/file/7hyd4bfo2snfbwp/base.apk/file"
      target="_blank">
      DOWNLOAD CLASH META
   </a>
 
-    <!-- VIDEO -->
-  <div class="video-box">
+  <!-- BUTTON VIDEO -->
+  <button class="video-btn" onclick="toggleVideo('video2')">
+    VIDEO TUTORIAL CLASH META
+  </button>
+
+  <!-- VIDEO -->
+  <div class="video-box" id="video2">
 
     <video
       controls
-      autoplay
-      muted
       playsinline
       preload="metadata">
 
@@ -81,19 +87,25 @@
 
     </video>
 
-  <!-- DOWNLOAD BUTTON -->
+  </div>
+
+  <!-- DOWNLOAD MINIZIVPN -->
   <a class="btn"
      href="https://www.mediafire.com/file/wy3okltqc23pcqp/MINIZIVPN.apk/file"
      target="_blank">
      DOWNLOAD MINIZIVPN
   </a>
-    <!-- VIDEO -->
-  <div class="video-box">
+
+  <!-- BUTTON VIDEO -->
+  <button class="video-btn" onclick="toggleVideo('video3')">
+    VIDEO TUTORIAL MINIZIVPN
+  </button>
+
+  <!-- VIDEO -->
+  <div class="video-box" id="video3">
 
     <video
       controls
-      autoplay
-      muted
       playsinline
       preload="metadata">
 
@@ -104,6 +116,8 @@
       Browser tidak mendukung video.
 
     </video>
+
+  </div>
 
 </div>
 
@@ -122,7 +136,6 @@ background:#000;
 font-family:monospace;
 color:white;
 
-/* posisi tengah layar */
 display:flex;
 justify-content:center;
 align-items:center;
@@ -143,6 +156,7 @@ text-align:center;
 font-size:65px;
 color:#ff3b8d;
 font-weight:bold;
+
 text-shadow:
 0 0 10px #ff3b8d,
 0 0 30px #ff3b8d;
@@ -158,10 +172,11 @@ color:#aaa;
 font-size:26px;
 }
 
-/* tombol */
+/* tombol download */
 .btn{
 display:block;
 width:100%;
+
 padding:28px 40px;
 margin-bottom:25px;
 
@@ -183,7 +198,6 @@ box-shadow:
 transition:0.3s;
 }
 
-/* hover */
 .btn:hover{
 transform:scale(1.02);
 
@@ -191,13 +205,43 @@ box-shadow:
 0 0 30px rgba(255,60,140,0.9);
 }
 
-/* click */
 .btn:active{
 transform:scale(0.97);
 }
 
+/* tombol video */
+.video-btn{
+display:block;
+width:100%;
+
+padding:24px 30px;
+margin-bottom:20px;
+
+font-size:28px;
+font-weight:bold;
+
+background:#2196f3;
+color:white;
+
+border:none;
+border-radius:18px;
+
+cursor:pointer;
+
+box-shadow:
+0 0 20px rgba(33,150,243,0.6);
+
+transition:0.3s;
+}
+
+.video-btn:hover{
+transform:scale(1.02);
+}
+
 /* video */
 .video-box{
+display:none;
+
 width:100%;
 margin-bottom:30px;
 
@@ -207,7 +251,7 @@ overflow:hidden;
 background:#111;
 
 box-shadow:
-0 0 20px rgba(255,60,140,0.4);
+0 0 20px rgba(33,150,243,0.4);
 }
 
 .video-box video{
@@ -232,6 +276,11 @@ margin-bottom:35px;
 font-size:24px;
 padding:22px 20px;
 border-radius:16px;
+}
+
+.video-btn{
+font-size:22px;
+padding:20px;
 }
 
 }
@@ -261,6 +310,19 @@ e.shiftKey &&
 e.preventDefault();
 
 };
+
+/* toggle video */
+function toggleVideo(id){
+
+const video = document.getElementById(id);
+
+if(video.style.display === "block"){
+video.style.display = "none";
+}else{
+video.style.display = "block";
+}
+
+}
 
 </script>
 
