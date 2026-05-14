@@ -1,85 +1,111 @@
-<div class="container">
+<!DOCTYPE html>
+<html lang="id">
+<head>
 
-  <!-- TITLE -->
-  <h2 class="title">Aplikasi Asisten Digital</h2>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SUBTITLE -->
-  <div class="by">BY : SWEATER PINK</div>
+<title>Aplikasi Asisten Digital</title>
 
-  <!-- BUTTON -->
-  <button class="btn" onclick="openAssistantSettings()">
-    OPEN SETTINGS
-  </button>
+<!-- PREVIEW WHATSAPP -->
+<meta property="og:title" content="Aplikasi Asisten Digital">
+<meta property="og:description" content="Open Assistant Settings by SWEATER PINK">
+<meta property="og:image" content="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/icon/logoappsweaterpink.png">
+<meta property="og:url" content="https://sweaterpink.web.id">
+<meta property="og:type" content="website">
 
-</div>
+<meta name="theme-color" content="#ff3b8d">
+<meta name="twitter:card" content="summary_large_image">
 
 <style>
 
-body{
+/* RESET */
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+/* BODY */
+body{
 background:#000;
 font-family:monospace;
 color:white;
+
+/* posisi tengah */
+display:flex;
+justify-content:center;
+align-items:center;
+
+min-height:100vh;
+padding:20px;
+overflow:hidden;
 }
 
-/* container utama */
+/* CONTAINER */
 .container{
-width:95%;
-max-width:700px; /* lebih lebar */
-margin:auto;
+width:100%;
+max-width:700px;
 text-align:center;
-padding-top:140px;
 }
 
-/* title */
+/* TITLE */
 .title{
-font-size:65px; /* lebih besar */
+font-size:65px;
 color:#ff3b8d;
 font-weight:bold;
-text-shadow:0 0 10px #ff3b8d,0 0 30px #ff3b8d;
-margin-bottom:15px;
 line-height:1.2;
+
+text-shadow:
+0 0 10px #ff3b8d,
+0 0 30px #ff3b8d;
+
+margin-bottom:15px;
 }
 
-/* subtitle */
+/* SUBTITLE */
 .by{
 margin-bottom:45px;
 color:#aaa;
-font-size:26px; /* lebih besar */
+font-size:26px;
 }
 
-/* button */
+/* BUTTON */
 .btn{
 width:100%;
-padding:28px 40px; /* tombol tinggi */
-font-size:30px; /* tulisan besar */
+padding:28px 40px;
+
+font-size:30px;
 font-weight:bold;
+
 background:#ff3b8d;
 border:none;
 border-radius:18px;
+
 color:white;
 cursor:pointer;
-box-shadow:0 0 20px rgba(255,60,140,0.6);
+
+box-shadow:
+0 0 20px rgba(255,60,140,0.6);
+
 transition:0.3s;
 }
 
-/* hover */
+/* HOVER */
 .btn:hover{
 transform:scale(1.02);
-box-shadow:0 0 30px rgba(255,60,140,0.9);
+
+box-shadow:
+0 0 30px rgba(255,60,140,0.9);
 }
 
-/* click */
+/* CLICK */
 .btn:active{
 transform:scale(0.97);
 }
 
-/* responsive hp */
+/* MOBILE */
 @media(max-width:480px){
-
-.container{
-padding-top:120px;
-}
 
 .title{
 font-size:48px;
@@ -99,32 +125,74 @@ border-radius:16px;
 }
 
 </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- TITLE -->
+<h2 class="title">
+Aplikasi Asisten Digital
+</h2>
+
+<!-- SUBTITLE -->
+<div class="by">
+BY : SWEATER PINK
+</div>
+
+<!-- BUTTON -->
+<button class="btn" onclick="openAssistantSettings()">
+OPEN SETTINGS
+</button>
+
+</div>
 
 <script>
 
 function openAssistantSettings(){
 
-  // buka voice input settings
-  window.location.href =
-  "intent:#Intent;action=android.settings.VOICE_INPUT_SETTINGS;end";
+// buka voice input settings
+window.location.href =
+"intent:#Intent;action=android.settings.VOICE_INPUT_SETTINGS;end";
 
-  // fallback settings utama
-  setTimeout(() => {
+// fallback settings utama
+setTimeout(() => {
 
-    window.location.href =
-    "intent://com.android.settings/#Intent;scheme=android-app;end";
+window.location.href =
+"intent://com.android.settings/#Intent;scheme=android-app;end";
 
-  },1500);
+},1500);
 
 }
 
 </script>
-  <!-- 🔒 Anti Copy & Inspect Protection -->
+
+<!-- 🔒 Anti Copy & Inspect Protection -->
 <script>
-document.addEventListener('contextmenu', e => e.preventDefault());
+
+document.addEventListener(
+'contextmenu',
+e => e.preventDefault()
+);
+
 document.onkeydown = e => {
-  if (e.ctrlKey && ['s','u','c'].includes(e.key)) e.preventDefault();
-  if (e.key === 'F12') e.preventDefault();
-  if (e.ctrlKey && e.shiftKey && ['I','J'].includes(e.key)) e.preventDefault();
+
+if (e.ctrlKey &&
+['s','u','c'].includes(e.key))
+e.preventDefault();
+
+if (e.key === 'F12')
+e.preventDefault();
+
+if (e.ctrlKey &&
+e.shiftKey &&
+['I','J'].includes(e.key))
+e.preventDefault();
+
 };
+
 </script>
+
+</body>
+</html>
