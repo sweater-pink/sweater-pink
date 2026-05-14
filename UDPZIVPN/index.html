@@ -427,29 +427,7 @@ padding:9px 14px;
 
 </style>
 
-<!-- 🔒 Anti Copy & Inspect Protection -->
 <script>
-
-document.addEventListener(
-'contextmenu',
-e => e.preventDefault()
-);
-
-document.onkeydown = e => {
-
-if(e.ctrlKey &&
-['s','u','c'].includes(e.key))
-e.preventDefault();
-
-if(e.key === 'F12')
-e.preventDefault();
-
-if(e.ctrlKey &&
-e.shiftKey &&
-['I','J'].includes(e.key))
-e.preventDefault();
-
-};
 
 /* toggle video */
 function toggleVideo(id){
@@ -465,6 +443,17 @@ video.style.display = "block";
 }
 
 </script>
+
+<!-- 🔒 Anti Copy & Inspect Protection -->
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.onkeydown = e => {
+  if (e.ctrlKey && ['s','u','c'].includes(e.key)) e.preventDefault();
+  if (e.key === 'F12') e.preventDefault();
+  if (e.ctrlKey && e.shiftKey && ['I','J'].includes(e.key)) e.preventDefault();
+};
+</script>
+
 
 </body>
 </html>
