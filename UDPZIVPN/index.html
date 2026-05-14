@@ -197,15 +197,15 @@ text-align:center;
 
 /* title */
 .title{
-font-size:65px;
+font-size:38px;
 color:#ff3b8d;
 font-weight:bold;
 
 text-shadow:
-0 0 10px #ff3b8d,
-0 0 30px #ff3b8d;
+0 0 8px #ff3b8d,
+0 0 18px #ff3b8d;
 
-margin-bottom:15px;
+margin-bottom:12px;
 line-height:1.2;
 }
 
@@ -213,13 +213,8 @@ line-height:1.2;
 .by{
 display:inline-block;
 
-padding:14px 30px;
-margin-bottom:45px;
-
-font-size:26px;
-font-weight:bold;
-
-color:#c2185b;
+padding:12px 18px;
+margin-bottom:25px;
 
 background:
 linear-gradient(
@@ -229,36 +224,32 @@ linear-gradient(
 #ffb3d9
 );
 
-border:3px dashed #ff4d94;
+border:2px dashed #ff4d94;
 border-radius:14px;
 
 box-shadow:
-0 0 15px rgba(255,77,148,0.35),
-0 0 30px rgba(255,77,148,0.2);
-
-text-shadow:
-0 0 8px rgba(255,77,148,0.5);
+0 0 12px rgba(255,77,148,0.25);
 
 animation:pinkGlow 2s infinite alternate;
 }
 
 /* judul by */
 .by-title{
-font-size:30px;
+font-size:20px;
 font-weight:bold;
 
-margin-bottom:20px;
+margin-bottom:12px;
 
 color:#ff2f92;
 
 text-shadow:
-0 0 10px rgba(255,77,148,0.7);
+0 0 8px rgba(255,77,148,0.6);
 }
 
 /* deskripsi */
 .by-desc{
-font-size:18px;
-line-height:1.8;
+font-size:13px;
+line-height:1.6;
 
 color:#5c0040;
 
@@ -271,15 +262,13 @@ text-shadow:none;
 @keyframes pinkGlow{
 
 from{
-transform:scale(1);
 box-shadow:
-0 0 10px rgba(255,77,148,0.3);
+0 0 8px rgba(255,77,148,0.2);
 }
 
 to{
-transform:scale(1.03);
 box-shadow:
-0 0 25px rgba(255,77,148,0.8);
+0 0 18px rgba(255,77,148,0.5);
 }
 
 }
@@ -289,15 +278,15 @@ box-shadow:
 display:block;
 width:100%;
 
-padding:28px 40px;
-margin-bottom:25px;
+padding:16px 18px;
+margin-bottom:14px;
 
-font-size:30px;
+font-size:18px;
 font-weight:bold;
 
 background:#ff3b8d;
 border:none;
-border-radius:18px;
+border-radius:14px;
 
 color:white;
 text-decoration:none;
@@ -305,16 +294,13 @@ text-decoration:none;
 cursor:pointer;
 
 box-shadow:
-0 0 20px rgba(255,60,140,0.6);
+0 0 12px rgba(255,60,140,0.4);
 
 transition:0.3s;
 }
 
 .btn:hover{
-transform:scale(1.02);
-
-box-shadow:
-0 0 30px rgba(255,60,140,0.9);
+transform:scale(1.01);
 }
 
 .btn:active{
@@ -325,10 +311,10 @@ transform:scale(0.97);
 .order-btn{
 display:inline-block;
 
-padding:12px 22px;
-margin-top:22px;
+padding:10px 18px;
+margin-top:18px;
 
-font-size:16px;
+font-size:14px;
 font-weight:bold;
 
 background:
@@ -339,28 +325,15 @@ linear-gradient(
 );
 
 border:2px solid #d8b4fe;
-border-radius:12px;
+border-radius:10px;
 
 color:white;
 text-decoration:none;
 
-cursor:pointer;
-
 box-shadow:
-0 0 12px rgba(168,85,247,0.5);
+0 0 10px rgba(168,85,247,0.4);
 
 transition:0.3s;
-}
-
-.order-btn:hover{
-transform:scale(1.03);
-
-box-shadow:
-0 0 20px rgba(168,85,247,0.9);
-}
-
-.order-btn:active{
-transform:scale(0.95);
 }
 
 /* tombol video */
@@ -368,28 +341,24 @@ transform:scale(0.95);
 display:block;
 width:100%;
 
-padding:24px 30px;
-margin-bottom:20px;
+padding:15px 18px;
+margin-bottom:12px;
 
-font-size:28px;
+font-size:16px;
 font-weight:bold;
 
 background:#2196f3;
 color:white;
 
 border:none;
-border-radius:18px;
+border-radius:14px;
 
 cursor:pointer;
 
 box-shadow:
-0 0 20px rgba(33,150,243,0.6);
+0 0 12px rgba(33,150,243,0.4);
 
 transition:0.3s;
-}
-
-.video-btn:hover{
-transform:scale(1.02);
 }
 
 /* video */
@@ -397,15 +366,15 @@ transform:scale(1.02);
 display:none;
 
 width:100%;
-margin-bottom:30px;
+margin-bottom:18px;
 
-border-radius:20px;
+border-radius:16px;
 overflow:hidden;
 
 background:#111;
 
 box-shadow:
-0 0 20px rgba(33,150,243,0.4);
+0 0 12px rgba(33,150,243,0.25);
 }
 
 .video-box video{
@@ -417,24 +386,41 @@ border:none;
 /* responsive hp */
 @media(max-width:480px){
 
+body{
+padding:14px;
+}
+
+.container{
+max-width:100%;
+}
+
 .title{
-font-size:45px;
+font-size:30px;
 }
 
 .by{
-font-size:20px;
-margin-bottom:35px;
+padding:10px 14px;
 }
 
-.btn{
-font-size:24px;
-padding:22px 20px;
-border-radius:16px;
+.by-title{
+font-size:17px;
 }
 
+.by-desc{
+font-size:12px;
+line-height:1.5;
+}
+
+.btn,
 .video-btn{
-font-size:22px;
-padding:20px;
+font-size:15px;
+padding:14px 12px;
+border-radius:12px;
+}
+
+.order-btn{
+font-size:13px;
+padding:9px 14px;
 }
 
 }
