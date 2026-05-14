@@ -27,7 +27,51 @@
   <h2 class="title">Aplikasi Untuk Akun ZIVPN</h2>
 
   <!-- SUBTITLE -->
-  <div class="by">BY : SWEATER PINK</div>
+<div class="by">
+
+  <div class="by-title">
+    ✨ BY : SWEATER PINK ✨
+  </div>
+
+  <div class="by-desc">
+
+    PAKAI APLIKASI YANG COCOK UNTUK HP KALIAN
+
+    <br><br>
+
+    Speed tergantung HP, lokasi, serta jaringan.
+
+    <br><br>
+
+    Rekomendasi gunakan jaringan 5G jika support,
+    karena hampir semua bisa nonton YouTube 720P
+    dengan lancar di jaringan 5G.
+
+    <br><br>
+
+    Jika ZIVPN kurang cocok di HP kalian,
+    coba gunakan Clash Meta atau MiniZIVPN.
+
+    <br><br>
+
+    Sesuaikan saja dengan device masing-masing.
+
+    <br><br>
+
+    <b>Terima Kasih 💖</b>
+
+    <!-- ORDER BUTTON -->
+<a class="order-btn"
+   href="https://www.sweaterpink.web.id/order/"
+   target="_blank">
+
+   🛒 ORDER PREMIUM
+
+</a>
+
+  </div>
+
+</div>
 
   <!-- DOWNLOAD ZIVPN -->
   <a class="btn"
@@ -165,11 +209,79 @@ margin-bottom:15px;
 line-height:1.2;
 }
 
-/* subtitle */
+/* subtitle premium */
 .by{
+display:inline-block;
+
+padding:14px 30px;
 margin-bottom:45px;
-color:#aaa;
+
 font-size:26px;
+font-weight:bold;
+
+color:#c2185b;
+
+background:
+linear-gradient(
+135deg,
+#ffffff,
+#ffd6ea,
+#ffb3d9
+);
+
+border:3px dashed #ff4d94;
+border-radius:14px;
+
+box-shadow:
+0 0 15px rgba(255,77,148,0.35),
+0 0 30px rgba(255,77,148,0.2);
+
+text-shadow:
+0 0 8px rgba(255,77,148,0.5);
+
+animation:pinkGlow 2s infinite alternate;
+}
+
+/* judul by */
+.by-title{
+font-size:30px;
+font-weight:bold;
+
+margin-bottom:20px;
+
+color:#ff2f92;
+
+text-shadow:
+0 0 10px rgba(255,77,148,0.7);
+}
+
+/* deskripsi */
+.by-desc{
+font-size:18px;
+line-height:1.8;
+
+color:#5c0040;
+
+text-align:center;
+
+text-shadow:none;
+}
+
+/* animasi glow */
+@keyframes pinkGlow{
+
+from{
+transform:scale(1);
+box-shadow:
+0 0 10px rgba(255,77,148,0.3);
+}
+
+to{
+transform:scale(1.03);
+box-shadow:
+0 0 25px rgba(255,77,148,0.8);
+}
+
 }
 
 /* tombol download */
@@ -207,6 +319,48 @@ box-shadow:
 
 .btn:active{
 transform:scale(0.97);
+}
+
+/* tombol order premium */
+.order-btn{
+display:inline-block;
+
+padding:12px 22px;
+margin-top:22px;
+
+font-size:16px;
+font-weight:bold;
+
+background:
+linear-gradient(
+135deg,
+#a855f7,
+#7e22ce
+);
+
+border:2px solid #d8b4fe;
+border-radius:12px;
+
+color:white;
+text-decoration:none;
+
+cursor:pointer;
+
+box-shadow:
+0 0 12px rgba(168,85,247,0.5);
+
+transition:0.3s;
+}
+
+.order-btn:hover{
+transform:scale(1.03);
+
+box-shadow:
+0 0 20px rgba(168,85,247,0.9);
+}
+
+.order-btn:active{
+transform:scale(0.95);
 }
 
 /* tombol video */
