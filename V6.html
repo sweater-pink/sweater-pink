@@ -1,169 +1,160 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Subscribe Untuk Download</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscribe Untuk Download</title>
 
-<style>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial,sans-serif;
+    }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
-}
+    body{
+      background:#0f172a;
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      overflow:hidden;
+    }
 
-body{
-  background:#0f172a;
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  overflow:hidden;
-}
+    .card{
+      width:350px;
+      background:#1e293b;
+      border-radius:20px;
+      padding:30px;
+      text-align:center;
+      box-shadow:0 0 30px rgba(0,0,0,.4);
+      animation:fade .5s ease;
+    }
 
-.card{
-  width:350px;
-  background:#1e293b;
-  border-radius:20px;
-  padding:30px;
-  text-align:center;
-  box-shadow:0 0 30px rgba(0,0,0,.4);
-  animation:fade .5s ease;
-}
+    @keyframes fade{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
 
-@keyframes fade{
-  from{
-    opacity:0;
-    transform:translateY(20px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
+    .logo{
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      margin-bottom:15px;
+      border:4px solid #ff0033;
+    }
 
-.logo{
-  width:90px;
-  height:90px;
-  border-radius:50%;
-  margin-bottom:15px;
-  border:4px solid #ff0033;
-}
+    h1{
+      font-size:24px;
+      margin-bottom:10px;
+    }
 
-h1{
-  font-size:24px;
-  margin-bottom:10px;
-}
+    p{
+      color:#cbd5e1;
+      font-size:14px;
+      margin-bottom:25px;
+    }
 
-p{
-  color:#cbd5e1;
-  font-size:14px;
-  margin-bottom:25px;
-}
+    .btn{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      font-size:16px;
+      cursor:pointer;
+      font-weight:bold;
+      transition:.3s;
+      margin-top:10px;
+    }
 
-.btn{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:12px;
-  font-size:16px;
-  cursor:pointer;
-  font-weight:bold;
-  transition:.3s;
-  margin-top:10px;
-}
+    .youtube{
+      background:#ff0033;
+      color:white;
+    }
 
-.youtube{
-  background:#ff0033;
-  color:white;
-}
+    .youtube:hover{
+      background:#d9002b;
+    }
 
-.youtube:hover{
-  background:#d9002b;
-}
+    .check{
+      background:#2563eb;
+      color:white;
+    }
 
-.check{
-  background:#2563eb;
-  color:white;
-}
+    .check:hover{
+      background:#1d4ed8;
+    }
 
-.check:hover{
-  background:#1d4ed8;
-}
+    .download{
+      background:#10b981;
+      color:white;
+      display:none;
+    }
 
-.download{
-  background:#10b981;
-  color:white;
-  display:none;
-}
+    .download:hover{
+      background:#059669;
+    }
 
-.download:hover{
-  background:#059669;
-}
+    .timer{
+      margin-top:15px;
+      font-size:18px;
+      font-weight:bold;
+      color:#facc15;
+    }
 
-.timer{
-  margin-top:15px;
-  font-size:18px;
-  font-weight:bold;
-  color:#facc15;
-}
+    .success{
+      margin-top:15px;
+      color:#22c55e;
+      display:none;
+      font-weight:bold;
+    }
 
-.success{
-  margin-top:15px;
-  color:#22c55e;
-  display:none;
-  font-weight:bold;
-}
-
-</style>
+  </style>
 </head>
-
 <body>
 
 <div class="card">
 
-<img class="logo"
-src="https://yt3.googleusercontent.com/ytc/AIdro_k6YQ=s176-c-k-c0x00ffffff-no-rj"
-alt="logo">
+  <img class="logo"
+  src="https://yt3.googleusercontent.com/ytc/AIdro_k6YQ=s176-c-k-c0x00ffffff-no-rj"
+  alt="logo">
 
-<h1>Subscribe Untuk Download</h1>
+  <h1>Subscribe Untuk Download</h1>
 
-<p>
-Kamu wajib subscribe channel YouTube terlebih dahulu
-untuk membuka link download.
-</p>
+  <p>
+    Kamu wajib subscribe channel YouTube terlebih dahulu
+    untuk membuka link download.
+  </p>
 
-<button class="btn youtube"
-onclick="subscribeNow()">
-Subscribe Channel
-</button>
+  <button class="btn youtube" onclick="subscribeNow()">
+    Subscribe Channel
+  </button>
 
-<button class="btn check"
-id="verifyBtn"
-onclick="verifySubscribe()"
-disabled>
-Saya Sudah Subscribe
-</button>
+  <button class="btn check" id="verifyBtn" onclick="verifySubscribe()" disabled>
+    Saya Sudah Subscribe
+  </button>
 
-<div class="timer" id="timer"></div>
+  <div class="timer" id="timer"></div>
 
-<div class="success" id="success">
-✅ Verifikasi berhasil!
-</div>
+  <div class="success" id="success">
+    ✅ Verifikasi berhasil!
+  </div>
 
-<a id="downloadBtn"
-href="https://example.com/file.zip"
-target="_blank">
-
-<button class="btn download"
-id="downloadButton">
-Download Sekarang
-</button>
-
-</a>
+  <a id="downloadBtn"
+     href="https://example.com/file.zip"
+     target="_blank">
+    <button class="btn download">
+      Download Sekarang
+    </button>
+  </a>
 
 </div>
 
@@ -177,19 +168,12 @@ function subscribeNow(){
   const youtubeURL =
   "https://www.youtube.com/channel/UCsO0-0FOHH-vr4b1bWvraHA?sub_confirmation=1&app=desktop";
 
-  // BUKA TAB BARU BROWSER
-  const popup = window.open(
-    youtubeURL,
-    "_blank",
-    "noopener,noreferrer,width=900,height=700"
-  );
+  // PAKSA TAB BARU
+  const newTab = window.open();
 
-  // FALLBACK
-  if(!popup){
-
-    window.location.href = youtubeURL;
-
-  }
+  // SET URL SETELAH TAB TERBUKA
+  newTab.opener = null;
+  newTab.location = youtubeURL;
 
   subscribed = true;
 
@@ -237,32 +221,6 @@ function verifySubscribe(){
 
 }
 
-// ANTI INSPECT
-document.addEventListener(
-"contextmenu",
-e => e.preventDefault()
-);
-
-document.onkeydown = function(e){
-
-  if(e.keyCode == 123){
-    return false;
-  }
-
-  if(e.ctrlKey &&
-  e.shiftKey &&
-  e.keyCode == 'I'.charCodeAt(0)){
-    return false;
-  }
-
-  if(e.ctrlKey &&
-  e.keyCode == 'U'.charCodeAt(0)){
-    return false;
-  }
-
-};
-
 </script>
-
 </body>
 </html>
