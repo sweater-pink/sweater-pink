@@ -138,7 +138,10 @@
     Subscribe Channel
   </button>
 
-  <button class="btn check" id="verifyBtn" onclick="verifySubscribe()" disabled>
+  <button class="btn check"
+  id="verifyBtn"
+  onclick="verifySubscribe()"
+  disabled>
     Saya Sudah Subscribe
   </button>
 
@@ -151,9 +154,11 @@
   <a id="downloadBtn"
      href="https://example.com/file.zip"
      target="_blank">
-    <button class="btn download">
+
+    <button class="btn download" id="downloadButton">
       Download Sekarang
     </button>
+
   </a>
 
 </div>
@@ -165,10 +170,24 @@ let countdown = 10;
 
 function subscribeNow(){
 
-  window.open(
-    "https://www.youtube.com/channel/UCsO0-0FOHH-vr4b1bWvraHA?sub_confirmation=1",
-    "_blank"
-  );
+  const isMobile =
+  /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if(isMobile){
+
+    // MOBILE BROWSER
+    window.location.href =
+    "https://m.youtube.com/channel/UCsO0-0FOHH-vr4b1bWvraHA?sub_confirmation=1";
+
+  } else {
+
+    // DESKTOP
+    window.open(
+      "https://www.youtube.com/channel/UCsO0-0FOHH-vr4b1bWvraHA?sub_confirmation=1",
+      "_blank"
+    );
+
+  }
 
   subscribed = true;
 
@@ -183,12 +202,15 @@ function verifySubscribe(){
     return;
   }
 
-  let timer = document.getElementById("timer");
+  countdown = 10;
+
+  let timer =
+  document.getElementById("timer");
 
   let interval = setInterval(() => {
 
     timer.innerHTML =
-      "Verifikasi dalam " + countdown + " detik...";
+    "Verifikasi dalam " + countdown + " detik...";
 
     countdown--;
 
@@ -201,12 +223,34 @@ function verifySubscribe(){
       document.getElementById("success").style.display =
       "block";
 
-      document.querySelector(".download").style.display =
+      document.getElementById("downloadButton").style.display =
       "block";
 
     }
 
   },1000);
+
+}
+
+// Anti inspect ringan
+document.addEventListener('contextmenu',
+e => e.preventDefault());
+
+document.onkeydown = function(e){
+
+  if(e.keyCode == 123){
+    return false;
+  }
+
+  if(e.ctrlKey && e.shiftKey &&
+  e.keyCode == 'I'.charCodeAt(0)){
+    return false;
+  }
+
+  if(e.ctrlKey &&
+  e.keyCode == 'U'.charCodeAt(0)){
+    return false;
+  }
 
 }
 
