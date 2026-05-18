@@ -45,36 +45,18 @@ body{
   border-radius:25px;
   padding:35px 30px;
   text-align:center;
-  box-shadow:
-  0 0 30px rgba(0,0,0,.4),
-  0 0 80px rgba(255,0,80,.1);
+  box-shadow:0 0 30px rgba(0,0,0,.4);
   animation:fade .6s ease;
   position:relative;
   overflow:hidden;
 }
 
 .card::before{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  background:rgba(255,0,80,.15);
-  border-radius:50%;
-  top:-80px;
-  right:-80px;
-  filter:blur(20px);
+  display:none;
 }
 
 .card::after{
-  content:"";
-  position:absolute;
-  width:150px;
-  height:150px;
-  background:rgba(59,130,246,.12);
-  border-radius:50%;
-  bottom:-70px;
-  left:-70px;
-  filter:blur(20px);
+  display:none;
 }
 
 @keyframes fade{
@@ -156,11 +138,12 @@ p{
   background:linear-gradient(135deg,#10b981,#22c55e);
   color:white;
   display:none;
-  box-shadow:0 8px 20px rgba(34,197,94,.2);
+  box-shadow:none;
 }
 
 .download:hover{
-  transform:translateY(-2px);
+  transform:none;
+  box-shadow:none;
 }
 
 .timer{
@@ -331,6 +314,8 @@ function subscribeNow(){
 
       btn.style.background =
       "linear-gradient(135deg,#10b981,#22c55e)";
+
+      btn.style.boxShadow = "none";
 
     }
 
