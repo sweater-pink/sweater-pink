@@ -1,303 +1,365 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Sweater Pink Premium (Encrypted)</title>
-<style>
-  :root { --pink:#ffc0cb; --accent:#ff4d94; --green:#28a745; }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sweater Pink Premium (Encrypted)</title>
+    <style>
+      :root {
+        --pink: #ffc0cb;
+        --accent: #ff4d94;
+        --green: #28a745;
+      }
 
-  body{
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-    background:#fff0f5;
-    margin:0;
-    padding:20px
-  }
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+        background: #fff0f5;
+        margin: 0;
+        padding: 20px;
+      }
 
-#password-box{
-  background:linear-gradient(135deg,#ffffff,#ffb3d9,#ff3fbf);
-  background-size:150% 150%;
-  animation:bgMove 8s ease infinite;
+      #password-box {
+        background: linear-gradient(135deg, #ffffff, #ffb3d9, #ff3fbf);
+        background-size: 150% 150%;
+        animation: bgMove 8s ease infinite;
 
-  padding:20px;
-  border-radius:12px;
-  text-align:center;
-  width:90%;
-  max-width:420px;
-  margin:20px auto;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        width: 90%;
+        max-width: 420px;
+        margin: 20px auto;
 
-  box-shadow:0 6px 20px rgba(255,77,148,0.25);
-  position:relative;
-  overflow:hidden;
-  border: 3px solid #ff4d94;
-}
-  /* 🔥 QUOTE BOX PREMIUM */
-  #quote-box{
-    display:none;
+        box-shadow: 0 6px 20px rgba(255, 77, 148, 0.25);
+        position: relative;
+        overflow: hidden;
+        border: 3px solid #ff4d94;
+      }
+      /* 🔥 QUOTE BOX PREMIUM */
+      #quote-box {
+        display: none;
 
-    background:linear-gradient(135deg,#ffffff,#ffb3d9,#ff3fbf);
-    background-size:150% 150%;
-    animation:bgMove 8s ease infinite;
+        background: linear-gradient(135deg, #ffffff, #ffb3d9, #ff3fbf);
+        background-size: 150% 150%;
+        animation: bgMove 8s ease infinite;
 
-    color:#333;
-    font-size:18px;
-    margin:20px auto;
-    text-align:center;
-    padding:20px;
-    border-radius:12px;
-    width:90%;
-    max-width:560px;
+        color: #333;
+        font-size: 18px;
+        margin: 20px auto;
+        text-align: center;
+        padding: 20px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 560px;
 
-    box-shadow:0 6px 20px rgba(255,77,148,0.25);
-    position:relative;
-    overflow:hidden;
+        box-shadow: 0 6px 20px rgba(255, 77, 148, 0.25);
+        position: relative;
+        overflow: hidden;
 
-    opacity:0;
-    transition:opacity .8s ease-in;
-    border: 3px solid #ff4d94;
-  }
+        opacity: 0;
+        transition: opacity 0.8s ease-in;
+        border: 3px solid #ff4d94;
+      }
 
+      /* ✨ ANIMASI BACKGROUND */
+      @keyframes bgMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
 
-  /* ✨ ANIMASI BACKGROUND */
-  @keyframes bgMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+      .btn {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+      }
 
-  .btn{
-    background:var(--accent);
-    color:#fff;
-    border:none;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:600
-  }
+      .btn-green {
+        background: var(--green);
+      }
 
-  .btn-green{background:var(--green)}
+      .input-wrap {
+        position: relative;
+        width: 82%;
+        margin: 0 auto 12px;
+      }
 
-  .input-wrap{
-    position:relative;
-    width:82%;
-    margin:0 auto 12px
-  }
+      input[type="password"],
+      input[type="text"] {
+        padding: 10px 38px 10px 12px;
+        background: #fff;
+        border: none;
+        border-radius: 8px;
+        width: 100%;
+        box-sizing: border-box;
+        color: #000;
+        outline: none;
+      }
 
-  input[type=password],input[type=text]{
-    padding:10px 38px 10px 12px;
-    background:#fff;
-    border:none;
-    border-radius:8px;
-    width:100%;
-    box-sizing:border-box;
-    color:#000;
-    outline:none
-  }
+      .eye {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 16px;
+        color: #555;
+        background: transparent;
+        border: none;
+      }
 
-  .eye{
-    position:absolute;
-    right:8px;
-    top:50%;
-    transform:translateY(-50%);
-    cursor:pointer;
-    font-size:16px;
-    color:#555;
-    background:transparent;
-    border:none
-  }
+      #error-msg {
+        color: #b00020;
+        font-weight: bold;
+        display: none;
+        margin-top: 12px;
+      }
 
-  #error-msg{
-    color:#b00020;
-    font-weight:bold;
-    display:none;
-    margin-top:12px
-  }
+      /* 💖 LIST */
+      .pink-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
-  /* 💖 LIST */
-  .pink-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+      .pink-list li {
+        background: #ffe4ef;
+        border-left: 4px solid #ff4d94;
+        padding: 8px 10px 8px 28px; /* kiri diperbesar */
+        margin-bottom: 6px;
+        border-radius: 6px;
+        font-size: 14px;
+        position: relative;
+      }
 
-.pink-list li {
-  background: #ffe4ef;
-  border-left: 4px solid #ff4d94;
-  padding: 8px 10px 8px 28px; /* kiri diperbesar */
-  margin-bottom: 6px;
-  border-radius: 6px;
-  font-size: 14px;
-  position: relative;
-}
+      .pink-list li::before {
+        content: "💖";
+        position: absolute;
+        left: 8px;
+        top: 8px;
+      }
+      .account-box {
+        background: #fff;
+        border: 2px dashed #ff4d94;
+        border-radius: 10px;
+        padding: 12px;
+        margin-top: 10px;
+        text-align: center;
+      }
 
-.pink-list li::before {
-  content: "💖";
-  position: absolute;
-  left: 8px;
-  top: 8px;
-}
-.account-box{
-  background:#fff;
-  border:2px dashed #ff4d94;
-  border-radius:10px;
-  padding:12px;
-  margin-top:10px;
-  text-align:center;
-}
+      .account-label {
+        font-size: 13px;
+        color: #c2185b;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
 
-.account-label{
-  font-size:13px;
-  color:#c2185b;
-  margin-bottom:6px;
-  font-weight:600;
-}
+      .account-value {
+        font-family: monospace;
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        user-select: all; /* bisa di blok manual */
+        word-break: break-all;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="password-box">
+      <p style="color: #000; margin: 0 0 12px; font-size: 18px">
+        <b
+          >Masukkan Password 3 angka di vidio terbaru<br />(salam: sweater
+          pink)</b
+        >
+      </p>
 
-.account-value{
-  font-family:monospace;
-  font-size:16px;
-  font-weight:bold;
-  color:#333;
-  user-select:all; /* bisa di blok manual */
-  word-break:break-all;
-}
-</style>
-</head>
-<body>
+      <div class="input-wrap">
+        <input
+          type="password"
+          id="password-input"
+          placeholder="Password..."
+          onkeydown="
+            if (event.key === 'Enter') {
+              checkPassword();
+            }
+          "
+        />
+        <button type="button" class="eye" onclick="togglePassword()">👁️</button>
+      </div>
 
-<div id="password-box">
-  <p style="color:#000;margin:0 0 12px;font-size:18px;">
-    <b>Masukkan Password 3 angka di vidio terbaru<br>(salam: sweater pink)</b>
-  </p>
+      <button class="btn" onclick="checkPassword()">Submit</button>
+      <p id="error-msg"></p>
+    </div>
 
-  <div class="input-wrap">
-    <input type="password" id="password-input" placeholder="Password..." 
-      onkeydown="if(event.key==='Enter'){checkPassword();}">
-    <button type="button" class="eye" onclick="togglePassword()">👁️</button>
-  </div>
+    <div id="quote-box"></div>
 
-  <button class="btn" onclick="checkPassword()">Submit</button>
-  <p id="error-msg"></p>
-</div>
+    <script>
+      // 🔓 toggle
+      function togglePassword() {
+        const input = document.getElementById("password-input");
+        input.type = input.type === "password" ? "text" : "password";
+      }
 
-<div id="quote-box"></div>
+      // 🔥 LOGIN (API GOOGLE)
+      async function checkPassword() {
+        const inputVal = document.getElementById("password-input").value.trim();
+        const errorMsg = document.getElementById("error-msg");
 
-<script>
-// 🔓 toggle
-function togglePassword(){
-  const input = document.getElementById("password-input");
-  input.type = input.type === "password" ? "text" : "password";
-}
+        if (!inputVal) {
+          errorMsg.textContent = "Password tidak boleh kosong.";
+          errorMsg.style.display = "block";
+          return;
+        }
 
-// 🔥 LOGIN (API GOOGLE)
-async function checkPassword(){
-  const inputVal = document.getElementById("password-input").value.trim();
-  const errorMsg = document.getElementById("error-msg");
+        try {
+          const res = await fetch(
+            "https://script.google.com/macros/s/AKfycbznLGVHFucJVDpU5dl6fbUgdNpiRVwDGGcXV_mxzC2oGgWrQRedvdcnh1NS8uwyJatRSw/exec?password=" +
+              encodeURIComponent(inputVal),
+          );
+          const data = await res.json();
 
-  if(!inputVal){
-    errorMsg.textContent = "Password tidak boleh kosong.";
-    errorMsg.style.display = "block";
-    return;
-  }
+          if (data.status !== "ok") throw new Error();
 
-  try{
-    const res = await fetch("https://script.google.com/macros/s/AKfycbznLGVHFucJVDpU5dl6fbUgdNpiRVwDGGcXV_mxzC2oGgWrQRedvdcnh1NS8uwyJatRSw/exec?password=" + encodeURIComponent(inputVal));
-    const data = await res.json();
+          document.getElementById("password-box").style.display = "none";
 
-    if(data.status !== "ok") throw new Error();
+          renderQuote({
+            quotes: [data.username],
+            perhatianLink: "https://youtube.com/shorts/KgC2eDR5Py0",
+            downloadLink: "https://sweaterpink.web.id/subscribe2",
+            groupLink: "https://s.id/Saluran-Whatsapp",
+          });
+        } catch (e) {
+          const url = "http://youtube.com/@SweaterPink";
+          errorMsg.innerHTML =
+            "Password salah!!! cek video terbaru di sini " +
+            '<a href="' +
+            url +
+            '" target="_blank" style="text-decoration:underline;color:#0b5ed7;">link</a>.';
+          errorMsg.style.display = "block";
+        }
+      }
 
-    document.getElementById("password-box").style.display = "none";
+      // 🎨 RENDER (ASLI DIPERTAHANKAN)
+      function renderQuote({ quotes, perhatianLink, downloadLink, groupLink }) {
+        const now = new Date();
+        const day = now.getDate();
+        const monthNames = [
+          "Januari",
+          "Februari",
+          "Maret",
+          "April",
+          "Mei",
+          "Juni",
+          "Juli",
+          "Agustus",
+          "September",
+          "Oktober",
+          "November",
+          "Desember",
+        ];
+        const dateStr =
+          day + " " + monthNames[now.getMonth()] + " " + now.getFullYear();
+        const rawQuote = quotes && quotes.length ? quotes[0] : "";
+        const cleanQuote = String(rawQuote || "").replace(/^\d{1,2}:\s*/, "");
 
-    renderQuote({
-      quotes: [data.username],
-      perhatianLink: "https://youtube.com/shorts/KgC2eDR5Py0",
-      downloadLink: "https://sweaterpink.web.id/subscribe2",
-      groupLink: "https://chat.whatsapp.com/I0K1P1SGVu05GQbh7j3pOC?mode=ems_copy_t"
-    });
+        const box = document.getElementById("quote-box");
+        box.innerHTML =
+          "<b style='font-size:22px'>" +
+          dateStr +
+          "</b>" +
+          "<div style='background:#fff3cd;color:#856404;border:1px solid #ffeeba;padding:12px;border-radius:10px;margin:16px auto 12px;text-align:left;max-width:490px;'>" +
+          "<b style='display:block;margin-bottom:6px;'>⚠️Perhatian!!!</b>" +
+          "<ul class='pink-list'>" +
+          "<li>Username & password berubah setiap hari pukul 00:00</li>" +
+          "<li>Gunakan akun sesuai tanggal pemakaian</li>" +
+          "<li>Jika sudah kedaluwarsa, ambil yang terbaru di website www.sweaterpink.web.id</li>" +
+          "<li>Lihat panduan link video di bawah ini jika masih bingung</li>" +
+          "</ul>" +
+          "<a href='" +
+          (perhatianLink || "#") +
+          "' target='_blank' style='color:#d63384;font-weight:bold;text-decoration:underline;'>🔗 Panduan username:password</a>" +
+          "</div>" +
+          "<div class='account-box'>" +
+          "<div class='account-label'>🔑 Username & Password</div>" +
+          "<div id='today-quote' class='account-value'>" +
+          cleanQuote +
+          "</div>" +
+          "</div>" +
+          "<div style='margin-top:18px;display:flex;flex-direction:column;align-items:center;gap:12px;'>" +
+          "<button class='btn' onclick='copyQuote()'>Salin</button>" +
+          "<p id='copy-msg' style='color:green;font-weight:bold;display:none;margin:0;'>✔ username:password berhasil disalin!</p>" +
+          "<a href='" +
+          (downloadLink || "#") +
+          "' target='_blank' class='btn'>⬇ Download Config V.16</a>" +
+          "<a href='" +
+          (groupLink || "#") +
+          "' target='_blank' class='btn btn-green'>👥 Join Saluran Whatsapp</a>" +
+          "</div>";
 
-  }catch(e){
-    const url = "http://youtube.com/@SweaterPink";
-    errorMsg.innerHTML =
-      'Password salah!!! cek video terbaru di sini ' +
-      '<a href="' + url + '" target="_blank" style="text-decoration:underline;color:#0b5ed7;">link</a>.';
-    errorMsg.style.display = "block";
-  }
-}
+        box.style.display = "block";
+        requestAnimationFrame(() => {
+          box.style.opacity = 1;
+        });
+      }
 
-// 🎨 RENDER (ASLI DIPERTAHANKAN)
-function renderQuote({quotes, perhatianLink, downloadLink, groupLink}) {
-  const now = new Date();
-  const day = now.getDate();
-  const monthNames = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-  const dateStr = day + " " + monthNames[now.getMonth()] + " " + now.getFullYear();
-  const rawQuote = (quotes && quotes.length) ? quotes[0] : "";
-  const cleanQuote = String(rawQuote||"").replace(/^\d{1,2}:\s*/, "");
+      // 📋 COPY
+      function copyQuote() {
+        const text = document.getElementById("today-quote").innerText;
+        navigator.clipboard.writeText(text).then(() => {
+          document.getElementById("copy-msg").style.display = "block";
+        });
+      }
+    </script>
 
-  const box = document.getElementById("quote-box");
-  box.innerHTML =
-    "<b style='font-size:22px'>" + dateStr + "</b>" +
-    "<div style='background:#fff3cd;color:#856404;border:1px solid #ffeeba;padding:12px;border-radius:10px;margin:16px auto 12px;text-align:left;max-width:490px;'>" +
-      "<b style='display:block;margin-bottom:6px;'>⚠️Perhatian!!!</b>" +
-      "<ul class='pink-list'>" +
-  "<li>Username & password berubah setiap hari pukul 00:00</li>" +
-  "<li>Gunakan akun sesuai tanggal pemakaian</li>" +
-  "<li>Jika sudah kedaluwarsa, ambil yang terbaru di website www.sweaterpink.web.id</li>" +
-  "<li>Lihat panduan link video di bawah ini jika masih bingung</li>" +
-"</ul>" +
-      "<a href='" + (perhatianLink||"#") + "' target='_blank' style='color:#d63384;font-weight:bold;text-decoration:underline;'>🔗 Panduan username:password</a>" +
-    "</div>" +
-"<div class='account-box'>" +
-  "<div class='account-label'>🔑 Username & Password</div>" +
-  "<div id='today-quote' class='account-value'>" + cleanQuote + "</div>" +
-"</div>" +
-    "<div style='margin-top:18px;display:flex;flex-direction:column;align-items:center;gap:12px;'>" +
-      "<button class='btn' onclick='copyQuote()'>Salin</button>" +
-      "<p id='copy-msg' style='color:green;font-weight:bold;display:none;margin:0;'>✔ username:password berhasil disalin!</p>" +
-      "<a href='" + (downloadLink||"#") + "' target='_blank' class='btn'>⬇ Download Config V.16</a>" +
-      "<a href='" + (groupLink||"#") + "' target='_blank' class='btn btn-green'>👥 Join Grup Komunitas</a>" +
-    "</div>";
+    <!-- 🌸 Marquee (TIDAK DIUBAH) -->
+    <style>
+      .marquee-box {
+        background: linear-gradient(135deg, #ff4ac9, #ff74d9, #a259ff, #6ecbff);
+        color: white;
+        padding: 8px 12px;
+        font-size: 12px;
+        font-weight: 600;
+        border-radius: 25px;
+        margin: 15px auto 25px;
+        box-shadow: 0 6px 20px rgba(255, 74, 201, 0.25);
+        max-width: 95%;
+        text-align: center;
+      }
+    </style>
 
-  box.style.display = "block";
-  requestAnimationFrame(()=>{ box.style.opacity = 1; });
-}
+    <!-- 🔒 Anti Copy & Inspect Protection -->
+    <script>
+      document.addEventListener("contextmenu", (e) => e.preventDefault());
+      document.onkeydown = (e) => {
+        if (e.ctrlKey && ["s", "u", "c"].includes(e.key)) e.preventDefault();
+        if (e.key === "F12") e.preventDefault();
+        if (e.ctrlKey && e.shiftKey && ["I", "J"].includes(e.key))
+          e.preventDefault();
+      };
+    </script>
 
-// 📋 COPY
-function copyQuote(){
-  const text = document.getElementById("today-quote").innerText;
-  navigator.clipboard.writeText(text).then(()=>{
-    document.getElementById("copy-msg").style.display = "block";
-  });
-}
-</script>
-
-<!-- 🌸 Marquee (TIDAK DIUBAH) -->
-<style>
-.marquee-box {
-  background: linear-gradient(135deg, #ff4ac9, #ff74d9, #a259ff, #6ecbff);
-  color: white;
-  padding: 8px 12px;
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 25px;
-  margin: 15px auto 25px;
-  box-shadow: 0 6px 20px rgba(255, 74, 201, 0.25);
-  max-width: 95%;
-  text-align: center;
-}
-</style>
-
-<!-- 🔒 Anti Copy & Inspect Protection -->
-<script>
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.onkeydown = e => {
-  if (e.ctrlKey && ['s','u','c'].includes(e.key)) e.preventDefault();
-  if (e.key === 'F12') e.preventDefault();
-  if (e.ctrlKey && e.shiftKey && ['I','J'].includes(e.key)) e.preventDefault();
-};
-</script>
-
-<div class="marquee-box">
-  <marquee>✅ Ready Config Premium • Aktif 30–60 Hari • Harga Termurah • Cs Respon 24 Jam ✅</marquee>
-</div>
-
-</body>
+    <div class="marquee-box">
+      <marquee>
+        ✅ Ready Config Premium • Aktif 30–60 Hari • Harga Termurah • Cs Respon
+        24 Jam ✅
+      </marquee>
+    </div>
+  </body>
 </html>
