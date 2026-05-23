@@ -1,0 +1,250 @@
+<style>
+  body {
+    margin: 0;
+    background: #000;
+    font-family: monospace;
+    color: white;
+  }
+
+  /* CONTAINER */
+  .testi-wrapper {
+    width: 92%;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 25px;
+
+    border-radius: 26px;
+
+    background: linear-gradient(
+      145deg,
+      rgba(255, 59, 141, 0.12),
+      rgba(255, 255, 255, 0.03)
+    );
+
+    backdrop-filter: blur(10px);
+
+    border: 2px solid rgba(255, 59, 141, 0.25);
+
+    box-shadow:
+      0 0 25px rgba(255, 59, 141, 0.18),
+      0 0 60px rgba(255, 59, 141, 0.08);
+
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* GLOW BORDER */
+  .testi-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: 26px;
+
+    background: linear-gradient(135deg, #ff3b8d, #ff77c8, #ff3b8d);
+
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events: none;
+  }
+
+  /* TITLE BOX */
+  .testi-title {
+    padding: 22px 20px;
+
+    background: #ff3b8d;
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    font-size: 42px;
+    font-weight: bold;
+    color: white;
+
+    margin-bottom: 18px;
+
+    /* 🔥 FIX */
+    box-sizing: border-box;
+
+    box-shadow:
+      0 0 20px rgba(255, 59, 141, 0.7),
+      0 0 45px rgba(255, 59, 141, 0.35);
+
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
+
+    letter-spacing: 1px;
+  }
+  /* DATE */
+  .testi-date {
+    text-align: center;
+    font-size: 16px;
+    color: #bbb;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+  }
+
+  /* GRID */
+  .testi-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  /* GRID */
+  .testi-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  /* CARD */
+  .testi-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    background: #111;
+
+    height: 520px; /* FIX TINGGI */
+
+    box-shadow: 0 0 20px rgba(255, 59, 141, 0.25);
+
+    transition: 0.3s ease;
+  }
+
+  /* IMAGE */
+  .testi-card img {
+    width: 100%;
+    height: 100%; /* FULL CARD */
+    object-fit: cover; /* AUTO CROP */
+    display: block;
+
+    border-radius: 22px;
+
+    transition: 0.35s ease;
+  }
+
+  /* HOVER */
+  .testi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 28px rgba(255, 59, 141, 0.45);
+  }
+
+  /* IMAGE */
+  .testi-card img {
+    width: 100%;
+    display: block;
+    border-radius: 20px;
+    transition: 0.35s ease;
+    object-fit: cover;
+  }
+
+  /* ZOOM */
+  .testi-card img:hover {
+    transform: scale(1.04);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .testi-title {
+      font-size: 32px;
+    }
+
+    .testi-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+  }
+</style>
+
+<div class="testi-wrapper">
+  <div class="testi-title">TESTIMONI HARI INI</div>
+
+  <div class="testi-date" id="tanggal"></div>
+
+  <div class="testi-container" id="testimoni"></div>
+</div>
+
+<script>
+  async function loadTestimoni() {
+    try {
+      const res = await fetch(
+        "https://script.google.com/macros/s/AKfycbzBpmsrLvP9ojhTFy5hUVknWPlUIz7nI-kjLADxnhg3i7pBMS9xacNFQm8YQrKOlibE2A/exec",
+      );
+
+      const data = await res.json();
+
+      /* WIB */
+      const now = new Date();
+
+      document.getElementById("tanggal").innerText = new Intl.DateTimeFormat(
+        "id-ID",
+        {
+          timeZone: "Asia/Jakarta",
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        },
+      ).format(now);
+
+      /* AUTO GANTI SETIAP 00:00 */
+      const day = Number(
+        new Intl.DateTimeFormat("id-ID", {
+          timeZone: "Asia/Jakarta",
+          day: "numeric",
+        }).format(now),
+      );
+
+      /* 3 gambar per hari */
+      const start = ((day - 1) * 3) % data.length;
+
+      let html = "";
+
+      for (let i = 0; i < 3; i++) {
+        const item = data[(start + i) % data.length];
+
+        html += `
+
+<div class="testi-card">
+
+<img
+src="${item.gambar}"
+loading="lazy"
+alt="Testimoni"
+onclick="window.open('${item.gambar}')"
+>
+
+</div>
+
+`;
+      }
+
+      document.getElementById("testimoni").innerHTML = html;
+    } catch (err) {
+      document.getElementById("testimoni").innerHTML = `
+<p style="
+text-align:center;
+color:#ff3b8d;
+font-size:16px;
+">
+Gagal memuat testimoni 😢
+</p>
+`;
+
+      console.log(err);
+    }
+  }
+
+  /* LOAD */
+  loadTestimoni();
+
+  /* REFRESH 1 MENIT */
+  setInterval(loadTestimoni, 60000);
+</script>
