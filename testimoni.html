@@ -290,14 +290,18 @@
 
           const start = ((day - 1) * 3) % data.length;
 
-          let html = "";
+let html = "";
 
-          for (let i = 0; i < 3; i++) {
-            const item = data[(start + i) % data.length];
+/* FILTER DATA YANG ADA LINK */
+const validData = data.filter(item => item.gambar);
 
-            if (!item.gambar) continue;
+/* AMBIL 3 GAMBAR */
+const imagesToday = validData.slice(start, start + 3);
 
-            html += `
+/* LOOP */
+imagesToday.forEach(item => {
+
+html += `
 
 <div class="testi-card">
 
@@ -311,7 +315,8 @@ onclick="window.open('${item.gambar}')"
 </div>
 
 `;
-          }
+
+});
 
           document.getElementById("testimoni").innerHTML = html;
         } catch (err) {
