@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>LIST CONFIG SWEATER PINK</title>
+
+    <meta name="theme-color" content="#ff3b8d" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #000;
+        font-family: monospace;
+        color: white;
+        padding: 20px;
+        overflow-x: hidden;
+      }
+
+      /* WRAPPER */
+      .wrapper {
+        max-width: 1000px;
+        margin: auto;
+
+        padding: 20px;
+
+        border-radius: 28px;
+
+        background: linear-gradient(
+          145deg,
+          rgba(255, 59, 141, 0.12),
+          rgba(255, 255, 255, 0.03)
+        );
+
+        border: 2px solid rgba(255, 59, 141, 0.25);
+
+        box-shadow:
+          0 0 25px rgba(255, 59, 141, 0.18),
+          0 0 60px rgba(255, 59, 141, 0.08);
+
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* GLOW */
+      .wrapper::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 2px;
+
+        border-radius: 28px;
+
+        background: linear-gradient(135deg, #ff3b8d, #ff77c8, #ff3b8d);
+
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+
+        pointer-events: none;
+      }
+
+      /* TITLE */
+      .title {
+        background: #ff3b8d;
+
+        padding: 22px;
+
+        border-radius: 20px;
+
+        text-align: center;
+
+        font-size: 42px;
+        font-weight: bold;
+
+        margin-bottom: 18px;
+
+        box-shadow:
+          0 0 20px rgba(255, 59, 141, 0.6),
+          0 0 45px rgba(255, 59, 141, 0.35);
+
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
+      }
+
+      /* DESCRIPTION */
+      .desc {
+        margin-bottom: 25px;
+
+        padding: 18px;
+
+        border-radius: 18px;
+
+        background: rgba(255, 59, 141, 0.12);
+
+        border: 1px solid rgba(255, 59, 141, 0.25);
+
+        line-height: 1.8;
+
+        font-size: 15px;
+
+        color: #eee;
+      }
+
+      /* CARD */
+      .card {
+        margin-bottom: 22px;
+
+        padding: 18px;
+
+        border-radius: 20px;
+
+        background: #111;
+
+        border: 1px solid rgba(255, 59, 141, 0.22);
+
+        box-shadow: 0 0 18px rgba(255, 59, 141, 0.12);
+
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+
+        box-shadow: 0 0 28px rgba(255, 59, 141, 0.28);
+      }
+
+      /* PROVIDER */
+      .provider {
+        font-size: 30px;
+        font-weight: bold;
+
+        color: #ff3b8d;
+
+        margin-bottom: 15px;
+
+        text-shadow: 0 0 12px rgba(255, 59, 141, 0.6);
+      }
+
+      /* LIST */
+      .list {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+
+        padding: 12px 0;
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+        font-size: 15px;
+      }
+
+      .list:last-child {
+        border-bottom: none;
+      }
+
+      /* BADGE */
+      .badge {
+        padding: 5px 10px;
+
+        border-radius: 999px;
+
+        font-size: 12px;
+        font-weight: bold;
+
+        white-space: nowrap;
+      }
+
+      /* WORK */
+      .work {
+        background: #00ff95;
+        color: #000;
+      }
+
+      /* NO WORK */
+      .no-work {
+        background: #ff3b8d;
+        color: #fff;
+      }
+
+      /* FOOTER */
+      .footer {
+        margin-top: 30px;
+
+        text-align: center;
+
+        font-size: 18px;
+
+        color: #ff77c8;
+
+        text-shadow: 0 0 10px rgba(255, 59, 141, 0.4);
+      }
+
+      /* MOBILE */
+      @media (max-width: 768px) {
+        body {
+          padding: 12px;
+        }
+
+        .title {
+          font-size: 28px;
+          padding: 18px;
+        }
+
+        .provider {
+          font-size: 24px;
+        }
+
+        .desc {
+          font-size: 13px;
+          line-height: 1.7;
+        }
+
+        .list {
+          font-size: 13px;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .badge {
+          font-size: 11px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="title">LIST CONFIG SWEATER PINK</div>
+
+      <div class="desc">
+        APA ITU CONFIG ???<br /><br />
+
+        Fungsi Config adalah untuk merubah kuota internet seperti kuota game,
+        edukasi, viu, video, ilmupedia dan lainnya menjadi kuota reguler
+        layaknya kuota utama.<br /><br />
+
+        Config juga bisa tanpa kuota / opok (nol pulsa nol kuota).<br /><br />
+
+        Tidak semua config work di semua lokasi, jadi biasakan membaca status
+        ALL TKP atau NO ALL TKP sebelum membeli config.<br /><br />
+
+        Untuk list yang tidak ALL TKP, silakan tanyakan admin apakah work di TKP
+        kamu atau tidak.<br /><br />
+
+        🔥 LINK ORDER 🔥<br /><br />
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <a
+            href="https://www.sweaterpink.web.id/order/"
+            target="_blank"
+            style="
+              background: #00ff95;
+              color: #000;
+              padding: 10px 16px;
+              border-radius: 999px;
+              text-decoration: none;
+              font-weight: bold;
+              display: inline-block;
+              box-shadow: 0 0 12px rgba(0, 255, 149, 0.35);
+            "
+          >
+            ORDER SEKARANG
+          </a>
+
+          <a
+            href="https://api.whatsapp.com/send/?phone=6283870282897"
+            target="_blank"
+            style="
+              background: #00ff95;
+              color: #000;
+              padding: 10px 16px;
+              border-radius: 999px;
+              text-decoration: none;
+              font-weight: bold;
+              display: inline-block;
+              box-shadow: 0 0 12px rgba(37, 211, 102, 0.35);
+            "
+          >
+            WHATSAPP ADMIN
+          </a>
+        </div>
+      </div>
+
+      <!-- TELKOMSEL -->
+      <div class="card">
+        <div class="provider">TELKOMSEL</div>
+
+        <div class="list">
+          <span>Opok (Nol Pulsa Nol Kuota)</span>
+          <span class="badge no-work">NO ALL TKP</span>
+        </div>
+
+        <div class="list">
+          <span>Ilmupedia</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Ruangguru</span>
+          <span class="badge no-work">NO ALL TKP</span>
+        </div>
+
+        <div class="list">
+          <span>Gamemax</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+      </div>
+
+      <!-- AXIS -->
+      <div class="card">
+        <div class="provider">AXIS</div>
+
+        <div class="list">
+          <span>Opok (Nol Pulsa Nol Kuota)</span>
+          <span class="badge no-work">NO ALL TKP</span>
+        </div>
+
+        <div class="list">
+          <span>Game / Unlimited Game</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Edukasi</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Boostr Game</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Boostr Vidio</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Boostr Musik</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Conference</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Musik / Spotify</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Netflix</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Instagram</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>LIFESTYLE Watsapp</span>
+          <span class="badge no-work">NO ALL TKP</span>
+        </div>
+
+        <div class="list">
+          <span>LIFESTYLE Spotify</span>
+          <span class="badge no-work">NO ALL TKP</span>
+        </div>
+
+        <div class="list">
+          <span>LIFESTYLE Vidio</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+      </div>
+
+      <!-- XL -->
+      <div class="card">
+        <div class="provider">XL</div>
+
+        <div class="list">
+          <span>Edukasi</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Conference</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Kouta Game</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Iflix</span>
+          <span class="badge no-work">NO ALL TKP</span>
+        </div>
+      </div>
+
+      <!-- SMARTFREN -->
+      <div class="card">
+        <div class="provider">SMARTFREN</div>
+
+        <div class="list">
+          <span>Unlimited Nonstop</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Whatsapp</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Chat</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+      </div>
+
+      <!-- INDOSAT -->
+      <div class="card">
+        <div class="provider">INDOSAT</div>
+
+        <div class="list">
+          <span>Apps Fun</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+
+        <div class="list">
+          <span>Apps Entertainment</span>
+          <span class="badge work">ALL TKP ✅</span>
+        </div>
+      </div>
+
+      <!-- TRI -->
+      <div class="card">
+        <div class="provider">TRI</div>
+
+        <div class="list">
+          <span>Sosmed</span>
+          <span class="badge no-work">NO ALL TKP</span>
+        </div>
+      </div>
+
+      <div class="footer">BY : SWEATER PINK</div>
+    </div>
+
+    </script>
+
+<!-- 🔒 Anti Copy & Inspect Protection -->
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.onkeydown = e => {
+  if (e.ctrlKey && ['s','u','c'].includes(e.key)) e.preventDefault();
+  if (e.key === 'F12') e.preventDefault();
+  if (e.ctrlKey && e.shiftKey && ['I','J'].includes(e.key)) e.preventDefault();
+};
+</script>
+
+  </body>
+</html>
