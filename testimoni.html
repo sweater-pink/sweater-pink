@@ -263,7 +263,7 @@
       async function loadTestimoni() {
         try {
           const res = await fetch(
-            "https://script.google.com/macros/s/AKfycbzBpmsrLvP9ojhTFy5hUVknWPlUIz7nI-kjLADxnhg3i7pBMS9xacNFQm8YQrKOlibE2A/exec",
+            "https://script.google.com/macros/s/AKfycbzn6ON_cEEWja8zDAt6jgkUARzND7tea4LLC9Mmewt3mo53dhefwESMq6-bG8fPamVhig/exec",
           );
 
           const data = await res.json();
@@ -290,18 +290,14 @@
 
           const start = ((day - 1) * 3) % data.length;
 
-let html = "";
+          let html = "";
 
-/* FILTER DATA YANG ADA LINK */
-const validData = data.filter(item => item.gambar);
+          /* FILTER LINK YANG ADA */
+          const validData = data.filter((item) => item.gambar);
 
-/* AMBIL 3 GAMBAR */
-const imagesToday = validData.slice(start, start + 3);
-
-/* LOOP */
-imagesToday.forEach(item => {
-
-html += `
+          /* LOOP SEMUA GAMBAR */
+          validData.forEach((item) => {
+            html += `
 
 <div class="testi-card">
 
@@ -315,8 +311,7 @@ onclick="window.open('${item.gambar}')"
 </div>
 
 `;
-
-});
+          });
 
           document.getElementById("testimoni").innerHTML = html;
         } catch (err) {
