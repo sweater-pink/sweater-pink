@@ -1,338 +1,371 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TESTIMONI SWEATER PINK</title>
 
-<title>TESTIMONI SWEATER PINK</title>
+    <!-- PREVIEW WHATSAPP -->
+    <meta property="og:title" content="TESTIMONI SWEATER PINK" />
+    <meta
+      property="og:description"
+      content="Testimoni Real Transaction by SWEATER PINK"
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/icon/logoprofil1.jpg"
+    />
+    <meta property="og:url" content="https://sweaterpink.web.id" />
+    <meta property="og:type" content="website" />
 
-<!-- PREVIEW WHATSAPP -->
-<meta property="og:title" content="TESTIMONI SWEATER PINK">
-<meta property="og:description" content="Testimoni Real Transaction by SWEATER PINK">
-<meta property="og:image" content="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/icon/logoprofil1.jpg">
-<meta property="og:url" content="https://sweaterpink.web.id">
-<meta property="og:type" content="website">
+    <meta name="theme-color" content="#ff3b8d" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-<meta name="theme-color" content="#ff3b8d">
-<meta name="twitter:card" content="summary_large_image">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-<style>
+      body {
+        background: #000;
+        font-family: monospace;
+        color: white;
+        overflow-x: hidden;
+      }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+      /* CONTAINER */
+      .testi-wrapper {
+        width: 92%;
+        max-width: 950px;
 
-body{
-background:#000;
-font-family:monospace;
-color:white;
-overflow-x:hidden;
-}
+        margin: 35px auto;
+        padding: 20px;
 
-/* CONTAINER */
-.testi-wrapper{
+        border-radius: 26px;
 
-width:92%;
-max-width:950px;
+        background: linear-gradient(
+          145deg,
+          rgba(255, 59, 141, 0.12),
+          rgba(255, 255, 255, 0.03)
+        );
 
-margin:35px auto;
-padding:20px;
+        backdrop-filter: blur(10px);
 
-border-radius:26px;
+        border: 2px solid rgba(255, 59, 141, 0.25);
 
-background:
-linear-gradient(
-145deg,
-rgba(255,59,141,.12),
-rgba(255,255,255,.03)
-);
+        box-shadow:
+          0 0 25px rgba(255, 59, 141, 0.18),
+          0 0 60px rgba(255, 59, 141, 0.08);
 
-backdrop-filter:blur(10px);
+        position: relative;
+        overflow: hidden;
+      }
 
-border:2px solid rgba(255,59,141,.25);
+      /* GLOW BORDER */
+      .testi-wrapper::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 2px;
+        border-radius: 26px;
 
-box-shadow:
-0 0 25px rgba(255,59,141,.18),
-0 0 60px rgba(255,59,141,.08);
+        background: linear-gradient(135deg, #ff3b8d, #ff77c8, #ff3b8d);
 
-position:relative;
-overflow:hidden;
-}
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
 
-/* GLOW BORDER */
-.testi-wrapper::before{
-content:"";
-position:absolute;
-inset:0;
-padding:2px;
-border-radius:26px;
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
 
-background:
-linear-gradient(
-135deg,
-#ff3b8d,
-#ff77c8,
-#ff3b8d
-);
+        pointer-events: none;
+      }
 
--webkit-mask:
-linear-gradient(#fff 0 0) content-box,
-linear-gradient(#fff 0 0);
+      /* TITLE */
+      .testi-title {
+        padding: 18px;
 
--webkit-mask-composite:xor;
-mask-composite:exclude;
+        background: #ff3b8d;
 
-pointer-events:none;
-}
+        border-radius: 18px;
 
-/* TITLE */
-.testi-title{
+        text-align: center;
 
-padding:18px;
+        font-size: 36px;
+        font-weight: bold;
 
-background:#ff3b8d;
+        color: white;
+
+        margin-bottom: 18px;
+
+        box-shadow:
+          0 0 20px rgba(255, 59, 141, 0.7),
+          0 0 45px rgba(255, 59, 141, 0.35);
+
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
+
+        letter-spacing: 1px;
+      }
+
+      /* DATE */
+      .testi-date {
+        text-align: center;
+        font-size: 15px;
+        color: #bbb;
+        margin-bottom: 15px;
+      }
+
+      /* INFO */
+      .testi-info {
+        margin-bottom: 22px;
+
+        padding: 13px;
+
+        background: rgba(255, 59, 141, 0.14);
+
+        border: 1px solid rgba(255, 59, 141, 0.35);
+
+        border-radius: 14px;
+
+        text-align: center;
+
+        font-size: 14px;
+        color: #ffd4e7;
+
+        box-shadow: 0 0 14px rgba(255, 59, 141, 0.15);
+      }
+
+      /* GRID */
+      .testi-container {
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+
+        gap: 14px;
+      }
+
+      /* CARD */
+      .testi-card {
+        position: relative;
+        overflow: hidden;
+
+        border-radius: 18px;
+
+        background: #111;
+
+        aspect-ratio: 1/1.35;
+
+        box-shadow: 0 0 18px rgba(255, 59, 141, 0.22);
+
+        transition: 0.3s ease;
+      }
+
+      /* GLOW BORDER CARD */
+      .testi-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 2px;
+        border-radius: 18px;
+
+        background: linear-gradient(135deg, #ff3b8d, #ff77c8, #ff3b8d);
+
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+
+        pointer-events: none;
+      }
+
+      /* HOVER */
+      .testi-card:hover {
+        transform: translateY(-4px);
+
+        box-shadow: 0 0 28px rgba(255, 59, 141, 0.45);
+      }
+
+      /* IMAGE */
+      .testi-card img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: contain;
+
+        background: #111;
+
+        display: block;
+
+        border-radius: 18px;
+
+        padding: 4px;
+
+        transition: 0.35s ease;
+      }
+
+      /* ZOOM */
+      .testi-card img:hover {
+        transform: scale(1.03);
+      }
+
+      /* LOADING BOX */
+.loading-box{
+
+grid-column:1/-1;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
+padding:40px 20px;
+
+background:#111;
 
 border-radius:18px;
 
-text-align:center;
-
-font-size:36px;
-font-weight:bold;
-
-color:white;
-
-margin-bottom:18px;
-
-box-shadow:
-0 0 20px rgba(255,59,141,.7),
-0 0 45px rgba(255,59,141,.35);
-
-text-shadow:
-0 0 10px rgba(255,255,255,.35);
-
-letter-spacing:1px;
+border:
+1px solid rgba(255,59,141,.25);
 }
 
-/* DATE */
-.testi-date{
-text-align:center;
-font-size:15px;
-color:#bbb;
-margin-bottom:15px;
+/* SPINNER */
+.spinner{
+
+width:50px;
+height:50px;
+
+border:
+4px solid rgba(255,255,255,.15);
+
+border-top:
+4px solid #ff3b8d;
+
+border-radius:50%;
+
+animation:spin 1s linear infinite;
 }
 
-/* INFO */
-.testi-info{
+/* TEXT */
+.loading-text{
 
-margin-bottom:22px;
-
-padding:13px;
-
-background:rgba(255,59,141,.14);
-
-border:1px solid rgba(255,59,141,.35);
-
-border-radius:14px;
-
-text-align:center;
+margin-top:15px;
 
 font-size:14px;
-color:#ffd4e7;
+color:#ff77c8;
 
-box-shadow:
-0 0 14px rgba(255,59,141,.15);
+letter-spacing:2px;
 }
 
-/* GRID */
-.testi-container{
+/* SPIN */
+@keyframes spin{
 
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(160px,1fr));
-
-gap:14px;
+0%{
+transform:rotate(0deg);
 }
 
-/* CARD */
-.testi-card{
-
-position:relative;
-overflow:hidden;
-
-border-radius:18px;
-
-background:#111;
-
-aspect-ratio:1/1.35;
-
-box-shadow:
-0 0 18px rgba(255,59,141,.22);
-
-transition:.3s ease;
-}
-
-/* GLOW BORDER CARD */
-.testi-card::before{
-content:"";
-position:absolute;
-inset:0;
-padding:2px;
-border-radius:18px;
-
-background:
-linear-gradient(
-135deg,
-#ff3b8d,
-#ff77c8,
-#ff3b8d
-);
-
--webkit-mask:
-linear-gradient(#fff 0 0) content-box,
-linear-gradient(#fff 0 0);
-
--webkit-mask-composite:xor;
-mask-composite:exclude;
-
-pointer-events:none;
-}
-
-/* HOVER */
-.testi-card:hover{
-
-transform:translateY(-4px);
-
-box-shadow:
-0 0 28px rgba(255,59,141,.45);
-}
-
-/* IMAGE */
-.testi-card img{
-
-width:100%;
-height:100%;
-
-object-fit:contain;
-
-background:#111;
-
-display:block;
-
-border-radius:18px;
-
-padding:4px;
-
-transition:.35s ease;
-}
-
-/* ZOOM */
-.testi-card img:hover{
-transform:scale(1.03);
-}
-
-/* MOBILE */
-@media(max-width:768px){
-
-.testi-wrapper{
-width:94%;
-padding:16px;
-border-radius:20px;
-}
-
-.testi-title{
-font-size:24px;
-padding:15px;
-border-radius:15px;
-}
-
-.testi-date{
-font-size:13px;
-}
-
-.testi-info{
-font-size:12px;
-padding:10px;
-}
-
-.testi-container{
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-}
-
-.testi-card{
-height:220px;
-border-radius:14px;
-}
-
-.testi-card img{
-border-radius:14px;
+100%{
+transform:rotate(360deg);
 }
 
 }
 
-</style>
-</head>
+      /* MOBILE */
+      @media (max-width: 768px) {
+        .testi-wrapper {
+          width: 94%;
+          padding: 16px;
+          border-radius: 20px;
+        }
 
-<body>
+        .testi-title {
+          font-size: 24px;
+          padding: 15px;
+          border-radius: 15px;
+        }
 
-<div class="testi-wrapper">
+        .testi-date {
+          font-size: 13px;
+        }
 
-<div class="testi-title">
-TESTIMONI HARI INI
+        .testi-info {
+          font-size: 12px;
+          padding: 10px;
+        }
+
+        .testi-container {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+
+        .testi-card {
+          height: 220px;
+          border-radius: 14px;
+        }
+
+        .testi-card img {
+          border-radius: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="testi-wrapper">
+      <div class="testi-title">TESTIMONI HARI INI</div>
+
+      <div class="testi-date" id="tanggal"></div>
+
+      <div class="testi-info">Klik gambar untuk melihat full testimoni ✨</div>
+
+<div class="testi-container" id="testimoni">
+
+<div class="loading-box">
+
+<div class="spinner"></div>
+
+<div class="loading-text">
+MEMUAT TESTIMONI...
 </div>
-
-<div class="testi-date" id="tanggal"></div>
-
-<div class="testi-info">
-Klik gambar untuk melihat full testimoni ✨
-</div>
-
-<div class="testi-container" id="testimoni"></div>
 
 </div>
 
-<script>
+</div>
 
-async function loadTestimoni(){
+    <script>
+      async function loadTestimoni() {
+        try {
+          const res = await fetch(
+            "https://script.google.com/macros/s/AKfycbxj5Zn9cAIvkc1Lhedaty3TijWNPpA_Vr1FD1Z2QavMhC7dH8QewaTwYVIzp0Wfzpx1yw/exec",
+          );
 
-try{
+          const data = await res.json();
 
-const res = await fetch(
-"https://script.google.com/macros/s/AKfycbxj5Zn9cAIvkc1Lhedaty3TijWNPpA_Vr1FD1Z2QavMhC7dH8QewaTwYVIzp0Wfzpx1yw/exec"
-);
+          /* WIB */
+          const now = new Date();
 
-const data = await res.json();
+          document.getElementById("tanggal").innerText =
+            new Intl.DateTimeFormat("id-ID", {
+              timeZone: "Asia/Jakarta",
+              weekday: "long",
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            }).format(now);
 
-/* WIB */
-const now = new Date();
+          /* HTML */
+          let html = "";
 
-document.getElementById("tanggal").innerText =
-new Intl.DateTimeFormat(
-"id-ID",
-{
-timeZone:"Asia/Jakarta",
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric",
-}
-).format(now);
+          /* FILTER LINK */
+          const validData = data.filter((item) => item.gambar);
 
-/* HTML */
-let html = "";
-
-/* FILTER LINK */
-const validData =
-data.filter(item => item.gambar);
-
-/* LOOP SEMUA GAMBAR */
-validData.forEach(item => {
-
-html += `
+          /* LOOP SEMUA GAMBAR */
+          validData.forEach((item) => {
+            html += `
 
 <div class="testi-card">
 
@@ -346,14 +379,11 @@ onclick="window.open('${item.gambar}')"
 </div>
 
 `;
+          });
 
-});
-
-document.getElementById("testimoni").innerHTML = html;
-
-}catch(err){
-
-document.getElementById("testimoni").innerHTML = `
+          document.getElementById("testimoni").innerHTML = html;
+        } catch (err) {
+          document.getElementById("testimoni").innerHTML = `
 
 <p style="
 text-align:center;
@@ -368,29 +398,26 @@ Gagal memuat testimoni 😢
 
 `;
 
-console.log(err);
+          console.log(err);
+        }
+      }
 
-}
+      /* LOAD */
+      loadTestimoni();
 
-}
+      /* AUTO REFRESH */
+      setInterval(loadTestimoni, 60000);
+    </script>
 
-/* LOAD */
-loadTestimoni();
-
-/* AUTO REFRESH */
-setInterval(loadTestimoni,60000);
-
-</script>
-
-  <!-- 🔒 Anti Copy & Inspect Protection -->
-<script>
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.onkeydown = e => {
-  if (e.ctrlKey && ['s','u','c'].includes(e.key)) e.preventDefault();
-  if (e.key === 'F12') e.preventDefault();
-  if (e.ctrlKey && e.shiftKey && ['I','J'].includes(e.key)) e.preventDefault();
-};
-</script>
-
-</body>
+    <!-- 🔒 Anti Copy & Inspect Protection -->
+    <script>
+      document.addEventListener("contextmenu", (e) => e.preventDefault());
+      document.onkeydown = (e) => {
+        if (e.ctrlKey && ["s", "u", "c"].includes(e.key)) e.preventDefault();
+        if (e.key === "F12") e.preventDefault();
+        if (e.ctrlKey && e.shiftKey && ["I", "J"].includes(e.key))
+          e.preventDefault();
+      };
+    </script>
+  </body>
 </html>
