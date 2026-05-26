@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>TESTIMONI SWEATER PINK</title>
+
+    <!-- PREVIEW WHATSAPP -->
+    <meta property="og:title" content="TESTIMONI SWEATER PINK" />
+    <meta
+      property="og:description"
+      content="Testimoni Real Transaction by SWEATER PINK"
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/icon/logoprofil1.jpg"
+    />
+    <meta property="og:url" content="https://sweaterpink.web.id" />
+    <meta property="og:type" content="website" />
+
+    <meta name="theme-color" content="#ff3b8d" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #000;
+        font-family: monospace;
+        color: white;
+        overflow-x: hidden;
+      }
+
+      /* CONTAINER */
+      .testi-wrapper {
+        width: 92%;
+        max-width: 950px;
+
+        margin: 35px auto;
+        padding: 20px;
+
+        border-radius: 26px;
+
+        background: linear-gradient(
+          145deg,
+          rgba(255, 59, 141, 0.12),
+          rgba(255, 255, 255, 0.03)
+        );
+
+        backdrop-filter: blur(10px);
+
+        border: 2px solid rgba(255, 59, 141, 0.25);
+
+        box-shadow:
+          0 0 25px rgba(255, 59, 141, 0.18),
+          0 0 60px rgba(255, 59, 141, 0.08);
+
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* GLOW BORDER */
+      .testi-wrapper::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 2px;
+        border-radius: 26px;
+
+        background: linear-gradient(135deg, #ff3b8d, #ff77c8, #ff3b8d);
+
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+
+        pointer-events: none;
+      }
+
+      /* TITLE */
+      .testi-title {
+        padding: 18px;
+
+        background: #ff3b8d;
+
+        border-radius: 18px;
+
+        text-align: center;
+
+        font-size: 36px;
+        font-weight: bold;
+
+        color: white;
+
+        margin-bottom: 18px;
+
+        box-shadow:
+          0 0 20px rgba(255, 59, 141, 0.7),
+          0 0 45px rgba(255, 59, 141, 0.35);
+
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
+
+        letter-spacing: 1px;
+      }
+
+      /* DATE */
+      .testi-date {
+        text-align: center;
+        font-size: 15px;
+        color: #bbb;
+        margin-bottom: 15px;
+      }
+
+      /* INFO */
+      .testi-info {
+        margin-bottom: 22px;
+
+        padding: 13px;
+
+        background: rgba(255, 59, 141, 0.14);
+
+        border: 1px solid rgba(255, 59, 141, 0.35);
+
+        border-radius: 14px;
+
+        text-align: center;
+
+        font-size: 14px;
+        color: #ffd4e7;
+
+        box-shadow: 0 0 14px rgba(255, 59, 141, 0.15);
+      }
+
+.order-box{
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+width:100%;
+
+margin-bottom:20px;
+
+padding:14px;
+
+background:
+linear-gradient(
+135deg,
+#00ff95,
+#00c96b
+);
+
+border-radius:16px;
+
+font-size:15px;
+font-weight:bold;
+
+color:#000;
+text-decoration:none;
+
+border-bottom:
+2px solid #00e5ff;
+
+box-shadow:
+0 0 18px rgba(0,255,149,.35);
+
+transition:.3s ease;
+}
+
+      /* GRID */
+      .testi-container {
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+
+        gap: 14px;
+      }
+
+      /* CARD */
+      .testi-card {
+        position: relative;
+        overflow: hidden;
+
+        border-radius: 18px;
+
+        background: #111;
+
+        aspect-ratio: 1/1.35;
+
+        box-shadow: 0 0 18px rgba(255, 59, 141, 0.22);
+
+        transition: 0.3s ease;
+      }
+
+      /* GLOW BORDER CARD */
+      .testi-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 2px;
+        border-radius: 18px;
+
+        background: linear-gradient(135deg, #ff3b8d, #ff77c8, #ff3b8d);
+
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+
+        pointer-events: none;
+      }
+
+      /* HOVER */
+      .testi-card:hover {
+        transform: translateY(-4px);
+
+        box-shadow: 0 0 28px rgba(255, 59, 141, 0.45);
+      }
+
+      /* IMAGE */
+      .testi-card img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: contain;
+
+        background: #111;
+
+        display: block;
+
+        border-radius: 18px;
+
+        padding: 4px;
+
+        transition: 0.35s ease;
+      }
+
+      /* ZOOM */
+      .testi-card img:hover {
+        transform: scale(1.03);
+      }
+
+      /* LOADING BOX */
+.loading-box{
+
+grid-column:1/-1;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
+padding:40px 20px;
+
+background:#111;
+
+border-radius:18px;
+
+border:
+1px solid rgba(255,59,141,.25);
+}
+
+/* SPINNER */
+.spinner{
+
+width:50px;
+height:50px;
+
+border:
+4px solid rgba(255,255,255,.15);
+
+border-top:
+4px solid #ff3b8d;
+
+border-radius:50%;
+
+animation:spin 1s linear infinite;
+}
+
+/* TEXT */
+.loading-text{
+
+margin-top:15px;
+
+font-size:14px;
+color:#ff77c8;
+
+letter-spacing:2px;
+}
+
+/* SPIN */
+@keyframes spin{
+
+0%{
+transform:rotate(0deg);
+}
+
+100%{
+transform:rotate(360deg);
+}
+
+}
+
+      /* MOBILE */
+      @media (max-width: 768px) {
+        .testi-wrapper {
+          width: 94%;
+          padding: 16px;
+          border-radius: 20px;
+        }
+
+        .testi-title {
+          font-size: 24px;
+          padding: 15px;
+          border-radius: 15px;
+        }
+
+        .testi-date {
+          font-size: 13px;
+        }
+
+        .testi-info {
+          font-size: 12px;
+          padding: 10px;
+        }
+
+        .testi-container {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+
+        .testi-card {
+          height: 220px;
+          border-radius: 14px;
+        }
+
+        .testi-card img {
+          border-radius: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="testi-wrapper">
+      <div class="testi-title">TESTIMONI HARI INI</div>
+
+      <div class="testi-date" id="tanggal"></div>
+
+      <div class="testi-info">Klik gambar untuk melihat full testimoni ✨</div>
+
+      <a
+href="https://www.sweaterpink.web.id/order/"
+target="_blank"
+class="order-box"
+>
+
+🛒 ORDER PREMIUM SEKARANG
+
+</a>
+
+<div class="testi-container" id="testimoni">
+
+<div class="loading-box">
+
+<div class="spinner"></div>
+
+<div class="loading-text">
+MEMUAT TESTIMONI...
+</div>
+
+</div>
+
+</div>
+
+    <script>
+      async function loadTestimoni() {
+        try {
+          const res = await fetch(
+            "https://script.google.com/macros/s/AKfycbxj5Zn9cAIvkc1Lhedaty3TijWNPpA_Vr1FD1Z2QavMhC7dH8QewaTwYVIzp0Wfzpx1yw/exec",
+          );
+
+          const data = await res.json();
+
+          /* WIB */
+          const now = new Date();
+
+          document.getElementById("tanggal").innerText =
+            new Intl.DateTimeFormat("id-ID", {
+              timeZone: "Asia/Jakarta",
+              weekday: "long",
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            }).format(now);
+
+          /* HTML */
+          let html = "";
+
+          /* FILTER LINK */
+          const validData = data.filter((item) => item.gambar);
+
+          /* LOOP SEMUA GAMBAR */
+          validData.forEach((item) => {
+            html += `
+
+<div class="testi-card">
+
+<img
+src="${item.gambar}"
+loading="lazy"
+alt="Testimoni"
+onclick="window.open('${item.gambar}')"
+>
+
+</div>
+
+`;
+          });
+
+          document.getElementById("testimoni").innerHTML = html;
+        } catch (err) {
+          document.getElementById("testimoni").innerHTML = `
+
+<p style="
+text-align:center;
+color:#ff3b8d;
+font-size:16px;
+padding:20px;
+">
+
+Gagal memuat testimoni 😢
+
+</p>
+
+`;
+
+          console.log(err);
+        }
+      }
+
+      /* LOAD */
+      loadTestimoni();
+
+      /* AUTO REFRESH */
+      setInterval(loadTestimoni, 60000);
+    </script>
+
+    <!-- 🔒 Anti Copy & Inspect Protection -->
+    <script>
+      document.addEventListener("contextmenu", (e) => e.preventDefault());
+      document.onkeydown = (e) => {
+        if (e.ctrlKey && ["s", "u", "c"].includes(e.key)) e.preventDefault();
+        if (e.key === "F12") e.preventDefault();
+        if (e.ctrlKey && e.shiftKey && ["I", "J"].includes(e.key))
+          e.preventDefault();
+      };
+    </script>
+  </body>
+</html>
+
