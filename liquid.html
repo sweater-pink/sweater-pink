@@ -8,10 +8,7 @@
 
     <!-- PREVIEW WHATSAPP -->
     <meta property="og:title" content="LIQUID" />
-    <meta
-      property="og:description"
-      content="LIQUID"
-    />
+    <meta property="og:description" content="LIQUID" />
     <meta
       property="og:image"
       content="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/icon/logoprofil1.jpg"
@@ -58,10 +55,13 @@
       }
 
       .logo {
-        font-size: 42px;
+        font-size: clamp(16px, 4vw, 42px);
         font-weight: bold;
         color: #ff3b8d;
         margin-bottom: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .subtitle {
@@ -205,16 +205,23 @@
       }
 
       @media (max-width: 768px) {
-        .logo {
-          font-size: 28px;
+        .kategori {
+          display: flex;
+          flex-direction: row;
         }
 
-        .kategori {
-          flex-direction: column;
+        .tab {
+          font-size: 14px;
+          padding: 12px;
+        }
+
+        .produk-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
         }
 
         .card img {
-          height: 180px;
+          height: 150px;
         }
       }
     </style>
@@ -225,7 +232,7 @@
       <div class="header">
         <div class="logo">🔥 STOK LIQUID TERBARU 🔥</div>
 
-        <div class="subtitle">SALTNIC & FREEBASE</div>
+        <div class="subtitle">SALTNIC • FREEBASE</div>
       </div>
 
       <a
@@ -301,7 +308,7 @@ color:#ff3b8d;
 margin-bottom:8px;
 ">
 
-🧂 SALTNIC 30ML 
+🧂 SALTNIC 30ML NIC 3
 
 </div>
 
@@ -378,7 +385,7 @@ Rp 80.000
       setInterval(loadProduk, 60000);
     </script>
 
-        <!-- 🔒 Anti Copy & Inspect Protection -->
+    <!-- 🔒 Anti Copy & Inspect Protection -->
     <script>
       document.addEventListener("contextmenu", (e) => e.preventDefault());
       document.onkeydown = (e) => {
@@ -388,6 +395,5 @@ Rp 80.000
           e.preventDefault();
       };
     </script>
-    
   </body>
 </html>
