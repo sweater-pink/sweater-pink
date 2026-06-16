@@ -293,28 +293,34 @@ MEMUAT PRODUK...
 <!-- FREEBASE -->
 <div id="freebase" class="produk-grid" style="display:none"></div>
 <div class="footer">© 2026 LIQUID STORE PREMIUM</div>
-    <script>
-      function showKategori(id, btn) {
-        document
-          .querySelectorAll(".produk-grid")
-          .forEach((el) => (el.style.display = "none"));
+<script>
 
-        document.getElementById(id).style.display = "grid";
+let activeKategori = "saltnic";
 
-        document
-          .querySelectorAll(".tab")
-          .forEach((el) => el.classList.remove("active"));
+function showKategori(id, btn) {
 
-        btn.classList.add("active");
-      }
+activeKategori = id;
+
+document
+.querySelectorAll(".tab")
+.forEach(el => el.classList.remove("active"));
+
+btn.classList.add("active");
+
+if (document.getElementById("loading").style.display === "flex") {
+  return;
+}
+
+document
+.querySelectorAll(".produk-grid")
+.forEach(el => el.style.display = "none");
+
+document.getElementById(id).style.display = "grid";
+}
 
 async function loadProduk() {
 
 document.getElementById("loading").style.display = "flex";
-
-document.getElementById("saltnic").style.display = "none";
-
-document.getElementById("freebase").style.display = "none";
 
 try {
 
@@ -411,18 +417,27 @@ Rp 80.000
 
 </div>
 `;
-          });
-
+});
 document.getElementById("saltnic").innerHTML = saltnicHTML;
 
 document.getElementById("freebase").innerHTML = freebaseHTML;
 
 document.getElementById("loading").style.display = "none";
 
-document.getElementById("saltnic").style.display = "grid";
+/* tampilkan hanya kategori aktif */
+document
+.querySelectorAll(".produk-grid")
+.forEach(el => el.style.display = "none");
+
+document.getElementById(activeKategori).style.display = "grid";
+
 } catch (err) {
 
 document.getElementById("loading").style.display = "none";
+
+document
+.querySelectorAll(".produk-grid")
+.forEach(el => el.style.display = "none");
 
 document.getElementById("saltnic").style.display = "grid";
 
