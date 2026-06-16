@@ -224,6 +224,14 @@
           height: 150px;
         }
       }
+      @keyframes spin{
+0%{
+transform:rotate(0deg);
+}
+100%{
+transform:rotate(360deg);
+}
+}
     </style>
   </head>
 
@@ -252,15 +260,39 @@
         </button>
       </div>
 
-      <!-- SALTNIC -->
-      <div id="saltnic" class="produk-grid"></div>
+<div id="loading" style="
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:40px;
+">
 
-      <!-- FREEBASE -->
-      <div id="freebase" class="produk-grid" style="display: none"></div>
+<div style="
+width:50px;
+height:50px;
+border:4px solid rgba(255,255,255,.15);
+border-top:4px solid #ff3b8d;
+border-radius:50%;
+animation:spin 1s linear infinite;
+"></div>
 
-      <div class="footer">© 2026 LIQUID STORE PREMIUM</div>
-    </div>
+<div style="
+margin-top:15px;
+color:#ff77c8;
+letter-spacing:2px;
+">
+MEMUAT PRODUK...
+</div>
 
+</div>
+
+<!-- SALTNIC -->
+<div id="saltnic" class="produk-grid"></div>
+
+<!-- FREEBASE -->
+<div id="freebase" class="produk-grid" style="display:none"></div>
+<div class="footer">© 2026 LIQUID STORE PREMIUM</div>
     <script>
       function showKategori(id, btn) {
         document
@@ -276,13 +308,25 @@
         btn.classList.add("active");
       }
 
-      async function loadProduk() {
-        try {
-          const res = await fetch(
-            "https://script.google.com/macros/s/AKfycbyYb7R56mQzGeFlcrp9ULCLmkoBKG1HBKU30FFpmGATw37I7wOqHDMMpojNaU85OBw/exec",
-          );
+async function loadProduk() {
 
-          const data = await res.json();
+document.getElementById("loading").style.display = "flex";
+
+document.getElementById("saltnic").style.display = "none";
+
+document.getElementById("freebase").style.display = "none";
+
+try {
+
+const res = await fetch(
+"https://script.google.com/macros/s/AKfycbyYb7R56mQzGeFlcrp9ULCLmkoBKG1HBKU30FFpmGATw37I7wOqHDMMpojNaU85OBw/exec"
+);
+
+const data = await res.json();
+
+await new Promise(resolve =>
+setTimeout(resolve,1500)
+);
 
           let saltnicHTML = "";
           let freebaseHTML = "";
@@ -369,15 +413,25 @@ Rp 80.000
 `;
           });
 
-          document.getElementById("saltnic").innerHTML = saltnicHTML;
+document.getElementById("saltnic").innerHTML = saltnicHTML;
 
-          document.getElementById("freebase").innerHTML = freebaseHTML;
-        } catch (err) {
-          document.getElementById("saltnic").innerHTML =
-            "<h2 style='text-align:center'>Gagal memuat data</h2>";
+document.getElementById("freebase").innerHTML = freebaseHTML;
 
-          console.log(err);
-        }
+document.getElementById("loading").style.display = "none";
+
+document.getElementById("saltnic").style.display = "grid";
+} catch (err) {
+
+document.getElementById("loading").style.display = "none";
+
+document.getElementById("saltnic").style.display = "grid";
+
+document.getElementById("saltnic").innerHTML =
+"<h2 style='text-align:center'>Gagal memuat data</h2>";
+
+console.log(err);
+
+}
       }
 
       loadProduk();
