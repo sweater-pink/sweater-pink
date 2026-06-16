@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>LIQUID STORE PREMIUM</title>
+
+    <meta name="theme-color" content="#ff3b8d" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: monospace;
+      }
+
+      body {
+        background: #000;
+        color: #fff;
+        padding: 20px;
+      }
+
+      .wrapper {
+        max-width: 1100px;
+        margin: auto;
+      }
+
+      .header {
+        text-align: center;
+        padding: 30px 20px;
+        border-radius: 25px;
+
+        background: linear-gradient(
+          135deg,
+          rgba(255, 59, 141, 0.15),
+          rgba(255, 255, 255, 0.03)
+        );
+
+        border: 2px solid rgba(255, 59, 141, 0.3);
+
+        box-shadow: 0 0 25px rgba(255, 59, 141, 0.2);
+      }
+
+      .logo {
+        font-size: 42px;
+        font-weight: bold;
+        color: #ff3b8d;
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        color: #ccc;
+        font-size: 15px;
+      }
+
+      .order-banner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin: 20px 0;
+
+        padding: 16px;
+
+        background: linear-gradient(135deg, #00ff95, #00c96b);
+
+        border-radius: 18px;
+
+        font-size: 18px;
+        font-weight: bold;
+
+        color: #000;
+        text-decoration: none;
+
+        box-shadow: 0 0 20px rgba(0, 255, 149, 0.4);
+      }
+
+      .kategori {
+        display: flex;
+        gap: 12px;
+        margin: 25px 0;
+      }
+
+      .tab {
+        flex: 1;
+        padding: 16px;
+        border: none;
+        cursor: pointer;
+
+        background: #111;
+        color: #fff;
+
+        border-radius: 16px;
+
+        font-size: 16px;
+        font-weight: bold;
+
+        border: 2px solid #ff3b8d;
+
+        transition: 0.3s;
+      }
+
+      .tab.active {
+        background: #ff3b8d;
+
+        box-shadow: 0 0 20px rgba(255, 59, 141, 0.5);
+      }
+
+      .produk-grid {
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+        gap: 18px;
+      }
+
+      .card {
+        background: #111;
+
+        border-radius: 20px;
+
+        overflow: hidden;
+
+        border: 1px solid rgba(255, 59, 141, 0.3);
+
+        box-shadow: 0 0 18px rgba(255, 59, 141, 0.15);
+
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+
+        box-shadow: 0 0 25px rgba(255, 59, 141, 0.4);
+      }
+
+      .card img {
+        width: 100%;
+        height: 220px;
+        object-fit: contain;
+        background: #0a0a0a;
+        padding: 10px;
+      }
+
+      .card-body {
+        padding: 15px;
+        text-align: center;
+      }
+
+      .nama {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      .detail {
+        color: #bbb;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .harga {
+        font-size: 24px;
+        font-weight: bold;
+        color: #00ff95;
+        margin-bottom: 12px;
+      }
+
+      .btn-order {
+        display: block;
+
+        padding: 12px;
+
+        background: #ff3b8d;
+
+        border-radius: 12px;
+
+        color: #fff;
+        font-weight: bold;
+
+        text-decoration: none;
+      }
+
+      .footer {
+        margin-top: 40px;
+        text-align: center;
+        color: #999;
+        font-size: 13px;
+      }
+
+      @media (max-width: 768px) {
+        .logo {
+          font-size: 28px;
+        }
+
+        .kategori {
+          flex-direction: column;
+        }
+
+        .card img {
+          height: 180px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <div class="logo">🔥 LIQUID STORE 🔥</div>
+
+        <div class="subtitle">SALTNIC & FREEBASE ORIGINAL</div>
+      </div>
+
+      <a
+        href="https://wa.me/6283870282897"
+        target="_blank"
+        class="order-banner"
+      >
+        🛒 ORDER VIA WHATSAPP
+      </a>
+      <div class="kategori">
+        <button class="tab active" onclick="showKategori('saltnic', this)">
+          🧂 SALTNIC
+        </button>
+
+        <button class="tab" onclick="showKategori('freebase', this)">
+          ☁️ FREEBASE
+        </button>
+      </div>
+
+      <!-- SALTNIC -->
+      <div id="saltnic" class="produk-grid"></div>
+
+      <!-- FREEBASE -->
+      <div id="freebase" class="produk-grid" style="display: none"></div>
+
+      <div class="footer">© 2026 LIQUID STORE PREMIUM</div>
+    </div>
+
+    <script>
+      function showKategori(id, btn) {
+        document
+          .querySelectorAll(".produk-grid")
+          .forEach((el) => (el.style.display = "none"));
+
+        document.getElementById(id).style.display = "grid";
+
+        document
+          .querySelectorAll(".tab")
+          .forEach((el) => el.classList.remove("active"));
+
+        btn.classList.add("active");
+      }
+
+      async function loadProduk() {
+        try {
+          const res = await fetch(
+            "https://script.google.com/macros/s/AKfycbyYb7R56mQzGeFlcrp9ULCLmkoBKG1HBKU30FFpmGATw37I7wOqHDMMpojNaU85OBw/exec",
+          );
+
+          const data = await res.json();
+
+          let saltnicHTML = "";
+          let freebaseHTML = "";
+
+          data.saltnic.forEach((img) => {
+            saltnicHTML += `
+<div class="card">
+
+<img
+src="${img}"
+loading="lazy"
+onclick="window.open('${img}')">
+
+<div style="
+padding:15px;
+text-align:center;
+">
+
+<div style="
+font-size:18px;
+font-weight:bold;
+color:#ff3b8d;
+margin-bottom:8px;
+">
+
+🧂 SALTNIC 30ML
+
+</div>
+
+<div style="
+font-size:24px;
+font-weight:bold;
+color:#00ff95;
+">
+
+Rp 60.000
+
+</div>
+
+</div>
+
+</div>
+`;
+          });
+
+          data.freebase.forEach((img) => {
+            freebaseHTML += `
+<div class="card">
+
+<img
+src="${img}"
+loading="lazy"
+onclick="window.open('${img}')">
+
+<div style="
+padding:15px;
+text-align:center;
+">
+
+<div style="
+font-size:18px;
+font-weight:bold;
+color:#ff3b8d;
+margin-bottom:8px;
+">
+
+☁️ FREEBASE 60ML
+
+</div>
+
+<div style="
+font-size:24px;
+font-weight:bold;
+color:#00ff95;
+">
+
+Rp 80.000
+
+</div>
+
+</div>
+
+</div>
+`;
+          });
+
+          document.getElementById("saltnic").innerHTML = saltnicHTML;
+
+          document.getElementById("freebase").innerHTML = freebaseHTML;
+        } catch (err) {
+          document.getElementById("saltnic").innerHTML =
+            "<h2 style='text-align:center'>Gagal memuat data</h2>";
+
+          console.log(err);
+        }
+      }
+
+      loadProduk();
+
+      setInterval(loadProduk, 60000);
+    </script>
+  </body>
+</html>
