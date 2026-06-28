@@ -1,167 +1,172 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sweater Pink Overlay</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sweater Pink Overlay</title>
 
-<!-- FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap"
+      rel="stylesheet"
+    />
 
-<style>
-body {
-  margin: 0;
-  overflow: hidden;
-  background: transparent;
-}
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: transparent;
+      }
 
-.container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 380px;
-  height: 110px;
-}
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 380px;
+        height: 110px;
+      }
 
-/* CARD */
-.card {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #ff4ac9, #a259ff);
-  border-radius: 20px;
+      .card {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #ff4ac9, #a259ff);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 6px;
+        padding: 12px;
+        box-shadow: 0 8px 25px rgba(255, 0, 150, 0.5);
+        border: 3px solid #ffffff;
+        outline: 3px solid #ff4ac9;
+        outline-offset: 3px;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+        transition: all 0.4s ease;
+      }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+      .card.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
 
-  gap: 6px;
-  padding: 12px;
+      .card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100px;
+        width: 40px;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.25);
+        transform: skewX(-20deg);
+        animation: shine 4s infinite;
+      }
 
-  box-shadow: 0 8px 25px rgba(255, 0, 150, 0.5);
+      @keyframes shine {
+        0% {
+          left: -100px;
+        }
+        100% {
+          left: 120%;
+        }
+      }
 
-  border: 3px solid #ffffff;
-  outline: 3px solid #ff4ac9;
-  outline-offset: 3px;
+      .icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 10px;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-  overflow: hidden;
+      .icon img {
+        width: 24px;
+      }
 
-  opacity: 0;
-  transform: translateY(20px) scale(0.9);
-  transition: all 0.4s ease;
-}
+      .text {
+        text-align: center;
+      }
 
-.card.active {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
+      .brand {
+        font-family: "Montserrat", sans-serif;
+        font-size: 26px;
+        font-weight: 900;
+        color: #ffffff;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      }
 
-/* SHINE */
-.card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100px;
-  width: 40px;
-  height: 100%;
-  background: rgba(255,255,255,0.25);
-  transform: skewX(-20deg);
-  animation: shine 4s infinite;
-  filter: blur(1px);
-}
+      .mabar {
+        font-family: "Montserrat", sans-serif;
+        font-size: 28px;
+        font-weight: 900;
+        color: #ffe600;
+        line-height: 1.1;
+        margin-top: 4px;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      }
 
-@keyframes shine {
-  0% { left: -100px; }
-  100% { left: 120%; }
-}
+      .note {
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        font-weight: 800;
+        color: #ffffff;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
 
-/* ICON */
-.icon {
-  width: 45px;
-  height: 45px;
-  border-radius: 10px;
-  background: white;
+  <body>
+    <div class="container">
+      <div class="card active">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/841/841364.png" />
+        </div>
+        <div class="text">
+          <b class="brand">www.sweaterpink.web.id</b>
+        </div>
+      </div>
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+      <div class="card">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" />
+        </div>
+        <div class="text">
+          <b class="brand">Sweater Pink</b>
+        </div>
+      </div>
 
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-}
+      <div class="card">
+        <div class="icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" />
+        </div>
+        <div class="text">
+          <b class="brand">@sweater_pink</b>
+        </div>
+      </div>
 
-.icon img {
-  width: 24px;
-}
-
-/* TEXT */
-.text {
-  text-align: center;
-}
-
-/* 🔥 FONT CLEAN */
-.brand {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 23px;
-  font-weight: 900;
-  color: #ffffff;
-
-  letter-spacing: 0.5px;
-
-  text-shadow:
-    0 2px 6px rgba(0,0,0,0.5);
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-  <!-- WEBSITE -->
-  <div class="card active">
-    <div class="icon">
-      <img src="https://cdn-icons-png.flaticon.com/512/841/841364.png">
+      <div class="card">
+        <div class="text">
+          <b class="brand">MABAR</b>
+          <div class="mabar">1 GAME 5K | 2 GAME 10K</div>
+          <div class="note">Tidak Menjamin Menang Heheh 😆</div>
+        </div>
+      </div>
     </div>
-    <div class="text">
-      <b class="brand">www.sweaterpink.web.id</b>
-    </div>
-  </div>
 
-  <!-- YOUTUBE -->
-  <div class="card">
-    <div class="icon">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
-    </div>
-    <div class="text">
-      <b class="brand">Sweater Pink</b>
-    </div>
-  </div>
+    <script>
+      const cards = document.querySelectorAll(".card");
+      let index = 0;
 
-  <!-- TIKTOK -->
-  <div class="card">
-    <div class="icon">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">
-    </div>
-    <div class="text">
-      <b class="brand">@sweater_pink</b>
-    </div>
-  </div>
-
-</div>
-
-<script>
-const cards = document.querySelectorAll('.card');
-let index = 0;
-
-setInterval(() => {
-  cards.forEach(c => c.classList.remove('active'));
-  index = (index + 1) % cards.length;
-  cards[index].classList.add('active');
-}, 3000);
-</script>
-
-</body>
+      setInterval(() => {
+        cards.forEach((c) => c.classList.remove("active"));
+        index = (index + 1) % cards.length;
+        cards[index].classList.add("active");
+      }, 3000);
+    </script>
+  </body>
 </html>
