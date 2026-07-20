@@ -4,30 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Sweater Pink Order | Gasss Premium</title>
+    <title>Sweater Pink Order | Gasss Premium</title>
 
-<meta name="description" content="Order Premium Config SSH, V2Ray, Trojan, UDP Custom, UDP ZiVpn oleh Sweater Pink.">
+    <meta
+      name="description"
+      content="Order Premium Config SSH, V2Ray, Trojan, UDP Custom, UDP ZiVpn oleh Sweater Pink."
+    />
 
-<link rel="icon" type="image/jpeg" href="https://sweaterpink.web.id/icon/logoprofil1.jpg">
-<link rel="apple-touch-icon" href="https://sweaterpink.web.id/icon/logoprofil1.jpg">
-<link rel="manifest" href="/manifest.json">
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="https://sweaterpink.web.id/icon/logoprofil1.jpg"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="https://sweaterpink.web.id/icon/logoprofil1.jpg"
+    />
+    <link rel="manifest" href="/manifest.json" />
 
-<!-- PREVIEW WHATSAPP -->
-<meta property="og:title" content="Sweater Pink Order | Gasss Premium">
-<meta property="og:description" content="Order Premium - Pilih Jenis & Server Kamu">
-<meta property="og:image" content="https://sweaterpink.web.id/icon/logoprofil1.jpg">
-<meta property="og:url" content="https://sweaterpink.web.id/order/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Sweater Pink">
+    <!-- PREVIEW WHATSAPP -->
+    <meta property="og:title" content="Sweater Pink Order | Gasss Premium" />
+    <meta
+      property="og:description"
+      content="Order Premium - Pilih Jenis & Server Kamu"
+    />
+    <meta
+      property="og:image"
+      content="https://sweaterpink.web.id/icon/logoprofil1.jpg"
+    />
+    <meta property="og:url" content="https://sweaterpink.web.id/order/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sweater Pink" />
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Sweater Pink Order | Gasss Premium">
-<meta name="twitter:description" content="Order Premium - Pilih Jenis & Server Kamu">
-<meta name="twitter:image" content="https://sweaterpink.web.id/icon/logoprofil1.jpg">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sweater Pink Order | Gasss Premium" />
+    <meta
+      name="twitter:description"
+      content="Order Premium - Pilih Jenis & Server Kamu"
+    />
+    <meta
+      name="twitter:image"
+      content="https://sweaterpink.web.id/icon/logoprofil1.jpg"
+    />
 
-<meta name="theme-color" content="#FF1499">
-<meta name="msapplication-navbutton-color" content="#FF1499">
-    
+    <meta name="theme-color" content="#FF1499" />
+    <meta name="msapplication-navbutton-color" content="#FF1499" />
+
     <style>
       @keyframes bgMove {
         0% {
@@ -308,7 +330,10 @@
           <option>AXIS UNLIMITED GAME</option>
           <option>SMARFREN NONSTOP APSS</option>
           <option>TELKOMSEL KENTANG GAMEMAX (🔥Rekomendasi)</option>
-          <option>TELKOMSEL KARTU HALLO+ FLEXY 80K 300GB INJECT 1 BULAN (🔥Rekomendasi)</option>
+          <option>
+            TELKOMSEL KARTU HALLO+ FLEXY 80K 300GB INJECT 1 BULAN
+            (🔥Rekomendasi)
+          </option>
           <option>TELKOMSEL ILMUPEDIA</option>
           <option>INDOSAT APPS FUN (🔥Rekomendasi)</option>
           <!-- <option>OPOK UDP CUSTOM</option> -->
@@ -394,6 +419,23 @@
         </select>
       </div>
 
+      <div class="form-group">
+        <label for="promo">Code Promo 1 Hp / Device 30 Hari (Opsional)</label>
+        <input type="text" id="promo" placeholder="Masukkan Code Promo" />
+
+        <p style="margin-top: 6px; font-size: 12px; text-align: center">
+          🎁 Belum punya Code Promo?
+          <a
+            href="https://www.whatsapp.com/channel/0029VbBGGQzDeON7wPpnLZ1g"
+            target="_blank"
+            style="color: #25d366; font-weight: bold; text-decoration: none"
+          >
+            Join Saluran WhatsApp
+          </a>
+          untuk mendapatkan Code Promo terbaru.
+        </p>
+      </div>
+
       <div id="previewBox">
         <div id="previewTitle">🔥🔥 Gasss Order 🔥🔥</div>
         <div id="previewContent">
@@ -420,6 +462,13 @@
       // stok global
       const stokGlobal = { ID: 999, SG: 85 };
 
+      const PROMOS = {
+        SWEATER5000: "Rp. 2.000",
+        PINK5000: "Rp. 5.000",
+        VIP5000: "Rp. 5.000",
+        DISKON5000: "Rp. 5.000",
+      };
+
       const provSelect = new Choices(document.getElementById("provinsi"), {
         searchEnabled: true,
         itemSelectText: "",
@@ -440,15 +489,29 @@
       configPremium.addEventListener("change", () => {
         jenisSelect.dispatchEvent(new Event("change"));
       });
+
       function extractData(serverText) {
         const parts = serverText.split("|").map((p) => p.trim());
+
+        let harga = parts[1] || "";
+
+        const promo = document.getElementById("promo")?.value.trim();
+
+        // Promo berlaku untuk semua server 1 HP 30 Hari
+        if (
+          PROMOS[promo] &&
+          serverText.includes("1 HP") &&
+          serverText.includes("30 Hari")
+        ) {
+          harga = PROMOS[promo];
+        }
+
         return {
           namaServer: parts[0] || "",
-          harga: parts[1] || "",
+          harga: harga,
           masaAktif: parts[2] || "",
         };
       }
-
       function updatePreview() {
         const nama = document.getElementById("nama").value;
         const jenis = document.getElementById("jenis").value;
@@ -471,21 +534,21 @@
             else if (selected.text.includes("[SG]")) stok = stokGlobal.SG;
 
             serverHTML = `
-          <strong>Server:</strong> ${data.namaServer}<br>
-          <strong>Harga:</strong> ${data.harga}<br>
-          <strong>Masa Aktif:</strong> ${data.masaAktif}<br>
-          <strong>Stok:</strong> <span style="color:${stok == 0 ? "red" : "#333"}">${stok}</span><br>
-        `;
+                <strong>Server:</strong> ${data.namaServer}<br>
+                <strong>Harga:</strong> ${data.harga}<br>
+                <strong>Masa Aktif:</strong> ${data.masaAktif}<br>
+                <strong>Stok:</strong> <span style="color:${stok == 0 ? "red" : "#333"}">${stok}</span><br>
+              `;
           }
 
           previewContent.innerHTML = `
-        <strong>Nama:</strong> ${nama || "-"}<br>
-        <strong>Jenis Order:</strong> ${jenis || "-"}<br>
-        ${jenis === "Config Premium" ? `<strong>Config:</strong> ${configVal || "-"}<br>` : ""}
-        ${serverHTML}
-        <strong>Provinsi:</strong> ${provinsi || "-"}<br>
-        <strong>Kartu:</strong> ${kartu || "-"}
-      `;
+              <strong>Nama:</strong> ${nama || "-"}<br>
+              <strong>Jenis Order:</strong> ${jenis || "-"}<br>
+              ${jenis === "Config Premium" ? `<strong>Config:</strong> ${configVal || "-"}<br>` : ""}
+              ${serverHTML}
+              <strong>Provinsi:</strong> ${provinsi || "-"}<br>
+              <strong>Kartu:</strong> ${kartu || "-"}
+            `;
         }
       }
 
@@ -495,6 +558,14 @@
         .forEach((el) => {
           el.addEventListener("change", updatePreview);
         });
+
+      document.getElementById("promo").addEventListener("input", () => {
+        updatePreview();
+
+        if (serverSelect.value) {
+          serverSelect.dispatchEvent(new Event("change"));
+        }
+      });
 
       // tampilkan menu config premium kalau jenis = Config Premium
       jenisSelect.addEventListener("change", () => {
@@ -550,9 +621,9 @@
         else if (text.includes("[SG]")) stok = stokGlobal.SG;
 
         hargaBox.innerHTML = `
-      Harga: ${data.harga}<br>
-      <span style="color:${stok == 0 ? "red" : "#333"}">Stok: ${stok}</span>
-    `;
+            Harga: ${data.harga}<br>
+            <span style="color:${stok == 0 ? "red" : "#333"}">Stok: ${stok}</span>
+          `;
         updatePreview();
       });
 
@@ -613,6 +684,10 @@
           const provinsi = document.getElementById("provinsi").value;
           const kartu = document.getElementById("kartu").value;
 
+          const promo = document.getElementById("promo").value.trim();
+
+          const promoText = PROMOS[promo] ? `*Code Promo:* ${promo}\n` : "";
+
           const nomor = "6283870282897";
           const heart = String.fromCharCode(0x2764, 0xfe0f);
 
@@ -622,12 +697,12 @@
 *Jenis Order:* ${jenis}
 ${jenis === "Config Premium" ? `*Config:* ${configVal}\n` : ""}*Server:* ${data.namaServer}
 *Harga:* ${data.harga}
-*Masa Aktif:* ${data.masaAktif}
+${promoText}*Masa Aktif:* ${data.masaAktif}
 *Provinsi:* ${provinsi}
 *Kartu:* ${kartu}
 
 ──────────────
-Terima kasih telah order di *Sweater Pink Store* ${heart}
+Terima kasih telah order di *Sweater Pink Store* ❤️
 Pesanan kamu sedang diproses, mohon tunggu konfirmasi dari admin.`;
 
           window.open(
