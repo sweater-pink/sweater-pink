@@ -534,21 +534,21 @@
             else if (selected.text.includes("[SG]")) stok = stokGlobal.SG;
 
             serverHTML = `
-                <strong>Server:</strong> ${data.namaServer}<br>
-                <strong>Harga:</strong> ${data.harga}<br>
-                <strong>Masa Aktif:</strong> ${data.masaAktif}<br>
-                <strong>Stok:</strong> <span style="color:${stok == 0 ? "red" : "#333"}">${stok}</span><br>
-              `;
+                                  <strong>Server:</strong> ${data.namaServer}<br>
+                                  <strong>Harga:</strong> ${data.harga}<br>
+                                  <strong>Masa Aktif:</strong> ${data.masaAktif}<br>
+                                  <strong>Stok:</strong> <span style="color:${stok == 0 ? "red" : "#333"}">${stok}</span><br>
+                                `;
           }
 
           previewContent.innerHTML = `
-              <strong>Nama:</strong> ${nama || "-"}<br>
-              <strong>Jenis Order:</strong> ${jenis || "-"}<br>
-              ${jenis === "Config Premium" ? `<strong>Config:</strong> ${configVal || "-"}<br>` : ""}
-              ${serverHTML}
-              <strong>Provinsi:</strong> ${provinsi || "-"}<br>
-              <strong>Kartu:</strong> ${kartu || "-"}
-            `;
+                                <strong>Nama:</strong> ${nama || "-"}<br>
+                                <strong>Jenis Order:</strong> ${jenis || "-"}<br>
+                                ${jenis === "Config Premium" ? `<strong>Config:</strong> ${configVal || "-"}<br>` : ""}
+                                ${serverHTML}
+                                <strong>Provinsi:</strong> ${provinsi || "-"}<br>
+                                <strong>Kartu:</strong> ${kartu || "-"}
+                              `;
         }
       }
 
@@ -621,9 +621,9 @@
         else if (text.includes("[SG]")) stok = stokGlobal.SG;
 
         hargaBox.innerHTML = `
-            Harga: ${data.harga}<br>
-            <span style="color:${stok == 0 ? "red" : "#333"}">Stok: ${stok}</span>
-          `;
+                              Harga: ${data.harga}<br>
+                              <span style="color:${stok == 0 ? "red" : "#333"}">Stok: ${stok}</span>
+                            `;
         updatePreview();
       });
 
@@ -694,13 +694,15 @@
               : "";
 
           const nomor = "6283870282897";
-          const heart = String.fromCharCode(0x2764, 0xfe0f);
+
+          const configText =
+            jenis === "Config Premium" ? `*Config:* ${configVal}\n` : "";
 
           const teks = `*SWEATER PINK ORDER*
 
 *Nama:* ${nama}
 *Jenis Order:* ${jenis}
-${jenis === "Config Premium" ? `*Config:* ${configVal}\n` : ""}*Server:* ${data.namaServer}
+${configText}*Server:* ${data.namaServer}
 *Harga:* ${data.harga}
 ${promoText}*Masa Aktif:* ${data.masaAktif}
 *Provinsi:* ${provinsi}
@@ -710,10 +712,30 @@ ${promoText}*Masa Aktif:* ${data.masaAktif}
 Terima kasih telah order di *Sweater Pink Store* ❤️
 Pesanan kamu sedang diproses, mohon tunggu konfirmasi dari admin.`;
 
-          window.open(
-            `https://wa.me/${nomor}?text=${encodeURIComponent(teks)}`,
-            "_blank",
-          );
+          Swal.fire({
+            title: "💰 Konfirmasi Pembayaran",
+            html: `
+                <div style="font-size:16px">
+                  Total yang harus dibayar
+                  <br><br>
+                  <b style="font-size:30px;color:#e91e63">${data.harga}</b>
+                </div>
+              `,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Lanjut ke WhatsApp",
+            cancelButtonText: "Batal",
+            confirmButtonColor: "#e91e63",
+            cancelButtonColor: "#6c757d",
+            allowOutsideClick: false,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.open(
+                `https://wa.me/${nomor}?text=${encodeURIComponent(teks)}`,
+                "_blank",
+              );
+            }
+          });
         });
     </script>
 
@@ -727,5 +749,7 @@ Pesanan kamu sedang diproses, mohon tunggu konfirmasi dari admin.`;
           e.preventDefault();
       };
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
