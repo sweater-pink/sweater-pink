@@ -686,7 +686,12 @@
 
           const promo = document.getElementById("promo").value.trim();
 
-          const promoText = PROMOS[promo] ? `*Code Promo:* ${promo}\n` : "";
+          const promoText =
+            PROMOS[promo] &&
+            selected.text.includes("1 HP") &&
+            selected.text.includes("30 Hari")
+              ? `*Code Promo:* ${promo}\n`
+              : "";
 
           const nomor = "6283870282897";
           const heart = String.fromCharCode(0x2764, 0xfe0f);
