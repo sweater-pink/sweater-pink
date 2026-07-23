@@ -470,7 +470,7 @@
 
       const PROMOS = {
         "PROMO 8.8": "Rp. 5.000",
-        SWEATER5000: "Rp. 5.000",
+        "SWEATER 5000": "Rp. 5.000",
       };
 
       const provSelect = new Choices(document.getElementById("provinsi"), {
@@ -563,6 +563,7 @@
       document
         .querySelectorAll("#waForm input, #waForm select")
         .forEach((el) => {
+          el.addEventListener("input", updatePreview);
           el.addEventListener("change", updatePreview);
         });
 
