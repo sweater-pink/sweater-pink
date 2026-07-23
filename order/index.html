@@ -469,7 +469,7 @@
       const stokGlobal = { ID: 999, SG: 85 };
 
       const PROMOS = {
-        PROMO 8.8: "Rp. 5.000",
+        "PROMO 8.8": "Rp. 5.000",
         SWEATER5000: "Rp. 5.000",
       };
 
@@ -499,7 +499,10 @@
 
         let harga = parts[1] || "";
 
-        const promo = document.getElementById("promo")?.value.trim();
+        const promo = document
+          .getElementById("promo")
+          .value.trim()
+          .toUpperCase();
 
         // Promo berlaku untuk semua server 1 HP 30 Hari
         if (
@@ -538,21 +541,21 @@
             else if (selected.text.includes("[SG]")) stok = stokGlobal.SG;
 
             serverHTML = `
-                                  <strong>Server:</strong> ${data.namaServer}<br>
-                                  <strong>Harga:</strong> ${data.harga}<br>
-                                  <strong>Masa Aktif:</strong> ${data.masaAktif}<br>
-                                  <strong>Stok:</strong> <span style="color:${stok == 0 ? "red" : "#333"}">${stok}</span><br>
-                                `;
+                                        <strong>Server:</strong> ${data.namaServer}<br>
+                                        <strong>Harga:</strong> ${data.harga}<br>
+                                        <strong>Masa Aktif:</strong> ${data.masaAktif}<br>
+                                        <strong>Stok:</strong> <span style="color:${stok == 0 ? "red" : "#333"}">${stok}</span><br>
+                                      `;
           }
 
           previewContent.innerHTML = `
-                                <strong>Nama:</strong> ${nama || "-"}<br>
-                                <strong>Jenis Order:</strong> ${jenis || "-"}<br>
-                                ${jenis === "Config Premium" ? `<strong>Config:</strong> ${configVal || "-"}<br>` : ""}
-                                ${serverHTML}
-                                <strong>Provinsi:</strong> ${provinsi || "-"}<br>
-                                <strong>Kartu:</strong> ${kartu || "-"}
-                              `;
+                                      <strong>Nama:</strong> ${nama || "-"}<br>
+                                      <strong>Jenis Order:</strong> ${jenis || "-"}<br>
+                                      ${jenis === "Config Premium" ? `<strong>Config:</strong> ${configVal || "-"}<br>` : ""}
+                                      ${serverHTML}
+                                      <strong>Provinsi:</strong> ${provinsi || "-"}<br>
+                                      <strong>Kartu:</strong> ${kartu || "-"}
+                                    `;
         }
       }
 
@@ -625,9 +628,9 @@
         else if (text.includes("[SG]")) stok = stokGlobal.SG;
 
         hargaBox.innerHTML = `
-                              Harga: ${data.harga}<br>
-                              <span style="color:${stok == 0 ? "red" : "#333"}">Stok: ${stok}</span>
-                            `;
+                                    Harga: ${data.harga}<br>
+                                    <span style="color:${stok == 0 ? "red" : "#333"}">Stok: ${stok}</span>
+                                  `;
         updatePreview();
       });
 
@@ -688,7 +691,10 @@
           const provinsi = document.getElementById("provinsi").value;
           const kartu = document.getElementById("kartu").value;
 
-          const promo = document.getElementById("promo").value.trim();
+          const promo = document
+            .getElementById("promo")
+            .value.trim()
+            .toUpperCase();
 
           const promoText =
             PROMOS[promo] &&
@@ -704,27 +710,27 @@
 
           const teks = `*SWEATER PINK ORDER*
 
-*Nama:* ${nama}
-*Jenis Order:* ${jenis}
-${configText}*Server:* ${data.namaServer}
-*Harga:* ${data.harga}
-${promoText}*Masa Aktif:* ${data.masaAktif}
-*Provinsi:* ${provinsi}
-*Kartu:* ${kartu}
+      *Nama:* ${nama}
+      *Jenis Order:* ${jenis}
+      ${configText}*Server:* ${data.namaServer}
+      *Harga:* ${data.harga}
+      ${promoText}*Masa Aktif:* ${data.masaAktif}
+      *Provinsi:* ${provinsi}
+      *Kartu:* ${kartu}
 
-──────────────
-Terima kasih telah order di *Sweater Pink Store* ❤️
-Pesanan kamu sedang diproses, mohon tunggu konfirmasi dari admin.`;
+      ──────────────
+      Terima kasih telah order di *Sweater Pink Store* ❤️
+      Pesanan kamu sedang diproses, mohon tunggu konfirmasi dari admin.`;
 
           Swal.fire({
             title: "💰 Konfirmasi Pembayaran",
             html: `
-                <div style="font-size:16px">
-                  Total yang harus dibayar
-                  <br><br>
-                  <b style="font-size:30px;color:#e91e63">${data.harga}</b>
-                </div>
-              `,
+                      <div style="font-size:16px">
+                        Total yang harus dibayar
+                        <br><br>
+                        <b style="font-size:30px;color:#e91e63">${data.harga}</b>
+                      </div>
+                    `,
             icon: "question",
             showCancelButton: true,
             confirmButtonText: "Lanjut ke WhatsApp",
