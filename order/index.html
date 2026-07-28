@@ -504,9 +504,10 @@
           .value.trim()
           .toUpperCase();
 
-        // Promo berlaku untuk semua server 1 HP 30 Hari
+        // Promo hanya berlaku untuk Indonesia 1 HP 30 Hari
         if (
           PROMOS[promo] &&
+          serverText.includes("[ID]") &&
           serverText.includes("1 HP") &&
           serverText.includes("30 Hari")
         ) {
@@ -699,6 +700,7 @@
 
           const promoText =
             PROMOS[promo] &&
+            selected.text.includes("[ID]") &&
             selected.text.includes("1 HP") &&
             selected.text.includes("30 Hari")
               ? `*Code Promo:* ${promo}\n`
