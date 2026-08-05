@@ -1,56 +1,538 @@
-@media (max-width:700px){
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-.container{
-  width:96%;
-  padding:20px 10px;
-}
+    <title>Compatible APK Version</title>
 
-.title{
-  font-size:34px;
-}
+    <meta property="og:title" content="Compatible APK Version" />
+    <meta
+      property="og:description"
+      content="Download APK Official by SWEATER PINK"
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/icon/logoprofil1.jpg"
+    />
+    <meta property="og:type" content="website" />
 
-.app{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:nowrap;
-  padding:12px;
-}
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
 
-.left{
-  display:flex;
-  align-items:center;
-  flex:1;
-  min-width:0;
-}
+      body {
+        background: #000;
+        color: #fff;
+      }
 
-.icon{
-  width:58px;
-  height:58px;
-  margin-right:12px;
-}
+      .container {
+        width: 95%;
+        max-width: 850px;
+        margin: auto;
+        padding: 40px 15px;
+      }
 
-.info{
-  flex:1;
-}
+      .title {
+        text-align: center;
+        font-size: 48px;
+        font-weight: bold;
+        color: #ff3b8d;
+        text-shadow: 0 0 15px #ff3b8d;
+        margin-bottom: 10px;
+      }
 
-.name{
-  font-size:22px;
-}
+      .by {
+        text-align: center;
+        font-size: 20px;
+        color: #999;
+        margin-bottom: 45px;
+      }
 
-.desc{
-  font-size:13px;
-}
+      .app {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #111;
+        border: 2px solid #ff3b8d;
+        border-radius: 18px;
+        padding: 18px;
+        margin-bottom: 22px;
+        transition: 0.3s;
+        text-decoration: none;
+      }
 
-.download{
-  width:110px;
-  height:45px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:0;
-  font-size:15px;
-  flex-shrink:0;
-}
+      .app:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 20px #ff3b8d;
+      }
 
-}
+      .left {
+        display: flex;
+        align-items: center;
+      }
+
+      .icon {
+        width: 75px;
+        height: 75px;
+        border-radius: 18px;
+        margin-right: 18px;
+        object-fit: cover;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .name {
+        font-size: 28px;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      .desc {
+        font-size: 15px;
+        color: #aaa;
+        margin-top: 5px;
+      }
+
+      .download {
+        background: #ff3b8d;
+        padding: 15px 28px;
+        border-radius: 12px;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .footer {
+        margin-top: 40px;
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+      }
+
+      @media (max-width: 700px) {
+        .container {
+          width: 96%;
+          padding: 20px 10px;
+        }
+
+        .title {
+          font-size: 34px;
+        }
+
+        .app {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: nowrap;
+          padding: 12px;
+        }
+
+        .left {
+          display: flex;
+          align-items: center;
+          flex: 1;
+          min-width: 0;
+        }
+
+        .icon {
+          width: 58px;
+          height: 58px;
+          margin-right: 12px;
+        }
+
+        .info {
+          flex: 1;
+        }
+
+        .name {
+          font-size: 22px;
+        }
+
+        .desc {
+          font-size: 13px;
+        }
+
+        .download {
+          width: 110px;
+          height: 45px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
+          font-size: 15px;
+          flex-shrink: 0;
+        }
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.75);
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .modal-box {
+        background: #111;
+        border: 2px solid #ff3b8d;
+        border-radius: 18px;
+        padding: 25px;
+        width: 90%;
+        max-width: 350px;
+        text-align: center;
+        box-shadow: 0 0 20px #ff3b8d;
+      }
+
+      .modal-box h2 {
+        color: #ff3b8d;
+        margin-bottom: 10px;
+      }
+
+      .modal-box p {
+        color: #aaa;
+        margin-bottom: 20px;
+      }
+
+      .version-btn {
+        display: block;
+        padding: 14px;
+        margin: 10px 0;
+        background: #ff3b8d;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: bold;
+      }
+
+      .version-btn:hover {
+        background: #ff5aa5;
+      }
+
+      .close-btn {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        background: #333;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      .by {
+        text-align: center;
+        margin-bottom: 45px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #777;
+      }
+
+      .by span:first-of-type {
+        background: linear-gradient(90deg, #fff, #fc25d7, #ff8ad9, #fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200%;
+        animation: shineText 5s linear infinite;
+        font-weight: 700;
+      }
+
+      .checkmark {
+        display: inline-block;
+        background: #1da1f2;
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+        border-radius: 50%;
+        padding: 3px 6px;
+        line-height: 1;
+        box-shadow: 0 0 6px rgba(29, 161, 242, 0.9);
+        margin-left: 4px;
+      }
+
+      @keyframes shineText {
+        0% {
+          background-position: 0%;
+        }
+        100% {
+          background-position: 200%;
+        }
+      }
+
+      .by {
+        text-align: center;
+        margin-top: 35px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #777;
+      }
+
+      .version-btn {
+        display: block;
+        padding: 14px;
+        margin: 10px 0;
+        background: #ff3b8d;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .version-btn:hover {
+        background: #ff5aa5;
+      }
+
+      .version-btn span {
+        display: block;
+        margin-top: 5px;
+        font-size: 12px;
+        font-weight: 400;
+        opacity: 0.85;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 10px #ff3b8d;
+        }
+        50% {
+          transform: scale(1.08);
+          box-shadow: 0 0 25px #ff3b8d;
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 10px #ff3b8d;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="title">Compatible APK Version</h1>
+
+      <div
+        style="
+          text-align: center;
+          margin: 15px 0 30px;
+          color: #ccc;
+          font-size: 15px;
+          line-height: 1.7;
+          background: #111;
+          border: 1px solid #ff3b8d;
+          border-radius: 12px;
+          padding: 12px;
+        "
+      >
+        Install menggunakan
+        <span style="color: #ff4fa2; font-weight: bold">ZArchiver</span>
+        atau
+        <span style="color: #ff4fa2; font-weight: bold">File Manager</span>
+        lainnya.<br />
+      </div>
+
+      <div class="app">
+        <div class="left">
+          <img
+            class="icon"
+            src="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/Compatible-APK-Version/hc.png"
+          />
+
+          <div class="info">
+            <div class="name">HTTP Custom</div>
+
+            <div class="desc">Compatible APK Version</div>
+          </div>
+        </div>
+
+        <div class="download" onclick="bukaHC()">DOWNLOAD</div>
+      </div>
+
+      <a
+        class="app"
+        href="https://play.google.com/store/apps/details?id=net.darktunnel.app"
+        target="_blank"
+      >
+        <div class="left">
+          <img
+            class="icon"
+            src="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/Compatible-APK-Version/dark.png"
+          />
+
+          <div class="info">
+            <div class="name">Dark Tunnel</div>
+
+            <div class="desc">Compatible APK Version</div>
+          </div>
+        </div>
+
+        <div class="download">DOWNLOAD</div>
+      </a>
+
+      <a
+        class="app"
+        href="https://play.google.com/store/apps/details?id=com.netmod.syna"
+        target="_blank"
+      >
+        <div class="left">
+          <img
+            class="icon"
+            src="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/Compatible-APK-Version/NetMod.png"
+          />
+
+          <div class="info">
+            <div class="name">NETMOD</div>
+
+            <div class="desc">Compatible APK Version</div>
+          </div>
+        </div>
+
+        <div class="download">DOWNLOAD</div>
+      </a>
+
+      <a
+        class="app"
+        href="https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver"
+        target="_blank"
+      >
+        <div class="left">
+          <img
+            class="icon"
+            src="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/Compatible-APK-Version/Zar.webp"
+          />
+
+          <div class="info">
+            <div class="name">ZArchiver</div>
+          </div>
+        </div>
+
+        <div class="download">DOWNLOAD</div>
+      </a>
+
+      <!-- Popup HTTP Custom -->
+      <div id="hcModal" class="modal">
+        <div class="modal-box">
+          <h2>HTTP Custom</h2>
+
+          <p>Pilih Versi HTTP Custom</p>
+
+          <a
+            href="https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=10284099&key=4ae0c84c906dd97745b3d05b85a28312ca28969d"
+            target="_blank"
+            class="version-btn"
+          >
+            🚀 HTTP Custom V1
+            <span>APK Universal (Rekomendasi)</span>
+          </a>
+
+          <a
+            href="https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=7385925&key=643a010a9cc09f8697be88f03e8d5d66e28480ae"
+            target="_blank"
+            class="version-btn"
+          >
+            📦 HTTP Custom V2
+            <span>APKM • Android Terbaru</span>
+          </a>
+
+          <a
+            href="https://www.mediafire.com/file/fkr6p61tgcriahz/base.apk/file"
+            target="_blank"
+            class="version-btn"
+          >
+            ⚠️ HTTP Custom V3 MOD
+            <span>NO IKLAN - Tidak Semua Android Stabil</span>
+          </a>
+
+          <button class="close-btn" onclick="tutupHC()">Tutup</button>
+        </div>
+      </div>
+
+      <a
+        class="app"
+        href="https://www.sweaterpink.web.id/order/"
+        target="_blank"
+      >
+        <div class="left">
+          <img
+            class="icon"
+            src="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/icon/logoprofil1.jpg"
+          />
+
+          <div class="info">
+            <div
+              class="name"
+              style="
+                background: linear-gradient(90deg, #fff, #ff4fa2, #fff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-size: 200%;
+                animation: shineText 4s linear infinite;
+              "
+            >
+              ORDER CONFIG PREMIUM
+            </div>
+
+            <div class="desc">Lihat daftar produk & pemesanan</div>
+          </div>
+        </div>
+
+        <div
+          class="download"
+          style="animation: pulse 1.3s infinite; box-shadow: 0 0 15px #ff3b8d"
+        >
+          ORDER
+        </div>
+      </a>
+
+      <div class="by">
+        © 2026 by <span>Sweater Pink</span>
+        <span class="checkmark">✔</span>
+      </div>
+    </div>
+
+    <script>
+      function bukaHC() {
+        document.getElementById("hcModal").style.display = "flex";
+      }
+
+      function tutupHC() {
+        document.getElementById("hcModal").style.display = "none";
+      }
+
+      // Tutup popup saat klik area hitam
+      window.onclick = function (e) {
+        const modal = document.getElementById("hcModal");
+        if (e.target === modal) {
+          tutupHC();
+        }
+      };
+    </script>
+
+    <script>
+      document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+      document.onkeydown = (e) => {
+        if (e.key === "F12") e.preventDefault();
+
+        if (e.ctrlKey && ["u", "s", "c"].includes(e.key.toLowerCase()))
+          e.preventDefault();
+
+        if (e.ctrlKey && e.shiftKey && ["I", "J"].includes(e.key.toUpperCase()))
+          e.preventDefault();
+      };
+    </script>
+  </body>
+</html>
