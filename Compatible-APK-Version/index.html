@@ -275,6 +275,21 @@
         font-weight: 400;
         opacity: 0.85;
       }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 10px #ff3b8d;
+        }
+        50% {
+          transform: scale(1.08);
+          box-shadow: 0 0 25px #ff3b8d;
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 10px #ff3b8d;
+        }
+      }
     </style>
   </head>
 
@@ -347,9 +362,11 @@
 
           <p>Pilih Versi HTTP Custom</p>
 
-          <a href="https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=10284099&key=4ae0c84c906dd97745b3d05b85a28312ca28969d" 
-          target="_blank" 
-          class="version-btn">
+          <a
+            href="https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=10284099&key=4ae0c84c906dd97745b3d05b85a28312ca28969d"
+            target="_blank"
+            class="version-btn"
+          >
             🚀 HTTP Custom V1
             <span>APK Universal (Rekomendasi)</span>
           </a>
@@ -375,6 +392,43 @@
           <button class="close-btn" onclick="tutupHC()">Tutup</button>
         </div>
       </div>
+
+      <a
+        class="app"
+        href="https://www.sweaterpink.web.id/order/"
+        target="_blank"
+      >
+        <div class="left">
+          <img
+            class="icon"
+            src="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/icon/logoprofil1.jpg"
+          />
+
+          <div class="info">
+            <div
+              class="name"
+              style="
+                background: linear-gradient(90deg, #fff, #ff4fa2, #fff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-size: 200%;
+                animation: shineText 4s linear infinite;
+              "
+            >
+              ORDER CONFIG PREMIUM
+            </div>
+
+            <div class="desc">Lihat daftar produk & pemesanan</div>
+          </div>
+        </div>
+
+        <div
+          class="download"
+          style="animation: pulse 1.3s infinite; box-shadow: 0 0 15px #ff3b8d"
+        >
+          ORDER
+        </div>
+      </a>
 
       <div class="by">
         © 2026 by <span>Sweater Pink</span>
