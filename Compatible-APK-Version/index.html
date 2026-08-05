@@ -2,93 +2,254 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <title>Download APK</title>
+    <title>Compatible APK Version</title>
 
-    <!-- PREVIEW WHATSAPP -->
-    <meta property="og:title" content="Download APK" />
+    <meta property="og:title" content="Compatible APK Version" />
     <meta
       property="og:description"
-      content="Compatible APK Version by SWEATER PINK"
+      content="Download APK Official by SWEATER PINK"
     />
     <meta
       property="og:image"
       content="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/icon/logoprofil1.jpg"
     />
-    <meta property="og:url" content="https://sweaterpink.web.id" />
     <meta property="og:type" content="website" />
 
-    <meta name="theme-color" content="#ff3b8d" />
-    <meta name="twitter:card" content="summary_large_image" />
-
     <style>
-      body {
+      * {
         margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
         background: #000;
-        font-family: monospace;
         color: #fff;
       }
 
       .container {
         width: 95%;
-        max-width: 700px;
+        max-width: 850px;
         margin: auto;
-        text-align: center;
-        padding-top: 80px;
+        padding: 40px 15px;
       }
 
       .title {
-        font-size: 55px;
-        color: #ff3b8d;
+        text-align: center;
+        font-size: 48px;
         font-weight: bold;
-        text-shadow: 0 0 10px #ff3b8d;
+        color: #ff3b8d;
+        text-shadow: 0 0 15px #ff3b8d;
         margin-bottom: 10px;
       }
 
       .by {
-        font-size: 24px;
-        color: #aaa;
-        margin-bottom: 50px;
+        text-align: center;
+        font-size: 20px;
+        color: #999;
+        margin-bottom: 45px;
       }
 
-      .btn {
-        display: block;
-        width: 100%;
-        padding: 22px;
-        margin-bottom: 20px;
+      .app {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #111;
+        border: 2px solid #ff3b8d;
+        border-radius: 18px;
+        padding: 18px;
+        margin-bottom: 22px;
+        transition: 0.3s;
+        text-decoration: none;
+      }
+
+      .app:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 20px #ff3b8d;
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+      }
+
+      .icon {
+        width: 75px;
+        height: 75px;
+        border-radius: 18px;
+        margin-right: 18px;
+        object-fit: cover;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .name {
         font-size: 28px;
         font-weight: bold;
+        color: #fff;
+      }
+
+      .desc {
+        font-size: 15px;
+        color: #aaa;
+        margin-top: 5px;
+      }
+
+      .download {
+        background: #ff3b8d;
+        padding: 15px 28px;
+        border-radius: 12px;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .footer {
+        margin-top: 40px;
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+      }
+
+      @media (max-width: 700px) {
+        .title {
+          font-size: 35px;
+        }
+
+        .app {
+          padding: 15px;
+        }
+
+        .icon {
+          width: 60px;
+          height: 60px;
+        }
+
+        .name {
+          font-size: 22px;
+        }
+
+        .desc {
+          font-size: 13px;
+        }
+
+        .download {
+          padding: 12px 18px;
+          font-size: 15px;
+        }
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.75);
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .modal-box {
+        background: #111;
+        border: 2px solid #ff3b8d;
+        border-radius: 18px;
+        padding: 25px;
+        width: 90%;
+        max-width: 350px;
+        text-align: center;
+        box-shadow: 0 0 20px #ff3b8d;
+      }
+
+      .modal-box h2 {
+        color: #ff3b8d;
+        margin-bottom: 10px;
+      }
+
+      .modal-box p {
+        color: #aaa;
+        margin-bottom: 20px;
+      }
+
+      .version-btn {
+        display: block;
+        padding: 14px;
+        margin: 10px 0;
         background: #ff3b8d;
         color: #fff;
         text-decoration: none;
-        border-radius: 18px;
-        box-shadow: 0 0 20px rgba(255, 60, 140, 0.6);
-        transition: 0.3s;
+        border-radius: 10px;
+        font-weight: bold;
       }
 
-      .btn:hover {
-        transform: scale(1.02);
-        box-shadow: 0 0 30px rgba(255, 60, 140, 0.9);
+      .version-btn:hover {
+        background: #ff5aa5;
       }
 
-      .btn:active {
-        transform: scale(0.97);
+      .close-btn {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        background: #333;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
       }
 
-      @media (max-width: 480px) {
-        .title {
-          font-size: 42px;
-        }
+      .by {
+        text-align: center;
+        margin-bottom: 45px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #777;
+      }
 
-        .by {
-          font-size: 20px;
-        }
+      .by span:first-of-type {
+        background: linear-gradient(90deg, #fff, #fc25d7, #ff8ad9, #fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200%;
+        animation: shineText 5s linear infinite;
+        font-weight: 700;
+      }
 
-        .btn {
-          font-size: 22px;
-          padding: 20px;
+      .checkmark {
+        display: inline-block;
+        background: #1da1f2;
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+        border-radius: 50%;
+        padding: 3px 6px;
+        line-height: 1;
+        box-shadow: 0 0 6px rgba(29, 161, 242, 0.9);
+        margin-left: 4px;
+      }
+
+      @keyframes shineText {
+        0% {
+          background-position: 0%;
         }
+        100% {
+          background-position: 200%;
+        }
+      }
+
+      .by {
+        text-align: center;
+        margin-top: 35px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #777;
       }
     </style>
   </head>
@@ -97,24 +258,123 @@
     <div class="container">
       <h1 class="title">Compatible APK Version</h1>
 
-      <div class="by">BY : SWEATER PINK</div>
+      <div class="app">
+        <div class="left">
+          <img
+            class="icon"
+            src="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/Compatible-APK-Version/hc.png"
+          />
 
-      <a class="btn" href="LINK_DOWNLOAD_HC13" target="_blank"> 📥 HC V1-3 </a>
+          <div class="info">
+            <div class="name">HTTP Custom</div>
 
-      <a class="btn" href="LINK_DOWNLOAD_DRAK" target="_blank"> 📥 DRAK V1 </a>
+            <div class="desc">Compatible APK Version</div>
+          </div>
+        </div>
 
-      <a class="btn" href="LINK_DOWNLOAD_NETMOD" target="_blank">
-        📥 NETMOD V1
+        <div class="download" onclick="bukaHC()">DOWNLOAD</div>
+      </div>
+
+      <a
+        class="app"
+        href="https://play.google.com/store/apps/details?id=net.darktunnel.app"
+        target="_blank"
+      >
+        <div class="left">
+          <img
+            class="icon"
+            src="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/Compatible-APK-Version/dark.png"
+          />
+
+          <div class="info">
+            <div class="name">Dark Tunnel</div>
+
+            <div class="desc">Compatible APK Version</div>
+          </div>
+        </div>
+
+        <div class="download">DOWNLOAD</div>
       </a>
+
+      <a
+        class="app"
+        href="https://play.google.com/store/apps/details?id=com.netmod.syna"
+        target="_blank"
+      >
+        <div class="left">
+          <img
+            class="icon"
+            src="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/Compatible-APK-Version/NetMod.png"
+          />
+
+          <div class="info">
+            <div class="name">NETMOD</div>
+
+            <div class="desc">Compatible APK Version</div>
+          </div>
+        </div>
+
+        <div class="download">DOWNLOAD</div>
+      </a>
+      <!-- Popup HTTP Custom -->
+      <div id="hcModal" class="modal">
+        <div class="modal-box">
+          <h2>HTTP Custom</h2>
+
+          <p>Pilih Versi APK</p>
+
+          <a href="LINK_HC_V1" target="_blank" class="version-btn">
+            📥 Version 1
+          </a>
+
+          <a
+            href="https://www.mediafire.com/file/yhipmgk9sw43wlr/xyz.easypro.httpcustom_5.11.29-RC90-737_2arch_7dpi_24lang_d1dbcac2eb94b061fa9e1ed976b4adf9_apkmirror.com.apkm/file"
+            target="_blank"
+            class="version-btn"
+          >
+            📥 Version 2
+          </a>
+
+          <a href="LINK_HC_V3" target="_blank" class="version-btn">
+            📥 Version 3
+          </a>
+
+          <button class="close-btn" onclick="tutupHC()">Tutup</button>
+        </div>
+      </div>
+      <div class="by">
+        © 2026 by <span>Sweater Pink</span>
+        <span class="checkmark">✔</span>
+      </div>
     </div>
 
-    <!-- Anti Copy -->
+    <script>
+      function bukaHC() {
+        document.getElementById("hcModal").style.display = "flex";
+      }
+
+      function tutupHC() {
+        document.getElementById("hcModal").style.display = "none";
+      }
+
+      // Tutup popup saat klik area hitam
+      window.onclick = function (e) {
+        const modal = document.getElementById("hcModal");
+        if (e.target === modal) {
+          tutupHC();
+        }
+      };
+    </script>
+
     <script>
       document.addEventListener("contextmenu", (e) => e.preventDefault());
+
       document.onkeydown = (e) => {
-        if (e.ctrlKey && ["s", "u", "c"].includes(e.key.toLowerCase()))
-          e.preventDefault();
         if (e.key === "F12") e.preventDefault();
+
+        if (e.ctrlKey && ["u", "s", "c"].includes(e.key.toLowerCase()))
+          e.preventDefault();
+
         if (e.ctrlKey && e.shiftKey && ["I", "J"].includes(e.key.toUpperCase()))
           e.preventDefault();
       };
