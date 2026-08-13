@@ -272,13 +272,6 @@
 
     <script>
       // 🔓 TOGGLE PASSWORD
-      function togglePassword() {
-        const input = document.getElementById("password-input");
-
-        input.type = input.type === "password" ? "text" : "password";
-      }
-
-      // 🔥 LOGIN
       async function checkPassword() {
         const inputVal = document.getElementById("password-input").value.trim();
 
@@ -302,81 +295,107 @@
           return;
         }
 
-        // 🔄 LOADING
         submitBtn.disabled = true;
         submitBtn.style.opacity = "0.6";
 
         loading.style.display = "flex";
         errorMsg.style.display = "none";
 
-        // ⏱️ TIMEOUT 10 DETIK
-        const controller = new AbortController();
+        const url =
+          "https://script.google.com/macros/s/AKfycbyY26lIBiHzYecjN5jNZzwT_HR5zqYG-PQ342mjkQFrUxlZr-m_IOWukXe-d0-uxKNQdA/exec?password=" +
+          encodeURIComponent(inputVal);
 
-        const timeout = setTimeout(() => {
-          controller.abort();
-        }, 10000);
+        // 🔄 COBA MAKSIMAL 3 KALI
+        const maxRetry = 3;
+
+        let lastError = null;
 
         try {
-          const res = await fetch(
-            "https://script.google.com/macros/s/AKfycbyY26lIBiHzYecjN5jNZzwT_HR5zqYG-PQ342mjkQFrUxlZr-m_IOWukXe-d0-uxKNQdA/exec?password=" +
-              encodeURIComponent(inputVal),
-            {
-              method: "GET",
-              cache: "no-store",
-              signal: controller.signal,
-            },
-          );
+          for (let attempt = 1; attempt <= maxRetry; attempt++) {
+            try {
+              // Timeout setiap percobaan = 8 detik
+              const controller = new AbortController();
 
-          clearTimeout(timeout);
+              const timeout = setTimeout(() => {
+                controller.abort();
+              }, 8000);
 
-          if (!res.ok) {
-            throw new Error("REQUEST_FAILED");
+              const res = await fetch(url, {
+                method: "GET",
+                cache: "no-store",
+                signal: controller.signal,
+              });
+
+              clearTimeout(timeout);
+
+              if (!res.ok) {
+                throw new Error("REQUEST_FAILED");
+              }
+
+              const data = await res.json();
+
+              // ==========================================
+              // 🟢 PASSWORD BENAR
+              // ==========================================
+
+              if (data.status === "ok") {
+                loading.style.display = "none";
+
+                document.getElementById("password-box").style.display = "none";
+
+                renderQuote({
+                  quotes: [data.username],
+
+                  perhatianLink: "https://youtube.com/shorts/KgC2eDR5Py0",
+
+                  downloadLink: "https://sweaterpink.web.id/subscribe2",
+
+                  groupLink: "https://s.id/Saluran-Whatsapp",
+                });
+
+                return;
+              }
+
+              // ==========================================
+              // 🔴 PASSWORD SALAH
+              // ==========================================
+
+              if (data.status === "wrong_password") {
+                const youtubeUrl =
+                  "https://www.youtube.com/@SweaterPinkOfficial";
+
+                errorMsg.innerHTML =
+                  "Password salah!!! cek video terbaru di sini " +
+                  '<a href="' +
+                  youtubeUrl +
+                  '" target="_blank" ' +
+                  'style="text-decoration:underline;color:#0b5ed7;">link</a>.';
+
+                errorMsg.style.display = "block";
+
+                return;
+              }
+
+              // ==========================================
+              // ⚠️ ERROR
+              // Coba ulang otomatis
+              // ==========================================
+
+              throw new Error("SERVER_ERROR");
+            } catch (err) {
+              lastError = err;
+
+              // Kalau masih ada kesempatan retry
+              if (attempt < maxRetry) {
+                // Tunggu 1 detik sebelum mencoba lagi
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+
+                continue;
+              }
+            }
           }
 
-          const data = await res.json();
-
-          // 🟢 PASSWORD BENAR
-          if (data.status === "ok") {
-            loading.style.display = "none";
-
-            document.getElementById("password-box").style.display = "none";
-
-            renderQuote({
-              quotes: [data.username],
-
-              perhatianLink: "https://youtube.com/shorts/KgC2eDR5Py0",
-
-              downloadLink: "https://sweaterpink.web.id/subscribe2",
-
-              groupLink: "https://s.id/Saluran-Whatsapp",
-            });
-
-            return;
-          }
-
-          // 🔴 PASSWORD SALAH
-          if (data.status === "wrong_password") {
-            const url = "https://www.youtube.com/@SweaterPinkOfficial";
-
-            errorMsg.innerHTML =
-              "Password salah!!! cek video terbaru di sini " +
-              '<a href="' +
-              url +
-              '" target="_blank" ' +
-              'style="text-decoration:underline;color:#0b5ed7;">link</a>.';
-
-            errorMsg.style.display = "block";
-
-            return;
-          }
-
-          // ⚠️ GANGGUAN SEMENTARA
-          errorMsg.textContent = "⚠️ Mohon tunggu sebentar, lalu coba kembali.";
-
-          errorMsg.style.display = "block";
-        } catch (e) {
-          clearTimeout(timeout);
-
+          // Semua percobaan gagal
           errorMsg.textContent = "⚠️ Mohon tunggu sebentar, lalu coba kembali.";
 
           errorMsg.style.display = "block";
