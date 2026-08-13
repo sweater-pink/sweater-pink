@@ -271,13 +271,14 @@
     <div id="quote-box"></div>
 
     <script>
-      // 🔓 toggle
+      // 🔓 TOGGLE PASSWORD
       function togglePassword() {
         const input = document.getElementById("password-input");
+
         input.type = input.type === "password" ? "text" : "password";
       }
 
-      // 🔥 LOGIN (API GOOGLE)
+      // 🔥 LOGIN
       async function checkPassword() {
         const inputVal = document.getElementById("password-input").value.trim();
 
@@ -285,6 +286,9 @@
 
         const loading = document.getElementById("loading-login");
 
+        const submitBtn = document.querySelector("#password-box .btn");
+
+        // Password kosong
         if (!inputVal) {
           errorMsg.textContent = "Password tidak boleh kosong.";
 
@@ -293,45 +297,94 @@
           return;
         }
 
-        /* SHOW LOADING */
-        loading.style.display = "flex";
+        // Cegah klik berkali-kali
+        if (submitBtn.disabled) {
+          return;
+        }
 
+        // 🔄 LOADING
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = "0.6";
+
+        loading.style.display = "flex";
         errorMsg.style.display = "none";
+
+        // ⏱️ TIMEOUT 10 DETIK
+        const controller = new AbortController();
+
+        const timeout = setTimeout(() => {
+          controller.abort();
+        }, 10000);
 
         try {
           const res = await fetch(
-            "https://script.google.com/macros/s/AKfycbznLGVHFucJVDpU5dl6fbUgdNpiRVwDGGcXV_mxzC2oGgWrQRedvdcnh1NS8uwyJatRSw/exec?password=" +
+            "https://script.google.com/macros/s/AKfycbyY26lIBiHzYecjN5jNZzwT_HR5zqYG-PQ342mjkQFrUxlZr-m_IOWukXe-d0-uxKNQdA/exec?password=" +
               encodeURIComponent(inputVal),
+            {
+              method: "GET",
+              cache: "no-store",
+              signal: controller.signal,
+            },
           );
+
+          clearTimeout(timeout);
+
+          if (!res.ok) {
+            throw new Error("REQUEST_FAILED");
+          }
 
           const data = await res.json();
 
-          if (data.status !== "ok") throw new Error();
+          // 🟢 PASSWORD BENAR
+          if (data.status === "ok") {
+            loading.style.display = "none";
 
-          /* HIDE LOGIN */
-          document.getElementById("password-box").style.display = "none";
+            document.getElementById("password-box").style.display = "none";
 
-          renderQuote({
-            quotes: [data.username],
+            renderQuote({
+              quotes: [data.username],
 
-            perhatianLink: "https://youtube.com/shorts/KgC2eDR5Py0",
+              perhatianLink: "https://youtube.com/shorts/KgC2eDR5Py0",
 
-            downloadLink: "https://sweaterpink.web.id/subscribe2",
+              downloadLink: "https://sweaterpink.web.id/subscribe2",
 
-            groupLink: "https://s.id/Saluran-Whatsapp",
-          });
-        } catch (e) {
-          loading.style.display = "none";
+              groupLink: "https://s.id/Saluran-Whatsapp",
+            });
 
-          const url = "https://www.youtube.com/@SweaterPinkOfficial";
+            return;
+          }
 
-          errorMsg.innerHTML =
-            "Password salah!!! cek video terbaru di sini " +
-            '<a href="' +
-            url +
-            '" target="_blank" style="text-decoration:underline;color:#0b5ed7;">link</a>.';
+          // 🔴 PASSWORD SALAH
+          if (data.status === "wrong_password") {
+            const url = "https://www.youtube.com/@SweaterPinkOfficial";
+
+            errorMsg.innerHTML =
+              "Password salah!!! cek video terbaru di sini " +
+              '<a href="' +
+              url +
+              '" target="_blank" ' +
+              'style="text-decoration:underline;color:#0b5ed7;">link</a>.';
+
+            errorMsg.style.display = "block";
+
+            return;
+          }
+
+          // ⚠️ GANGGUAN SEMENTARA
+          errorMsg.textContent = "⚠️ Mohon tunggu sebentar, lalu coba kembali.";
 
           errorMsg.style.display = "block";
+        } catch (e) {
+          clearTimeout(timeout);
+
+          errorMsg.textContent = "⚠️ Mohon tunggu sebentar, lalu coba kembali.";
+
+          errorMsg.style.display = "block";
+        } finally {
+          loading.style.display = "none";
+
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = "1";
         }
       }
 
