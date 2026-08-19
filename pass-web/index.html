@@ -271,7 +271,21 @@
     <div id="quote-box"></div>
 
     <script>
-      // 🔓 TOGGLE PASSWORD
+      // 👁️ TOGGLE PASSWORD
+      function togglePassword() {
+        const input = document.getElementById("password-input");
+        const eye = document.querySelector(".eye");
+
+        if (input.type === "password") {
+          input.type = "text";
+          eye.textContent = "🙈";
+        } else {
+          input.type = "password";
+          eye.textContent = "👁️";
+        }
+      }
+
+      // 🔓 CHECK PASSWORD
       async function checkPassword() {
         const inputVal = document.getElementById("password-input").value.trim();
 
@@ -289,7 +303,6 @@
 
           return;
         }
-
         // Cegah klik berkali-kali
         if (submitBtn.disabled) {
           return;
