@@ -989,10 +989,52 @@
 
       // ✅ VALIDASI sebelum kirim WA
       function validateForm() {
-        const form = document.getElementById("waForm");
+        const nama = document.getElementById("nama");
+        const jenis = document.getElementById("jenis");
+        const configPremium = document.getElementById("configPremium");
+        const server = document.getElementById("server");
+        const provinsi = document.getElementById("provinsi");
+        const kartu = document.getElementById("kartu");
 
-        if (!form.checkValidity()) {
-          form.reportValidity();
+        // 1. Nama
+        if (!nama.value.trim()) {
+          nama.focus();
+          nama.reportValidity();
+          return false;
+        }
+
+        // 2. Jenis Order
+        if (!jenis.value) {
+          jenis.focus();
+          jenis.reportValidity();
+          return false;
+        }
+
+        // 3. Config Premium (hanya jika tampil)
+        if (jenis.value === "Config Premium" && !configPremium.value) {
+          configPremium.focus();
+          configPremium.reportValidity();
+          return false;
+        }
+
+        // 4. Paket Server
+        if (!server.value) {
+          server.focus();
+          server.reportValidity();
+          return false;
+        }
+
+        // 5. Provinsi
+        if (!provinsi.value) {
+          provinsi.focus();
+          provinsi.reportValidity();
+          return false;
+        }
+
+        // 6. Kartu
+        if (!kartu.value) {
+          kartu.focus();
+          kartu.reportValidity();
           return false;
         }
 
