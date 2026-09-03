@@ -996,35 +996,44 @@ function validateForm() {
   const provinsi = document.getElementById("provinsi");
   const kartu = document.getElementById("kartu");
 
-  if (!nama.checkValidity()) {
+  if (!nama.value.trim()) {
+    nama.focus();
+    nama.setCustomValidity("Silakan isi nama / username.");
     nama.reportValidity();
+    nama.setCustomValidity("");
     return false;
   }
 
-  if (!jenis.checkValidity()) {
+  if (!jenis.value) {
+    jenis.focus();
+    jenis.setCustomValidity("Silakan pilih jenis order.");
     jenis.reportValidity();
+    jenis.setCustomValidity("");
     return false;
   }
 
-  if (
-    jenis.value === "Config Premium" &&
-    !configPremium.checkValidity()
-  ) {
+  if (jenis.value === "Config Premium" && !configPremium.value) {
+    configPremium.focus();
+    configPremium.setCustomValidity("Silakan pilih Config Premium.");
     configPremium.reportValidity();
+    configPremium.setCustomValidity("");
     return false;
   }
 
-  if (!server.checkValidity()) {
+  if (!server.value) {
+    server.focus();
     server.reportValidity();
     return false;
   }
 
-  if (!provinsi.checkValidity()) {
+  if (!provinsi.value) {
+    provinsi.focus();
     provinsi.reportValidity();
     return false;
   }
 
-  if (!kartu.checkValidity()) {
+  if (!kartu.value) {
+    kartu.focus();
     kartu.reportValidity();
     return false;
   }
