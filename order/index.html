@@ -3,14 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Sweater Pink Order | Gasss Premium</title>
-
+    <meta name="theme-color" content="#ec2ca8" />
+    <title>Sweater Pink Order | Premium</title>
     <meta
       name="description"
       content="Order Premium Config SSH, V2Ray, Trojan, UDP Custom, UDP ZiVpn oleh Sweater Pink."
     />
-
     <link
       rel="icon"
       type="image/jpeg"
@@ -21,9 +19,7 @@
       href="https://sweaterpink.web.id/icon/logoprofil1.jpg"
     />
     <link rel="manifest" href="/manifest.json" />
-
-    <!-- PREVIEW WHATSAPP -->
-    <meta property="og:title" content="Sweater Pink Order | Gasss Premium" />
+    <meta property="og:title" content="Sweater Pink Order | Premium" />
     <meta
       property="og:description"
       content="Order Premium - Pilih Jenis & Server Kamu"
@@ -35,468 +31,702 @@
     <meta property="og:url" content="https://sweaterpink.web.id/order/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Sweater Pink" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Sweater Pink Order | Gasss Premium" />
-    <meta
-      name="twitter:description"
-      content="Order Premium - Pilih Jenis & Server Kamu"
-    />
-    <meta
-      name="twitter:image"
-      content="https://sweaterpink.web.id/icon/logoprofil1.jpg"
-    />
-
-    <meta name="theme-color" content="#FF1499" />
-    <meta name="msapplication-navbutton-color" content="#FF1499" />
-
-    <style>
-      @keyframes bgMove {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
-      }
-
-      /* ✨ efek blink garis putih */
-      .product-card::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -120px;
-        width: 70px;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.6);
-        transform: skewX(-25deg);
-        animation: shineMove 3s infinite;
-      }
-
-      @keyframes shineMove {
-        0% {
-          left: -120px;
-          opacity: 0;
-        }
-        30% {
-          opacity: 1;
-        }
-        50% {
-          left: 120%;
-          opacity: 1;
-        }
-        100% {
-          left: 120%;
-          opacity: 0;
-        }
-      }
-      body {
-        font-family: "Poppins", sans-serif;
-        background-color: #faf5f7;
-        padding: 20px;
-      }
-      .product-card {
-        background: linear-gradient(135deg, #ffffff, #ffb3d9, #ff3fbf);
-        background-size: 150% 150%;
-        animation: bgMove 8s ease infinite;
-
-        max-width: 380px;
-        margin: 0 auto;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(255, 20, 147, 0.25);
-        text-align: center;
-        padding: 25px 15px;
-        position: relative;
-        overflow: hidden;
-      }
-      .product-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: 12px;
-        padding: 2px;
-
-        background: linear-gradient(135deg, #ff2fb3, #ff4ac9, #ff80df);
-
-        -webkit-mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-
-        pointer-events: none;
-      }
-      form::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: 10px;
-        padding: 2px;
-
-        background: linear-gradient(135deg, #ff4ac9, #ff8bd9, #ff2fb3);
-
-        -webkit-mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-
-        pointer-events: none;
-      }
-      .product-title {
-        color: #c2185b;
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 5px;
-        text-transform: uppercase;
-      }
-      .product-subtitle {
-        font-size: 14px;
-        color: #555;
-        margin-top: 5px;
-      }
-      form {
-        background: white;
-        max-width: 380px;
-        margin: 15px auto;
-        padding: 15px 18px 20px 18px;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-
-        position: relative; /* 🔥 INI WAJIB */
-        overflow: hidden; /* 🔥 BIAR RAPI */
-      }
-      .form-group {
-        margin-bottom: 10px;
-      }
-      label {
-        font-weight: 600;
-        color: #333;
-        display: block;
-        margin-bottom: 3px;
-        font-size: 13px;
-      }
-      input,
-      select {
-        width: 100%;
-        padding: 8px;
-        border: 1.3px solid #e0b9c9;
-        border-radius: 6px;
-        box-sizing: border-box;
-        font-size: 13px;
-        transition: all 0.2s ease;
-      }
-      input:focus,
-      select:focus {
-        border-color: #c2185b;
-        outline: none;
-        box-shadow: 0 0 3px rgba(194, 24, 91, 0.25);
-      }
-      .price-box {
-        background: #f8edf2;
-        border-radius: 6px;
-        padding: 10px;
-        text-align: center;
-        font-weight: 600;
-        color: #c2185b;
-        margin-top: 5px;
-        font-size: 14px;
-      }
-      button {
-        width: 100%;
-        background: linear-gradient(135deg, #e91e63, #c2185b);
-        color: white;
-        border: none;
-        padding: 10px;
-        border-radius: 6px;
-        margin-top: 10px;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 14px;
-      }
-      button:hover {
-        background: linear-gradient(135deg, #c2185b, #a5114a);
-      }
-      footer {
-        text-align: center;
-        margin-top: 20px;
-        font-size: 12px;
-        color: #777;
-      }
-      #previewBox {
-        display: none;
-        background: #fff4f7;
-        border: 1px solid #f3c2d0;
-        border-radius: 10px;
-        padding: 12px 15px;
-        margin-top: 15px;
-        font-size: 13px;
-        line-height: 1.6;
-        color: #333;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-      }
-      #previewBox strong {
-        color: #c2185b;
-      }
-      #previewTitle {
-        text-align: center;
-        font-weight: 700;
-        color: #c2185b;
-        font-size: 15px;
-        margin-bottom: 6px;
-      }
-
-      .swal2-title {
-        font-size: clamp(22px, 5vw, 30px) !important;
-        line-height: 1.2 !important;
-        text-align: center !important;
-      }
-    </style>
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
     />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap");
+
+      :root {
+        --pink: #ec2ca8;
+        --pink-dark: #c81787;
+        --pink-soft: #fff0f9;
+        --pink-border: #f5b8df;
+        --text: #24212a;
+        --muted: #77717d;
+        --white: #ffffff;
+        --green: #20c997;
+        --shadow: 0 18px 50px rgba(205, 33, 143, 0.12);
+        --radius: 22px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(
+            circle at 10% 0%,
+            rgba(255, 126, 210, 0.22),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 90% 10%,
+            rgba(255, 194, 235, 0.3),
+            transparent 30%
+          ),
+          linear-gradient(180deg, #fff8fc 0%, #fff 45%, #fff7fc 100%);
+        padding: 24px 14px 50px;
+      }
+
+      .page {
+        width: min(100%, 760px);
+        margin: 0 auto;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 30px 22px 24px;
+        border-radius: 28px;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #fff0fa 55%,
+          #ffd6ef 100%
+        );
+        border: 1px solid rgba(236, 44, 168, 0.16);
+        box-shadow: var(--shadow);
+        text-align: center;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        right: -90px;
+        top: -120px;
+        background: rgba(236, 44, 168, 0.12);
+        border-radius: 50%;
+      }
+
+      .brand {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-family: "Poppins", sans-serif;
+        font-size: clamp(25px, 6vw, 34px);
+        font-weight: 800;
+        color: var(--pink);
+        letter-spacing: -0.5px;
+      }
+
+      .brand-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 7px 20px rgba(236, 44, 168, 0.16);
+        font-size: 20px;
+      }
+
+      .hero-subtitle {
+        position: relative;
+        margin: 8px auto 0;
+        max-width: 560px;
+        color: var(--muted);
+        line-height: 1.55;
+        font-size: 14px;
+      }
+
+      .quick-links {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 9px;
+        margin-top: 20px;
+      }
+
+      .quick-links a {
+        text-decoration: none;
+        color: var(--pink-dark);
+        background: #fff;
+        border: 1px solid var(--pink-border);
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        transition: 0.2s ease;
+      }
+
+      .quick-links a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(236, 44, 168, 0.13);
+      }
+
+      .form-shell {
+        margin-top: 18px;
+        padding: 22px;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.94);
+        border: 1px solid rgba(236, 44, 168, 0.13);
+        box-shadow: var(--shadow);
+      }
+
+      .section-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .section-icon {
+        flex: 0 0 auto;
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 13px;
+        background: var(--pink-soft);
+        border: 1px solid var(--pink-border);
+        font-size: 19px;
+      }
+
+      .section-title {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        font-size: 18px;
+        color: #332d36;
+      }
+
+      .section-desc {
+        margin: 2px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .form-group {
+        margin: 0;
+      }
+
+      .full {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin: 0 0 7px;
+        font-size: 12px;
+        font-weight: 800;
+        color: #3a3440;
+      }
+
+      .required-dot {
+        color: var(--pink);
+        font-size: 13px;
+      }
+
+      input,
+      select {
+        width: 100%;
+        min-height: 48px;
+        padding: 12px 13px;
+        border: 1px solid #e4d7df;
+        border-radius: 13px;
+        background: #fff;
+        color: #2d2930;
+        outline: none;
+        font:
+          500 13px "Inter",
+          sans-serif;
+        transition: 0.2s ease;
+      }
+
+      input::placeholder {
+        color: #aaa2ab;
+      }
+
+      input:hover,
+      select:hover {
+        border-color: #e6a8d0;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: var(--pink);
+        box-shadow: 0 0 0 4px rgba(236, 44, 168, 0.1);
+      }
+
+      /* Choices.js dibuat lebih bersih agar dropdown Provinsi tidak terlihat seperti kotak kosong. */
+      .choices {
+        margin-bottom: 0;
+      }
+
+      .choices__inner {
+        min-height: 48px;
+        padding: 7px 12px;
+        border: 1px solid #e4d7df;
+        border-radius: 13px;
+        background: #fff;
+        font-size: 13px;
+      }
+
+      .choices.is-focused .choices__inner,
+      .choices.is-open .choices__inner {
+        border-color: var(--pink);
+        box-shadow: 0 0 0 4px rgba(236, 44, 168, 0.1);
+      }
+
+      .choices__list--single {
+        padding: 6px 28px 6px 2px;
+      }
+
+      .choices__list--dropdown,
+      .choices__list[aria-expanded] {
+        z-index: 20;
+        border: 1px solid #efc4df;
+        border-radius: 13px;
+        box-shadow: 0 15px 35px rgba(60, 20, 45, 0.12);
+        overflow: hidden;
+      }
+
+      .choices__input {
+        border: 1px solid #e4d7df !important;
+        border-radius: 9px !important;
+        margin: 8px !important;
+        width: calc(100% - 16px) !important;
+      }
+
+      .choices__item--choice.is-highlighted {
+        background: var(--pink-soft);
+        color: var(--pink-dark);
+      }
+
+      .choices__list--dropdown .choices__item,
+      .choices__list[aria-expanded] .choices__item {
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+
+      .hint {
+        margin: 6px 0 0;
+        color: #8d858e;
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
+      .price-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-top: 2px;
+        padding: 14px 16px;
+        border-radius: 15px;
+        background: linear-gradient(135deg, #fff0f9, #fff8fc);
+        border: 1px solid #f5c1df;
+      }
+
+      .price-label {
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .price-value {
+        color: var(--pink-dark);
+        font-size: 20px;
+        font-weight: 800;
+      }
+
+      #harga {
+        color: var(--pink-dark);
+      }
+
+      #previewBox {
+        display: none;
+        margin-top: 18px;
+        padding: 17px;
+        border-radius: 17px;
+        background: #fffafd;
+        border: 1px solid #f1c8df;
+      }
+
+      #previewTitle {
+        margin-bottom: 11px;
+        color: var(--pink-dark);
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      #previewContent {
+        color: #514b53;
+        font-size: 12px;
+        line-height: 1.75;
+      }
+
+      #previewContent strong {
+        color: #322d34;
+      }
+
+      .promo-note {
+        padding: 10px 12px;
+        margin-top: 7px;
+        border-radius: 11px;
+        background: #f4fff9;
+        border: 1px solid #b9efd9;
+        color: #52675f;
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
+      .promo-note a {
+        color: #12a875;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .submit-area {
+        margin-top: 18px;
+      }
+
+      .submit-btn {
+        width: 100%;
+        min-height: 52px;
+        border: 0;
+        border-radius: 15px;
+        background: linear-gradient(135deg, #f02cac, #c81787);
+        color: #fff;
+        cursor: pointer;
+        font:
+          800 14px "Inter",
+          sans-serif;
+        box-shadow: 0 12px 25px rgba(200, 24, 135, 0.22);
+        transition: 0.2s ease;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 30px rgba(200, 24, 135, 0.27);
+      }
+
+      .submit-btn:active {
+        transform: translateY(0);
+      }
+
+      .secure-note {
+        margin: 9px 0 0;
+        text-align: center;
+        color: #918a92;
+        font-size: 11px;
+      }
+
+      footer {
+        padding: 22px 5px 0;
+        text-align: center;
+        color: #9b929b;
+        font-size: 11px;
+      }
+
+      @media (max-width: 620px) {
+        body {
+          padding: 12px 10px 30px;
+        }
+        .hero {
+          padding: 25px 16px 20px;
+          border-radius: 22px;
+        }
+        .form-shell {
+          padding: 16px;
+          border-radius: 22px;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+        .full {
+          grid-column: auto;
+        }
+        .section-head {
+          margin-bottom: 15px;
+        }
+        .quick-links a {
+          padding: 9px 12px;
+        }
+      }
+
+      @media (max-width: 390px) {
+        .hero-subtitle {
+          font-size: 13px;
+        }
+        .brand {
+          font-size: 25px;
+        }
+        .form-shell {
+          padding: 13px;
+        }
+      }
+    </style>
   </head>
+
   <body>
-    <div class="product-card">
-      <div class="product-title">Sweater Pink</div>
-      <div class="product-subtitle">
-        Order Premium - Pilih Jenis & Server Kamu
-      </div>
-
-      <div
-        style="
-          margin-top: 12px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 8px;
-        "
-      >
-        <a
-          href="https://www.sweaterpink.web.id/pengertian"
-          target="_blank"
-          style="
-            min-width: 220px;
-            text-align: center;
-            background: #00ff95;
-            color: #0066cc;
-            text-decoration: none;
-            padding: 9px 18px;
-            border-radius: 30px;
-            border: 2px solid #ff3fbf;
-            font-weight: bold;
-            font-size: 12px;
-            box-shadow: 0 0 12px rgba(0, 255, 149, 0.35);
-            transition: 0.25s;
-          "
-          onmouseover="this.style.transform = 'scale(1.05)'"
-          onmouseout="this.style.transform = 'scale(1)'"
-        >
-          📖 Pengertian Config
-        </a>
-
-        <a
-          href="https://www.sweaterpink.web.id/Compatible-APK-Version/"
-          target="_blank"
-          style="
-            min-width: 220px;
-            text-align: center;
-            background: #00ff95;
-            color: #0066cc;
-            text-decoration: none;
-            padding: 9px 18px;
-            border-radius: 30px;
-            border: 2px solid #ff3fbf;
-            font-weight: bold;
-            font-size: 12px;
-            box-shadow: 0 0 12px rgba(0, 255, 149, 0.35);
-            transition: 0.25s;
-          "
-          onmouseover="this.style.transform = 'scale(1.05)'"
-          onmouseout="this.style.transform = 'scale(1)'"
-        >
-          📱 Compatible APK
-        </a>
-      </div>
-    </div>
-
-    <form id="waForm">
-      <div class="form-group">
-        <label for="nama">Nama</label>
-        <input
-          type="text"
-          id="nama"
-          placeholder="Masukkan nama anda"
-          required
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="jenis">Jenis Order</label>
-        <select id="jenis" required>
-          <option value="" disabled selected hidden>
-            -- Pilih Jenis Order --
-          </option>
-          <option value="Config Premium">CONFIG PREMIUM TINGGAL PAKAI</option>
-          <!-- <option value="Tembak Paket">Tembak Paket</option> -->
-          <!-- <option value="SSH">AKUN SSH</option> -->
-          <!-- <option value="VMESS">AKUN VMESS</option> -->
-          <!-- <option value="VLESS">AKUN VLESS</option> -->
-          <!-- <option value="TROJAN">AKUN TROJAN</option> -->
-          <!-- <option value="ZIVPN">AKUN ZIVPN</option> -->
-        </select>
-      </div>
-
-      <!-- ✅ MENU TAMBAHAN (MUNCUL KHUSUS CONFIG PREMIUM) -->
-      <div class="form-group" id="configMenu" style="display: none">
-        <label for="configPremium">Pilih Config Premium</label>
-        <select id="configPremium">
-          <option value="" disabled selected hidden>-- Pilih Config --</option>
-          <option>XL EDUKASI</option>
-          <option>XL CONFERANCE (🔥Rekomendasi)</option>
-          <option>XL IFLIX 15GB XTRA KOUTA 30GB</option>
-          <option>AXIS XL MUSIK / SPOTIFY</option>
-          <option>AXIS XL WHATSAPP</option>
-          <option>AXIS LIFESTYLE WHATSAPP (🔥Rekomendasi)</option>
-          <option>AXIS BOOSTER MUSIK</option>
-          <option>AXIS BOOSTER KOMIK (🔥Rekomendasi)</option>
-          <option>AXIS BOOSTER SOSMED</option>
-          <option>AXIS BOOSTER VIDIO</option>
-          <option>AXIS UNLIMITED GAME</option>
-          <option>SMARFREN NONSTOP APSS</option>
-          <option>TELKOMSEL KENTANG GAMEMAX (🔥Rekomendasi)</option>
-          <option>
-            TELKOMSEL KARTU HALLO+ FLEXY 80K 300GB INJECT 1 BULAN
-            (🔥Rekomendasi)
-          </option>
-          <option>TELKOMSEL ILMUPEDIA</option>
-          <option>INDOSAT APPS FUN (🔥Rekomendasi)</option>
-          <!-- <option>OPOK UDP CUSTOM</option> -->
-          <!-- <option>OPOK ZIVPN VIP</option> -->
-          <option>Paket Lainnya (tanya mimin)</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="server">Pilih Server</label>
-        <select id="server" required>
-          <option value="" disabled selected hidden>-- Pilih Server --</option>
-          <!-- INDONESIA -->
-          <option>[ID] Indonesia 1 HP | Rp. 10.000 | 30 Hari</option>
-          <option>[ID] Indonesia 2 HP | Rp. 12.000 | 30 Hari</option>
-          <option>[ID] Indonesia 1 HP | Rp. 20.000 | 60 Hari</option>
-          <option>[ID] Indonesia 2 HP | Rp. 24.000 | 60 Hari</option>
-          <!-- SINGAPORE -->
-          <option>[SG] Singapore 1 HP | Rp. 8.000 | 30 Hari</option>
-          <option>[SG] Singapore 2 HP | Rp. 10.000 | 30 Hari</option>
-          <option>[SG] Singapore 1 HP | Rp. 18.000 | 60 Hari</option>
-          <option>[SG] Singapore 2 HP | Rp. 20.000 | 60 Hari</option>
-          <!-- <option data-type="zivpn">[ID] UDP ZIVPN 1 HP | Rp. 5.000 | 30 Hari</option> -->
-          <!-- <option data-type="zivpn">[ID] UDP ZIVPN 2 HP | Rp. 10.000 | 30 Hari</option> -->
-        </select>
-      </div>
-
-      <div id="harga" class="price-box">Harga: -</div>
-
-      <div class="form-group">
-        <label for="provinsi">Provinsi</label>
-        <select id="provinsi" required>
-          <option value="">-- Pilih Provinsi --</option>
-          <option>Aceh</option>
-          <option>Sumatera Utara</option>
-          <option>Sumatera Barat</option>
-          <option>Riau</option>
-          <option>Kepulauan Riau</option>
-          <option>Jambi</option>
-          <option>Bengkulu</option>
-          <option>Sumatera Selatan</option>
-          <option>Kepulauan Bangka Belitung</option>
-          <option>Lampung</option>
-          <option>Banten</option>
-          <option>DKI Jakarta</option>
-          <option>Jawa Barat</option>
-          <option>Jawa Tengah</option>
-          <option>DI Yogyakarta</option>
-          <option>Jawa Timur</option>
-          <option>Bali</option>
-          <option>Nusa Tenggara Barat</option>
-          <option>Nusa Tenggara Timur</option>
-          <option>Kalimantan Barat</option>
-          <option>Kalimantan Tengah</option>
-          <option>Kalimantan Selatan</option>
-          <option>Kalimantan Timur</option>
-          <option>Kalimantan Utara</option>
-          <option>Sulawesi Utara</option>
-          <option>Sulawesi Tengah</option>
-          <option>Sulawesi Selatan</option>
-          <option>Sulawesi Tenggara</option>
-          <option>Gorontalo</option>
-          <option>Sulawesi Barat</option>
-          <option>Maluku</option>
-          <option>Maluku Utara</option>
-          <option>Papua</option>
-          <option>Papua Barat</option>
-          <option>Papua Tengah</option>
-          <option>Papua Pegunungan</option>
-          <option>Papua Selatan</option>
-          <option>Papua Barat Daya</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="kartu">Pilih Kartu</label>
-        <select id="kartu" required>
-          <option value="">-- Pilih Operator --</option>
-          <option>XL</option>
-          <option>Axis</option>
-          <option>Telkomsel</option>
-          <option>Indosat</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="promo">Code Promo 1 Hp / Device 30 Hari (Opsional)</label>
-        <input type="text" id="promo" placeholder="Masukkan Code Promo" />
-
-        <p style="margin-top: 6px; font-size: 12px; text-align: center">
-          🎁 Belum punya Code Promo?
-          <a
-            href="https://www.whatsapp.com/channel/0029VbBGGQzDeON7wPpnLZ1g"
-            target="_blank"
-            style="color: #25d366; font-weight: bold; text-decoration: none"
-          >
-            Join Saluran WhatsApp
-          </a>
-          untuk mendapatkan Code Promo terbaru.
-        </p>
-      </div>
-
-      <div id="previewBox">
-        <div id="previewTitle">🔥🔥 Gasss Order 🔥🔥</div>
-        <div id="previewContent">
-          Isi semua data untuk lihat order kamu di sini!
+    <main class="page">
+      <section class="hero">
+        <div class="brand">
+          <span class="brand-badge">💗</span>
+          Sweater Pink
         </div>
-      </div>
+        <p class="hero-subtitle">
+          Order Premium dengan tampilan yang lebih rapi, cepat, dan mudah
+          digunakan. Pilih layanan, server, durasi, lalu kirim pesanan langsung
+          ke WhatsApp.
+        </p>
 
-      <button type="submit">Kirim ke WhatsApp</button>
-      <p
-        style="
-          text-align: center;
-          font-size: 12px;
-          color: #888;
-          margin-top: 8px;
-        "
-      >
-        Pastikan data Anda benar sebelum mengirim.
-      </p>
-    </form>
+        <div class="quick-links">
+          <a
+            href="https://www.sweaterpink.web.id/pengertian"
+            target="_blank"
+            rel="noopener"
+            >📖 Pengertian Config</a
+          >
+          <a
+            href="https://www.sweaterpink.web.id/Compatible-APK-Version/"
+            target="_blank"
+            rel="noopener"
+            >📱 Compatible APK</a
+          >
+        </div>
+      </section>
 
-    <footer>© 2025 Sweater Pink Order | Premium</footer>
+      <section class="form-shell">
+        <div class="section-head">
+          <div class="section-icon">🛒</div>
+          <div>
+            <h1 class="section-title">Form Order</h1>
+            <p class="section-desc">
+              Isi data di bawah dengan benar sebelum melakukan order.
+            </p>
+          </div>
+        </div>
+
+        <form id="waForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="nama">Nama <span class="required-dot">*</span></label>
+              <input
+                type="text"
+                id="nama"
+                placeholder="Masukkan nama Anda"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="jenis"
+                >Jenis Order <span class="required-dot">*</span></label
+              >
+              <select id="jenis" required>
+                <option value="" disabled selected hidden>
+                  -- Pilih Jenis Order --
+                </option>
+                <option value="Config Premium">
+                  CONFIG PREMIUM TINGGAL PAKAI
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group full" id="configMenu" style="display: none">
+              <label for="configPremium"
+                >Pilih Config Premium <span class="required-dot">*</span></label
+              >
+              <select id="configPremium">
+                <option value="" disabled selected hidden>
+                  -- Pilih Config --
+                </option>
+
+                <option>XL EDUKASI</option>
+                <option>XL CONFERANCE (🔥Rekomendasi)</option>
+                <option>XL IFLIX 15GB XTRA KOUTA 30GB</option>
+                <option>AXIS XL MUSIK / SPOTIFY</option>
+                <option>AXIS XL WHATSAPP</option>
+                <option>AXIS LIFESTYLE WHATSAPP (🔥Rekomendasi)</option>
+                <option>AXIS BOOSTER MUSIK</option>
+                <option>AXIS BOOSTER KOMIK (🔥Rekomendasi)</option>
+                <option>AXIS BOOSTER SOSMED</option>
+                <option>AXIS BOOSTER VIDIO</option>
+                <option>AXIS UNLIMITED GAME</option>
+                <option>SMARFREN NONSTOP APSS</option>
+                <option>TELKOMSEL KENTANG GAMEMAX (🔥Rekomendasi)</option>
+                <option>
+                  TELKOMSEL KARTU HALLO+ FLEXY 80K 300GB INJECT 1 BULAN
+                  (🔥Rekomendasi)
+                </option>
+                <option>TELKOMSEL ILMUPEDIA</option>
+                <option>INDOSAT APPS FUN (🔥Rekomendasi)</option>
+                <!-- <option>OPOK UDP CUSTOM</option> -->
+                <!-- <option>OPOK ZIVPN VIP</option> -->
+                <option>Paket Lainnya (tanya mimin)</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label for="server"
+                >Pilih Paket Server <span class="required-dot">*</span></label
+              >
+              <select id="server" required>
+                <option value="" disabled selected hidden>
+                  -- Pilih Paket Server --
+                </option>
+                <optgroup label="🇮🇩 Indonesia">
+                  <option>[ID] Indonesia 1 HP | Rp. 9.000 | 30 Hari</option>
+                  <option>[ID] Indonesia 1 HP | Rp. 18.000 | 60 Hari</option>
+                  <option>[ID] Indonesia 2 HP | Rp. 10.000 | 30 Hari</option>
+                  <option>[ID] Indonesia 2 HP | Rp. 20.000 | 60 Hari</option>
+                </optgroup>
+                <optgroup label="🇸🇬 Singapore">
+                  <option>[SG] Singapore 1 HP | Rp. 8.000 | 30 Hari</option>
+                  <option>[SG] Singapore 1 HP | Rp. 16.000 | 60 Hari</option>
+                  <option>[SG] Singapore 2 HP | Rp. 10.000 | 30 Hari</option>
+                  <option>[SG] Singapore 2 HP | Rp. 19.000 | 60 Hari</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <div id="harga" class="price-box">
+                <span class="price-label">Total Harga</span>
+                <span class="price-value">-</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="provinsi"
+                >Provinsi <span class="required-dot">*</span></label
+              >
+              <select id="provinsi" required>
+                <option value="">-- Pilih Provinsi --</option>
+                <option>Aceh</option>
+                <option>Sumatera Utara</option>
+                <option>Sumatera Barat</option>
+                <option>Riau</option>
+                <option>Kepulauan Riau</option>
+                <option>Jambi</option>
+                <option>Bengkulu</option>
+                <option>Sumatera Selatan</option>
+                <option>Kepulauan Bangka Belitung</option>
+                <option>Lampung</option>
+                <option>Banten</option>
+                <option>DKI Jakarta</option>
+                <option>Jawa Barat</option>
+                <option>Jawa Tengah</option>
+                <option>DI Yogyakarta</option>
+                <option>Jawa Timur</option>
+                <option>Bali</option>
+                <option>Nusa Tenggara Barat</option>
+                <option>Nusa Tenggara Timur</option>
+                <option>Kalimantan Barat</option>
+                <option>Kalimantan Tengah</option>
+                <option>Kalimantan Selatan</option>
+                <option>Kalimantan Timur</option>
+                <option>Kalimantan Utara</option>
+                <option>Sulawesi Utara</option>
+                <option>Sulawesi Tengah</option>
+                <option>Sulawesi Selatan</option>
+                <option>Sulawesi Tenggara</option>
+                <option>Gorontalo</option>
+                <option>Sulawesi Barat</option>
+                <option>Maluku</option>
+                <option>Maluku Utara</option>
+                <option>Papua</option>
+                <option>Papua Barat</option>
+                <option>Papua Tengah</option>
+                <option>Papua Pegunungan</option>
+                <option>Papua Selatan</option>
+                <option>Papua Barat Daya</option>
+              </select>
+              <p class="hint">
+                Pilih provinsi sesuai lokasi penggunaan layanan.
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label for="kartu"
+                >Pilih Kartu <span class="required-dot">*</span></label
+              >
+              <select id="kartu" required>
+                <option value="">-- Pilih Operator --</option>
+                <option>XL</option>
+                <option>Axis</option>
+                <option>Telkomsel</option>
+                <option>Indosat</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label for="promo"
+                >Code Promo 1 HP / Device 30 Hari
+                <span style="color: #9b929b; font-weight: 600"
+                  >(Opsional)</span
+                ></label
+              >
+              <input
+                type="text"
+                id="promo"
+                placeholder="Masukkan Code Promo jika punya"
+                autocomplete="off"
+              />
+              <div class="promo-note">
+                🎁 Belum punya Code Promo?
+                <a
+                  href="https://www.whatsapp.com/channel/0029VbBGGQzDeON7wPpnLZ1g"
+                  target="_blank"
+                  rel="noopener"
+                  >Join Saluran WhatsApp</a
+                >
+                untuk mendapatkan promo terbaru.
+              </div>
+            </div>
+          </div>
+
+          <div id="previewBox">
+            <div id="previewTitle">📋 Ringkasan Pesanan</div>
+            <div id="previewContent">
+              Isi data untuk melihat ringkasan order.
+            </div>
+          </div>
+
+          <div class="submit-area">
+            <button class="submit-btn" type="submit">
+              💬 Lanjutkan Order via WhatsApp
+            </button>
+            <p class="secure-note">
+              Pastikan data dan paket yang dipilih sudah benar sebelum dikirim.
+            </p>
+          </div>
+        </form>
+      </section>
+
+      <footer>© 2026 Sweater Pink • Premium Order</footer>
+    </main>
 
     <script>
       // stok global
@@ -784,17 +1014,6 @@ Pesanan kamu sedang diproses, mohon tunggu konfirmasi dari admin.`;
             }
           });
         });
-    </script>
-
-    <!-- 🔒 Anti Copy & Inspect Protection -->
-    <script>
-      document.addEventListener("contextmenu", (e) => e.preventDefault());
-      document.onkeydown = (e) => {
-        if (e.ctrlKey && ["s", "u", "c"].includes(e.key)) e.preventDefault();
-        if (e.key === "F12") e.preventDefault();
-        if (e.ctrlKey && e.shiftKey && ["I", "J"].includes(e.key))
-          e.preventDefault();
-      };
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
