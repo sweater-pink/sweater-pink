@@ -790,7 +790,7 @@
         VLESS: true,
         TROJAN: true,
         CLOUDFRONT: true,
-        ZIVPN: false,
+        ZIVPN: true,
       };
 
       const CONFIG_AKTIF = {
@@ -874,6 +874,29 @@
         searchEnabled: true,
         itemSelectText: "",
         noResultsText: "Provinsi tidak ditemukan",
+        shouldSort: false,
+      });
+
+      // Tampilan dropdown dibuat sama seperti Pilih Paket Server.
+      // Teks dan pilihan yang sudah terdaftar TIDAK diubah.
+      const jenisChoice = new Choices(document.getElementById("jenis"), {
+        searchEnabled: false,
+        itemSelectText: "",
+        shouldSort: false,
+      });
+
+      const configPremiumChoice = new Choices(
+        document.getElementById("configPremium"),
+        {
+          searchEnabled: false,
+          itemSelectText: "",
+          shouldSort: false,
+        },
+      );
+
+      const kartuChoice = new Choices(document.getElementById("kartu"), {
+        searchEnabled: false,
+        itemSelectText: "",
         shouldSort: false,
       });
 
