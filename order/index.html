@@ -441,7 +441,6 @@
           <span><i></i> VLESS</span>
           <span><i></i> Trojan</span>
           <span><i></i> CloudFront</span>
-          <span><i></i> ZIVPN</span>
         </p>
         <div class="quick-links">
           <a
@@ -473,7 +472,9 @@
         <form id="waForm">
           <div class="form-grid">
             <div class="form-group">
-              <label for="nama">Nama <span class="required-dot">*</span></label>
+              <label for="nama"
+                >Name / Username <span class="required-dot">*</span></label
+              >
               <input
                 type="text"
                 id="nama"
@@ -590,6 +591,11 @@
                   <option>[SG] Singapore 1 HP | Rp. 16.000 | 60 Hari</option>
                   <option>[SG] Singapore 2 HP | Rp. 10.000 | 30 Hari</option>
                   <option>[SG] Singapore 2 HP | Rp. 19.000 | 60 Hari</option>
+                </optgroup>
+                <optgroup label="⚡ ZIVPN">
+                  <option data-type="zivpn">
+                    [ZIVPN] ZIVPN | Rp. 5.000 | 30 Hari
+                  </option>
                 </optgroup>
               </select>
             </div>
@@ -725,7 +731,7 @@
         VLESS: true,
         TROJAN: true,
         CLOUDFRONT: true,
-        ZIVPN: false,
+        ZIVPN: true,
       };
 
       const CONFIG_AKTIF = {
@@ -758,6 +764,19 @@
       (function () {
         const jenis = document.getElementById("jenis");
         const configPremium = document.getElementById("configPremium");
+
+        // ZIVPN server mengikuti pengaturan ZIVPN
+        if (!LAYANAN_AKTIF.ZIVPN) {
+          document
+            .querySelectorAll('#server option[data-type="zivpn"]')
+            .forEach((opt) => {
+              opt.remove();
+            });
+
+          document.querySelectorAll("#server optgroup").forEach((group) => {
+            if (!group.querySelector("option")) group.remove();
+          });
+        }
 
         // Layanan: true = tetap ada, false = benar-benar dihapus dari dropdown.
         jenis.querySelectorAll("option[data-service]").forEach((opt) => {
@@ -801,6 +820,25 @@
 
       const serverSelect = document.getElementById("server");
       const hargaBox = document.getElementById("harga");
+
+      const SERVER_DATA = Array.from(
+        document.querySelectorAll("#server optgroup"),
+      ).map((group) => ({
+        label: group.label,
+        choices: Array.from(group.querySelectorAll("option"))
+          .filter((opt) => opt.value)
+          .map((opt) => ({
+            value: opt.value,
+            label: opt.textContent.trim(),
+            isZivpn: opt.dataset.type === "zivpn",
+          })),
+      }));
+      const serverChoice = new Choices(serverSelect, {
+        searchEnabled: false,
+        itemSelectText: "",
+        shouldSort: false,
+      });
+
       const previewBox = document.getElementById("previewBox");
       const previewContent = document.getElementById("previewContent");
 
@@ -861,21 +899,21 @@
             else if (selected.text.includes("[SG]")) stok = stokGlobal.SG;
 
             serverHTML = `
-                                        <strong>Server:</strong> ${data.namaServer}<br>
-                                        <strong>Harga:</strong> ${data.harga}<br>
-                                        <strong>Masa Aktif:</strong> ${data.masaAktif}<br>
-                                        <strong>Stok:</strong> <span style="color:${stok == 0 ? "red" : "#333"}">${stok}</span><br>
-                                      `;
+                                              <strong>Server:</strong> ${data.namaServer}<br>
+                                              <strong>Harga:</strong> ${data.harga}<br>
+                                              <strong>Masa Aktif:</strong> ${data.masaAktif}<br>
+                                              <strong>Stok:</strong> <span style="color:${stok == 0 ? "red" : "#333"}">${stok}</span><br>
+                                            `;
           }
 
           previewContent.innerHTML = `
-                                      <strong>Nama:</strong> ${nama || "-"}<br>
-                                      <strong>Jenis Order:</strong> ${jenis || "-"}<br>
-                                      ${jenis === "Config Premium" ? `<strong>Config:</strong> ${configVal || "-"}<br>` : ""}
-                                      ${serverHTML}
-                                      <strong>Provinsi:</strong> ${provinsi || "-"}<br>
-                                      <strong>Kartu:</strong> ${kartu || "-"}
-                                    `;
+                                            <strong>Nama:</strong> ${nama || "-"}<br>
+                                            <strong>Jenis Order:</strong> ${jenis || "-"}<br>
+                                            ${jenis === "Config Premium" ? `<strong>Config:</strong> ${configVal || "-"}<br>` : ""}
+                                            ${serverHTML}
+                                            <strong>Provinsi:</strong> ${provinsi || "-"}<br>
+                                            <strong>Kartu:</strong> ${kartu || "-"}
+                                          `;
         }
       }
 
@@ -898,32 +936,24 @@
       // tampilkan menu config premium kalau jenis = Config Premium
       jenisSelect.addEventListener("change", () => {
         const jenis = jenisSelect.value;
-        const options = serverSelect.querySelectorAll("option");
 
-        // 🔥 FILTER SERVER
-        options.forEach((opt) => {
-          if (!opt.value) return;
+        const showZivpn =
+          jenis === "ZIVPN" || configPremium.value === "OPOK ZIVPN VIP";
 
-          if (jenis === "ZIVPN" || configPremium.value === "OPOK ZIVPN VIP") {
-            if (opt.dataset.type === "zivpn") {
-              opt.hidden = false;
-            } else {
-              opt.hidden = true;
-            }
-          } else {
-            if (opt.dataset.type === "zivpn") {
-              opt.hidden = true;
-            } else {
-              opt.hidden = false;
-            }
-          }
-        });
+        const filteredChoices = SERVER_DATA.map((group) => ({
+          label: group.label,
+          choices: group.choices.filter((server) =>
+            showZivpn ? server.isZivpn : !server.isZivpn,
+          ),
+        })).filter((group) => group.choices.length > 0);
 
-        // reset pilihan server
-        serverSelect.selectedIndex = 0;
+        serverChoice.clearChoices();
+
+        serverChoice.setChoices(filteredChoices, "value", "label", true);
+
+        serverSelect.value = "";
         hargaBox.innerText = "Harga: -";
 
-        // 🔽 LOGIC LAMA (JANGAN DIHAPUS)
         if (jenis === "Config Premium") {
           configMenu.style.display = "block";
         } else {
@@ -949,9 +979,9 @@
         else if (text.includes("[SG]")) stok = stokGlobal.SG;
 
         hargaBox.innerHTML = `
-                                    Harga: ${data.harga}<br>
-                                    <span style="color:${stok == 0 ? "red" : "#333"}">Stok: ${stok}</span>
-                                  `;
+                                          Harga: ${data.harga}<br>
+                                          <span style="color:${stok == 0 ? "red" : "#333"}">Stok: ${stok}</span>
+                                        `;
         updatePreview();
       });
 
@@ -1032,27 +1062,27 @@
 
           const teks = `*SWEATER PINK ORDER*
 
-*Nama:* ${nama}
-*Jenis Order:* ${jenis}
-${configText}*Server:* ${data.namaServer}
-*Harga:* ${data.harga}
-${promoText}*Masa Aktif:* ${data.masaAktif}
-*Provinsi:* ${provinsi}
-*Kartu:* ${kartu}
+      *Nama:* ${nama}
+      *Jenis Order:* ${jenis}
+      ${configText}*Server:* ${data.namaServer}
+      *Harga:* ${data.harga}
+      ${promoText}*Masa Aktif:* ${data.masaAktif}
+      *Provinsi:* ${provinsi}
+      *Kartu:* ${kartu}
 
-──────────────
-Terima kasih telah order di *Sweater Pink Store* ❤️
-Pesanan kamu sedang diproses, mohon tunggu konfirmasi dari admin.`;
+      ──────────────
+      Terima kasih telah order di *Sweater Pink Store* ❤️
+      Pesanan kamu sedang diproses, mohon tunggu konfirmasi dari admin.`;
 
           Swal.fire({
             title: "💰 Konfirmasi Pembayaran",
             html: `
-                      <div style="font-size:16px">
-                        Total yang harus dibayar
-                        <br><br>
-                        <b style="font-size:30px;color:#e91e63">${data.harga}</b>
-                      </div>
-                    `,
+                            <div style="font-size:16px">
+                              Total yang harus dibayar
+                              <br><br>
+                              <b style="font-size:30px;color:#e91e63">${data.harga}</b>
+                            </div>
+                          `,
             icon: "question",
             showCancelButton: true,
             confirmButtonText: "Lanjut ke WhatsApp",
