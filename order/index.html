@@ -820,7 +820,7 @@
         VLESS: true,
         TROJAN: true,
         CLOUDFRONT: true,
-        ZIVPN: true,
+        ZIVPN: false,
       };
 
       const CONFIG_AKTIF = {
@@ -948,6 +948,13 @@
           })),
       }));
       const serverChoice = new Choices(serverSelect, {
+        searchEnabled: false,
+        itemSelectText: "",
+        shouldSort: false,
+      });
+
+      // Pilih Server dibuat popup seperti dropdown lainnya.
+      const serverLocationChoice = new Choices(serverLocation, {
         searchEnabled: false,
         itemSelectText: "",
         shouldSort: false,
@@ -1099,6 +1106,7 @@
         }
 
         if (showZivpn) {
+          serverLocationChoice.setChoiceByValue("");
           serverLocation.value = "";
         }
 
@@ -1110,6 +1118,7 @@
       let serverLocationTouched = false;
 
       // Pastikan saat halaman pertama dibuka lokasi server benar-benar kosong.
+      serverLocationChoice.setChoiceByValue("");
       serverLocation.value = "";
 
       serverLocation.addEventListener("change", () => {
@@ -1251,6 +1260,7 @@
         // Selama user belum memilih lokasi sendiri, lokasi TIDAK boleh
         // terisi otomatis hanya karena mengetik nama.
         if (!serverLocationTouched) {
+          serverLocationChoice.setChoiceByValue("");
           serverLocation.value = "";
           serverSelect.value = "";
           hargaBox.innerText = "Harga: -";
