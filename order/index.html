@@ -989,7 +989,14 @@
 
       // ✅ VALIDASI sebelum kirim WA
       function validateForm() {
-        return document.getElementById("waForm").checkValidity();
+        const form = document.getElementById("waForm");
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return false;
+        }
+
+        return true;
       }
 
       // Kirim ke WhatsApp (tetap aktif + ada validasi)
