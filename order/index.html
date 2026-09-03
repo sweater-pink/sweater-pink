@@ -425,9 +425,50 @@
         }
       }
     </style>
+    <style id="inline-validation-style">
+      .field-validation {
+        display: none;
+        margin-top: 5px;
+        font-size: 12px;
+        line-height: 1.35;
+        color: #d93025;
+      }
+      .field-validation.show {
+        display: block;
+      }
+    </style>
+
+    <style id="validation-popup-style">
+      #validationPopup {
+        position: fixed;
+        top: 18px;
+        left: 50%;
+        transform: translate(-50%, -140%);
+        z-index: 99999;
+        max-width: min(92vw, 420px);
+        padding: 11px 16px;
+        border-radius: 12px;
+        background: #fff;
+        border: 1px solid #f0b9db;
+        box-shadow: 0 10px 28px rgba(60, 20, 45, 0.16);
+        color: #d93025;
+        font:
+          600 13px/1.4 Inter,
+          sans-serif;
+        text-align: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.22s ease;
+      }
+      #validationPopup.show {
+        transform: translate(-50%, 0);
+        opacity: 1;
+      }
+    </style>
   </head>
 
   <body>
+    <div id="validationPopup" role="alert" aria-live="polite"></div>
     <main class="page">
       <section class="hero">
         <div class="brand">
@@ -469,7 +510,7 @@
           </div>
         </div>
 
-       <form id="waForm" novalidate>
+        <form id="waForm" novalidate>
           <div class="form-grid">
             <div class="form-group">
               <label for="nama"
@@ -482,6 +523,9 @@
                 autocomplete="name"
                 required
               />
+              <div id="namaError" class="field-validation">
+                ⚠ Silakan isi nama / username.
+              </div>
             </div>
 
             <div class="form-group">
@@ -509,6 +553,9 @@
                 </option>
                 <option data-service="ZIVPN" value="ZIVPN">AKUN ZIVPN</option>
               </select>
+              <div id="jenisError" class="field-validation">
+                ⚠ Silakan pilih jenis order.
+              </div>
             </div>
 
             <div class="form-group full" id="configMenu" style="display: none">
@@ -570,6 +617,9 @@
                   Paket Lainnya (tanya mimin)
                 </option>
               </select>
+              <div id="configPremiumError" class="field-validation">
+                ⚠ Silakan pilih Config Premium.
+              </div>
             </div>
 
             <div class="form-group full">
@@ -598,6 +648,9 @@
                   </option>
                 </optgroup>
               </select>
+              <div id="serverError" class="field-validation">
+                ⚠ Silakan pilih server.
+              </div>
             </div>
 
             <div class="form-group full">
@@ -652,6 +705,9 @@
                 <option>Papua Selatan</option>
                 <option>Papua Barat Daya</option>
               </select>
+              <div id="provinsiError" class="field-validation">
+                ⚠ Silakan pilih provinsi.
+              </div>
               <p class="hint">
                 Pilih provinsi sesuai lokasi penggunaan layanan.
               </p>
@@ -668,6 +724,9 @@
                 <option>Telkomsel</option>
                 <option>Indosat</option>
               </select>
+              <div id="kartuError" class="field-validation">
+                ⚠ Silakan pilih kartu.
+              </div>
             </div>
 
             <div class="form-group full">
@@ -988,58 +1047,114 @@
       });
 
       // ✅ VALIDASI sebelum kirim WA
-function validateForm() {
-  const nama = document.getElementById("nama");
-  const jenis = document.getElementById("jenis");
-  const configPremium = document.getElementById("configPremium");
-  const server = document.getElementById("server");
-  const provinsi = document.getElementById("provinsi");
-  const kartu = document.getElementById("kartu");
+      function validateForm() {
+        const checks = [
+          [
+            "nama",
+            "namaError",
+            "Silakan isi nama / username.",
+            () => !document.getElementById("nama").value.trim(),
+          ],
+          [
+            "jenis",
+            "jenisError",
+            "Silakan pilih jenis order.",
+            () => !document.getElementById("jenis").value,
+          ],
+          [
+            "configPremium",
+            "configPremiumError",
+            "Silakan pilih Config Premium.",
+            () =>
+              document.getElementById("jenis").value === "Config Premium" &&
+              !document.getElementById("configPremium").value,
+          ],
+          [
+            "server",
+            "serverError",
+            "Silakan pilih server.",
+            () => !document.getElementById("server").value,
+          ],
+          [
+            "provinsi",
+            "provinsiError",
+            "Silakan pilih provinsi.",
+            () => !document.getElementById("provinsi").value,
+          ],
+          [
+            "kartu",
+            "kartuError",
+            "Silakan pilih kartu.",
+            () => !document.getElementById("kartu").value,
+          ],
+        ];
 
-  if (!nama.value.trim()) {
-    nama.focus();
-    nama.setCustomValidity("Silakan isi nama / username.");
-    nama.reportValidity();
-    nama.setCustomValidity("");
-    return false;
-  }
+        checks.forEach(([, errorId]) => {
+          document.getElementById(errorId)?.classList.remove("show");
+        });
 
-  if (!jenis.value) {
-    jenis.focus();
-    jenis.setCustomValidity("Silakan pilih jenis order.");
-    jenis.reportValidity();
-    jenis.setCustomValidity("");
-    return false;
-  }
+        const popup = document.getElementById("validationPopup");
+        if (popup) popup.classList.remove("show");
 
-  if (jenis.value === "Config Premium" && !configPremium.value) {
-    configPremium.focus();
-    configPremium.setCustomValidity("Silakan pilih Config Premium.");
-    configPremium.reportValidity();
-    configPremium.setCustomValidity("");
-    return false;
-  }
+        function showError(fieldId, errorId, message) {
+          const field = document.getElementById(fieldId);
+          const error = document.getElementById(errorId);
 
-  if (!server.value) {
-    server.focus();
-    server.reportValidity();
-    return false;
-  }
+          if (error) error.classList.add("show");
 
-  if (!provinsi.value) {
-    provinsi.focus();
-    provinsi.reportValidity();
-    return false;
-  }
+          // Notifikasi tetap muncul di browser yang mendukung, sekaligus
+          // pesan kecil tetap terlihat tepat di bawah kotak field.
+          if (popup) {
+            popup.textContent = "⚠ " + message;
+            popup.classList.add("show");
+            clearTimeout(window.__validationPopupTimer);
+            window.__validationPopupTimer = setTimeout(() => {
+              popup.classList.remove("show");
+            }, 3000);
+          }
 
-  if (!kartu.value) {
-    kartu.focus();
-    kartu.reportValidity();
-    return false;
-  }
+          field.focus();
+          return false;
+        }
 
-  return true;
-}
+        for (const [fieldId, errorId, message, invalid] of checks) {
+          if (invalid()) {
+            return showError(fieldId, errorId, message);
+          }
+        }
+
+        return true;
+      }
+
+      document.getElementById("nama").addEventListener("input", function () {
+        if (this.value.trim()) {
+          document.getElementById("namaError").classList.remove("show");
+        }
+      });
+
+      ["jenis", "configPremium", "server", "provinsi", "kartu"].forEach(
+        (id) => {
+          document.getElementById(id)?.addEventListener("change", function () {
+            if (this.value) {
+              document.getElementById(id + "Error").classList.remove("show");
+            }
+          });
+        },
+      );
+
+      document.getElementById("nama").addEventListener("input", function () {
+        if (this.value.trim())
+          document.getElementById("namaError").classList.remove("show");
+      });
+
+      ["jenis", "configPremium", "server", "provinsi", "kartu"].forEach(
+        (id) => {
+          document.getElementById(id)?.addEventListener("change", function () {
+            if (this.value)
+              document.getElementById(id + "Error").classList.remove("show");
+          });
+        },
+      );
 
       // Kirim ke WhatsApp (tetap aktif + ada validasi)
       document
