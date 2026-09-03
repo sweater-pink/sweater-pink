@@ -988,58 +988,49 @@
       });
 
       // ✅ VALIDASI sebelum kirim WA
-      function validateForm() {
-        const nama = document.getElementById("nama");
-        const jenis = document.getElementById("jenis");
-        const configPremium = document.getElementById("configPremium");
-        const server = document.getElementById("server");
-        const provinsi = document.getElementById("provinsi");
-        const kartu = document.getElementById("kartu");
+function validateForm() {
+  const nama = document.getElementById("nama");
+  const jenis = document.getElementById("jenis");
+  const configPremium = document.getElementById("configPremium");
+  const server = document.getElementById("server");
+  const provinsi = document.getElementById("provinsi");
+  const kartu = document.getElementById("kartu");
 
-        // 1. Nama
-        if (!nama.value.trim()) {
-          nama.focus();
-          nama.reportValidity();
-          return false;
-        }
+  if (!nama.checkValidity()) {
+    nama.reportValidity();
+    return false;
+  }
 
-        // 2. Jenis Order
-        if (!jenis.value) {
-          jenis.focus();
-          jenis.reportValidity();
-          return false;
-        }
+  if (!jenis.checkValidity()) {
+    jenis.reportValidity();
+    return false;
+  }
 
-        // 3. Config Premium (hanya jika tampil)
-        if (jenis.value === "Config Premium" && !configPremium.value) {
-          configPremium.focus();
-          configPremium.reportValidity();
-          return false;
-        }
+  if (
+    jenis.value === "Config Premium" &&
+    !configPremium.checkValidity()
+  ) {
+    configPremium.reportValidity();
+    return false;
+  }
 
-        // 4. Paket Server
-        if (!server.value) {
-          server.focus();
-          server.reportValidity();
-          return false;
-        }
+  if (!server.checkValidity()) {
+    server.reportValidity();
+    return false;
+  }
 
-        // 5. Provinsi
-        if (!provinsi.value) {
-          provinsi.focus();
-          provinsi.reportValidity();
-          return false;
-        }
+  if (!provinsi.checkValidity()) {
+    provinsi.reportValidity();
+    return false;
+  }
 
-        // 6. Kartu
-        if (!kartu.value) {
-          kartu.focus();
-          kartu.reportValidity();
-          return false;
-        }
+  if (!kartu.checkValidity()) {
+    kartu.reportValidity();
+    return false;
+  }
 
-        return true;
-      }
+  return true;
+}
 
       // Kirim ke WhatsApp (tetap aktif + ada validasi)
       document
