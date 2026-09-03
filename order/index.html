@@ -515,7 +515,7 @@
               <label for="configPremium"
                 >Pilih Config Premium <span class="required-dot">*</span></label
               >
-              <select id="configPremium">
+              <select id="configPremium" required>
                 <option value="" disabled selected hidden>
                   -- Pilih Config --
                 </option>
@@ -956,8 +956,10 @@
 
         if (jenis === "Config Premium") {
           configMenu.style.display = "block";
+          configPremium.required = true;
         } else {
           configMenu.style.display = "none";
+          configPremium.required = false;
           configPremium.value = "";
         }
 
@@ -987,39 +989,7 @@
 
       // ✅ VALIDASI sebelum kirim WA
       function validateForm() {
-        const nama = document.getElementById("nama").value.trim();
-        const jenis = document.getElementById("jenis").value;
-        const server = document.getElementById("server").value;
-        const provinsi = document.getElementById("provinsi").value;
-        const kartu = document.getElementById("kartu").value;
-        const configVal = document.getElementById("configPremium")?.value || "";
-
-        if (!nama) {
-          alert("❌ Nama wajib diisi!");
-          return false;
-        }
-        if (!jenis) {
-          alert("❌ Jenis Order wajib dipilih!");
-          return false;
-        }
-        if (jenis === "Config Premium" && !configVal) {
-          alert("❌ Pilih Config Premium !");
-          return false;
-        }
-        if (!server) {
-          alert("❌ Server wajib dipilih!");
-          return false;
-        }
-        if (!provinsi) {
-          alert("❌ Provinsi wajib dipilih!");
-          return false;
-        }
-        if (!kartu) {
-          alert("❌ Kartu wajib dipilih!");
-          return false;
-        }
-
-        return true;
+        return document.getElementById("waForm").checkValidity();
       }
 
       // Kirim ke WhatsApp (tetap aktif + ada validasi)
@@ -1062,17 +1032,17 @@
 
           const teks = `*SWEATER PINK ORDER*
 
-      *Nama:* ${nama}
-      *Jenis Order:* ${jenis}
-      ${configText}*Server:* ${data.namaServer}
-      *Harga:* ${data.harga}
-      ${promoText}*Masa Aktif:* ${data.masaAktif}
-      *Provinsi:* ${provinsi}
-      *Kartu:* ${kartu}
+*Nama:* ${nama}
+*Jenis Order:* ${jenis}
+${configText}*Server:* ${data.namaServer}
+*Harga:* ${data.harga}
+${promoText}*Masa Aktif:* ${data.masaAktif}
+*Provinsi:* ${provinsi}
+*Kartu:* ${kartu}
 
-      ──────────────
-      Terima kasih telah order di *Sweater Pink Store* ❤️
-      Pesanan kamu sedang diproses, mohon tunggu konfirmasi dari admin.`;
+────────────────────────
+Terima kasih telah order di *Sweater Pink Store* ❤️
+Pesanan kamu sedang diproses, mohon tunggu konfirmasi dari admin.`;
 
           Swal.fire({
             title: "💰 Konfirmasi Pembayaran",
