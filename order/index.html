@@ -629,6 +629,22 @@
               </div>
             </div>
 
+            <div class="form-group full" id="serverLocationMenu">
+              <label for="serverLocation"
+                >Pilih Server <span class="required-dot">*</span></label
+              >
+              <select id="serverLocation">
+                <option value="" disabled selected hidden>
+                  -- Pilih Server --
+                </option>
+                <option value="ID">🇮🇩 Indonesia</option>
+                <option value="SG">🇸🇬 Singapore</option>
+              </select>
+              <div id="serverLocationError" class="field-validation">
+                ⚠ Silakan pilih server.
+              </div>
+            </div>
+
             <div class="form-group full">
               <label for="server"
                 >Pilih Paket Server <span class="required-dot">*</span></label
@@ -640,14 +656,18 @@
                 <optgroup label="🇮🇩 Indonesia">
                   <option>[ID] Indonesia 1 HP | Rp. 9.000 | 30 Hari</option>
                   <option>[ID] Indonesia 1 HP | Rp. 18.000 | 60 Hari</option>
+                  <option>[ID] Indonesia 1 HP | Rp. 36.000 | 120 Hari</option>
                   <option>[ID] Indonesia 2 HP | Rp. 10.000 | 30 Hari</option>
                   <option>[ID] Indonesia 2 HP | Rp. 20.000 | 60 Hari</option>
+                  <option>[ID] Indonesia 1 HP | Rp. 40.000 | 120 Hari</option>
                 </optgroup>
                 <optgroup label="🇸🇬 Singapore">
                   <option>[SG] Singapore 1 HP | Rp. 8.000 | 30 Hari</option>
                   <option>[SG] Singapore 1 HP | Rp. 16.000 | 60 Hari</option>
+                  <option>[SG] Singapore 1 HP | Rp. 32.000 | 120 Hari</option>
                   <option>[SG] Singapore 2 HP | Rp. 10.000 | 30 Hari</option>
                   <option>[SG] Singapore 2 HP | Rp. 19.000 | 60 Hari</option>
+                  <option>[SG] Singapore 2 HP | Rp. 38.000 | 120 Hari</option>
                 </optgroup>
                 <optgroup label="⚡ ZIVPN">
                   <option data-type="zivpn">
@@ -656,7 +676,7 @@
                 </optgroup>
               </select>
               <div id="serverError" class="field-validation">
-                ⚠ Silakan pilih server.
+                ⚠ Silakan pilih paket server.
               </div>
             </div>
 
@@ -911,6 +931,8 @@
       });
 
       const serverSelect = document.getElementById("server");
+      const serverLocation = document.getElementById("serverLocation");
+      const serverLocationMenu = document.getElementById("serverLocationMenu");
       const hargaBox = document.getElementById("harga");
 
       const SERVER_DATA = Array.from(
@@ -933,6 +955,10 @@
 
       const previewBox = document.getElementById("previewBox");
       const previewContent = document.getElementById("previewContent");
+
+      // Pilihan paket server baru ditampilkan setelah lokasi dipilih.
+      const serverGroup = serverSelect.closest(".form-group");
+      if (serverGroup) serverGroup.style.display = "none";
 
       // ✅ tambahan untuk config premium
       const jenisSelect = document.getElementById("jenis");
@@ -1034,17 +1060,34 @@
 
         const filteredChoices = SERVER_DATA.map((group) => ({
           label: group.label,
-          choices: group.choices.filter((server) =>
-            showZivpn ? server.isZivpn : !server.isZivpn,
-          ),
+          choices: group.choices.filter((server) => {
+            if (showZivpn) return server.isZivpn;
+            if (server.isZivpn) return false;
+
+            // Untuk server biasa, tampilkan sesuai lokasi yang dipilih.
+            if (!serverLocation.value) return false;
+            return server.value.includes(
+              serverLocation.value === "ID" ? "[ID]" : "[SG]",
+            );
+          }),
         })).filter((group) => group.choices.length > 0);
 
         serverChoice.clearChoices();
-
         serverChoice.setChoices(filteredChoices, "value", "label", true);
 
         serverSelect.value = "";
         hargaBox.innerText = "Harga: -";
+
+        if (showZivpn) {
+          // ZIVPN langsung muncul tanpa pilihan Indonesia/Singapore.
+          serverLocationMenu.style.display = "none";
+          if (serverGroup) serverGroup.style.display = "block";
+        } else {
+          serverLocationMenu.style.display = "block";
+          if (serverGroup) {
+            serverGroup.style.display = serverLocation.value ? "block" : "none";
+          }
+        }
 
         if (jenis === "Config Premium") {
           configMenu.style.display = "block";
@@ -1054,6 +1097,43 @@
           configPremium.required = false;
           configPremium.value = "";
         }
+
+        if (showZivpn) {
+          serverLocation.value = "";
+        }
+
+        updatePreview();
+      });
+
+      // Penanda agar server tidak pernah otomatis memilih Indonesia/Singapore
+      // sebelum user benar-benar memilih lokasi.
+      let serverLocationTouched = false;
+
+      // Pastikan saat halaman pertama dibuka lokasi server benar-benar kosong.
+      serverLocation.value = "";
+
+      serverLocation.addEventListener("change", () => {
+        serverLocationTouched = true;
+
+        if (jenisSelect.value === "ZIVPN") return;
+
+        const filteredChoices = SERVER_DATA.map((group) => ({
+          label: group.label,
+          choices: group.choices.filter((server) => {
+            if (server.isZivpn) return false;
+            return server.value.includes(
+              serverLocation.value === "ID" ? "[ID]" : "[SG]",
+            );
+          }),
+        })).filter((group) => group.choices.length > 0);
+
+        serverChoice.clearChoices();
+        serverChoice.setChoices(filteredChoices, "value", "label", true);
+
+        serverSelect.value = "";
+        hargaBox.innerText = "Harga: -";
+
+        if (serverGroup) serverGroup.style.display = "block";
 
         updatePreview();
       });
@@ -1103,9 +1183,17 @@
               !document.getElementById("configPremium").value,
           ],
           [
+            "serverLocation",
+            "serverLocationError",
+            "Silakan pilih server.",
+            () =>
+              document.getElementById("jenis").value !== "ZIVPN" &&
+              !document.getElementById("serverLocation").value,
+          ],
+          [
             "server",
             "serverError",
-            "Silakan pilih server.",
+            "Silakan pilih paket server.",
             () => !document.getElementById("server").value,
           ],
           [
@@ -1160,34 +1248,58 @@
       }
 
       document.getElementById("nama").addEventListener("input", function () {
+        // Selama user belum memilih lokasi sendiri, lokasi TIDAK boleh
+        // terisi otomatis hanya karena mengetik nama.
+        if (!serverLocationTouched) {
+          serverLocation.value = "";
+          serverSelect.value = "";
+          hargaBox.innerText = "Harga: -";
+
+          if (serverGroup) serverGroup.style.display = "none";
+
+          // Hapus semua paket yang mungkin sempat muncul/terpilih.
+          serverChoice.clearChoices();
+          serverChoice.setChoices([], "value", "label", true);
+        }
+
         if (this.value.trim()) {
           document.getElementById("namaError").classList.remove("show");
         }
       });
 
-      ["jenis", "configPremium", "server", "provinsi", "kartu"].forEach(
-        (id) => {
-          document.getElementById(id)?.addEventListener("change", function () {
-            if (this.value) {
-              document.getElementById(id + "Error").classList.remove("show");
-            }
-          });
-        },
-      );
+      [
+        "jenis",
+        "configPremium",
+        "serverLocation",
+        "server",
+        "provinsi",
+        "kartu",
+      ].forEach((id) => {
+        document.getElementById(id)?.addEventListener("change", function () {
+          if (this.value) {
+            document.getElementById(id + "Error").classList.remove("show");
+          }
+        });
+      });
 
       document.getElementById("nama").addEventListener("input", function () {
         if (this.value.trim())
           document.getElementById("namaError").classList.remove("show");
       });
 
-      ["jenis", "configPremium", "server", "provinsi", "kartu"].forEach(
-        (id) => {
-          document.getElementById(id)?.addEventListener("change", function () {
-            if (this.value)
-              document.getElementById(id + "Error").classList.remove("show");
-          });
-        },
-      );
+      [
+        "jenis",
+        "configPremium",
+        "serverLocation",
+        "server",
+        "provinsi",
+        "kartu",
+      ].forEach((id) => {
+        document.getElementById(id)?.addEventListener("change", function () {
+          if (this.value)
+            document.getElementById(id + "Error").classList.remove("show");
+        });
+      });
 
       // Kirim ke WhatsApp (tetap aktif + ada validasi)
       document
