@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>INSTALL WINDOWS 11</title>
+
+    <!-- PREVIEW WHATSAPP -->
+    <meta property="og:title" content="INSTALL WINDOWS 11" />
+    <meta
+      property="og:description"
+      content="Tutorial install ulang Windows 11 menggunakan Rufus by SWEATER PINK"
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/sweater-pink/sweater-pink/main/icon/logoprofil1.jpg"
+    />
+    <meta property="og:url" content="https://sweaterpink.web.id" />
+    <meta property="og:type" content="website" />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #000;
+        font-family: monospace;
+        color: white;
+      }
+
+      /* CONTAINER UTAMA */
+      .container {
+        width: 92%;
+        max-width: 700px;
+        margin: auto;
+        text-align: center;
+        padding: 70px 0 50px;
+      }
+
+      /* JUDUL */
+      .title {
+        font-size: clamp(30px, 8vw, 52px);
+        color: #ff3b8d;
+        font-weight: bold;
+        text-shadow:
+          0 0 10px #ff3b8d,
+          0 0 30px #ff3b8d;
+        line-height: 1.1;
+      }
+
+      /* SUBTITLE */
+      .by {
+        margin-top: 12px;
+        color: #aaa;
+        font-size: clamp(14px, 4vw, 18px);
+      }
+
+      /* TOMBOL */
+      .btn {
+        margin-top: 30px;
+        padding: 15px 35px;
+        font-size: 17px;
+        font-family: monospace;
+        font-weight: bold;
+        background: #ff3b8d;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 0 15px rgba(255, 60, 140, 0.5);
+        transition: 0.2s;
+      }
+
+      .btn:hover {
+        box-shadow:
+          0 0 15px #ff3b8d,
+          0 0 30px rgba(255, 60, 140, 0.5);
+        transform: translateY(-2px);
+      }
+
+      .btn:active {
+        transform: scale(0.97);
+      }
+
+      /* TUTORIAL BOX */
+      .tutorial {
+        margin-top: 55px;
+        background: #111;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(255, 50, 130, 0.2);
+        text-align: left;
+      }
+
+      /* JUDUL TUTORIAL */
+      .tutorial-title {
+        color: #ff3b8d;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 25px;
+        text-align: center;
+        text-shadow: 0 0 8px rgba(255, 59, 141, 0.5);
+      }
+
+      /* SETIAP STEP */
+      .step {
+        margin-bottom: 15px;
+        padding: 16px;
+        background: #181818;
+        border-left: 4px solid #ff3b8d;
+        border-radius: 8px;
+        line-height: 1.7;
+        font-size: 15px;
+        color: #ddd;
+        overflow-wrap: break-word;
+      }
+
+      /* HIGHLIGHT */
+      .step b {
+        color: #ff3b8d;
+      }
+
+      /* WARNING */
+      .warning {
+        margin-top: 20px;
+        margin-bottom: 15px;
+        padding: 16px;
+        background: #1b1016;
+        border: 1px solid #ff3b8d;
+        border-radius: 10px;
+        color: #ffb3d2;
+        line-height: 1.7;
+      }
+
+      /* CODE */
+      .code {
+        display: block;
+        margin-top: 10px;
+        padding: 12px;
+        background: #080808;
+        border: 1px solid #333;
+        border-radius: 7px;
+        color: #ff3b8d;
+        font-family: monospace;
+        font-size: 14px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      /* URUTAN */
+      .flow {
+        margin-top: 25px;
+        padding: 18px;
+        background: #0b0b0b;
+        border-radius: 10px;
+        border: 1px solid #292929;
+        color: #ddd;
+        line-height: 1.8;
+        font-size: 14px;
+        overflow-x: auto;
+      }
+
+      .flow b {
+        color: #ff3b8d;
+      }
+
+      /* RESPONSIVE HP */
+      @media (max-width: 600px) {
+        .container {
+          width: 94%;
+          padding-top: 50px;
+        }
+
+        .tutorial {
+          padding: 18px;
+          margin-top: 40px;
+        }
+
+        .step {
+          padding: 13px;
+          font-size: 14px;
+        }
+
+        .tutorial-title {
+          font-size: 21px;
+        }
+
+        .btn {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .code {
+          font-size: 13px;
+        }
+
+        .flow {
+          font-size: 13px;
+        }
+      }
+
+      /* TOMBOL SALIN - KHUSUS COMMAND BYPASS */
+      .bypass-code {
+        position: relative;
+        padding-right: 78px;
+      }
+
+      .bypass-copy {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        padding: 6px 10px;
+        border: 1px solid #ff3b8d;
+        border-radius: 6px;
+        background: #181818;
+        color: #ff3b8d;
+        font-family: monospace;
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 2;
+      }
+
+      .bypass-copy:hover {
+        background: #ff3b8d;
+        color: white;
+      }
+
+      .bypass-copy:active {
+        transform: scale(0.96);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="title">INSTALL WINDOWS 11</div>
+
+      <div class="by">BY : SWEATER PINK</div>
+
+      <div class="tutorial" id="tutorial">
+        <div class="tutorial-title">TUTORIAL INSTALL WINDOWS 11</div>
+
+        <div class="warning">
+          <b>⚠️ PERINGATAN</b><br /><br />
+          Clean install dapat menghapus data pada drive yang dipilih. Backup
+          semua file penting sebelum memulai.
+        </div>
+
+        <div class="step">
+          <b>1. PERSIAPKAN</b><br /><br />
+
+          ☐ Backup semua file penting.<br />
+          ☐ Flashdisk minimal <b>8 GB</b> — disarankan 16 GB.<br />
+          ☐ File <b>Windows 11 ISO</b>.<br />
+          ☐ Aplikasi <b>Rufus</b>.<br />
+          ☐ Internet untuk download/update.<br />
+          ☐ PC/laptop tersambung listrik.
+        </div>
+
+        <div class="step">
+          <b>2. BUAT USB WINDOWS 11 DENGAN RUFUS</b><br /><br />
+
+          Buka Rufus setelah flashdisk terpasang.<br /><br />
+
+          <b>Device</b> → pilih flashdisk.<br />
+          <b>Boot selection</b> → Disk or ISO image.<br />
+          Klik <b>SELECT</b> → pilih Windows 11 ISO.<br />
+          <b>Image option</b> → Standard Windows 11 Installation.<br />
+          <b>Partition scheme</b> → GPT.<br />
+          <b>Target system</b> → UEFI.<br /><br />
+
+          Klik <b>START</b> lalu tunggu sampai status menjadi <b>READY</b>.
+        </div>
+
+        <div class="step">
+          <b>3. RESTART DAN MASUK BOOT MENU</b><br /><br />
+
+          Jangan cabut flashdisk.<br />
+          Restart PC lalu tekan tombol <b>Boot Menu</b> berulang kali saat logo
+          muncul. <br /><br />
+
+          ASUS → <b>F8</b><br />
+          MSI → <b>F11</b><br />
+          Gigabyte → <b>F12</b><br />
+          ASRock → <b>F11</b><br />
+          Dell → <b>F12</b><br />
+          HP → <b>Esc / F9</b><br />
+          Lenovo → <b>F12</b><br />
+          Acer → <b>F12</b> <br /><br />
+
+          Jika tidak tahu merek motherboard/laptop,
+          <b>cari mereknya terlebih dahulu.</b>
+          <br /><br />
+
+          Pilih:
+
+          <span class="code">UEFI: NAMA FLASHDISK</span>
+
+          Lalu tekan <b>Enter</b>.
+        </div>
+
+        <div class="step">
+          <b>4. WINDOWS SETUP</b><br /><br />
+
+          Pilih bahasa → Indonesia.<br />
+          Pilih Time/Currency → Indonesia.<br />
+          Pilih Keyboard sesuai kebutuhan.<br /><br />
+
+          Klik <b>Next</b> → <b>Install now</b>.
+        </div>
+
+        <div class="step">
+          <b>5. PRODUCT KEY</b><br /><br />
+
+          Jika punya Product Key → masukkan key.<br /><br />
+
+          Jika tidak punya:
+
+          <span class="code">I don't have a product key</span>
+        </div>
+
+        <div class="step">
+          <b>6. PILIH EDISI WINDOWS</b><br /><br />
+
+          Pilih sesuai lisensi kamu:
+
+          <br /><br />
+
+          <b>Windows 11 Home</b><br />
+          atau<br />
+          <b>Windows 11 Pro</b>
+
+          <br /><br />
+
+          Klik <b>Next</b> lalu centang persetujuan lisensi.
+        </div>
+
+        <div class="step">
+          <b>7. PILIH CLEAN INSTALL</b><br /><br />
+
+          Saat muncul:
+
+          <span class="code">Which type of installation do you want?</span>
+
+          Pilih:
+
+          <span class="code">Custom: Install Windows only (advanced)</span>
+
+          <b>Jangan pilih Upgrade.</b>
+        </div>
+
+        <div class="step">
+          <b>🔴 8. DELETE PARTISI WINDOWS LAMA</b><br /><br />
+
+          Sekarang muncul:
+
+          <span class="code">Where do you want to install Windows?</span>
+
+          Contoh:
+
+          <span class="code"
+            >Drive 0 Partition 1 Drive 0 Partition 2 Drive 0 Partition 3 Drive 0
+            Partition 4</span
+          >
+
+          Jika <b>Drive 0</b> adalah SSD tempat Windows lama dan kamu ingin
+          menghapus seluruh Windows lama:
+
+          <br /><br />
+
+          Klik Partition 1 → <b>Delete</b> → OK.<br />
+          Klik Partition 2 → <b>Delete</b> → OK.<br />
+          Klik Partition 3 → <b>Delete</b> → OK.<br />
+          Klik Partition 4 → <b>Delete</b> → OK. <br /><br />
+
+          Lakukan pada semua partisi di Drive 0 yang memang ingin dihapus. Pada
+          akhirnya harus menjadi:
+
+          <span class="code">Drive 0 Unallocated Space</span>
+        </div>
+
+        <div class="warning">
+          <b>🚨 JANGAN SALAH DRIVE</b><br /><br />
+
+          Kalau ada:
+
+          <span class="code">Drive 0 Drive 1</span>
+
+          Jangan menghapus Drive 1 jika berisi data penting. Jika tidak yakin,
+          <b
+            >berhenti dan cek kembali drive yang benar sebelum menekan
+            Delete.</b
+          >
+        </div>
+
+        <div class="step">
+          <b>🟢 9. INSTALL WINDOWS 11</b><br /><br />
+
+          Setelah menjadi:
+
+          <span class="code">Drive 0 Unallocated Space</span>
+
+          Klik <b>Drive 0 Unallocated Space</b>. Kemudian klik:
+
+          <b>Next</b>
+
+          Windows akan otomatis membuat partisi yang diperlukan. Tunggu sampai
+          instalasi selesai.
+        </div>
+
+        <div class="step">
+          <b>10. SAAT PC RESTART</b><br /><br />
+
+          Jika muncul:
+
+          <span class="code">Press any key to boot from USB...</span>
+
+          <b>JANGAN tekan tombol apa pun.</b>
+          <br /><br />
+
+          Biarkan komputer boot dari SSD. Jika kembali ke installer dari awal,
+          cabut flashdisk lalu restart PC.
+        </div>
+
+        <div class="step">
+          <b>🟢 11. SETUP WINDOWS 11</b><br /><br />
+
+          Pilih negara → <b>Indonesia</b>.<br />
+          Pilih keyboard → sesuai kebutuhan.<br />
+          Keyboard kedua → <b>Skip</b> jika tidak diperlukan. <br /><br />
+
+          Lanjutkan setup sampai bagian koneksi internet.
+        </div>
+
+        <div class="step">
+          <b>🔴 12. LEWATI AKUN MICROSOFT</b><br /><br />
+
+          Jika Windows meminta akun Microsoft: Tekan:
+
+          <span class="code">Shift + F10</span>
+
+          Command Prompt akan muncul. Ketik:
+
+          <span class="code bypass-code">OOBE\BYPASSNRO</span>
+
+          Kemudian tekan <b>Enter</b>. PC akan restart. Setelah kembali ke
+          setup:
+
+          <br /><br />
+
+          <b>I don't have internet</b><br />
+          ↓<br />
+          <b>Continue with limited setup</b>
+
+          <br /><br />
+
+          Kemudian buat username lokal dan password jika diperlukan.
+        </div>
+
+        <div class="step">
+          <b>🟡 13. JIKA OOBE\BYPASSNRO ERROR</b><br /><br />
+
+          Jika perintah tidak dikenali atau tidak bekerja, coba:
+
+          <span class="code">Shift + F10</span>
+
+          <span class="code bypass-code">start ms-cxh:localonly</span>
+
+          Kemudian tekan <b>Enter</b>. Jika build Windows mendukungnya, akan
+          muncul pilihan untuk membuat akun lokal.
+        </div>
+
+        <div class="step">
+          <b>🟡 ALTERNATIF: GUNAKAN RUFUS</b><br /><br />
+
+          Jika USB belum dibuat, saat Rufus menjalankan proses <b>START</b>,
+          perhatikan bagian:
+
+          <span class="code">Windows User Experience</span>
+
+          Jika tersedia, gunakan opsi seperti:
+
+          <span class="code"
+            >Remove requirement for an online Microsoft account Create a local
+            account</span
+          >
+
+          Nama opsi dapat berbeda tergantung versi Rufus.
+        </div>
+
+        <div class="step">
+          <b>🟢 14. SETELAH MASUK DESKTOP</b><br /><br />
+
+          Buka:
+
+          <span class="code">Settings → Windows Update</span>
+
+          Klik <b>Check for updates</b>. Install semua update kemudian restart.
+          Check for updates lagi sampai tidak ada update penting.
+        </div>
+
+        <div class="step">
+          <b>🟢 15. INSTALL DRIVER</b><br /><br />
+
+          Buka:
+
+          <span class="code">Start → Device Manager</span>
+
+          Pastikan tidak ada tanda:
+
+          <b>⚠️ Unknown Device</b>
+
+          Install driver jika diperlukan:
+
+          <br /><br />
+
+          ☐ Chipset<br />
+          ☐ LAN<br />
+          ☐ Wi-Fi<br />
+          ☐ Bluetooth<br />
+          ☐ Audio<br />
+          ☐ GPU/VGA
+        </div>
+
+        <div class="step">
+          <b>🟢 16. CEK AKTIVASI</b><br /><br />
+
+          Buka:
+
+          <span class="code">Settings → System → Activation</span>
+
+          Cek apakah Windows sudah aktif.
+        </div>
+
+        <div class="step">
+          <b>🟢 17. TES HARDWARE</b><br /><br />
+
+          ☐ Internet<br />
+          ☐ Wi-Fi<br />
+          ☐ Bluetooth<br />
+          ☐ Audio<br />
+          ☐ USB<br />
+          ☐ Keyboard<br />
+          ☐ Mouse<br />
+          ☐ Monitor<br />
+          ☐ GPU<br />
+          ☐ SSD/HDD<br />
+          ☐ Device Manager tidak ada tanda ⚠️
+        </div>
+
+        <div class="step">
+          <b>🟢 18. INSTALL APLIKASI</b><br /><br />
+
+          Setelah semuanya normal:
+
+          <br /><br />
+
+          ☐ Browser<br />
+          ☐ 7-Zip / WinRAR<br />
+          ☐ VLC<br />
+          ☐ Discord<br />
+          ☐ Steam<br />
+          ☐ Game<br />
+          ☐ Aplikasi kerja<br />
+          ☐ Aplikasi lainnya
+        </div>
+
+        <div class="tutorial-title">📋 URUTAN PALING PENTING</div>
+
+        <div class="flow">
+          <b>BACKUP DATA</b>
+          ↓
+          <br />
+          DOWNLOAD WINDOWS 11 ISO ↓
+          <br />
+          BUKA RUFUS ↓
+          <br />
+          PILIH USB + ISO ↓
+          <br />
+          GPT + UEFI ↓
+          <br />
+          START ↓
+          <br />
+          RESTART PC ↓
+          <br />
+          BOOT MENU ↓
+          <br />
+          UEFI: USB ↓
+          <br />
+          INSTALL NOW ↓
+          <br />
+          I DON'T HAVE A PRODUCT KEY ↓
+          <br />
+          PILIH WINDOWS 11 ↓
+          <br />
+          CUSTOM INSTALL ↓
+          <br />
+          🔴 DELETE PARTISI WINDOWS LAMA ↓
+          <br />
+          DRIVE 0 UNALLOCATED SPACE ↓
+          <br />
+          NEXT ↓
+          <br />
+          WINDOWS DI-INSTALL ↓
+          <br />
+          RESTART ↓
+          <br />
+          BOOT SSD ↓
+          <br />
+          SETUP WINDOWS ↓
+          <br />
+          SHIFT + F10 ↓
+          <br />
+          OOBE\BYPASSNRO ↓
+          <br />
+          I DON'T HAVE INTERNET ↓
+          <br />
+          CONTINUE WITH LIMITED SETUP ↓
+          <br />
+          BUAT AKUN LOKAL ↓
+          <br />
+          MASUK DESKTOP ↓
+          <br />
+          WINDOWS UPDATE ↓
+          <br />
+          DRIVER ↓
+          <br />
+          AKTIVASI ↓
+          <br />
+          CEK HARDWARE ↓
+          <br />
+          INSTALL APLIKASI ↓
+          <br />
+          <b>✅ SELESAI</b>
+        </div>
+
+        <div class="warning">
+          <b>🔴 JIKA BYPASSNRO ERROR</b><br /><br />
+
+          <span class="code">Shift + F10</span>
+
+          <span class="code bypass-code">start ms-cxh:localonly</span>
+
+          atau gunakan opsi akun lokal melalui
+          <b>Rufus → Windows User Experience</b>.
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔒 ANTI COPY & INSPECT PROTECTION -->
+    <script>
+      document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+      document.onkeydown = (e) => {
+        if (e.ctrlKey && ["s", "u", "c"].includes(e.key.toLowerCase()))
+          e.preventDefault();
+
+        if (e.key === "F12") e.preventDefault();
+
+        if (e.ctrlKey && e.shiftKey && ["I", "J"].includes(e.key.toUpperCase()))
+          e.preventDefault();
+      };
+    </script>
+
+    <script>
+      /* 📋 COPY - HANYA 2 COMMAND BYPASS */
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".bypass-code").forEach(function (code) {
+          const copyText = code.textContent.trim();
+
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "bypass-copy";
+          button.textContent = "SALIN";
+          button.setAttribute("aria-label", "Salin command");
+
+          button.addEventListener("click", async function () {
+            try {
+              await navigator.clipboard.writeText(copyText);
+            } catch (err) {
+              const textarea = document.createElement("textarea");
+              textarea.value = copyText;
+              textarea.style.position = "fixed";
+              textarea.style.opacity = "0";
+              document.body.appendChild(textarea);
+              textarea.focus();
+              textarea.select();
+              document.execCommand("copy");
+              textarea.remove();
+            }
+
+            button.textContent = "TERSALIN ✓";
+
+            setTimeout(function () {
+              button.textContent = "SALIN";
+            }, 1500);
+          });
+
+          code.appendChild(button);
+        });
+      });
+    </script>
+  </body>
+</html>
