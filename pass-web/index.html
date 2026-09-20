@@ -167,6 +167,31 @@
         box-sizing: border-box;
       }
 
+      /* 🏷️ JUDUL VERSI */
+      .version-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 18px auto 8px;
+        color: #c2185b;
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .version-title img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #ff4d94;
+        box-shadow: 0 2px 8px rgba(255, 77, 148, 0.25);
+      }
+
+      .version-title.old {
+        margin-top: 20px;
+      }
+
       .account-label {
         font-size: 13px;
         color: #c2185b;
@@ -176,18 +201,26 @@
 
       .account-value {
         font-family: monospace;
-        font-size: 16px;
+        font-size: clamp(12px, 4vw, 16px);
         font-weight: bold;
         color: #333;
-        user-select: all; /* bisa di blok manual */
-        word-break: break-all;
+        user-select: all;
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .account-value::-webkit-scrollbar {
+        display: none;
       }
 
       /* USERNAME & PASSWORD TERPISAH */
       .account-separate {
         width: 90%;
         max-width: 490px;
-        margin: 10px auto 0;
+        margin: 0 auto;
       }
 
       .account-item {
@@ -277,7 +310,7 @@
       }
     </style>
 
-        <!-- 📢 ADSENSE -->
+       <!-- 📢 ADSENSE -->
 
     <!-- Google AdSense -->
     <script
@@ -290,7 +323,6 @@
 <script>(function(s){s.dataset.zone='11697136',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 <script>(function(s){s.dataset.zone='11693167',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 <script src="https://pl31116830.profitableratecpmnetwork.com/c1/5e/6a/c15e6a7805261e5584ffddec71de5c2a.js"></script>
-  </head>
   <body>
     <div id="password-box">
       <p
@@ -532,6 +564,10 @@
           (perhatianLink || "#") +
           "' target='_blank' style='color:#d63384;font-weight:bold;text-decoration:underline;'>🔗 Panduan username:password</a>" +
           "</div>" +
+          "<div class='version-title'>" +
+          "<img src='https://www.sweaterpink.web.id/icon/HC%20LOGO%20TERBARU.png' alt='Logo Sweater Pink'>" +
+          "<span>Versi Terbaru</span>" +
+          "</div>" +
           "<div class='account-separate'>" +
           "<div class='account-item'>" +
           "<div class='account-item-label'>👤 Username</div>" +
@@ -541,6 +577,10 @@
           "<div id='today-password' class='account-item-value'></div>" +
           "<button class='copy-small' onclick='copyAccountPart(\"today-password\", \"password\")'>Salin Password</button>" +
           "</div>" +
+          "</div>" +
+          "<div class='version-title old'>" +
+          "<img src='https://www.sweaterpink.web.id/icon/hc.png' alt='Logo Sweater Pink'>" +
+          "<span>Versi Lama</span>" +
           "</div>" +
           "<div class='account-box'>" +
           "<div class='account-label'>🔑 Username & Password</div>" +
