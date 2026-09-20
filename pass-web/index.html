@@ -160,8 +160,11 @@
         border: 2px dashed #ff4d94;
         border-radius: 10px;
         padding: 12px;
-        margin-top: 10px;
+        margin: 10px auto 0;
         text-align: center;
+        width: 90%;
+        max-width: 490px;
+        box-sizing: border-box;
       }
 
       .account-label {
@@ -178,6 +181,53 @@
         color: #333;
         user-select: all; /* bisa di blok manual */
         word-break: break-all;
+      }
+
+      /* USERNAME & PASSWORD TERPISAH */
+      .account-separate {
+        width: 90%;
+        max-width: 490px;
+        margin: 10px auto 0;
+      }
+
+      .account-item {
+        background: #fff;
+        border: 2px dashed #ff4d94;
+        border-radius: 10px;
+        padding: 12px;
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      .account-item-label {
+        font-size: 13px;
+        color: #c2185b;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+
+      .account-item-value {
+        font-family: monospace;
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        user-select: all;
+        word-break: break-all;
+        margin-bottom: 8px;
+      }
+
+      .copy-small {
+        background: #ff4d94;
+        color: #fff;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .copy-small:active {
+        transform: scale(0.97);
       }
       /* LOGIN LOADING */
       .loading-login {
@@ -240,8 +290,6 @@
 <script>(function(s){s.dataset.zone='11697136',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 <script>(function(s){s.dataset.zone='11693167',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 <script src="https://pl31116830.profitableratecpmnetwork.com/c1/5e/6a/c15e6a7805261e5584ffddec71de5c2a.js"></script>
-
-    
   </head>
   <body>
     <div id="password-box">
@@ -458,6 +506,14 @@
         const rawQuote = quotes && quotes.length ? quotes[0] : "";
         const cleanQuote = String(rawQuote || "").replace(/^\d{1,2}:\s*/, "");
 
+        // Pecah username:password hanya untuk tampilan tambahan.
+        // Tampilan gabungan cleanQuote tetap tidak diubah.
+        const separator = cleanQuote.lastIndexOf(":");
+        const usernamePart =
+          separator !== -1 ? cleanQuote.substring(0, separator) : cleanQuote;
+        const passwordPart =
+          separator !== -1 ? cleanQuote.substring(separator + 1) : "";
+
         const box = document.getElementById("quote-box");
         box.innerHTML =
           "<b style='font-size:22px'>" +
@@ -476,14 +532,24 @@
           (perhatianLink || "#") +
           "' target='_blank' style='color:#d63384;font-weight:bold;text-decoration:underline;'>🔗 Panduan username:password</a>" +
           "</div>" +
+          "<div class='account-separate'>" +
+          "<div class='account-item'>" +
+          "<div class='account-item-label'>👤 Username</div>" +
+          "<div id='today-username' class='account-item-value'></div>" +
+          "<button class='copy-small' onclick='copyAccountPart(\"today-username\", \"username\")'>Salin Username</button>" +
+          "<div class='account-item-label' style='margin-top:14px;'>🔑 Password</div>" +
+          "<div id='today-password' class='account-item-value'></div>" +
+          "<button class='copy-small' onclick='copyAccountPart(\"today-password\", \"password\")'>Salin Password</button>" +
+          "</div>" +
+          "</div>" +
           "<div class='account-box'>" +
           "<div class='account-label'>🔑 Username & Password</div>" +
           "<div id='today-quote' class='account-value'>" +
           cleanQuote +
           "</div>" +
+          "<button class='copy-small' onclick='copyQuote()'>Salin</button>" +
           "</div>" +
           "<div style='margin-top:18px;display:flex;flex-direction:column;align-items:center;gap:12px;'>" +
-          "<button class='btn' onclick='copyQuote()'>Salin</button>" +
           "<p id='copy-msg' style='color:green;font-weight:bold;display:none;margin:0;'>✔ username:password berhasil disalin!</p>" +
           "<a href='" +
           (downloadLink || "#") +
@@ -494,13 +560,76 @@
           "' target='_blank' class='btn btn-green'>👥 Join Saluran Whatsapp</a>" +
           "</div>";
 
+        document.getElementById("today-username").textContent = usernamePart;
+        document.getElementById("today-password").textContent = passwordPart;
+
         box.style.display = "block";
         requestAnimationFrame(() => {
           box.style.opacity = 1;
         });
       }
 
-      // 📋 COPY
+      // 📋 COPY USERNAME / PASSWORD TERPISAH
+      function copyAccountPart(elementId, label) {
+        const text = document.getElementById(elementId).innerText.trim();
+        const msg = document.getElementById("copy-msg");
+
+        if (!text) {
+          msg.textContent = "⚠️ Data " + label + " kosong!";
+          msg.style.color = "#b00020";
+          msg.style.display = "block";
+          return;
+        }
+
+        const showSuccess = () => {
+          msg.textContent = "✔ " + label + " berhasil disalin!";
+          msg.style.color = "green";
+          msg.style.display = "block";
+
+          clearTimeout(window.copyMsgTimer);
+          window.copyMsgTimer = setTimeout(() => {
+            msg.style.display = "none";
+          }, 2000);
+        };
+
+        const fallbackCopy = () => {
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+
+          let copied = false;
+          try {
+            copied = document.execCommand("copy");
+          } catch (e) {
+            copied = false;
+          }
+
+          document.body.removeChild(textarea);
+
+          if (copied) {
+            showSuccess();
+          } else {
+            msg.textContent = "⚠️ Gagal menyalin. Blok teks lalu salin manual.";
+            msg.style.color = "#b00020";
+            msg.style.display = "block";
+          }
+        };
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard
+            .writeText(text)
+            .then(showSuccess)
+            .catch(fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+      }
+
+      // 📋 COPY GABUNGAN (VERSI LAMA - TETAP)
       function copyQuote() {
         const text = document.getElementById("today-quote").innerText;
         navigator.clipboard.writeText(text).then(() => {
