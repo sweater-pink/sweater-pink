@@ -159,10 +159,10 @@
         background: #fff;
         border: 2px dashed #ff4d94;
         border-radius: 10px;
-        padding: 12px 8px;
+        padding: 12px 4px;
         margin: 10px auto 0;
         text-align: center;
-        width: 96%;
+        width: 100%;
         max-width: 560px;
         box-sizing: border-box;
       }
@@ -201,7 +201,7 @@
 
       .account-value {
         font-family: monospace;
-        font-size: clamp(11px, 3.5vw, 16px);
+        font-size: clamp(10px, 3vw, 15px);
         font-weight: bold;
         color: #333;
         user-select: all;
@@ -209,6 +209,7 @@
         overflow: visible;
         word-break: normal;
         line-height: 1.35;
+        letter-spacing: -0.2px;
       }
 
       .account-value::-webkit-scrollbar {
@@ -309,6 +310,29 @@
 
         100% {
           transform: rotate(360deg);
+        }
+      }
+
+      /* 📱 KHUSUS HP - Username & Password gabungan */
+      @media (max-width: 480px) {
+        #quote-box {
+          width: 96%;
+          box-sizing: border-box;
+          padding-left: 6px;
+          padding-right: 6px;
+        }
+
+        .account-box {
+          width: 100%;
+          padding-left: 2px;
+          padding-right: 2px;
+        }
+
+        .account-box .account-value {
+          font-size: clamp(9px, 2.8vw, 13px);
+          white-space: nowrap;
+          overflow: visible;
+          letter-spacing: -0.35px;
         }
       }
     </style>
