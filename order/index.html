@@ -31,7 +31,11 @@
     <meta property="og:url" content="https://sweaterpink.web.id/order/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Sweater Pink" />
-    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <!-- Diperbaiki: Menambahkan defer agar tidak memblokir render halaman -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"
+      defer
+    ></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
@@ -804,6 +808,9 @@
       <footer>© 2026 Sweater Pink • Premium Order</footer>
     </main>
 
+    <!-- Diperbaiki: Menambahkan defer pada SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
     <script>
       /*
       ==========================================================
@@ -892,146 +899,150 @@
     </script>
 
     <script>
-      // stok global
-      const stokGlobal = { ID: 999, SG: 85 };
+      // Dibungkus DOMContentLoaded agar script berjalan aman tanpa macet / harus refresh
+      document.addEventListener("DOMContentLoaded", () => {
+        // stok global
+        const stokGlobal = { ID: 999, SG: 85 };
 
-      const PROMOS = {
-        "PROMO 8.8": "Rp. 5.000",
-        "SWEATER 5000": "Rp. 5.000",
-      };
+        const PROMOS = {
+          "PROMO 8.8": "Rp. 5.000",
+          "SWEATER 5000": "Rp. 5.000",
+        };
 
-      const provSelect = new Choices(document.getElementById("provinsi"), {
-        searchEnabled: true,
-        itemSelectText: "",
-        noResultsText: "Provinsi tidak ditemukan",
-        shouldSort: false,
-      });
+        const provSelect = new Choices(document.getElementById("provinsi"), {
+          searchEnabled: true,
+          itemSelectText: "",
+          noResultsText: "Provinsi tidak ditemukan",
+          shouldSort: false,
+        });
 
-      // Tampilan dropdown dibuat sama seperti Pilih Paket Server.
-      // Teks dan pilihan yang sudah terdaftar TIDAK diubah.
-      const jenisChoice = new Choices(document.getElementById("jenis"), {
-        searchEnabled: false,
-        itemSelectText: "",
-        shouldSort: false,
-      });
-
-      const configPremiumChoice = new Choices(
-        document.getElementById("configPremium"),
-        {
+        // Tampilan dropdown dibuat sama seperti Pilih Paket Server.
+        // Teks dan pilihan yang sudah terdaftar TIDAK diubah.
+        const jenisChoice = new Choices(document.getElementById("jenis"), {
           searchEnabled: false,
           itemSelectText: "",
           shouldSort: false,
-        },
-      );
+        });
 
-      const kartuChoice = new Choices(document.getElementById("kartu"), {
-        searchEnabled: false,
-        itemSelectText: "",
-        shouldSort: false,
-      });
+        const configPremiumChoice = new Choices(
+          document.getElementById("configPremium"),
+          {
+            searchEnabled: false,
+            itemSelectText: "",
+            shouldSort: false,
+          },
+        );
 
-      const serverSelect = document.getElementById("server");
-      const serverLocation = document.getElementById("serverLocation");
-      const serverLocationMenu = document.getElementById("serverLocationMenu");
-      const hargaBox = document.getElementById("harga");
+        const kartuChoice = new Choices(document.getElementById("kartu"), {
+          searchEnabled: false,
+          itemSelectText: "",
+          shouldSort: false,
+        });
 
-      const SERVER_DATA = Array.from(
-        document.querySelectorAll("#server optgroup"),
-      ).map((group) => ({
-        label: group.label,
-        choices: Array.from(group.querySelectorAll("option"))
-          .filter((opt) => opt.value)
-          .map((opt) => ({
-            value: opt.value,
-            label: opt.textContent.trim(),
-            isZivpn: opt.dataset.type === "zivpn",
-          })),
-      }));
-      const serverChoice = new Choices(serverSelect, {
-        searchEnabled: false,
-        itemSelectText: "",
-        shouldSort: false,
-      });
+        const serverSelect = document.getElementById("server");
+        const serverLocation = document.getElementById("serverLocation");
+        const serverLocationMenu =
+          document.getElementById("serverLocationMenu");
+        const hargaBox = document.getElementById("harga");
 
-      // Pilih Server dibuat popup seperti dropdown lainnya.
-      const serverLocationChoice = new Choices(serverLocation, {
-        searchEnabled: false,
-        itemSelectText: "",
-        shouldSort: false,
-      });
+        const SERVER_DATA = Array.from(
+          document.querySelectorAll("#server optgroup"),
+        ).map((group) => ({
+          label: group.label,
+          choices: Array.from(group.querySelectorAll("option"))
+            .filter((opt) => opt.value)
+            .map((opt) => ({
+              value: opt.value,
+              label: opt.textContent.trim(),
+              isZivpn: opt.dataset.type === "zivpn",
+            })),
+        }));
+        const serverChoice = new Choices(serverSelect, {
+          searchEnabled: false,
+          itemSelectText: "",
+          shouldSort: false,
+        });
 
-      const previewBox = document.getElementById("previewBox");
-      const previewContent = document.getElementById("previewContent");
+        // Pilih Server dibuat popup seperti dropdown lainnya.
+        const serverLocationChoice = new Choices(serverLocation, {
+          searchEnabled: false,
+          itemSelectText: "",
+          shouldSort: false,
+        });
 
-      // Pilihan paket server baru ditampilkan setelah lokasi dipilih.
-      const serverGroup = serverSelect.closest(".form-group");
-      if (serverGroup) serverGroup.style.display = "none";
+        const previewBox = document.getElementById("previewBox");
+        const previewContent = document.getElementById("previewContent");
 
-      // ✅ tambahan untuk config premium
-      const jenisSelect = document.getElementById("jenis");
-      const configMenu = document.getElementById("configMenu");
-      const configPremium = document.getElementById("configPremium");
+        // Pilihan paket server baru ditampilkan setelah lokasi dipilih.
+        const serverGroup = serverSelect.closest(".form-group");
+        if (serverGroup) serverGroup.style.display = "none";
 
-      configPremium.addEventListener("change", () => {
-        jenisSelect.dispatchEvent(new Event("change"));
-      });
+        // ✅ tambahan untuk config premium
+        const jenisSelect = document.getElementById("jenis");
+        const configMenu = document.getElementById("configMenu");
+        const configPremium = document.getElementById("configPremium");
 
-      function extractData(serverText) {
-        const parts = serverText.split("|").map((p) => p.trim());
+        configPremium.addEventListener("change", () => {
+          jenisSelect.dispatchEvent(new Event("change"));
+        });
 
-        let harga = parts[1] || "";
+        function extractData(serverText) {
+          const parts = serverText.split("|").map((p) => p.trim());
 
-        const promo = document
-          .getElementById("promo")
-          .value.trim()
-          .toUpperCase();
+          let harga = parts[1] || "";
 
-        // Promo hanya berlaku untuk Indonesia 1 HP 30 Hari
-        if (
-          PROMOS[promo] &&
-          serverText.includes("[ID]") &&
-          serverText.includes("1 HP") &&
-          serverText.includes("30 Hari")
-        ) {
-          harga = PROMOS[promo];
+          const promo = document
+            .getElementById("promo")
+            .value.trim()
+            .toUpperCase();
+
+          // Promo hanya berlaku untuk Indonesia 1 HP 30 Hari
+          if (
+            PROMOS[promo] &&
+            serverText.includes("[ID]") &&
+            serverText.includes("1 HP") &&
+            serverText.includes("30 Hari")
+          ) {
+            harga = PROMOS[promo];
+          }
+
+          return {
+            namaServer: parts[0] || "",
+            harga: harga,
+            masaAktif: parts[2] || "",
+          };
         }
+        function updatePreview() {
+          const nama = document.getElementById("nama").value;
+          const jenis = document.getElementById("jenis").value;
+          const provinsi = document.getElementById("provinsi").value;
+          const kartu = document.getElementById("kartu").value;
 
-        return {
-          namaServer: parts[0] || "",
-          harga: harga,
-          masaAktif: parts[2] || "",
-        };
-      }
-      function updatePreview() {
-        const nama = document.getElementById("nama").value;
-        const jenis = document.getElementById("jenis").value;
-        const provinsi = document.getElementById("provinsi").value;
-        const kartu = document.getElementById("kartu").value;
+          const configVal =
+            document.getElementById("configPremium")?.value || "";
 
-        const configVal = document.getElementById("configPremium")?.value || "";
+          const selected = serverSelect.options[serverSelect.selectedIndex];
+          const serverVal = serverSelect.value;
 
-        const selected = serverSelect.options[serverSelect.selectedIndex];
-        const serverVal = serverSelect.value;
+          if (nama || jenis || provinsi || kartu || serverVal || configVal) {
+            previewBox.style.display = "block";
+            let serverHTML = "";
 
-        if (nama || jenis || provinsi || kartu || serverVal || configVal) {
-          previewBox.style.display = "block";
-          let serverHTML = "";
+            if (serverVal) {
+              const data = extractData(selected.text);
+              let stok = "-";
+              if (selected.text.includes("[ID]")) stok = stokGlobal.ID;
+              else if (selected.text.includes("[SG]")) stok = stokGlobal.SG;
 
-          if (serverVal) {
-            const data = extractData(selected.text);
-            let stok = "-";
-            if (selected.text.includes("[ID]")) stok = stokGlobal.ID;
-            else if (selected.text.includes("[SG]")) stok = stokGlobal.SG;
-
-            serverHTML = `
+              serverHTML = `
                                               <strong>Server:</strong> ${data.namaServer}<br>
                                               <strong>Harga:</strong> ${data.harga}<br>
                                               <strong>Masa Aktif:</strong> ${data.masaAktif}<br>
                                               <strong>Stok:</strong> <span style="color:${stok == 0 ? "red" : "#333"}">${stok}</span><br>
                                             `;
-          }
+            }
 
-          previewContent.innerHTML = `
+            previewContent.innerHTML = `
                                             <strong>Nama:</strong> ${nama || "-"}<br>
                                             <strong>Jenis Order:</strong> ${jenis || "-"}<br>
                                             ${jenis === "Config Premium" ? `<strong>Config:</strong> ${configVal || "-"}<br>` : ""}
@@ -1039,317 +1050,300 @@
                                             <strong>Provinsi:</strong> ${provinsi || "-"}<br>
                                             <strong>Kartu:</strong> ${kartu || "-"}
                                           `;
+          }
         }
-      }
 
-      // update preview saat input berubah
-      document
-        .querySelectorAll("#waForm input, #waForm select")
-        .forEach((el) => {
-          el.addEventListener("input", updatePreview);
-          el.addEventListener("change", updatePreview);
+        // update preview saat input berubah
+        document
+          .querySelectorAll("#waForm input, #waForm select")
+          .forEach((el) => {
+            el.addEventListener("input", updatePreview);
+            el.addEventListener("change", updatePreview);
+          });
+
+        document.getElementById("promo").addEventListener("input", () => {
+          updatePreview();
+
+          if (serverSelect.value) {
+            serverSelect.dispatchEvent(new Event("change"));
+          }
         });
 
-      document.getElementById("promo").addEventListener("input", () => {
-        updatePreview();
+        // tampilkan menu config premium kalau jenis = Config Premium
+        jenisSelect.addEventListener("change", () => {
+          const jenis = jenisSelect.value;
 
-        if (serverSelect.value) {
-          serverSelect.dispatchEvent(new Event("change"));
-        }
-      });
+          const showZivpn =
+            jenis === "ZIVPN" || configPremium.value === "OPOK ZIVPN VIP";
 
-      // tampilkan menu config premium kalau jenis = Config Premium
-      jenisSelect.addEventListener("change", () => {
-        const jenis = jenisSelect.value;
+          const filteredChoices = SERVER_DATA.map((group) => ({
+            label: group.label,
+            choices: group.choices.filter((server) => {
+              if (showZivpn) return server.isZivpn;
+              if (server.isZivpn) return false;
 
-        const showZivpn =
-          jenis === "ZIVPN" || configPremium.value === "OPOK ZIVPN VIP";
+              // Untuk server biasa, tampilkan sesuai lokasi yang dipilih.
+              if (!serverLocation.value) return false;
+              return server.value.includes(
+                serverLocation.value === "ID" ? "[ID]" : "[SG]",
+              );
+            }),
+          })).filter((group) => group.choices.length > 0);
 
-        const filteredChoices = SERVER_DATA.map((group) => ({
-          label: group.label,
-          choices: group.choices.filter((server) => {
-            if (showZivpn) return server.isZivpn;
-            if (server.isZivpn) return false;
+          serverChoice.clearChoices();
+          serverChoice.setChoices(filteredChoices, "value", "label", true);
 
-            // Untuk server biasa, tampilkan sesuai lokasi yang dipilih.
-            if (!serverLocation.value) return false;
-            return server.value.includes(
-              serverLocation.value === "ID" ? "[ID]" : "[SG]",
-            );
-          }),
-        })).filter((group) => group.choices.length > 0);
-
-        serverChoice.clearChoices();
-        serverChoice.setChoices(filteredChoices, "value", "label", true);
-
-        serverSelect.value = "";
-        hargaBox.innerText = "Harga: -";
-
-        if (showZivpn) {
-          // ZIVPN langsung muncul tanpa pilihan Indonesia/Singapore.
-          serverLocationMenu.style.display = "none";
-          if (serverGroup) serverGroup.style.display = "block";
-        } else {
-          serverLocationMenu.style.display = "block";
-          if (serverGroup) {
-            serverGroup.style.display = serverLocation.value ? "block" : "none";
-          }
-        }
-
-        if (jenis === "Config Premium") {
-          configMenu.style.display = "block";
-          configPremium.required = true;
-        } else {
-          configMenu.style.display = "none";
-          configPremium.required = false;
-          configPremium.value = "";
-        }
-
-        if (showZivpn) {
-          serverLocationChoice.setChoiceByValue("");
-          serverLocation.value = "";
-        }
-
-        updatePreview();
-      });
-
-      // Penanda agar server tidak pernah otomatis memilih Indonesia/Singapore
-      // sebelum user benar-benar memilih lokasi.
-      let serverLocationTouched = false;
-
-      // Pastikan saat halaman pertama dibuka lokasi server benar-benar kosong.
-      serverLocationChoice.setChoiceByValue("");
-      serverLocation.value = "";
-
-      serverLocation.addEventListener("change", () => {
-        serverLocationTouched = true;
-
-        if (jenisSelect.value === "ZIVPN") return;
-
-        const filteredChoices = SERVER_DATA.map((group) => ({
-          label: group.label,
-          choices: group.choices.filter((server) => {
-            if (server.isZivpn) return false;
-            return server.value.includes(
-              serverLocation.value === "ID" ? "[ID]" : "[SG]",
-            );
-          }),
-        })).filter((group) => group.choices.length > 0);
-
-        serverChoice.clearChoices();
-        serverChoice.setChoices(filteredChoices, "value", "label", true);
-
-        serverSelect.value = "";
-        hargaBox.innerText = "Harga: -";
-
-        if (serverGroup) serverGroup.style.display = "block";
-
-        updatePreview();
-      });
-
-      // server change => update harga + stok
-      serverSelect.addEventListener("change", () => {
-        const selected = serverSelect.options[serverSelect.selectedIndex];
-        const text = selected.text;
-        if (!text) {
-          hargaBox.innerText = "Harga: -";
-          return;
-        }
-
-        const data = extractData(text);
-        let stok = "-";
-        if (text.includes("[ID]")) stok = stokGlobal.ID;
-        else if (text.includes("[SG]")) stok = stokGlobal.SG;
-
-        hargaBox.innerHTML = `
-                                          Harga: ${data.harga}<br>
-                                          <span style="color:${stok == 0 ? "red" : "#333"}">Stok: ${stok}</span>
-                                        `;
-        updatePreview();
-      });
-
-      // ✅ VALIDASI sebelum kirim WA
-      function validateForm() {
-        const checks = [
-          [
-            "nama",
-            "namaError",
-            "Silakan isi nama / username.",
-            () => !document.getElementById("nama").value.trim(),
-          ],
-          [
-            "jenis",
-            "jenisError",
-            "Silakan pilih jenis order.",
-            () => !document.getElementById("jenis").value,
-          ],
-          [
-            "configPremium",
-            "configPremiumError",
-            "Silakan pilih Config Premium.",
-            () =>
-              document.getElementById("jenis").value === "Config Premium" &&
-              !document.getElementById("configPremium").value,
-          ],
-          [
-            "serverLocation",
-            "serverLocationError",
-            "Silakan pilih server.",
-            () =>
-              document.getElementById("jenis").value !== "ZIVPN" &&
-              !document.getElementById("serverLocation").value,
-          ],
-          [
-            "server",
-            "serverError",
-            "Silakan pilih paket server.",
-            () => !document.getElementById("server").value,
-          ],
-          [
-            "provinsi",
-            "provinsiError",
-            "Silakan pilih provinsi.",
-            () => !document.getElementById("provinsi").value,
-          ],
-          [
-            "kartu",
-            "kartuError",
-            "Silakan pilih kartu.",
-            () => !document.getElementById("kartu").value,
-          ],
-        ];
-
-        checks.forEach(([, errorId]) => {
-          document.getElementById(errorId)?.classList.remove("show");
-        });
-
-        const popup = document.getElementById("validationPopup");
-        if (popup) popup.classList.remove("show");
-
-        function showError(fieldId, errorId, message) {
-          const field = document.getElementById(fieldId);
-          const error = document.getElementById(errorId);
-
-          if (error) error.classList.add("show");
-
-          // Notifikasi tetap muncul di browser yang mendukung, sekaligus
-          // pesan kecil tetap terlihat tepat di bawah kotak field.
-          if (popup) {
-            popup.textContent = "⚠ " + message;
-            popup.classList.add("show");
-            clearTimeout(window.__validationPopupTimer);
-            window.__validationPopupTimer = setTimeout(() => {
-              popup.classList.remove("show");
-            }, 3000);
-          }
-
-          field.focus();
-          return false;
-        }
-
-        for (const [fieldId, errorId, message, invalid] of checks) {
-          if (invalid()) {
-            return showError(fieldId, errorId, message);
-          }
-        }
-
-        return true;
-      }
-
-      document.getElementById("nama").addEventListener("input", function () {
-        // Selama user belum memilih lokasi sendiri, lokasi TIDAK boleh
-        // terisi otomatis hanya karena mengetik nama.
-        if (!serverLocationTouched) {
-          serverLocationChoice.setChoiceByValue("");
-          serverLocation.value = "";
           serverSelect.value = "";
           hargaBox.innerText = "Harga: -";
 
-          if (serverGroup) serverGroup.style.display = "none";
+          if (showZivpn) {
+            // ZIVPN langsung muncul tanpa pilihan Indonesia/Singapore.
+            serverLocationMenu.style.display = "none";
+            if (serverGroup) serverGroup.style.display = "block";
+          } else {
+            serverLocationMenu.style.display = "block";
+            if (serverGroup) {
+              serverGroup.style.display = serverLocation.value
+                ? "block"
+                : "none";
+            }
+          }
 
-          // Hapus semua paket yang mungkin sempat muncul/terpilih.
+          if (jenis === "Config Premium") {
+            configMenu.style.display = "block";
+            configPremium.required = true;
+          } else {
+            configMenu.style.display = "none";
+            configPremium.required = false;
+            configPremium.value = "";
+          }
+
+          if (showZivpn) {
+            serverLocationChoice.setChoiceByValue("");
+            serverLocation.value = "";
+          }
+
+          updatePreview();
+        });
+
+        // Penanda agar server tidak pernah otomatis memilih Indonesia/Singapore
+        // sebelum user benar-benar memilih lokasi.
+        let serverLocationTouched = false;
+
+        // Pastikan saat halaman pertama dibuka lokasi server benar-benar kosong.
+        serverLocationChoice.setChoiceByValue("");
+        serverLocation.value = "";
+
+        serverLocation.addEventListener("change", () => {
+          serverLocationTouched = true;
+
+          if (jenisSelect.value === "ZIVPN") return;
+
+          const filteredChoices = SERVER_DATA.map((group) => ({
+            label: group.label,
+            choices: group.choices.filter((server) => {
+              if (server.isZivpn) return false;
+              return server.value.includes(
+                serverLocation.value === "ID" ? "[ID]" : "[SG]",
+              );
+            }),
+          })).filter((group) => group.choices.length > 0);
+
           serverChoice.clearChoices();
-          serverChoice.setChoices([], "value", "label", true);
+          serverChoice.setChoices(filteredChoices, "value", "label", true);
+
+          serverSelect.value = "";
+          hargaBox.innerText = "Harga: -";
+
+          if (serverGroup) serverGroup.style.display = "block";
+
+          updatePreview();
+        });
+
+        // server change => update harga + stok
+        serverSelect.addEventListener("change", () => {
+          const selected = serverSelect.options[serverSelect.selectedIndex];
+          const text = selected ? selected.text : "";
+          if (!text) {
+            hargaBox.innerText = "Harga: -";
+            return;
+          }
+
+          const data = extractData(text);
+          let stok = "-";
+          if (text.includes("[ID]")) stok = stokGlobal.ID;
+          else if (text.includes("[SG]")) stok = stokGlobal.SG;
+
+          hargaBox.innerHTML = `
+                                          Harga: ${data.harga}<br>
+                                          <span style="color:${stok == 0 ? "red" : "#333"}">Stok: ${stok}</span>
+                                        `;
+          updatePreview();
+        });
+
+        // ✅ VALIDASI sebelum kirim WA
+        function validateForm() {
+          const checks = [
+            [
+              "nama",
+              "namaError",
+              "Silakan isi nama / username.",
+              () => !document.getElementById("nama").value.trim(),
+            ],
+            [
+              "jenis",
+              "jenisError",
+              "Silakan pilih jenis order.",
+              () => !document.getElementById("jenis").value,
+            ],
+            [
+              "configPremium",
+              "configPremiumError",
+              "Silakan pilih Config Premium.",
+              () =>
+                document.getElementById("jenis").value === "Config Premium" &&
+                !document.getElementById("configPremium").value,
+            ],
+            [
+              "serverLocation",
+              "serverLocationError",
+              "Silakan pilih server.",
+              () =>
+                document.getElementById("jenis").value !== "ZIVPN" &&
+                !document.getElementById("serverLocation").value,
+            ],
+            [
+              "server",
+              "serverError",
+              "Silakan pilih paket server.",
+              () => !document.getElementById("server").value,
+            ],
+            [
+              "provinsi",
+              "provinsiError",
+              "Silakan pilih provinsi.",
+              () => !document.getElementById("provinsi").value,
+            ],
+            [
+              "kartu",
+              "kartuError",
+              "Silakan pilih kartu.",
+              () => !document.getElementById("kartu").value,
+            ],
+          ];
+
+          checks.forEach(([, errorId]) => {
+            document.getElementById(errorId)?.classList.remove("show");
+          });
+
+          const popup = document.getElementById("validationPopup");
+          if (popup) popup.classList.remove("show");
+
+          function showError(fieldId, errorId, message) {
+            const field = document.getElementById(fieldId);
+            const error = document.getElementById(errorId);
+
+            if (error) error.classList.add("show");
+
+            // Notifikasi tetap muncul di browser yang mendukung, sekaligus
+            // pesan kecil tetap terlihat tepat di bawah kotak field.
+            if (popup) {
+              popup.textContent = "⚠ " + message;
+              popup.classList.add("show");
+              clearTimeout(window.__validationPopupTimer);
+              window.__validationPopupTimer = setTimeout(() => {
+                popup.classList.remove("show");
+              }, 3000);
+            }
+
+            field.focus();
+            return false;
+          }
+
+          for (const [fieldId, errorId, message, invalid] of checks) {
+            if (invalid()) {
+              return showError(fieldId, errorId, message);
+            }
+          }
+
+          return true;
         }
 
-        if (this.value.trim()) {
-          document.getElementById("namaError").classList.remove("show");
-        }
-      });
+        document.getElementById("nama").addEventListener("input", function () {
+          // Selama user belum memilih lokasi sendiri, lokasi TIDAK boleh
+          // terisi otomatis hanya karena mengetik nama.
+          if (!serverLocationTouched) {
+            serverLocationChoice.setChoiceByValue("");
+            serverLocation.value = "";
+            serverSelect.value = "";
+            hargaBox.innerText = "Harga: -";
 
-      [
-        "jenis",
-        "configPremium",
-        "serverLocation",
-        "server",
-        "provinsi",
-        "kartu",
-      ].forEach((id) => {
-        document.getElementById(id)?.addEventListener("change", function () {
-          if (this.value) {
-            document.getElementById(id + "Error").classList.remove("show");
+            if (serverGroup) serverGroup.style.display = "none";
+
+            // Hapus semua paket yang mungkin sempat muncul/terpilih.
+            serverChoice.clearChoices();
+            serverChoice.setChoices([], "value", "label", true);
+          }
+
+          if (this.value.trim()) {
+            document.getElementById("namaError").classList.remove("show");
           }
         });
-      });
 
-      document.getElementById("nama").addEventListener("input", function () {
-        if (this.value.trim())
-          document.getElementById("namaError").classList.remove("show");
-      });
-
-      [
-        "jenis",
-        "configPremium",
-        "serverLocation",
-        "server",
-        "provinsi",
-        "kartu",
-      ].forEach((id) => {
-        document.getElementById(id)?.addEventListener("change", function () {
-          if (this.value)
-            document.getElementById(id + "Error").classList.remove("show");
+        [
+          "jenis",
+          "configPremium",
+          "serverLocation",
+          "server",
+          "provinsi",
+          "kartu",
+        ].forEach((id) => {
+          document.getElementById(id)?.addEventListener("change", function () {
+            if (this.value) {
+              document.getElementById(id + "Error").classList.remove("show");
+            }
+          });
         });
-      });
 
-      // Kirim ke WhatsApp (tetap aktif + ada validasi)
-      document
-        .getElementById("waForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
+        // Kirim ke WhatsApp (tetap aktif + ada validasi)
+        document
+          .getElementById("waForm")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
 
-          // ❌ kalau belum lengkap, stop di sini
-          if (!validateForm()) return;
+            // ❌ kalau belum lengkap, stop di sini
+            if (!validateForm()) return;
 
-          const nama = document.getElementById("nama").value.trim();
-          const jenis = document.getElementById("jenis").value;
-          const configVal =
-            document.getElementById("configPremium")?.value || "-";
+            const nama = document.getElementById("nama").value.trim();
+            const jenis = document.getElementById("jenis").value;
+            const configVal =
+              document.getElementById("configPremium")?.value || "-";
 
-          const selected = serverSelect.options[serverSelect.selectedIndex];
-          const data = extractData(selected.text);
+            const selected = serverSelect.options[serverSelect.selectedIndex];
+            const data = extractData(selected.text);
 
-          const provinsi = document.getElementById("provinsi").value;
-          const kartu = document.getElementById("kartu").value;
+            const provinsi = document.getElementById("provinsi").value;
+            const kartu = document.getElementById("kartu").value;
 
-          const promo = document
-            .getElementById("promo")
-            .value.trim()
-            .toUpperCase();
+            const promo = document
+              .getElementById("promo")
+              .value.trim()
+              .toUpperCase();
 
-          const promoText =
-            PROMOS[promo] &&
-            selected.text.includes("[ID]") &&
-            selected.text.includes("1 HP") &&
-            selected.text.includes("30 Hari")
-              ? `*Code Promo:* ${promo}\n`
-              : "";
+            const promoText =
+              PROMOS[promo] &&
+              selected.text.includes("[ID]") &&
+              selected.text.includes("1 HP") &&
+              selected.text.includes("30 Hari")
+                ? `*Code Promo:* ${promo}\n`
+                : "";
 
-          const nomor = "6283870282897";
+            const nomor = "6283870282897";
 
-          const configText =
-            jenis === "Config Premium" ? `*Config:* ${configVal}\n` : "";
+            const configText =
+              jenis === "Config Premium" ? `*Config:* ${configVal}\n` : "";
 
-          const teks = `*SWEATER PINK ORDER*
+            const teks = `*SWEATER PINK ORDER*
 
 *Nama:* ${nama}
 *Jenis Order:* ${jenis}
@@ -1363,34 +1357,33 @@ ${promoText}*Masa Aktif:* ${data.masaAktif}
 Terima kasih telah order di *Sweater Pink Store* ❤️
 Pesanan kamu sedang diproses, mohon tunggu konfirmasi dari admin.`;
 
-          Swal.fire({
-            title: "💰 Konfirmasi Pembayaran",
-            html: `
+            Swal.fire({
+              title: "💰 Konfirmasi Pembayaran",
+              html: `
                             <div style="font-size:16px">
                               Total yang harus dibayar
                               <br><br>
                               <b style="font-size:30px;color:#e91e63">${data.harga}</b>
                             </div>
                           `,
-            icon: "question",
-            showCancelButton: true,
-            confirmButtonText: "Lanjut ke WhatsApp",
-            cancelButtonText: "Batal",
-            confirmButtonColor: "#e91e63",
-            cancelButtonColor: "#6c757d",
-            allowOutsideClick: false,
-          }).then((result) => {
-            if (result.isConfirmed) {
-              window.open(
-                `https://wa.me/${nomor}?text=${encodeURIComponent(teks)}`,
-                "_blank",
-              );
-            }
+              icon: "question",
+              showCancelButton: true,
+              confirmButtonText: "Lanjut ke WhatsApp",
+              cancelButtonText: "Batal",
+              confirmButtonColor: "#e91e63",
+              cancelButtonColor: "#6c757d",
+              allowOutsideClick: false,
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.open(
+                  `https://wa.me/${nomor}?text=${encodeURIComponent(teks)}`,
+                  "_blank",
+                );
+              }
+            });
           });
-        });
+      });
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- 🔒 Anti Copy & Inspect Protection -->
     <script>
